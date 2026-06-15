@@ -1,0 +1,629 @@
+.aboutUs {
+  position: relative;
+  height: 100vh;
+  min-height: 100vh;
+  background: #ffffff;
+  color: #000000;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mapArea {
+  position: absolute;
+  top: 44%;
+  left: 50%;
+  width: min(96vw, 1520px);
+  height: min(76vh, 880px);
+  transform: translate(-54%, -50%);
+}
+.mapImage {
+  object-fit: contain;
+  opacity: 0.95;
+  z-index: 1;
+}
+
+.network {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.contentCard {
+  position: relative;
+  z-index: 8;
+  width: min(560px, calc(100% - 40px));
+  margin-left: auto;
+  margin-right: clamp(70px, 6vw, 120px);
+  padding: clamp(36px, 3.4vw, 58px);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(18px);
+  border-radius: 2px;
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.14);
+}
+
+.label {
+  margin: 0 0 22px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.contentCard h2 {
+  margin: 0;
+  font-size: clamp(42px, 4.5vw, 78px);
+  line-height: 0.94;
+  font-weight: 700;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+.text {
+  margin: 28px 0 0;
+  max-width: 500px;
+  font-size: clamp(15px, 1vw, 17px);
+  line-height: 1.55;
+  font-weight: 300;
+  letter-spacing: -0.01em;
+  color: rgba(0, 0, 0, 0.58);
+}
+
+/* ================= MAP ROUTES ================= */
+
+.routeLine {
+  fill: none;
+  stroke-width: 2.4px;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  vector-effect: non-scaling-stroke;
+  animation: travelLine 5.2s ease-out forwards;
+}
+
+.routeLineGlow {
+  fill: none;
+  stroke-width: 5px;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  opacity: 0.35;
+  filter: blur(2px);
+  vector-effect: non-scaling-stroke;
+  animation: travelLine 5.2s ease-out forwards;
+}
+
+.routeLineExit {
+  fill: none;
+  stroke-width: 2.4px;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+  vector-effect: non-scaling-stroke;
+  animation: fadeRouteLine 3s ease-out forwards;
+}
+
+.routeLineExitGlow {
+  fill: none;
+  stroke-width: 5px;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 0;
+  opacity: 0.35;
+  filter: blur(2px);
+  vector-effect: non-scaling-stroke;
+  animation: fadeRouteLine 3s ease-out forwards;
+}
+
+.routePink {
+  stroke: #ff007a;
+  filter:
+    drop-shadow(0 0 5px rgba(255, 0, 122, 1))
+    drop-shadow(0 0 16px rgba(255, 0, 122, 0.9));
+}
+
+.routeGreen {
+  stroke: #00ff4c;
+  filter:
+    drop-shadow(0 0 5px rgba(0, 255, 76, 1))
+    drop-shadow(0 0 16px rgba(0, 255, 76, 0.9));
+}
+
+.routeCyan {
+  stroke: #00d9ff;
+  filter:
+    drop-shadow(0 0 5px rgba(0, 217, 255, 1))
+    drop-shadow(0 0 16px rgba(0, 217, 255, 0.9));
+}
+
+.universityPoint {
+  fill: #111111;
+  stroke: #ffffff;
+  stroke-width: 1.2px;
+  vector-effect: non-scaling-stroke;
+  opacity: 0.95;
+  filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.45));
+}
+
+.activePoint {
+  fill: currentColor;
+  animation: activePulse 2.2s ease-in-out infinite;
+}
+
+.activePoint.routePink {
+  color: #ff007a;
+}
+
+.activePoint.routeGreen {
+  color: #00ff4c;
+}
+
+.activePoint.routeCyan {
+  color: #00d9ff;
+}
+
+/* ================= MARQUEE ================= */
+
+.universityMarquee {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: clamp(26px, 3.6vh, 46px);
+  z-index: 9;
+  width: 100%;
+  overflow: hidden;
+}
+
+.marqueeHeading {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto clamp(16px, 2vh, 26px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+}
+
+.marqueeHeading span {
+  height: 1px;
+  flex: 1;
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.marqueeHeading p {
+  margin: 0;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  font-size: clamp(10px, 0.8vw, 13px);
+  font-weight: 700;
+  color: rgba(0, 0, 0, 0.52);
+}
+
+.marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.track {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.logoItem {
+  min-width: clamp(190px, 15vw, 280px);
+  height: clamp(56px, 6vh, 78px);
+  padding: 0 clamp(24px, 3vw, 44px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-right: 1px solid rgba(0, 0, 0, 0.12);
+}
+
+.logo {
+  width: auto;
+  height: auto;
+  max-width: clamp(130px, 11vw, 210px);
+  max-height: clamp(34px, 4vh, 52px);
+  object-fit: contain;
+}
+
+.marquee:hover .track {
+  animation-play-state: paused;
+}
+
+/* ================= ANIMATIONS ================= */
+
+@keyframes travelLine {
+  0% {
+    stroke-dashoffset: 1000;
+    opacity: 0;
+  }
+
+  6% {
+    opacity: 1;
+  }
+
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeRouteLine {
+  0% {
+    stroke-dashoffset: 0;
+    opacity: 0.75;
+  }
+
+  100% {
+    stroke-dashoffset: -1000;
+    opacity: 0;
+  }
+}
+
+@keyframes activePulse {
+  0%,
+  100% {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 5px currentColor);
+  }
+
+  50% {
+    opacity: 1;
+    filter:
+      drop-shadow(0 0 8px currentColor)
+      drop-shadow(0 0 18px currentColor);
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* ================= DESKTOP 1025px → 1439px ================= */
+
+@media (min-width: 1025px) and (max-width: 1439px) {
+  .mapArea {
+    width: min(94vw, 210vh, 1360px);
+    height: min(58vw, 108vh, 760px);
+    top: 42%;
+    transform: translate(-59%, -50%);
+  }
+
+  .contentCard {
+    width: min(35vw, 82vh, 500px);
+    padding: min(3vw, 6.5vh, 42px);
+    margin-right: clamp(42px, 6vw, 86px);
+    transform: translateY(max(-30px, -5vh));
+  }
+
+  .contentCard h2 {
+    font-size: min(4.5vw, 8.6vh, 64px);
+    line-height: 0.94;
+  }
+
+  .text {
+    margin-top: min(24px, 3vh);
+    max-width: 460px;
+    font-size: min(1.15vw, 2.3vh, 16px);
+    line-height: 1.48;
+  }
+
+  .universityMarquee {
+    bottom: min(2vw, 3.5vh, 26px);
+  }
+
+  .marqueeHeading {
+    width: min(980px, calc(100% - 32px));
+    margin-bottom: min(16px, 2vh);
+    gap: 22px;
+  }
+
+  .marqueeHeading p {
+    font-size: min(0.78vw, 1.8vh, 12px);
+  }
+
+  .logoItem {
+    min-width: min(15vw, 210px);
+    height: min(4.8vw, 7.4vh, 62px);
+    padding: 0 min(2.8vw, 34px);
+  }
+
+  .logo {
+    max-width: min(11vw, 160px);
+    max-height: min(3.2vw, 4.8vh, 42px);
+  }
+}
+
+/* ================= DESKTOP 1440px → 1919px ================= */
+
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .mapArea {
+    width: min(87.5vw, 230vh, 1680px);
+    height: min(46.4vw, 120vh, 890px);
+    top: clamp(38%, 43vh, 43%);
+    transform: translate(-58%, -50%);
+  }
+
+  .contentCard {
+    width: min(33.85vw, 88vh, 650px);
+    padding: min(3.02vw, 7vh, 58px);
+    margin-right: clamp(110px, 9.9vw, 190px);
+    transform: translateY(max(-34px, -6vh));
+  }
+
+  .contentCard h2 {
+    font-size: min(4.17vw, 9.5vh, 80px);
+  }
+
+  .text {
+    font-size: min(0.94vw, 2.4vh, 18px);
+  }
+
+  .universityMarquee {
+    bottom: min(2.1vw, 4vh, 40px);
+  }
+
+  .logoItem {
+    height: min(3.95vw, 9vh, 76px);
+  }
+
+  .logo {
+    max-height: min(2.7vw, 6vh, 52px);
+  }
+}
+
+/* ================= DESKTOP 1920px+ ================= */
+
+@media (min-width: 1920px) {
+ .mapArea {
+    width: 1680px;
+    height: 890px;
+    left: 50%;
+    top: 43%;
+    transform: translate(-58%, -50%);
+  }
+
+  .contentCard {
+    width: 650px !important;
+    padding: 58px;
+    margin-right: calc((100vw - 1920px) / 2 + 190px);
+    transform: translateY(-34px);
+  }
+
+  .contentCard h2 {
+    font-size: 80px;
+  }
+
+  .text {
+    max-width: 560px;
+    font-size: 18px;
+  }
+
+  .universityMarquee {
+  bottom: 34px;
+}
+
+  .marqueeHeading {
+    width: 1120px;
+    margin-bottom: 24px;
+  }
+
+  .logoItem {
+    min-width: 270px;
+    height: 76px;
+    padding: 0 44px;
+  }
+
+  .logo {
+    max-width: 210px;
+    max-height: 52px;
+  }
+}
+
+/* ================= TABLET 768px → 1024px ================= */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .aboutUs {
+    height: 100vh;
+    min-height: 100vh;
+    padding: 64px 32px 150px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .mapArea {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 112vw;
+    height: 72vw;
+    transform: none;
+    margin-left: -8vw;
+  }
+
+  .contentCard {
+    position: relative;
+    z-index: 8;
+    width: 100%;
+    max-width: 720px;
+    margin: 12px auto 0;
+    padding: 0;
+    background: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .contentCard h2 {
+    font-size: clamp(50px, 7vw, 72px);
+    line-height: 0.94;
+  }
+
+  .text {
+    max-width: 560px;
+    font-size: 16px;
+  }
+
+  .routeLine,
+  .routeLineExit {
+    stroke-width: 2px;
+  }
+
+  .routeLineGlow,
+  .routeLineExitGlow {
+    stroke-width: 4px;
+  }
+
+  .universityMarquee {
+    bottom: 28px;
+  }
+
+  .marqueeHeading {
+    gap: 18px;
+    margin-bottom: 18px;
+  }
+
+  .logoItem {
+    min-width: 210px;
+    height: 62px;
+    padding: 0 28px;
+  }
+
+  .logo {
+    max-width: 160px;
+    max-height: 44px;
+  }
+
+  .track {
+    animation-duration: 24s;
+  }
+}
+
+/* ================= MOBILE fino a 767px ================= */
+
+@media (max-width: 767px) {
+  .aboutUs {
+    height: 100vh;
+    min-height: 100vh;
+    padding: 44px 20px 142px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .mapArea {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: 185vw;
+    height: 130vw;
+    transform: none;
+    margin-left: 100px;
+    margin-bottom: 16px;
+  }
+
+  .mapImage {
+    object-fit: contain;
+    transform: none;
+  }
+
+  .network {
+    transform: none;
+    transform-origin: center center;
+  }
+
+  .contentCard {
+    position: relative;
+    z-index: 8;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: transparent;
+    backdrop-filter: none;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .label {
+    margin-bottom: 18px;
+    font-size: 12px;
+  }
+
+  .contentCard h2 {
+    font-size: clamp(34px, 11vw, 52px);
+    line-height: 0.96;
+  }
+
+  .text {
+    max-width: 100%;
+    margin-top: 20px;
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
+  .routeLine,
+  .routeLineExit {
+    stroke-width: 1.4px;
+  }
+
+  .routeLineGlow,
+  .routeLineExitGlow {
+    stroke-width: 2.8px;
+    opacity: 0.32;
+    filter: blur(1.4px);
+  }
+
+  .universityPoint {
+    stroke-width: 1px;
+  }
+
+  .universityMarquee {
+    bottom: 24px;
+  }
+
+  .marqueeHeading {
+    width: calc(100% - 28px);
+    gap: 14px;
+    margin-bottom: 16px;
+  }
+
+  .marqueeHeading p {
+    white-space: normal;
+    text-align: center;
+    line-height: 1.4;
+    max-width: 240px;
+    font-size: 10px;
+  }
+
+  .logoItem {
+    min-width: 180px;
+    height: 56px;
+    padding: 0 24px;
+  }
+
+  .logo {
+    max-width: 140px;
+    max-height: 40px;
+  }
+
+  .track {
+    animation-duration: 24s;
+  }
+}

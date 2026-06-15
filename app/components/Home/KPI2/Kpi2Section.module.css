@@ -1,0 +1,1446 @@
+.themeSwitch {
+  position: absolute;
+  top: 32px;
+  right: clamp(18px, 4vw, 64px);
+  z-index: 80;
+
+  width: 68px;
+  height: 36px;
+  padding: 4px;
+
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.16);
+
+  cursor: pointer;
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  display: block;
+}
+
+.switchText {
+  display: none;
+}
+
+.switchTrack {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: 999px;
+}
+
+.switchThumb {
+  position: absolute;
+  top: 50%;
+  left: 3px;
+
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+
+  background: #ffffff;
+  transform: translateY(-50%);
+  transition: transform 260ms ease, background 260ms ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.lightMode .themeSwitch {
+  border-color: rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.lightMode .switchThumb {
+  background: #101010;
+  transform: translate(32px, -50%);
+}
+
+@media (max-width: 768px) {
+  .themeSwitch {
+    top: 24px;
+    right: 16px;
+    width: 62px;
+    height: 34px;
+  }
+
+  .switchThumb {
+    width: 24px;
+    height: 24px;
+  }
+
+  .lightMode .switchThumb {
+    transform: translate(28px, -50%);
+  }
+}
+
+.kpi2Section {
+  position: relative;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  padding: clamp(58px, 5vh, 76px) clamp(18px, 4vw, 64px) clamp(28px, 4vh, 44px);
+  background:
+    radial-gradient(circle at 20% 10%, rgba(218, 41, 145, 0.24), transparent 34%),
+    radial-gradient(circle at 82% 30%, rgba(0, 213, 255, 0.18), transparent 34%),
+    radial-gradient(circle at 50% 100%, rgba(124, 255, 139, 0.13), transparent 36%),
+    #050505;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+.header {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 8px;
+  align-items: end;
+}
+
+.label,
+.cardLabel {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.62);
+  font-size: 12px;
+  line-height: 1;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+
+.header h2 {
+  margin: 12px 0 0;
+  font-size: clamp(34px, 4.1vw, 50px);
+  line-height: 0.9;
+  letter-spacing: -0.07em;
+  text-transform: uppercase;
+}
+
+
+
+
+.header p {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  justify-self: stretch;
+  text-align: left;
+  color: rgba(255, 255, 255, 0.68);
+  font-size: clamp(14px, 0.9vw, 16px);
+  line-height: 1.28;
+  text-align: right;
+}
+
+.grid {
+  margin-top: clamp(22px, 3vh, 34px) !important;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: 1.45fr 0.9fr 1.18fr;
+  grid-template-rows: repeat(4, minmax(0, 1fr));
+  gap: 8px;
+  flex: 1;
+  min-height: 0;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  
+  background: rgba(255, 255, 255, 0.025);
+}
+
+
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 36%),
+    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.12), transparent 30%);
+  opacity: 0.75;
+}
+
+.ticketCard {
+    grid-column: 1;
+  grid-row: 1 / 3;
+  padding: 28px;
+}
+
+
+
+
+
+.mapCard {
+  grid-column: 2;
+  grid-row: 3 / 5;
+  padding: 28px;
+  background:
+    radial-gradient(circle at 50% 45%, rgba(0, 213, 255, 0.14), transparent 34%),
+    rgba(255, 255, 255, 0.035);
+}
+
+
+
+.ticketCard {
+  grid-column: 1;
+  grid-row: 1 / 3;
+  padding: 18px;
+   overflow: hidden;
+  
+}
+
+.ticketNumber {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  color: #da2991;
+  font-weight: 900;
+  line-height: 0.76;
+  letter-spacing: -0.14em;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.euro,
+.one,
+.zero,
+.k {
+  position: absolute;
+  display: block;
+}
+
+.euro {
+  left: 1%;
+  top: -5%;
+  font-size: clamp(14.06rem, 5.53vw + 10.52rem, 19.38rem);
+}
+
+.one {
+  left: 39%;
+  top: 2%;
+  font-size: clamp(15.63rem, 14.32vw + 6.46rem, 29.38rem);
+}
+
+
+
+.zero {
+  left: 56%;
+  top: 8%;
+  font-size: clamp(15.63rem, 14.32vw + 6.46rem, 29.38rem);
+}
+
+.k {
+  right: 4%;
+  bottom: 0%;
+  font-size: clamp(3.8rem, 5vw, 7.25rem);
+  letter-spacing: -0.1em;
+}
+
+.ticketCaption {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  z-index: 3;
+  margin: 0;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 700;
+}
+
+.universityCard {
+  grid-column: 2;
+  grid-row: 1;
+  padding: 26px;
+  background:
+    radial-gradient(circle at 0% 100%, rgba(73, 82, 150, 0.85), transparent 38%),
+    radial-gradient(circle at 78% 45%, rgba(80, 24, 18, 0.55), transparent 48%),
+    linear-gradient(135deg, #211718 0%, #241918 48%, #311712 100%);
+}
+
+.universityCard::before {
+  background: none;
+}
+
+.universityValue {
+  position: absolute;
+  left: 22px;
+  top: 18px;
+  z-index: 2;
+  color: #f4f4ff;
+  font-size: clamp(74px, 7vw, 112px);
+  line-height: 0.72;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+}
+
+.universityIcon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  width:clamp(3.13rem, 1.3vw + 2.29rem, 4.38rem);
+  height: clamp(3.13rem, 1.3vw + 2.29rem, 4.38rem);
+  border-radius: 50%;
+  background: #ff2028;
+  display: grid;
+  place-items: center;
+}
+
+
+
+
+.universityIconImg {
+  width: clamp(1.88rem, 0.98vw + 1.25rem, 2.81rem);
+  height: clamp(1.88rem, 0.98vw + 1.25rem, 2.81rem);
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+
+
+.universityLabel {
+  position: absolute;
+  left: 26px;
+  bottom: 18px;
+  z-index: 3;
+  margin: 0;
+  color: #ffffff;
+  font-size: 17px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+.orbit {
+  position: absolute;
+  inset: 36px;
+  opacity: 0.6;
+}
+
+.orbit span {
+  position: absolute;
+  inset: 0;
+  border: 1px solid rgba(0, 213, 255, 0.32);
+  border-radius: 50%;
+  animation: rotateOrbit 9s linear infinite;
+}
+
+.orbit span:nth-child(2) {
+  transform: rotate(58deg) scaleX(0.72);
+  border-color: rgba(124, 255, 139, 0.28);
+  animation-duration: 12s;
+}
+
+.orbit span:nth-child(3) {
+  transform: rotate(-42deg) scaleX(0.62);
+  border-color: rgba(218, 41, 145, 0.28);
+  animation-duration: 15s;
+}
+
+.cardNote {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 26px;
+  z-index: 2;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.64);
+  font-size: 15px;
+  line-height: 1.25;
+}
+
+.vcCard {
+  grid-column: 3;
+  grid-row: 1 / 5;
+  padding: 28px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(218, 41, 145, 0.18), transparent 34%),
+    linear-gradient(135deg, #221514 0%, #2b1714 48%, #351812 100%);
+}
+
+.vcCard::before {
+  background: none;
+}
+
+.vcNumber {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  overflow: visible;
+}
+
+.vcTwo,
+.vcZero {
+  position: absolute;
+  display: block;
+  width: max-content;
+  min-width: 0;
+  overflow: visible;
+  font-weight: 900;
+  letter-spacing: -0.16em;
+  background: linear-gradient(155deg, #6f4c8f 0%, #b22872 42%, #ff1f25 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.vcTwo {
+  left:-20%;
+  top: -40%;
+  width: 70%;
+  font-size: clamp(28.13rem, 35.81vw + 5.21rem, 62.5rem);
+}
+
+
+
+.vcZero {
+  left: 50%;
+  top: 5%;
+  width: 70%;
+  height: auto;
+  min-height: 1em;
+
+  font-size: clamp(28.13rem, 35.81vw + 5.21rem, 62.5rem);
+  line-height: 0.9;
+}
+
+.vcText {
+  position: absolute;
+  left: 28px;
+  right: 28px;
+  bottom: 24px;
+  z-index: 3;
+  max-width: none;
+  margin: 0;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 800;
+}
+
+.cagrValue {
+  position: relative;
+  z-index: 2;
+  margin-top: 28px;
+  font-size: clamp(82px, 8vw, 150px);
+  line-height: 0.85;
+  font-weight: 900;
+  letter-spacing: -0.09em;
+  color: #7cff8b;
+}
+
+.chartSvg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 52px;
+  z-index: 1;
+  width: 100%;
+  height: 48%;
+  overflow: visible;
+}
+
+.chartFill {
+  fill: url(#yvFill);
+}
+
+.chartLine {
+  fill: none;
+  stroke: url(#yvLine);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-dasharray: 640;
+  stroke-dashoffset: 640;
+  animation: drawLine 2.4s ease forwards;
+}
+
+.mapTop {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.mapTop span {
+  color: rgba(255, 255, 255, 0.58);
+  font-size: 14px;
+}
+
+.mapSvg {
+  position: absolute;
+  inset: 68px 14px 18px;
+  z-index: 2;
+  width: calc(100% - 28px);
+  height: calc(100% - 86px);
+}
+
+.land {
+  fill: rgba(255, 255, 255, 0.09);
+  stroke: rgba(255, 255, 255, 0.12);
+  stroke-width: 1;
+}
+
+.mapDot {
+  fill: #00d5ff;
+  filter: drop-shadow(0 0 8px rgba(0, 213, 255, 0.9));
+}
+
+.mapPulse {
+  fill: rgba(0, 213, 255, 0.22);
+  transform-origin: center;
+  animation: pulseDot 2.2s ease-out infinite;
+}
+
+.mapLine,
+.mapLineAlt {
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 8 12;
+  animation: dashMove 8s linear infinite;
+}
+
+.mapLine {
+  stroke: rgba(218, 41, 145, 0.62);
+}
+
+.mapLineAlt {
+  stroke: rgba(124, 255, 139, 0.52);
+}
+
+.dealCard {
+  grid-column: 2;
+  grid-row: 2;
+  padding: 26px;
+  background:
+    radial-gradient(circle at 0% 100%, rgba(73, 82, 150, 0.85), transparent 38%),
+    radial-gradient(circle at 78% 45%, rgba(80, 24, 18, 0.55), transparent 48%),
+    linear-gradient(135deg, #211718 0%, #241918 48%, #311712 100%);
+}
+
+.dealCard::before {
+  background: none;
+}
+
+.dealValue {
+  position: absolute;
+  left: 22px;
+  top: 18px;
+  z-index: 2;
+  margin: 0;
+  color: #f4f4ff;
+  font-size: clamp(58px, 5vw, 88px);
+  line-height: 0.78;
+  font-weight: 900;
+  letter-spacing: -0.08em;
+  background: none;
+  -webkit-background-clip: initial;
+  background-clip: initial;
+}
+
+.dealIcon {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 3;
+  width:clamp(3.13rem, 1.3vw + 2.29rem, 4.38rem);
+  height: clamp(3.13rem, 1.3vw + 2.29rem, 4.38rem);
+  border-radius: 50%;
+  background: #ff2028;
+  display: grid;
+  place-items: center;
+}
+
+.dealIconImg {
+  width: clamp(1.88rem, 0.98vw + 1.25rem, 2.81rem);
+  height: clamp(1.88rem, 0.98vw + 1.25rem, 2.81rem);
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.dealLabel {
+  position: absolute;
+  left: 26px;
+  bottom: 18px;
+  z-index: 3;
+  margin: 0;
+  color: #ffffff;
+  font-size: 17px;
+  line-height: 1;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+
+.cagrCard {
+  grid-column: 1;
+  grid-row: 3 / 5;
+  padding: 0;
+  background: #2a1713;
+  overflow: hidden;
+}
+
+.cagrCard::before {
+  background: none;
+}
+
+.aumValue {
+  position: absolute;
+  left: 18px;
+  top: 20px;
+  z-index: 4;
+  color: #ffffff;
+  font-size: clamp(5rem, 8.5vw, 10rem);
+  line-height: 0.72;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+}
+
+.aumValue::after {
+  display: none;
+  content: none;
+}
+
+.aumChart {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.aumFill {
+  fill: url(#aumFill);
+}
+
+.aumLine {
+  fill: none;
+  stroke: #ff252b;
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+
+  stroke-dasharray: 28 14;
+  stroke-dashoffset: 0;
+  animation: moveAumLine 1.2s linear infinite;
+}
+
+@keyframes moveAumLine {
+  to {
+    stroke-dashoffset: -42;
+  }
+}
+
+.aumCaption {
+  position: absolute;
+  left: 18px;
+  bottom: 16px;
+  z-index: 4;
+  margin: 0;
+  color: #ffffff;
+  font-size: 13px;
+  line-height: 1;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes dashMove {
+  to {
+    stroke-dashoffset: -160;
+  }
+}
+
+@keyframes pulseDot {
+  0% {
+    opacity: 0.7;
+    transform: scale(0.6);
+  }
+
+  100% {
+    opacity: 0;
+    transform: scale(2.6);
+  }
+}
+
+@keyframes rotateOrbit {
+  to {
+    rotate: 360deg;
+  }
+}
+
+
+.worldMap {
+  position: absolute;
+  inset: 72px 0 0;
+  z-index: 2;
+  overflow: hidden;
+}
+
+.worldMapImg {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 135%;
+  max-width: none;
+  height: auto;
+  opacity: 0.82;
+  transform: translate(-50%, -50%);
+  animation: floatWorldMap 8s ease-in-out infinite;
+}
+
+.worldLand {
+  fill: rgba(255, 255, 255, 0.28);
+  stroke: rgba(255, 255, 255, 0.18);
+  stroke-width: 1.4;
+}
+
+.worldLine,
+.worldLineAlt {
+  fill: none;
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  stroke-dasharray: 8 12;
+  animation: dashMove 8s linear infinite;
+}
+
+.worldLine {
+  stroke: rgba(218, 41, 145, 0.78);
+}
+
+.worldLineAlt {
+  stroke: rgba(124, 255, 139, 0.7);
+}
+
+.mapDot {
+  fill: #00d5ff;
+  filter: drop-shadow(0 0 10px rgba(0, 213, 255, 1));
+}
+
+.mapPulse {
+  fill: rgba(0, 213, 255, 0.28);
+  transform-origin: center;
+  animation: pulseDot 2.2s ease-out infinite;
+}
+
+@keyframes floatWorldMap {
+  0%, 100% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-52%, -51%) scale(1.05);
+  }
+}
+
+@media (min-width: 1025px) {
+ .grid {
+    display: grid;
+    grid-template-columns: 1.42fr 0.92fr 1.18fr;
+    grid-template-rows: repeat(4, 1fr);
+  }
+
+  .ticketCard {
+    grid-column: 1;
+    grid-row: 1 / 3;
+  }
+
+  .universityCard {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .dealCard {
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .cagrCard {
+    grid-column: 1;
+    grid-row: 3 / 5;
+  }
+
+  .mapCard {
+    grid-column: 2;
+    grid-row: 3 / 5;
+  }
+
+  .vcCard {
+    grid-column: 3;
+    grid-row: 1 / 5;
+  }
+}
+
+
+/* ================= DESKTOP SMALL: 1025px - 1280px ================= */
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .kpi2Section {
+    padding: 58px 28px 30px;
+  }
+
+  .themeSwitch {
+    top: 24px;
+    right: 28px;
+    width: 62px;
+    height: 34px;
+  }
+
+  .switchThumb {
+    width: 24px;
+    height: 24px;
+  }
+
+  .lightMode .switchThumb {
+    transform: translate(28px, -50%);
+  }
+
+  .header {
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 20px;
+  }
+
+  .header h2 {
+    font-size: clamp(34px, 4.2vw, 48px);
+    line-height: 0.92;
+  }
+
+  .header p {
+    font-size: 13px;
+    line-height: 1.25;
+    text-align: left;
+    align-self: end;
+  }
+
+  .grid {
+    margin-top: 24px !important;
+    grid-template-columns: 1.35fr 0.9fr 1.08fr;
+    gap: 7px;
+    flex: 0.8;
+  }
+
+  .ticketCard,
+  .mapCard,
+  .vcCard,
+  .universityCard,
+  .dealCard {
+    padding: 18px;
+  }
+
+  .universityCard,
+  .dealCard {
+    padding: 16px 18px;
+  }
+
+  .euro {
+    left: 0%;
+    top: -2%;
+    font-size: clamp(10rem, 15vw, 13rem);
+  }
+
+  .one {
+    left: 38%;
+    top: 4%;
+    font-size: clamp(15rem, 22vw, 20rem);
+  }
+
+  .zero {
+    left: 56%;
+    top: 9%;
+    font-size: clamp(15rem, 22vw, 20rem);
+  }
+
+  .k {
+    right: 4%;
+    bottom: 0%;
+    font-size: clamp(4rem, 6vw, 5.4rem);
+  }
+
+  .universityValue {
+    left: 18px;
+    top: 16px;
+    font-size: clamp(54px, 6vw, 68px);
+    line-height: 0.78;
+  }
+
+  .dealValue {
+    left: 18px;
+    top: 18px;
+    font-size: clamp(44px, 5.4vw, 58px);
+    line-height: 0.78;
+  }
+
+  .universityLabel,
+  .dealLabel {
+    left: 18px;
+    bottom: 8px;
+    font-size: 12px;
+    line-height: 1;
+  }
+
+  .universityIcon,
+  .dealIcon {
+    top: 14px;
+    right: 14px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .universityIconImg,
+  .dealIconImg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .aumValue {
+    font-size: clamp(5rem, 9vw, 7.2rem);
+  }
+
+  .vcTwo,
+  .vcZero {
+    font-size: clamp(24rem, 35vw, 34rem);
+  }
+
+  .vcTwo {
+    left: -24%;
+    top: -30%;
+  }
+
+  .vcZero {
+    left: 48%;
+    top: 8%;
+  }
+
+  .mapTop {
+    gap: 12px;
+  }
+
+  .mapTop span {
+    font-size: 12px;
+  }
+
+  .cardLabel {
+    font-size: 10px;
+  }
+
+  .worldMapImg {
+    width: 155%;
+  }
+}
+
+
+@media (min-width: 1025px) and (max-width: 1200px) and (orientation: portrait) {
+  .grid {
+    height: 70vh;
+    flex: none;
+    flex: 0.58;
+  }
+
+  .kpi2Section {
+    padding-bottom: 26px;
+    justify-content: center;
+  }
+}
+
+
+
+/* ================= TABLET: 769px - 1024px ================= */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .kpi2Section {
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 46px 22px 22px;
+    justify-content: center;
+  }
+
+  .themeSwitch {
+    top: 16px;
+    right: 22px;
+    width: 56px;
+    height: 31px;
+  }
+
+  .switchThumb {
+    width: 21px;
+    height: 21px;
+  }
+
+  .lightMode .switchThumb {
+    transform: translate(25px, -50%);
+  }
+
+  .header {
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 22px;
+    align-items: end;
+  }
+
+  .label {
+    font-size: 10px;
+  }
+
+  .header h2 {
+    margin-top: 8px;
+    font-size: clamp(28px, 4.3vw, 38px);
+    line-height: 0.9;
+  }
+
+  .header p {
+    font-size: 11px;
+    line-height: 1.22;
+    text-align: left;
+  }
+
+  .grid {
+    margin-top: 18px !important;
+    flex: 0.58;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr 0.95fr;
+    grid-template-rows: repeat(4, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .ticketCard {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    padding: 14px;
+  }
+
+  .cagrCard {
+    grid-column: 1;
+    grid-row: 3 / 5;
+  }
+
+  .universityCard {
+    grid-column: 2;
+    grid-row: 1;
+    padding: 12px;
+  }
+
+  .dealCard {
+    grid-column: 2;
+    grid-row: 2;
+    padding: 12px;
+    min-height: 0;
+  }
+
+  .mapCard {
+    grid-column: 2;
+    grid-row: 3 / 5;
+    padding: 12px;
+  }
+
+  .vcCard {
+    grid-column: 3;
+    grid-row: 1 / 5;
+    padding: 14px;
+  }
+
+  .euro {
+    left: 0%;
+    top: -2%;
+    font-size: clamp(8rem, 16vw, 10.5rem);
+  }
+
+  .one {
+    left: 36%;
+    top: 6%;
+    font-size: clamp(12rem, 24vw, 16rem);
+  }
+
+  .zero {
+    left: 58%;
+    top: 10%;
+    font-size: clamp(12rem, 24vw, 16rem);
+  }
+
+  .k {
+    right: 4%;
+    bottom: -2%;
+    font-size: clamp(3rem, 6vw, 4.4rem);
+  }
+
+  .aumValue {
+    left: 14px;
+    top: 16px;
+    font-size: clamp(4.2rem, 9vw, 6.2rem);
+  }
+
+  .universityValue {
+    left: 12px;
+    top: 12px;
+    font-size: clamp(42px, 6vw, 58px);
+  }
+
+  .dealValue {
+    left: 12px;
+    top: 14px;
+    font-size: clamp(36px, 5.6vw, 50px);
+  }
+
+  .universityIcon,
+  .dealIcon {
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .universityIconImg,
+  .dealIconImg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .vcTwo,
+  .vcZero {
+    font-size: clamp(18rem, 36vw, 26rem);
+  }
+
+  .vcTwo {
+    left: -24%;
+    top: -28%;
+  }
+
+  .vcZero {
+    left: 48%;
+    top: 8%;
+  }
+
+  .ticketCaption,
+  .aumCaption,
+  .vcText,
+  .universityLabel,
+  .dealLabel {
+    left: 12px;
+    right: 12px;
+    bottom: 10px;
+    font-size: 10px;
+  }
+
+  .mapTop {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .cardLabel {
+    font-size: 8px;
+  }
+
+  .mapTop span {
+    font-size: 9px;
+    line-height: 1.1;
+  }
+
+  .worldMap {
+    inset: 48px 0 0;
+  }
+
+  .worldMapImg {
+    width: 190%;
+  }
+}
+
+/* ================= MOBILE ================= */
+
+/* ================= MOBILE: fino a 768px ================= */
+
+@media (max-width: 767px) {
+  .kpi2Section {
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 64px 14px 18px;
+    justify-content: center;
+  }
+
+  .themeSwitch {
+    top: 18px;
+    right: 14px;
+    width: 54px;
+    height: 30px;
+  }
+
+  .switchThumb {
+    width: 20px;
+    height: 20px;
+  }
+
+  .lightMode .switchThumb {
+    transform: translate(24px, -50%);
+  }
+
+  .header {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .label {
+    font-size: 9px;
+  }
+
+  .header h2 {
+    margin-top: 8px;
+    font-size: clamp(34px, 11vw, 52px);
+    line-height: 0.9;
+  }
+
+  .header p {
+    max-width: 92%;
+    font-size: 11px;
+    line-height: 1.25;
+    text-align: left;
+  }
+
+  .grid {
+    margin-top: 16px !important;
+    flex: 0.80;
+    min-height: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1.1fr 1fr 1fr 1fr;
+    gap: 6px;
+  }
+
+  .ticketCard {
+    grid-column: 1;
+    grid-row: 1 / 3;
+    padding: 12px;
+  }
+
+  .vcCard {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    padding: 12px;
+  }
+
+  .cagrCard {
+    grid-column: 1;
+    grid-row: 3 / 5;
+  }
+
+  .universityCard {
+    grid-column: 2;
+    grid-row: 3;
+    padding: 12px;
+  }
+
+  .dealCard {
+    grid-column: 2;
+    grid-row: 4;
+    padding: 12px;
+    min-height: 0;
+  }
+
+  .mapCard {
+    display: none;
+  }
+
+  .euro {
+    left: -2%;
+    top: -2%;
+    font-size: clamp(6.5rem, 28vw, 9rem);
+  }
+
+  .one {
+    left: 38%;
+    top: 8%;
+    font-size: clamp(9rem, 42vw, 13rem);
+  }
+
+  .zero {
+    left: 58%;
+    top: 12%;
+    font-size: clamp(9rem, 42vw, 13rem);
+  }
+
+  .k {
+    right: 4%;
+    bottom: -2%;
+    font-size: clamp(2.6rem, 12vw, 4rem);
+  }
+
+  .vcTwo,
+  .vcZero {
+    font-size: clamp(12rem, 58vw, 18rem);
+  }
+
+  .vcTwo {
+    left: -26%;
+    top: -24%;
+  }
+
+  .vcZero {
+    left: 44%;
+    top: 8%;
+  }
+
+  .aumValue {
+    left: 12px;
+    top: 14px;
+    font-size: clamp(3.8rem, 18vw, 5.8rem);
+  }
+
+  .universityValue {
+    left: 12px;
+    top: 12px;
+    font-size: clamp(44px, 15vw, 64px);
+  }
+
+  .dealValue {
+    left: 12px;
+    top: 14px;
+    font-size: clamp(38px, 13vw, 58px);
+  }
+
+  .universityIcon,
+  .dealIcon {
+    top: 10px;
+    right: 10px;
+    width: 34px;
+    height: 34px;
+  }
+
+  .universityIconImg,
+  .dealIconImg {
+    width: 20px;
+    height: 20px;
+  }
+
+  .ticketCaption,
+  .aumCaption,
+  .vcText,
+  .universityLabel,
+  .dealLabel {
+    left: 12px;
+    right: 12px;
+    bottom: 10px;
+    font-size: 10px;
+    line-height: 1;
+  }
+}
+
+@media (max-width: 400px) {
+  .grid {
+    flex: 1;
+  }
+}
+
+.lightMode {
+  background:
+    radial-gradient(circle at 20% 10%, rgba(218, 41, 145, 0.12), transparent 34%),
+    radial-gradient(circle at 82% 30%, rgba(0, 213, 255, 0.12), transparent 34%),
+    radial-gradient(circle at 50% 100%, rgba(124, 255, 139, 0.1), transparent 36%),
+    #f7f7f3;
+  color: #101010;
+}
+
+.lightMode .themeSwitch {
+  border-color: rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.08);
+  color: #101010;
+ 
+}
+
+
+
+
+
+.lightMode .label,
+.lightMode .cardLabel {
+  color: rgba(0, 0, 0, 0.48);
+}
+
+.lightMode .header h2 {
+  color: #101010;
+}
+
+.lightMode .header h2 span {
+  color: rgba(0, 0, 0, 0.34);
+}
+
+.lightMode .header p {
+  color: rgba(0, 0, 0, 0.58);
+}
+
+.lightMode .card {
+  border-color: rgba(0, 0, 0, 0.18);
+  background: rgba(255, 255, 255, 0.72);
+}
+
+.lightMode .card::before {
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.85), transparent 42%),
+    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.9), transparent 34%);
+  opacity: 0.8;
+}
+
+.lightMode .ticketCaption,
+.lightMode .universityLabel,
+.lightMode .dealLabel,
+.lightMode .vcText,
+.lightMode .aumCaption {
+  color: #101010;
+}
+
+.lightMode .universityCard,
+.lightMode .dealCard {
+  background:
+    radial-gradient(circle at 0% 100%, rgba(70, 105, 255, 0.18), transparent 40%),
+    radial-gradient(circle at 80% 40%, rgba(255, 32, 40, 0.1), transparent 50%),
+    #ffffff;
+}
+
+.lightMode .vcCard {
+  background:
+    radial-gradient(circle at 0% 0%, rgba(218, 41, 145, 0.12), transparent 34%),
+    linear-gradient(135deg, #ffffff 0%, #f7f0f4 52%, #f4f2ff 100%);
+}
+
+.lightMode .cagrCard {
+  background: #ffffff;
+}
+
+.lightMode .mapCard {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(0, 213, 255, 0.12), transparent 34%),
+    #ffffff;
+}
+
+.lightMode .universityValue,
+.lightMode .dealValue,
+.lightMode .aumValue {
+  color: #101010;
+}
+
+.lightMode .mapTop span {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.lightMode .worldMapImg {
+  opacity: 0.5;
+  filter: invert(1) contrast(1.1);
+}
+

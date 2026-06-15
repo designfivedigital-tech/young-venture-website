@@ -1,0 +1,88 @@
+@font-face {
+  font-family: "YV Font";
+  src: url("/fonts/YV-font-y-normal.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.payoff-section {
+  height: 180vh;
+  background: #000;
+  scroll-snap-align: start;
+}
+
+.payoff-sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+
+.payoff-title {
+
+  font-size: clamp(64px, 7vw, 160px);
+  font-weight: 500;
+  line-height: 0.98;
+    font-family: YV Font;
+  text-align: center;
+  max-width: 94vw;
+  padding: 0 4vw 0.12em;
+  margin: 0;
+}
+
+.payoff-line {
+  display: block;
+  white-space: nowrap;
+}
+
+.payoff-word {
+  display: inline-block;
+  margin-right: 0.18em;
+  color: rgba(255, 255, 255, 0.13);
+  background-image: linear-gradient(
+    90deg,
+    #da2991 0%,
+    #77db21 52%,
+    #00e4e7 100%
+  );
+  background-size: var(--progress, 0%) 100%;
+  background-repeat: no-repeat;
+  background-position: left center;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-size 0.22s ease-out;
+}
+
+.payoff-word:last-child {
+  margin-right: 0;
+}
+
+@media (min-width: 1025px) and (max-width: 1280px) {
+  .payoff-title {
+    font-size: clamp(58px, 6.6vw, 86px);
+    max-width: 96vw;
+  }
+}
+
+@media (min-width: 1281px) and (max-width: 1600px) {
+  .payoff-title {
+    font-size: clamp(86px, 6.8vw, 112px);
+  }
+}
+
+@media (min-width: 1601px) and (max-width: 1920px) {
+  .payoff-title {
+    font-size: clamp(112px, 7vw, 140px);
+  }
+}
+
+@media (min-width: 1921px) and (max-width: 2560px) {
+  .payoff-title {
+    font-size: clamp(140px, 6.5vw, 160px);
+  }
+}
