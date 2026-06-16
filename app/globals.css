@@ -194,7 +194,6 @@ body.nav-hovered .site-header {
     overflow-y: auto;
   }
 
-  /* Sezioni che devono snapparsi */
   .intro-snap > section,
   .snap-section,
   .hero {
@@ -202,8 +201,12 @@ body.nav-hovered .site-header {
     scroll-snap-stop: always;
   }
 
-  /* Slogan e footer devono essere scrollabili normalmente */
-  .payoff-section.snap-section,
+  /* Lo slogan deve ricevere lo snap, ma non bloccare l'uscita */
+  .payoff-section.snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal;
+  }
+
   footer {
     scroll-snap-align: none;
     scroll-snap-stop: normal;
