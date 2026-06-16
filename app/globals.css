@@ -189,26 +189,27 @@ body.nav-hovered .site-header {
     scroll-behavior: auto;
   }
 
+  html.after-commitments {
+    scroll-snap-type: none;
+  }
+
   body {
     overflow-x: hidden;
     overflow-y: auto;
   }
 
   .intro-snap > section,
-  .snap-section,
-  .hero,
-  footer {
+  .snap-section:not(.payoff-section),
+  .hero {
     scroll-snap-align: start;
     scroll-snap-stop: always;
   }
-  
-   html.after-commitments {
-    scroll-snap-type: none;
-  }
 
-  .payoff-section.snap-section {
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
+  .payoff-section,
+  .payoff-section.snap-section,
+  footer {
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
   }
 
   @supports (height: 100dvh) {

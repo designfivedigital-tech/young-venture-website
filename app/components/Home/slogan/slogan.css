@@ -88,16 +88,12 @@
 }
 
 @media (max-width: 767px) {
+  .payoff-section,
   .payoff-section.snap-section {
-    scroll-snap-align: none;
-    scroll-snap-stop: normal;
-  }
-
-   .payoff-section {
     height: 160dvh;
     min-height: 160dvh;
-    scroll-snap-align: start;
-    scroll-snap-stop: normal;
+    scroll-snap-align: none !important;
+    scroll-snap-stop: normal !important;
   }
 
   .payoff-sticky {
