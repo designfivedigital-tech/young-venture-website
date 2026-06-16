@@ -220,7 +220,7 @@ export default function Header() {
       >
         <Link
           href="/"
-          prefetch
+          prefetch={false}
           aria-label="Go to homepage"
           className="site-logo"
           onClick={closeMenu}
@@ -247,7 +247,7 @@ export default function Header() {
               <Link
                 key={item.href}
                 href={item.href}
-                prefetch
+                prefetch={false}
                 className={`menu-link ${isActive ? "menu-link-active" : ""}`}
               >
                 {item.label}
@@ -300,14 +300,14 @@ export default function Header() {
 
               return (
                 <Link
-                  key={item.href}
-                  href={item.href}
-                  prefetch
-                  onClick={closeMenu}
-                  className={`mobile-menu-link ${
-                    isActive ? "mobile-menu-link-active" : ""
-                  }`}
-                >
+  key={item.href}
+  href={item.href}
+  prefetch={false}
+  onClick={closeMenu}
+  className={`mobile-menu-link ${
+    isActive ? "mobile-menu-link-active" : ""
+  }`}
+>
                   {item.label}
                 </Link>
               );
