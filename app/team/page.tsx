@@ -8,7 +8,7 @@ type TeamMember = {
   name: string;
   role: string;
   image: string;
-  video: string;
+  hoverImage: string;
   category: string;
   location: string;
 };
@@ -18,7 +18,7 @@ const teamMembers: TeamMember[] = [
     name: "Name Surname",
     role: "Investment Team, Milan",
     image: "/images/team-members/ragazzo-prova.jpg",
-    video: "/images/team-members/video-ragazzo-prova.mp4",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
     category: "Investment",
     location: "Milan",
   },
@@ -26,7 +26,7 @@ const teamMembers: TeamMember[] = [
     name: "Name Surname",
     role: "Founder Relations, London",
     image: "/images/team-members/team-2.jpg",
-    video: "/images/team-members/team-2.mp4",
+    hoverImage: "/images/team-members/team-2.mp4",
     category: "Operations",
     location: "London",
   },
@@ -34,7 +34,7 @@ const teamMembers: TeamMember[] = [
     name: "Name Surname",
     role: "University Network, Milan",
     image: "/images/team-members/team-3.jpg",
-    video: "/images/team-members/team-3.mp4",
+    hoverImage: "/images/team-members/team-3.mp4",
     category: "Specialists",
     location: "Milan",
   },
@@ -42,7 +42,7 @@ const teamMembers: TeamMember[] = [
     name: "Name Surname",
     role: "Investment Team, London",
     image: "/images/team-members/team-4.jpg",
-    video: "/images/team-members/team-4.mp4",
+    hoverImage: "/images/team-members/team-4.mp4",
     category: "Investment",
     location: "London",
   },
@@ -50,7 +50,7 @@ const teamMembers: TeamMember[] = [
     name: "Name Surname",
     role: "Platform Team, Milan",
     image: "/images/team-members/team-5.jpg",
-    video: "/images/team-members/team-5.mp4",
+    hoverImage: "/images/team-members/team-5.mp4",
     category: "Operations",
     location: "Milan",
   },
@@ -58,7 +58,7 @@ const teamMembers: TeamMember[] = [
     name: "Name Surname",
     role: "Venture Partner, Europe",
     image: "/images/team-members/team-6.jpg",
-    video: "/images/team-members/team-6.mp4",
+    hoverImage: "/images/team-members/team-6.mp4",
     category: "Specialists",
     location: "Europe",
   },
@@ -101,7 +101,7 @@ function TeamCard({ member }: { member: TeamMember }) {
         <video
           ref={videoRef}
           className={styles.video}
-          src={member.video}
+          src={member.hoverImage}
           muted
           loop
           playsInline
