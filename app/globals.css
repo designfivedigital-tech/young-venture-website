@@ -189,6 +189,10 @@ body.nav-hovered .site-header {
     scroll-behavior: auto;
   }
 
+   html.logo-step-lock {
+    scroll-snap-type: none;
+  }
+
   body {
     overflow-x: hidden;
     overflow-y: auto;

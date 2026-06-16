@@ -202,6 +202,25 @@ const goPrevStep = () => {
   return false;
 };
 
+useEffect(() => {
+  const section = document.querySelector<HTMLElement>(".sl-scroll-section");
+  if (!section) return;
+
+  const preventScroll = (event: Event) => {
+    if (!isMobileRef.current) return;
+    if (activeStep >= 3) return;
+
+    event.preventDefault();
+  };
+
+  section.addEventListener("touchmove", preventScroll, { passive: false });
+
+  return () => {
+    section.removeEventListener("touchmove", preventScroll);
+  };
+}, [activeStep]);
+
+
   return (
     <section
       className="sl-scroll-section snap-section"

@@ -794,3 +794,9 @@
     height: 190px;
   }
 }
+
+@media (max-width: 1024px) {
+  .sl-scroll-section {
+    touch-action: pan-y;
+  }
+}
