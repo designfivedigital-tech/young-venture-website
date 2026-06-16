@@ -29,3 +29,8 @@ body.nav-hovered .page-slide-card {
     0 55px 150px rgba(0, 0, 0, 0.85),
     0 0 0 1px rgba(255, 255, 255, 0.08);
 }
+.page-slide-motion {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+}
