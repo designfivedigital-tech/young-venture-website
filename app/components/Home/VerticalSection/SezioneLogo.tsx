@@ -203,19 +203,41 @@ const goPrevStep = () => {
 };
 
 useEffect(() => {
+  const isMobile = window.matchMedia("(max-width: 1024px)").matches;
+  if (!isMobile) return;
+
   const section = document.querySelector<HTMLElement>(".sl-scroll-section");
   if (!section) return;
 
-  const preventScroll = (event: Event) => {
-    if (!isMobileRef.current) return;
-    if (activeStep >= 3) return;
+  let startY = 0;
 
-    event.preventDefault();
+  const onTouchStart = (event: Event) => {
+    const touchEvent = event as TouchEvent;
+    startY = touchEvent.touches[0].clientY;
   };
 
+  const preventScroll = (event: Event) => {
+    const touchEvent = event as TouchEvent;
+    const currentY = touchEvent.touches[0].clientY;
+    const deltaY = startY - currentY;
+
+    const isGoingDown = deltaY > 0;
+    const isGoingUp = deltaY < 0;
+
+    if (isGoingDown && activeStep < 3) {
+      event.preventDefault();
+    }
+
+    if (isGoingUp && activeStep > 1) {
+      event.preventDefault();
+    }
+  };
+
+  section.addEventListener("touchstart", onTouchStart, { passive: true });
   section.addEventListener("touchmove", preventScroll, { passive: false });
 
   return () => {
+    section.removeEventListener("touchstart", onTouchStart);
     section.removeEventListener("touchmove", preventScroll);
   };
 }, [activeStep]);
