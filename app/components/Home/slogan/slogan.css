@@ -86,3 +86,18 @@
     font-size: clamp(140px, 6.5vw, 160px);
   }
 }
+
+@media (max-width: 767px) {
+  .payoff-section.snap-section {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
+  }
+
+  .payoff-section {
+    height: 160vh;
+  }
+
+  .payoff-sticky {
+    height: 100dvh;
+  }
+}
