@@ -189,3 +189,8 @@
     font-size: 16px;
   }
 }
+@media (max-width: 767px) {
+  footer {
+    scroll-snap-align: start;
+  }
+}
