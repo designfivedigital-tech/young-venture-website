@@ -17,7 +17,7 @@ const teamMembers: TeamMember[] = [
   {
     name: "Name Surname",
     role: "Investment Team, Milan",
-    image: "/images/team-members/ragazzo.prova.jpg",
+    image: "/images/team-members/ragazzo-prova.jpg",
     video: "/images/team-members/video-ragazzo-prova.mp4",
     category: "Investment",
     location: "Milan",
