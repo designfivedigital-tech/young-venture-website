@@ -109,7 +109,9 @@ body[data-cursor="clean"] .custom-cursor {
 .site-shell {
   min-height: 100vh;
    background:
-    red;
+    radial-gradient(circle at 20% 0%, rgba(236, 28, 122, 0.14), transparent 32%),
+    radial-gradient(circle at 80% 0%, rgba(27, 188, 214, 0.14), transparent 32%),
+    #2d2d2d;
   overflow: visible;
 }
 

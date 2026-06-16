@@ -2,7 +2,7 @@
   position: relative;
   min-height: 100vh;
   overflow-x: clip;
-  background: #050505;
+  background: red;
 }
 
 .page-slide-motion {
