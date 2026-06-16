@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 999;
+  z-index: 99999;
   width: 100%;
   color: #fff;
   border-bottom: 1px solid transparent;
@@ -50,6 +50,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 9999;
 }
 
 .site-logo {
@@ -64,6 +65,13 @@
   width: auto;
   height: 32px;
   display: block;
+}
+
+.site-nav,
+.menu-link,
+.site-logo,
+.mobile-menu-toggle {
+  pointer-events: auto;
 }
 
 .site-nav {

@@ -1,3 +1,12 @@
+.background,
+.desktopBackground,
+.mobileBackground,
+.bgImage,
+.blackBase,
+.heroOverlay {
+  pointer-events: none;
+}
+
 .hero {
   position: relative;
   display: flex;
