@@ -117,7 +117,7 @@ function TeamCard({ member }: { member: TeamMember }) {
 
 export default function TeamPage() {
   return (
-    <section data-header-theme="dark" className={styles.teamPage}>
+    <section data-header-theme="light" className={styles.teamPage}>
       <div className={styles.hero}>
         <h1>
           We’ve turned venture
