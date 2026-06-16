@@ -185,7 +185,7 @@ body.nav-hovered .site-header {
 
 @media (max-width: 768px) {
   html {
-    scroll-snap-type: y proximity;
+      scroll-snap-type: y mandatory;
     scroll-behavior: auto;
   }
 
@@ -200,6 +200,11 @@ body.nav-hovered .site-header {
   .hero {
     scroll-snap-align: start;
     scroll-snap-stop: always;
+  }
+
+  .payoff-section.snap-section {
+    scroll-snap-align: none;
+    scroll-snap-stop: normal;
   }
 
   @supports (height: 100dvh) {
