@@ -91,11 +91,11 @@ function TeamCard({ member }: { member: TeamMember }) {
     >
       <div className={styles.imageWrap}>
         <Image
-          src={member.image}
+          src={member.hoverImage}
           alt={member.name}
           fill
           sizes="(max-width: 768px) 100vw, 33vw"
-          className={styles.image}
+          className={styles.hoverImage}
         />
 
         <video
