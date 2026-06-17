@@ -1,76 +1,104 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./ContactPage.module.css";
 
-const offices = [
+const locations = [
   {
-    city: "Milan",
-    company: "Young Ventures",
-    lines: ["Via Torino 12", "20123 Milano", "Italy"],
+    city: "SAN FRANCISCO",
+    company: "Young Ventures Advisor Ltd.",
+    address: ["58 S Park St", "San Francisco, CA 94107"],
+    timezone: "America/Los_Angeles",
   },
   {
-    city: "London",
-    company: "Young Ventures UK",
-    lines: ["36 Carnaby Street", "London W1F 7DS", "United Kingdom"],
+    city: "LONDON",
+    company: "Young Ventures Advisor LLP.",
+    address: ["36 Carnaby Street", "London W1F 7DS"],
+    timezone: "Europe/London",
   },
   {
-    city: "San Francisco",
-    company: "Young Ventures US",
-    lines: ["58 S Park St", "San Francisco, CA 94107", "USA"],
+    city: "STOCKHOLM",
+    company: "Young Ventures VII Advisor AB",
+    address: ["Jakobsbergsgatan 18", "111 44 Stockholm"],
+    timezone: "Europe/Stockholm",
   },
   {
-    city: "Stockholm",
-    company: "Young Ventures Nordics",
-    lines: ["Jakobsbergsgatan 18", "111 44 Stockholm", "Sweden"],
+    city: "BERLIN",
+    company: "Young Ventures Advisor GmbH",
+    address: ["Torstraße 42", "10119 Berlin"],
+    timezone: "Europe/Berlin",
   },
 ];
 
-export default function ContactPage() {
-  const [copied, setCopied] = useState(false);
-  const email = "hello@youngventures.com";
+function getTime(timezone: string) {
+  return new Intl.DateTimeFormat("en-GB", {
+    timeZone: timezone,
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: false,
+  }).format(new Date());
+}
 
-  const copyEmail = async () => {
-    await navigator.clipboard.writeText(email);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 1600);
-  };
+export default function ContactPage() {
+  const [times, setTimes] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    const updateTimes = () => {
+      const nextTimes: Record<string, string> = {};
+
+      locations.forEach((location) => {
+        nextTimes[location.city] = getTime(location.timezone);
+      });
+
+      setTimes(nextTimes);
+    };
+
+    updateTimes();
+    const interval = setInterval(updateTimes, 1000 * 30);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <main className={styles.page} data-header-theme="light">
-      <section className={styles.hero}>
-        <div className={styles.visual}>
-          <div className={`${styles.tile} ${styles.tileOne}`} />
-          <div className={`${styles.tile} ${styles.tileTwo}`} />
-          <div className={`${styles.tile} ${styles.tileThree}`} />
-        </div>
+    <main className={styles.page} data-header-theme="dark">
+      <section className={styles.contactHero}>
+        <div className={styles.background} />
 
-        <div className={styles.content}>
-          <p className={styles.eyebrow}>Contact</p>
-          <h1>Hi there!</h1>
+        <div className={styles.overlay} />
 
-          <div className={styles.offices}>
-            {offices.map((office) => (
-              <article key={office.city} className={styles.office}>
-                <h2>{office.city}</h2>
-                <p>{office.company}</p>
-                {office.lines.map((line) => (
+        <div className={styles.inner}>
+          <div className={styles.left}>
+            <h1>
+              Hi
+              <br />
+              there!
+            </h1>
+
+            <div className={styles.media}>
+              <span>Media enquiries</span>
+              <span className={styles.dot}>·</span>
+              <a href="mailto:hello@youngventures.com">
+                hello@youngventures.com
+              </a>
+            </div>
+          </div>
+
+          <div className={styles.grid}>
+            {locations.map((location) => (
+              <article className={styles.card} key={location.city}>
+                <div className={styles.clock}>
+                  {times[location.city] || "--:--"}
+                </div>
+
+                <h2>{location.city}</h2>
+
+                <p>{location.company}</p>
+
+                {location.address.map((line) => (
                   <span key={line}>{line}</span>
                 ))}
               </article>
             ))}
-          </div>
-
-          <div className={styles.emailBlock}>
-            <span>Media enquiries</span>
-
-            <button onClick={copyEmail} className={styles.emailButton}>
-              {email}
-            </button>
-
-            <button onClick={copyEmail} className={styles.copyButton}>
-              {copied ? "Copied" : "Copy to clipboard"}
-            </button>
           </div>
         </div>
       </section>
