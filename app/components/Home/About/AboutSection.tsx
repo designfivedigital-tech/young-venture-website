@@ -102,7 +102,7 @@ export default function AboutSection() {
 
       setRouteColor((previous) => getNextColor(previous));
       setStep((current) => (current + 1) % (route.length - 1));
-    }, 3000);
+    }, 2500);
 
     return () => window.clearInterval(interval);
   }, [activePath, routeColor]);
