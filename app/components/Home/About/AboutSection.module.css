@@ -83,7 +83,7 @@
   stroke-dasharray: 1000;
   stroke-dashoffset: 1000;
   vector-effect: non-scaling-stroke;
-  animation: travelLine 4.6s ease-out forwards;
+  animation: travelLine 3.8s ease-out forwards;
 }
 
 .routeLineGlow {
@@ -95,7 +95,7 @@
   opacity: 0.35;
   filter: blur(2px);
   vector-effect: non-scaling-stroke;
-  animation: travelLine 5.2s ease-out forwards;
+  animation: travelLine 3.8s ease-out forwards;
 }
 
 .routeLineExit {
