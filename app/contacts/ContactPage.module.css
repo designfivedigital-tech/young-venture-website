@@ -51,7 +51,6 @@
 
 .left h1 {
   margin: 0;
-  font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(110px, 12vw, 250px);
   line-height: 0.72;
   font-weight: 500;

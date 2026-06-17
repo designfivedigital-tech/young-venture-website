@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./AboutUsPage.module.css";
 
 type TabKey = "founders" | "universities" | "capital" | "portfolio";
@@ -45,10 +45,10 @@ const tabCopy = {
 };
 
 const kpis = [
-  { value: "€10M+", label: "Capital deployed" },
-  { value: "150+", label: "Founders supported" },
-  { value: "30+", label: "University partners" },
-  { value: "12", label: "Countries reached" },
+  { value: 10, prefix: "€", suffix: "M+", label: "Capital deployed" },
+  { value: 150, prefix: "", suffix: "+", label: "Founders supported" },
+  { value: 30, prefix: "", suffix: "+", label: "University partners" },
+  { value: 12, prefix: "", suffix: "", label: "Countries reached" },
 ];
 
 const sectors = [
@@ -61,10 +61,49 @@ const sectors = [
 
 export default function AboutUsPage() {
   const [activeTab, setActiveTab] = useState<TabKey>("founders");
+  const [animatedValues, setAnimatedValues] = useState(kpis.map(() => 0));
+  const [hasAnimated, setHasAnimated] = useState(false);
+  const kpiRef = useRef<HTMLElement | null>(null);
 
   const currentData = chartData[activeTab];
   const maxValue = Math.max(...currentData);
   const currentCopy = tabCopy[activeTab];
+
+  useEffect(() => {
+    const section = kpiRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting || hasAnimated) return;
+
+        setHasAnimated(true);
+
+        const duration = 1400;
+        const startTime = performance.now();
+
+        const animate = (currentTime: number) => {
+          const progress = Math.min((currentTime - startTime) / duration, 1);
+          const easedProgress = 1 - Math.pow(1 - progress, 3);
+
+          setAnimatedValues(
+            kpis.map((item) => Math.round(item.value * easedProgress))
+          );
+
+          if (progress < 1) {
+            requestAnimationFrame(animate);
+          }
+        };
+
+        requestAnimationFrame(animate);
+      },
+      { threshold: 0.35 }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, [hasAnimated]);
 
   return (
     <main className={styles.page}>
@@ -85,11 +124,19 @@ export default function AboutUsPage() {
         </div>
       </section>
 
-      <section className={styles.kpiSection} data-header-theme="light">
+      <section
+        ref={kpiRef}
+        className={styles.kpiSection}
+        data-header-theme="light"
+      >
         <div className={styles.kpiGrid}>
-          {kpis.map((item) => (
+          {kpis.map((item, index) => (
             <article key={item.label} className={styles.kpiCard}>
-              <strong>{item.value}</strong>
+              <strong>
+                {item.prefix}
+                {animatedValues[index]}
+                {item.suffix}
+              </strong>
               <span>{item.label}</span>
             </article>
           ))}
