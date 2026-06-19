@@ -23,15 +23,16 @@
 }
 
 .payoff-title {
-
-  font-size: clamp(64px, 7vw, 160px);
+  font-size: clamp(42px, 6vw, 130px);
   font-weight: 500;
   line-height: 0.98;
-    font-family: YV Font;
+  font-family: "YV Font";
   text-align: center;
-  max-width: 94vw;
-  padding: 0 4vw 0.12em;
+  max-width: 98vw;
+  padding: 0 2vw 0.12em;
   margin: 0;
+  text-transform: uppercase;
+  white-space: nowrap;
 }
 
 .payoff-line {
@@ -98,5 +99,11 @@
 
   .payoff-sticky {
     height: 100dvh;
+  }
+
+    .payoff-title {
+    font-size: clamp(30px, 8.2vw, 44px);
+    max-width: 100vw;
+    padding: 0 3vw;
   }
 }

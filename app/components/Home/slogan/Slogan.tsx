@@ -75,38 +75,20 @@ export default function Slogan() {
     <section ref={sectionRef} className="payoff-section snap-section">
       <div className="payoff-sticky">
         <h1 className="payoff-title">
-          <span className="payoff-line">
-            {["Born", "to", "Scout"].map((word, index) => (
-              <span
-                key={`${word}-${index}`}
-                ref={(el) => {
-                  wordRefs.current[index] = el;
-                }}
-                className="payoff-word"
-              >
-                {word}
-              </span>
-            ))}
-          </span>
-
-          <span className="payoff-line">
-            {["the", "invisible"].map((word, index) => {
-              const realIndex = index + 3;
-
-              return (
-                <span
-                  key={`${word}-${realIndex}`}
-                  ref={(el) => {
-                    wordRefs.current[realIndex] = el;
-                  }}
-                  className="payoff-word"
-                >
-                  {word}
-                </span>
-              );
-            })}
-          </span>
-        </h1>
+  <span className="payoff-line">
+    {["Born", "to", "Scout", "the", "invisible"].map((word, index) => (
+      <span
+        key={`${word}-${index}`}
+        ref={(el) => {
+          wordRefs.current[index] = el;
+        }}
+        className="payoff-word"
+      >
+        {word}
+      </span>
+    ))}
+  </span>
+</h1>
       </div>
     </section>
   );
