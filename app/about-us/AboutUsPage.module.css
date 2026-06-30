@@ -1,26 +1,223 @@
-.section {
-  padding-left: 5%;
-  padding-right: 5%;
-}
-
-.wrapperSelection {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
-}
-
-.sx {
-  background-color: red;
+.focusSection {
+  position: relative;
   overflow: hidden;
+  min-height: 100vh;
+  background:
+    radial-gradient(circle at 80% 15%, rgba(0, 228, 231, 0.08), transparent 28%),
+    radial-gradient(circle at 12% 90%, rgba(218, 41, 145, 0.08), transparent 30%),
+    #f8fafc;
+  color: #051933;
 }
 
-.circularLine {
+.inner {
+  position: relative;
+  width: 100%;
+  max-width: 1720px;
+  min-height: 100vh;
+  margin: 0 auto;
+  padding: 70px 76px 60px;
+}
+
+.top {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 110px;
+  align-items: start;
+  position: relative;
+  z-index: 4;
+}
+
+.eyebrow {
   display: block;
+  margin-bottom: 18px;
+  color: #e01991;
+  font-size: 26px;
+  font-weight: 800;
+  letter-spacing: 0.38em;
+}
+
+.title {
+  margin: 0;
+  color: #041a35;
+  font-size: clamp(70px, 5.6vw, 104px);
+  line-height: 0.98;
+  font-weight: 950;
+  letter-spacing: -0.045em;
+  text-transform: uppercase;
+}
+
+.gradientLine {
+  display: block;
+  width: 205px;
+  height: 7px;
+  margin-top: 34px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #e01991 0%, #b35be7 48%, #00e4e7 100%);
+}
+
+.copy {
+  max-width: 680px;
+  margin: 46px 0 0;
+  color: #10243d;
+  font-size: 23px;
+  line-height: 1.55;
+  font-weight: 500;
+  letter-spacing: 0.01em;
+}
+
+.content {
+  position: relative;
+  min-height: 640px;
+  margin-top: 32px;
+}
+
+.leftGraphic {
+  position: absolute;
+  left: -225px;
+  top: 10px;
+  width: 900px;
+  height: 710px;
+  z-index: 3;
+}
+
+.arc {
+  position: absolute;
+  left: -390px;
+  top: -18px;
+  width: 650px;
+  height: 760px;
+  border-radius: 50%;
+  border: 9px solid transparent;
+  border-right-color: #ee65a9;
+  border-top-color: #ee65a9;
+  border-bottom-color: #e01991;
+  transform: rotate(-15deg);
+}
+
+.items {
+  position: absolute;
+  left: 330px;
+  top: 10px;
+  width: 620px;
+}
+
+.item {
+  position: relative;
+  display: grid;
+  grid-template-columns: 92px 1fr;
+  gap: 46px;
+  align-items: center;
+  min-height: 138px;
+  opacity: 0.42;
+}
+
+.item:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 250px;
+  right: 0;
+  bottom: 0;
+  border-bottom: 1px dashed rgba(4, 26, 53, 0.17);
+}
+
+.iconWrap {
+  width: 92px;
+  height: 92px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #aeeef2;
+  border: 5px solid #ffffff;
+  box-shadow:
+    0 0 0 1px rgba(0, 228, 231, 0.25),
+    0 0 32px rgba(0, 228, 231, 0.4);
+}
+
+.iconWrap svg {
+  width: 47px;
+  height: 47px;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 2.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.itemText {
+  color: #6c7686;
+  font-size: 30px;
+  line-height: 1.45;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+}
+
+.active {
+  opacity: 1;
+}
+
+.active .iconWrap {
+  width: 108px;
+  height: 108px;
+  margin-left: -8px;
+  background: radial-gradient(circle at 35% 30%, #53e61d, #22c900 62%, #10a400);
+  box-shadow:
+    0 0 0 6px rgba(255, 255, 255, 0.95),
+    0 0 34px rgba(119, 219, 33, 0.8);
+}
+
+.active .itemText {
+  color: #041a35;
+  font-size: 35px;
+  line-height: 1.35;
+}
+
+.active .itemText::before,
+.active .itemText::after {
+  content: "";
+  display: block;
+  width: 42px;
+  height: 2px;
+  margin: 0 0 16px;
+  background: #77db21;
+}
+
+.active .itemText::after {
+  margin: 16px 0 0;
+}
+
+.imageWrap {
+  position: absolute;
+  right: -260px;
+  top: 95px;
+  width: 930px;
+  height: 760px;
+  z-index: 2;
+}
+
+.imageRing {
+  position: relative;
+  width: 930px;
+  height: 760px;
+  border-radius: 50% 0 0 50%;
+  padding: 26px 0 26px 26px;
+  background: linear-gradient(135deg, #e01991 0%, #7c5eea 38%, #00e4e7 100%);
+  box-shadow: -26px 20px 80px rgba(7, 37, 68, 0.14);
+}
+
+.imageRing::after {
+  content: "";
+  position: absolute;
+  inset: 30px 0 30px 30px;
+  border-radius: 50% 0 0 50%;
+  border: 2px solid rgba(255, 255, 255, 0.58);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.imageRing img {
   width: 100%;
   height: 100%;
-}
-
-.dx {
-  background-color: green;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 50% 0 0 50%;
 }
