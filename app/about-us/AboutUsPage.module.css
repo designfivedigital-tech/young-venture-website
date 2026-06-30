@@ -157,7 +157,7 @@
 
 .focusDesc {
   margin: 0;
-  max-width: 46ch;
+  
   font-size: clamp(16px, 1.2vw, 19px);
   line-height: 1.5;
   color: #3a4456;
@@ -294,7 +294,7 @@
   position: absolute;
   top: 50%;
   right: 0;
-  width: 980px;
+  width: 780px;
   aspect-ratio: 1 / 1;
   transform: translate(34%, -50%);
   padding: 11px;
