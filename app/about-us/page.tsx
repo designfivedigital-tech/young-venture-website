@@ -1,9 +1,9 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import type { CSSProperties } from "react";
 import styles from "./AboutUsPage.module.css";
 
-/* ── Icone (stroke, currentColor) ───────────────────────────── */
 function CpuIcon() {
   return (
     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -13,6 +13,7 @@ function CpuIcon() {
     </svg>
   );
 }
+
 function BulbIcon() {
   return (
     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -21,6 +22,7 @@ function BulbIcon() {
     </svg>
   );
 }
+
 function LeafIcon() {
   return (
     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -29,6 +31,7 @@ function LeafIcon() {
     </svg>
   );
 }
+
 function NetworkIcon() {
   return (
     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -39,6 +42,7 @@ function NetworkIcon() {
     </svg>
   );
 }
+
 function RocketIcon() {
   return (
     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -48,6 +52,7 @@ function RocketIcon() {
     </svg>
   );
 }
+
 function AtomIcon() {
   return (
     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -58,6 +63,7 @@ function AtomIcon() {
     </svg>
   );
 }
+
 function DnaIcon() {
   return (
     <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden>
@@ -67,8 +73,6 @@ function DnaIcon() {
   );
 }
 
-/* ── Dati: 7 voci. Le prime 5 dal mockup, le ultime 2 inventate. ─
-   Sostituisci i placeholder mettendo image: "/percorso.jpg"        */
 const FOCUS_ITEMS = [
   { id: 1, label: "Digital and frontier technologies", Icon: CpuIcon, bg: "linear-gradient(135deg,#0a1a3f,#1e3a6e)", image: null as string | null },
   { id: 2, label: "Digital and frontier technologies", Icon: BulbIcon, bg: "linear-gradient(135deg,#2b1a4f,#5b3fb0)", image: null as string | null },
@@ -82,45 +86,58 @@ const FOCUS_ITEMS = [
 function FocusAreasSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
+  const [wheelProgress, setWheelProgress] = useState(0);
 
   useEffect(() => {
     let ticking = false;
+
     const onScroll = () => {
       if (ticking) return;
       ticking = true;
+
       requestAnimationFrame(() => {
         ticking = false;
+
         const el = sectionRef.current;
         if (!el) return;
+
         const vh = window.innerHeight;
         const total = el.offsetHeight - vh;
         const scrolled = Math.min(Math.max(-el.getBoundingClientRect().top, 0), total);
         const p = total > 0 ? scrolled / total : 0;
-        let idx = Math.floor(p * FOCUS_ITEMS.length);
-        idx = Math.max(0, Math.min(FOCUS_ITEMS.length - 1, idx));
+
+        const exact = p * (FOCUS_ITEMS.length - 1);
+        const idx = Math.round(exact);
+
+        setWheelProgress(exact);
         setActive((prev) => (prev === idx ? prev : idx));
       });
     };
+
     window.addEventListener("scroll", onScroll, { passive: true });
     onScroll();
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const goTo = (i: number) => {
     const el = sectionRef.current;
     if (!el) return;
+
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const total = el.offsetHeight - window.innerHeight;
-    const top = el.offsetTop + ((i + 0.5) / FOCUS_ITEMS.length) * total;
+    const top = el.offsetTop + (i / (FOCUS_ITEMS.length - 1)) * total;
+
     window.scrollTo({ top, behavior: reduce ? "auto" : "smooth" });
   };
 
   const current = FOCUS_ITEMS[active];
+  const centerIndex = Math.round(wheelProgress);
+  const visibleItems = 7;
 
   return (
     <section ref={sectionRef} className={styles.focusSection} data-header-theme="light">
       <div className={styles.focusSticky}>
-        {/* ── Fascia 1: header ── */}
         <div className={styles.focusInner}>
           <div className={styles.focusTop}>
             <div>
@@ -128,6 +145,7 @@ function FocusAreasSection() {
               <h2 className={styles.focusHeading}>Our definition of deep tech</h2>
               <div className={styles.focusUnderline} />
             </div>
+
             <p className={styles.focusDesc}>
               Our focus spans sectors where scientific breakthroughs can unlock meaningful economic and
               societal impact, including climate and energy technologies, advanced materials, robotics,
@@ -137,33 +155,62 @@ function FocusAreasSection() {
           </div>
         </div>
 
-        {/* ── Fascia 2: ruota (sx) + cerchio (dx) ── */}
         <div className={styles.focusBody}>
-          <div
-            className={styles.wheel}
-            style={{ ["--active" as string]: active }}
-            role="listbox"
-            aria-label="Focus areas"
-          >
+          <div className={styles.wheel} role="listbox" aria-label="Focus areas">
             <div className={styles.wheelArc} aria-hidden />
-            {FOCUS_ITEMS.map((item, i) => {
-              const dist = Math.abs(i - active);
-              const op = dist === 0 ? 1 : dist === 1 ? 0.55 : dist === 2 ? 0.3 : 0.14;
+
+            {Array.from({ length: visibleItems }).map((_, virtualIndex) => {
+              const virtualOffset = virtualIndex - Math.floor(visibleItems / 2);
+
+              const realIndex =
+                ((centerIndex + virtualOffset) % FOCUS_ITEMS.length + FOCUS_ITEMS.length) %
+                FOCUS_ITEMS.length;
+
+              let offset = realIndex - wheelProgress;
+
+              if (offset > FOCUS_ITEMS.length / 2) {
+                offset -= FOCUS_ITEMS.length;
+              }
+
+              if (offset < -FOCUS_ITEMS.length / 2) {
+                offset += FOCUS_ITEMS.length;
+              }
+
+              const item = FOCUS_ITEMS[realIndex];
               const Icon = item.Icon;
+              const distance = Math.abs(offset);
+              const isActive = realIndex === active && distance < 0.55;
+
+              const opacity =
+                distance < 0.55
+                  ? 1
+                  : distance < 1.55
+                    ? 0.55
+                    : distance < 2.55
+                      ? 0.32
+                      : 0.14;
+
               return (
                 <button
-                  key={item.id}
+                  key={`${realIndex}-${virtualIndex}`}
                   type="button"
-                  className={`${styles.wheelItem} ${i === active ? styles.active : ""}`}
-                  style={{ ["--i" as string]: i, opacity: op }}
-                  onClick={() => goTo(i)}
+                  className={`${styles.wheelItem} ${isActive ? styles.active : ""}`}
+                  style={
+                    {
+                      "--offset": offset,
+                      opacity,
+                    } as CSSProperties
+                  }
+                  onClick={() => goTo(realIndex)}
                   role="option"
-                  aria-selected={i === active}
+                  aria-selected={isActive}
+                  tabIndex={isActive ? 0 : -1}
                 >
                   <span className={styles.wheelInner}>
                     <span className={styles.wheelIcon}>
                       <Icon />
                     </span>
+
                     <span className={styles.wheelLabel}>{item.label}</span>
                   </span>
                 </button>
