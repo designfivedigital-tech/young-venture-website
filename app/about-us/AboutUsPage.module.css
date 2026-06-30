@@ -96,7 +96,7 @@
 
 .focusSection {
   position: relative;
-  height: 450vh;
+  height: 520vh;
   background: #f7f7f4;
 }
 
@@ -211,8 +211,8 @@
   transform-origin: 0 0;
   transform: rotate(calc(var(--offset) * var(--step)));
   transition:
-    transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1),
-    opacity 0.28s ease;
+    transform 0.12s linear,
+    opacity 0.12s linear;
 }
 
 .wheelInner {
@@ -225,7 +225,7 @@
   width: max-content;
   transform-origin: 30px 50%;
   transform: translateY(-50%) rotate(calc(var(--offset) * -1 * var(--step)));
-    transition: transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1);
+  transition: transform 0.12s linear;
 }
 
 .wheelInner::after {
