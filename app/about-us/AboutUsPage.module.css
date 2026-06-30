@@ -1,9 +1,9 @@
 /* ===========================================================
-   FOCUS AREAS — character-select roster
+   FOCUS AREAS — orbita "character select" (full-bleed)
    =========================================================== */
 .focusSection {
   position: relative;
-  height: 500vh; /* ↑ allunga = più scroll per voce, ↓ accorcia */
+  height: 520vh;          /* ↑ più scroll per voce, ↓ più rapido */
   background: #f7f7f4;
 }
 
@@ -12,18 +12,19 @@
   top: 0;
   height: 100vh;
   width: 100%;
+  overflow: hidden;        /* clippa i bleed ai bordi del viewport */
+}
+
+/* Header in un contenitore leggibile, centrato */
+.focusInner {
   max-width: 1320px;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  gap: clamp(24px, 4vh, 56px);
-  padding: clamp(48px, 8vh, 96px) clamp(24px, 5vw, 80px);
-  overflow: hidden;
+  padding: clamp(40px, 7vh, 88px) clamp(24px, 5vw, 80px) 0;
 }
 
 .focusTop {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
+  grid-template-columns: 1.2fr 0.8fr;
   gap: 48px;
   align-items: start;
 }
@@ -63,57 +64,63 @@
   color: #3a4456;
 }
 
-.focusBody {
-  flex: 1;
-  min-height: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(24px, 4vw, 64px);
-  align-items: center;
-}
-
-/* ── Rullo voci ── */
+/* ── RUOTA (orbita) ────────────────────────────────────────
+   Tre leve per calibrare la curva:                          */
 .wheel {
-  --wheelh: 460px;
-  --row: 92px;
-  position: relative;
-  height: var(--wheelh);
-  overflow: hidden;
-  -webkit-mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
-  mask-image: linear-gradient(180deg, transparent, #000 18%, #000 82%, transparent);
-}
+  --R: 820px;     /* raggio orbita: ↑ arco più dritto, ↓ più curvo */
+  --step: 12deg;  /* distanza angolare tra le voci (= gap verticale) */
+  --ix: 170px;    /* X del punto attivo (ore 3) dal bordo sinistro  */
+  --cx: calc(var(--ix) - var(--R));   /* centro orbita (fuori a sx) */
 
-.wheelTrack {
   position: absolute;
-  inset: 0;
-  transform: translateY(calc((var(--wheelh) - var(--row)) / 2 - var(--active) * var(--row)));
-  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: min(620px, 50%);
+  pointer-events: none;   /* i click passano solo ai <button> */
 }
+.wheel > * { pointer-events: auto; }
 
-.wheelLine {
+/* L'arco = anello da gradiente ritagliato con mask */
+.wheelArc {
   position: absolute;
-  left: 29px;
-  top: calc(var(--row) / 2);
-  width: 2px;
-  height: calc(var(--row) * 6); /* (7 voci - 1) * row */
-  background: linear-gradient(180deg, #e6007e, #7b5cff, #19c3d6);
-  opacity: 0.35;
+  top: 50%;
+  left: calc(var(--ix) - 2 * var(--R));
+  width: calc(2 * var(--R));
+  height: calc(2 * var(--R));
+  margin-top: calc(-1 * var(--R));
+  border-radius: 50%;
+  background: conic-gradient(from 220deg, #19c3d6, #7b5cff, #e6007e, #e6007e);
+  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
+  opacity: 0.85;
 }
 
 .wheelItem {
-  position: relative;
-  z-index: 1;
-  height: var(--row);
-  width: 100%;
+  position: absolute;
+  left: var(--cx);
+  top: 50%;
+  width: 0;
+  height: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+  transform-origin: 0 0;
+  transform: rotate(calc((var(--i) - var(--active)) * var(--step)));
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s ease;
+}
+
+.wheelInner {
+  position: absolute;
+  left: calc(var(--R) - 30px);   /* porta l'icona sul punto dell'arco */
+  top: 0;
   display: flex;
   align-items: center;
   gap: 22px;
-  padding: 0;
-  border: 0;
-  background: none;
-  text-align: left;
-  cursor: pointer;
-  transition: opacity 0.5s ease;
+  width: max-content;
+  transform-origin: 30px 50%;     /* pivot sul centro icona */
+  transform: translateY(-50%) rotate(calc((var(--active) - var(--i)) * var(--step)));
+  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .wheelIcon {
@@ -125,21 +132,20 @@
   place-items: center;
   color: #3aa9c4;
   background: #dff0f5;
-  box-shadow: 0 0 0 6px rgba(247, 247, 244, 0.9);
+  box-shadow: 0 0 0 7px rgba(247, 247, 244, 0.95);
   transition: all 0.5s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .wheelItem.active .wheelIcon {
   color: #fff;
   background: linear-gradient(135deg, #4cbf2e, #2f9e1f);
-  box-shadow: 0 12px 30px rgba(60, 170, 40, 0.35), 0 0 0 6px rgba(247, 247, 244, 0.9);
-  transform: scale(1.06);
+  box-shadow: 0 12px 30px rgba(60, 170, 40, 0.35), 0 0 0 7px rgba(247, 247, 244, 0.95);
+  transform: scale(1.08);
 }
 
 .wheelLabel {
-  position: relative;
-  max-width: 18ch;
-  font-size: clamp(20px, 1.6vw, 26px);
+  max-width: 16ch;
+  font-size: clamp(20px, 1.55vw, 26px);
   line-height: 1.12;
   font-weight: 500;
   letter-spacing: -0.01em;
@@ -152,36 +158,22 @@
   font-weight: 700;
 }
 
-.wheelItem.active .wheelLabel::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -10px;
-  width: 52px;
-  height: 4px;
-  border-radius: 999px;
-  background: #2f9e1f;
-}
-
-/* ── Media circolare ── */
-.mediaCol {
-  display: flex;
-  justify-content: flex-end;
-}
-
+/* ── MEDIA (bleed a destra) ─────────────────────────────── */
 .media {
-  position: relative;
-  width: 100%;
-  max-width: 520px;
-  aspect-ratio: 1 / 1;
-  padding: 10px;
+  --mw: min(680px, 78vh);
+  position: absolute;
+  top: 50%;
+  right: 0;
+  width: var(--mw);
+  height: var(--mw);
+  transform: translate(34%, -50%);   /* spinge ~1/3 fuori dal bordo dx */
+  padding: 11px;
   border-radius: 50%;
   background: linear-gradient(135deg, #e6007e, #7b5cff, #19c3d6);
-  box-shadow: 0 30px 80px rgba(10, 26, 63, 0.18);
+  box-shadow: 0 30px 90px rgba(10, 26, 63, 0.18);
 }
 
 .mediaInner {
-  position: relative;
   width: 100%;
   height: 100%;
   border-radius: 50%;
@@ -191,85 +183,57 @@
 
 .slide {
   position: absolute;
-  inset: 0;
+  inset: 11px;
+  border-radius: 50%;
+  overflow: hidden;
   display: grid;
   place-items: center;
   animation: slideInRight 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
+.slide img { width: 100%; height: 100%; object-fit: cover; }
 
 .slidePlaceholder {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  padding: 0 12%;
+  padding: 0 18%;
   text-align: center;
   color: #fff;
   font-size: clamp(18px, 1.6vw, 24px);
-  font-weight: 600;
+  font-weight: 700;
   line-height: 1.2;
 }
-
-.slidePlaceholder small {
-  font-size: 13px;
-  font-weight: 400;
-  opacity: 0.7;
-}
+.slidePlaceholder small { font-size: 13px; font-weight: 400; opacity: 0.7; }
 
 @keyframes slideInRight {
-  from {
-    opacity: 0;
-    transform: translateX(64px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+  from { opacity: 0; transform: translateX(80px); }
+  to   { opacity: 1; transform: translateX(0); }
 }
 
-/* ── Tablet/Mobile: niente due colonne, media sopra + rullo sotto ── */
+/* ── Tablet/Mobile ──────────────────────────────────────── */
 @media (max-width: 900px) {
-  .focusSection {
-    height: 360vh;
-  }
-  .focusTop {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-  .focusBody {
-    grid-template-columns: 1fr;
-    gap: 28px;
-  }
-  .mediaCol {
-    justify-content: center;
-    order: -1;
-  }
-  .media {
-    max-width: 240px;
-  }
+  .focusSection { height: 380vh; }
+  .focusTop { grid-template-columns: 1fr; gap: 18px; }
   .wheel {
-    --wheelh: 320px;
-    --row: 72px;
+    --R: 1100px;   /* arco quasi dritto su mobile */
+    --step: 8deg;
+    --ix: 56px;
+    width: 100%;
+    top: 38%;
   }
-  .wheelIcon {
-    width: 50px;
-    height: 50px;
+  .wheelLabel { max-width: 11ch; font-size: clamp(17px, 4.6vw, 22px); }
+  .wheelIcon { width: 50px; height: 50px; }
+  .wheelInner { left: calc(var(--R) - 25px); transform-origin: 25px 50%; }
+  .media {
+    --mw: min(300px, 46vh);
+    top: 78%;
+    right: 50%;
+    transform: translate(50%, -50%);  /* su mobile la centro, niente bleed */
   }
 }
 
-/* ── Accessibilità: nessun movimento ── */
 @media (prefers-reduced-motion: reduce) {
-  .wheelTrack,
-  .wheelIcon,
-  .wheelLabel {
-    transition: none;
-  }
-  .slide {
-    animation: none;
-  }
+  .wheelItem, .wheelInner, .wheelIcon, .wheelLabel { transition: none; }
+  .slide { animation: none; }
 }
