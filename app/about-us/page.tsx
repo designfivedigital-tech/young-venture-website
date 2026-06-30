@@ -140,36 +140,61 @@ function FocusAreasSection() {
         {/* ── Fascia 2: ruota (sx) + cerchio (dx) ── */}
         <div className={styles.focusBody}>
           <div
-            className={styles.wheel}
-            style={{ ["--active" as string]: active }}
-            role="listbox"
-            aria-label="Focus areas"
-          >
-            <div className={styles.wheelArc} aria-hidden />
-            {FOCUS_ITEMS.map((item, i) => {
-              const dist = Math.abs(i - active);
-              const op = dist === 0 ? 1 : dist === 1 ? 0.55 : dist === 2 ? 0.3 : 0.14;
-              const Icon = item.Icon;
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  className={`${styles.wheelItem} ${i === active ? styles.active : ""}`}
-                  style={{ ["--i" as string]: i, opacity: op }}
-                  onClick={() => goTo(i)}
-                  role="option"
-                  aria-selected={i === active}
-                >
-                  <span className={styles.wheelInner}>
-                    <span className={styles.wheelIcon}>
-                      <Icon />
-                    </span>
-                    <span className={styles.wheelLabel}>{item.label}</span>
-                  </span>
-                </button>
-              );
-            })}
-          </div>
+  className={styles.wheel}
+  style={{ "--active": active } as React.CSSProperties}
+  role="listbox"
+  aria-label="Focus areas"
+>
+  <div className={styles.wheelArc} aria-hidden />
+
+  {Array.from({ length: FOCUS_ITEMS.length + 4 }).map((_, virtualIndex) => {
+    const offset = virtualIndex - 2;
+
+    const realIndex =
+      ((active + offset) % FOCUS_ITEMS.length + FOCUS_ITEMS.length) %
+      FOCUS_ITEMS.length;
+
+    const item = FOCUS_ITEMS[realIndex];
+    const Icon = item.Icon;
+
+    const isActive = offset === 0;
+
+    const op =
+      Math.abs(offset) === 0
+        ? 1
+        : Math.abs(offset) === 1
+          ? 0.55
+          : Math.abs(offset) === 2
+            ? 0.32
+            : 0.14;
+
+    return (
+      <button
+        key={`${realIndex}-${virtualIndex}`}
+        type="button"
+        className={`${styles.wheelItem} ${isActive ? styles.active : ""}`}
+        style={
+          {
+            "--offset": offset,
+            opacity: op,
+          } as React.CSSProperties
+        }
+        onClick={() => goTo(realIndex)}
+        role="option"
+        aria-selected={isActive}
+        tabIndex={isActive ? 0 : -1}
+      >
+        <span className={styles.wheelInner}>
+          <span className={styles.wheelIcon}>
+            <Icon />
+          </span>
+
+          <span className={styles.wheelLabel}>{item.label}</span>
+        </span>
+      </button>
+    );
+  })}
+</div>
 
           <div className={styles.media}>
             <div className={styles.mediaInner}>

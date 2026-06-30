@@ -214,8 +214,10 @@
   background: none;
   cursor: pointer;
   transform-origin: 0 0;
-  transform: rotate(calc((var(--i) - var(--active)) * var(--step)));
-  transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1), opacity 0.5s ease;
+  transform: rotate(calc(var(--offset) * var(--step)));
+  transition:
+    transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1),
+    opacity 0.5s ease;
 }
 
 .wheelInner {
@@ -227,7 +229,7 @@
   gap: 22px;
   width: max-content;
   transform-origin: 30px 50%;
-  transform: translateY(-50%) rotate(calc((var(--active) - var(--i)) * var(--step)));
+  transform: translateY(-50%) rotate(calc(var(--offset) * -1 * var(--step)));
   transition: transform 0.6s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
