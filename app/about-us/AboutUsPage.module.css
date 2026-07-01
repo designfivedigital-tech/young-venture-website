@@ -438,57 +438,100 @@
 }
 
 @media (min-width: 1281px) and (max-width: 1919px) {
+  .focusSticky {
+    height: 100vh;
+  }
+
   .focusInner {
-    padding-left: clamp(32px, 4vw, 64px);
-    padding-right: clamp(32px, 4vw, 64px);
+    padding: 48px 56px 0;
   }
 
   .focusTop {
-    grid-template-columns: 1fr 0.9fr;
-    gap: clamp(32px, 4vw, 56px);
+    grid-template-columns: 0.95fr 0.85fr;
+    gap: 48px;
+  }
+
+  .focusHeading {
+    max-width: 560px;
+    font-size: clamp(52px, 4.6vw, 78px);
+  }
+
+  .focusDesc {
+    max-width: 560px;
+    font-size: 15px;
+    line-height: 1.45;
+  }
+
+  .focusBody {
+    top: -4%;
   }
 
   .wheel {
-    --R: clamp(360px, 31vw, 460px);
-    --step: clamp(15deg, 1.2vw, 18deg);
-    --ix: clamp(165px, 16vw, 235px);
+    --R: clamp(390px, 31vw, 520px);
+    --step: clamp(16deg, 1.35vw, 19deg);
+    --ix: clamp(130px, 13vw, 220px);
 
-    left: clamp(-18px, 1vw, 24px);
-  }
-
-  .wheelLabel {
-    max-width: clamp(250px, 25vw, 360px);
-    font-size: clamp(17px, 1.45vw, 22px);
+    left: clamp(-36px, 0vw, 12px);
+    top: 56%;
+    width: 30%;
   }
 
   .wheelIcon {
-    width: clamp(50px, 4.3vw, 60px);
-    height: clamp(50px, 4.3vw, 60px);
+    width: clamp(50px, 3.8vw, 64px);
+    height: clamp(50px, 3.8vw, 64px);
   }
 
   .wheelInner {
-    gap: clamp(14px, 1.5vw, 22px);
+    left: calc(var(--R) - 27px);
+    gap: clamp(12px, 1.1vw, 20px);
+    transform-origin: 27px 50%;
   }
 
- .focusContent {
-  left: clamp(47%, 48vw, 50%);
-  width: clamp(300px, 25vw, 430px);
-}
+  .wheelLabel {
+    max-width: clamp(180px, 15vw, 300px);
+    font-size: clamp(15px, 1.2vw, 21px);
+    line-height: 1.12;
+  }
+
+  .wheelInner::after {
+    left: 72px;
+    right: -18px;
+    bottom: -22px;
+  }
+
+  .focusContent {
+    left: 45%;
+    top: 56%;
+    width: clamp(280px, 23vw, 400px);
+  }
+
+  .focusContentNumber {
+    margin-bottom: 12px;
+    font-size: 12px;
+  }
 
   .focusContent h3 {
-    font-size: clamp(30px, 3.1vw, 48px);
+    font-size: clamp(30px, 2.7vw, 46px);
+    line-height: 1;
   }
 
   .focusContent p {
-    font-size: clamp(15px, 1.25vw, 18px);
-    line-height: 1.55;
+    margin-top: 18px;
+    font-size: clamp(14px, 1.05vw, 17px);
+    line-height: 1.45;
   }
 
- .media {
-  right: clamp(-40px, 1.8vw, 4vw);
-  width: clamp(500px, 37vw, 740px);
-  transform: translate(20%, -50%);
-}
+  .focusContent a {
+    margin-top: 24px;
+    font-size: 15px;
+  }
+
+  .media {
+    top: 56%;
+    right: -24px;
+    width: clamp(410px, 35vw, 680px);
+    transform: translate(16%, -50%);
+  }
 }
 
 @media (min-width: 1025px) and (max-width: 1280px) {
