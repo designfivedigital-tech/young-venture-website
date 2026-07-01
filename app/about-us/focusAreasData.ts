@@ -51,7 +51,7 @@ export const FOCUS_ITEMS = [
     link: "/focus/advanced-materials",
     Icon: NetworkIcon,
     bg: "linear-gradient(135deg,#3a0e3a,#a01f7e)",
-    image: null as string | null,
+    image: "/images/hero/deep-tech.jpg"
   },
   {
     id: 5,
@@ -62,7 +62,7 @@ export const FOCUS_ITEMS = [
     link: "/focus/space-mobility",
     Icon: RocketIcon,
     bg: "linear-gradient(135deg,#0a2a3f,#1f8ea0)",
-    image: null as string | null,
+    image: "/images/hero/clean-tech.jpg"
   },
   {
     id: 6,
@@ -73,7 +73,7 @@ export const FOCUS_ITEMS = [
     link: "/focus/robotics",
     Icon: AtomIcon,
     bg: "linear-gradient(135deg,#3f1a0e,#c0562e)",
-    image: null as string | null,
+    image: "/images/hero/youth.jpg"
   },
   {
     id: 7,
@@ -84,6 +84,6 @@ export const FOCUS_ITEMS = [
     link: "/focus/computational-biology",
     Icon: DnaIcon,
     bg: "linear-gradient(135deg,#0e2f3f,#19a3c3)",
-    image: null as string | null,
+    image: "/images/hero/deep-tech.jpg"
   },
 ];
