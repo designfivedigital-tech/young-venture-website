@@ -5,7 +5,6 @@ export default function CollegeDeepTechSection() {
     <section className={styles.collegeSection} data-header-theme="light">
       <div className={styles.collegeInner}>
         <div className={styles.collegeHeader}>
-          <span>College deep tech</span>
           <h2>Why college deep tech?</h2>
         </div>
 
