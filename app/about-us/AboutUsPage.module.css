@@ -144,7 +144,6 @@
   color: #0a1a3f;
 }
 
-
 .focusDesc {
   margin: 0;
   font-size: clamp(16px, 1.2vw, 19px);
@@ -157,7 +156,7 @@
   flex: 1 1 auto;
   width: 100%;
   min-height: 0;
-  top:-10%
+  top: -10%;
 }
 
 .wheel {
@@ -367,8 +366,7 @@
   position: absolute;
   top: 50%;
   right: 4vw;
-  width: clamp(28.75rem, 24.09vw + 13.33rem, 51.88rem); 
-
+  width: clamp(28.75rem, 24.09vw + 13.33rem, 51.88rem);
   aspect-ratio: 1 / 1;
   transform: translate(18%, -50%);
   padding: 11px;
@@ -431,7 +429,6 @@
     transform: translateX(0);
   }
 }
-
 
 @media (min-width: 1281px) and (max-width: 1600px) {
   .focusInner {
@@ -508,15 +505,15 @@
     line-height: 1.45;
   }
 
- .wheel {
-  --R: 430px;
-  --step: 19deg;
-  --ix: 125px;
+  .wheel {
+    --R: 430px;
+    --step: 19deg;
+    --ix: 125px;
 
-  left: -15px;
-  top: 58%;
-  width: 32%;
-}
+    left: -15px;
+    top: 58%;
+    width: 32%;
+  }
 
   .wheelIcon {
     width: 54px;
@@ -524,16 +521,16 @@
   }
 
   .wheelInner {
-  left: calc(var(--R) - 27px);
-  gap: 12px;
-  transform-origin: 27px 50%;
-}
+    left: calc(var(--R) - 27px);
+    gap: 12px;
+    transform-origin: 27px 50%;
+  }
 
- .wheelLabel {
-  max-width: 220px;
-  font-size: 16px;
-  line-height: 1.1;
-}
+  .wheelLabel {
+    max-width: 220px;
+    font-size: 16px;
+    line-height: 1.1;
+  }
 
   .wheelInner::after {
     left: 72px;
@@ -541,11 +538,11 @@
     bottom: -22px;
   }
 
- .focusContent {
-  left: 52%;
-  top: 58%;
-  width: 300px;
-}
+  .focusContent {
+    left: 52%;
+    top: 58%;
+    width: 300px;
+  }
 
   .focusContentNumber {
     margin-bottom: 12px;
@@ -592,7 +589,15 @@
   }
 
   .focusSection {
-    height: 380vh;
+    height: 260vh;
+  }
+
+  .focusSticky {
+    height: 100vh;
+  }
+
+  .focusInner {
+    padding: 90px 24px 0;
   }
 
   .focusTop {
@@ -600,57 +605,56 @@
     gap: 18px;
   }
 
+  .focusHeading {
+    font-size: clamp(42px, 9vw, 72px);
+  }
+
+  .focusDesc {
+    font-size: 16px;
+    line-height: 1.45;
+  }
+
+  .focusBody {
+    top: 0;
+  }
+
+  .focusContent,
+  .media {
+    display: none;
+  }
+
   .wheel {
-    --R: 1100px;
-    --step: 9deg;
-    --ix: 56px;
+    --R: 720px;
+    --step: 11deg;
+    --ix: 105px;
+    --cx: calc(var(--ix) - var(--R));
+
+    left: 0;
+    top: 58%;
     width: 100%;
   }
 
-  .wheelLabel {
-    max-width: 12ch;
-    font-size: clamp(17px, 4.6vw, 22px);
-  }
-
   .wheelIcon {
-    width: 50px;
-    height: 50px;
+    width: 56px;
+    height: 56px;
   }
 
   .wheelInner {
-    left: calc(var(--R) - 25px);
-    transform-origin: 25px 50%;
+    left: calc(var(--R) - 28px);
+    gap: 28px;
+    transform-origin: 28px 50%;
+  }
+
+  .wheelLabel {
+    max-width: min(420px, calc(100vw - 190px));
+    font-size: clamp(20px, 4vw, 30px);
+    line-height: 1.12;
   }
 
   .wheelInner::after {
-    left: 72px;
-    right: -20px;
-  }
-
-  .focusContent {
-    left: 50%;
-    top: auto;
-    bottom: 34%;
-    width: calc(100% - 44px);
-    max-width: 420px;
-    transform: translateX(-50%);
-  }
-
-  .focusContent h3 {
-    font-size: clamp(30px, 9vw, 42px);
-  }
-
-  .focusContent p {
-    font-size: 16px;
-    line-height: 1.5;
-  }
-
-  .media {
-    width: min(280px, 60%);
-    top: auto;
-    bottom: 6%;
-    right: 50%;
-    transform: translate(50%, 0);
+    left: 86px;
+    right: -40px;
+    bottom: -24px;
   }
 }
 
@@ -678,6 +682,47 @@
 
   .copy p + p {
     margin-top: 24px;
+  }
+
+  .focusInner {
+    padding: 72px 18px 0;
+  }
+
+  .focusHeading {
+    font-size: clamp(38px, 11vw, 54px);
+  }
+
+  .focusDesc {
+    font-size: 15px;
+  }
+
+  .wheel {
+    --R: 610px;
+    --step: 12deg;
+    --ix: 78px;
+
+    top: 60%;
+  }
+
+  .wheelIcon {
+    width: 50px;
+    height: 50px;
+  }
+
+  .wheelInner {
+    left: calc(var(--R) - 25px);
+    gap: 22px;
+    transform-origin: 25px 50%;
+  }
+
+  .wheelLabel {
+    max-width: calc(100vw - 150px);
+    font-size: clamp(18px, 5.2vw, 24px);
+  }
+
+  .wheelInner::after {
+    left: 76px;
+    right: -24px;
   }
 }
 
