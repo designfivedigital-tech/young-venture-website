@@ -213,7 +213,7 @@ function FocusAreasSection() {
             <div>
               <p className={styles.focusLabel}>Focus areas</p>
               <h2 className={styles.focusHeading}>Our definition of deep tech</h2>
-              <div className={styles.focusUnderline} />
+        
             </div>
 
             <p className={styles.focusDesc}>
