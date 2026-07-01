@@ -213,7 +213,6 @@ function FocusAreasSection() {
             <div>
               <p className={styles.focusLabel}>Focus areas</p>
               <h2 className={styles.focusHeading}>Our definition of deep tech</h2>
-        
             </div>
 
             <p className={styles.focusDesc}>
@@ -264,7 +263,11 @@ function FocusAreasSection() {
                     <span className={styles.wheelIcon}>
                       <Icon />
                     </span>
-                    <span className={styles.wheelLabel}>{item.label}</span>
+
+                    <span className={styles.wheelLabel}>
+                      <span className={styles.mobileTitle}>{item.label}</span>
+                      <span className={styles.mobileDescription}>{item.description}</span>
+                    </span>
                   </span>
                 </button>
               );

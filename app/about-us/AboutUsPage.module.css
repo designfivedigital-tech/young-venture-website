@@ -273,6 +273,13 @@
     color 0.25s ease,
     font-weight 0.25s ease;
 }
+.mobileTitle {
+  display: inline;
+}
+
+.mobileDescription {
+  display: none;
+}
 
 .wheelItem.active .wheelLabel {
   color: #0a1a3f;
@@ -573,19 +580,14 @@
   }
 }
 
+.mobileDescription {
+  display: none;
+}
+
 @media (max-width: 900px) {
-  .hero {
-    padding: 120px 22px 80px;
-  }
-
-  .title {
-    margin-bottom: 56px;
-    font-size: clamp(64px, 15vw, 110px);
-  }
-
-  .copy p {
-    font-size: clamp(19px, 3.1vw, 24px);
-    line-height: 1.22;
+  .focusContent,
+  .media {
+    display: none;
   }
 
   .focusSection {
@@ -618,11 +620,6 @@
     top: 0;
   }
 
-  .focusContent,
-  .media {
-    display: none;
-  }
-
   .wheel {
     --R: 720px;
     --step: 11deg;
@@ -646,9 +643,36 @@
   }
 
   .wheelLabel {
-    max-width: min(420px, calc(100vw - 190px));
+    max-width: min(440px, calc(100vw - 175px));
     font-size: clamp(20px, 4vw, 30px);
     line-height: 1.12;
+  }
+
+  .mobileTitle {
+    display: block;
+  }
+
+  .mobileDescription {
+    display: block;
+    max-height: 0;
+    margin-top: 0;
+    overflow: hidden;
+    opacity: 0;
+    color: #4d5868;
+    font-size: clamp(14px, 2.5vw, 17px);
+    line-height: 1.5;
+    font-weight: 400;
+    letter-spacing: -0.01em;
+    transition:
+      max-height 0.38s ease,
+      opacity 0.3s ease,
+      margin-top 0.3s ease;
+  }
+
+  .wheelItem.active .mobileDescription {
+    max-height: 180px;
+    margin-top: 14px;
+    opacity: 1;
   }
 
   .wheelInner::after {
@@ -659,33 +683,8 @@
 }
 
 @media (max-width: 520px) {
-  .hero {
-    min-height: 140vh;
-    padding: 0 18px;
-  }
-
-  .heroInner {
-    animation-range: exit 0% exit 70%;
-  }
-
-  .title {
-    margin-bottom: 48px;
-    font-size: clamp(56px, 18vw, 82px);
-    letter-spacing: -0.075em;
-  }
-
-  .copy p {
-    font-size: 18px;
-    line-height: 1.25;
-    letter-spacing: -0.03em;
-  }
-
-  .copy p + p {
-    margin-top: 24px;
-  }
-
   .focusInner {
-    padding: 72px 18px 0;
+    padding: 50px 18px 0;
   }
 
   .focusHeading {
@@ -720,22 +719,13 @@
     font-size: clamp(18px, 5.2vw, 24px);
   }
 
+  .mobileDescription {
+    font-size: 14px;
+    line-height: 1.45;
+  }
+
   .wheelInner::after {
     left: 76px;
     right: -24px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .wheelItem,
-  .wheelInner,
-  .wheelIcon,
-  .wheelLabel {
-    transition: none;
-  }
-
-  .focusContentInner,
-  .slide {
-    animation: none;
   }
 }
