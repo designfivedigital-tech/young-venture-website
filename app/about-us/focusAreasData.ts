@@ -29,7 +29,7 @@ export const FOCUS_ITEMS = [
     link: "/focus/scientific-intelligence",
     Icon: BulbIcon,
     bg: "linear-gradient(135deg,#2b1a4f,#5b3fb0)",
-    image: null as string | null,
+    image: "/images/hero/clean-tech.jpg"
   },
   {
     id: 3,
