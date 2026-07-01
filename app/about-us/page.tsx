@@ -74,13 +74,83 @@ function DnaIcon() {
 }
 
 const FOCUS_ITEMS = [
-  { id: 1, label: "Digital and frontier technologies", Icon: CpuIcon, bg: "linear-gradient(135deg,#0a1a3f,#1e3a6e)", image: null as string | null },
-  { id: 2, label: "Digital and frontier technologies", Icon: BulbIcon, bg: "linear-gradient(135deg,#2b1a4f,#5b3fb0)", image: null as string | null },
-  { id: 3, label: "Sustainability and advanced industries", Icon: LeafIcon, bg: "linear-gradient(135deg,#0e3a1f,#2f9e4f)", image: null as string | null },
-  { id: 4, label: "Human argumentation and advanced materials", Icon: NetworkIcon, bg: "linear-gradient(135deg,#3a0e3a,#a01f7e)", image: null as string | null },
-  { id: 5, label: "Digital and frontier technologies", Icon: RocketIcon, bg: "linear-gradient(135deg,#0a2a3f,#1f8ea0)", image: null as string | null },
-  { id: 6, label: "Robotics and industrial automation", Icon: AtomIcon, bg: "linear-gradient(135deg,#3f1a0e,#c0562e)", image: null as string | null },
-  { id: 7, label: "Computational biology and life sciences", Icon: DnaIcon, bg: "linear-gradient(135deg,#0e2f3f,#19a3c3)", image: null as string | null },
+  {
+    id: 1,
+    label: "Digital and frontier technologies",
+    title: "Digital and frontier technologies",
+    description:
+      "We look for founders building at the edge of software, data, infrastructure and frontier computation.",
+    link: "/focus/digital-frontier",
+    Icon: CpuIcon,
+    bg: "linear-gradient(135deg,#0a1a3f,#1e3a6e)",
+    image: null as string | null,
+  },
+  {
+    id: 2,
+    label: "Scientific intelligence",
+    title: "Scientific intelligence",
+    description:
+      "We back ideas where research, creativity and technical insight become new products, systems and markets.",
+    link: "/focus/scientific-intelligence",
+    Icon: BulbIcon,
+    bg: "linear-gradient(135deg,#2b1a4f,#5b3fb0)",
+    image: null as string | null,
+  },
+  {
+    id: 3,
+    label: "Sustainability and advanced industries",
+    title: "Sustainability and advanced industries",
+    description:
+      "We invest in technologies transforming energy, climate, manufacturing and industrial resilience through breakthrough engineering.",
+    link: "/focus/sustainability",
+    Icon: LeafIcon,
+    bg: "linear-gradient(135deg,#0e3a1f,#2f9e4f)",
+    image: null as string | null,
+  },
+  {
+    id: 4,
+    label: "Human augmentation and advanced materials",
+    title: "Human augmentation and advanced materials",
+    description:
+      "We explore the intersection of materials, biology, computation and human capability to unlock new physical possibilities.",
+    link: "/focus/advanced-materials",
+    Icon: NetworkIcon,
+    bg: "linear-gradient(135deg,#3a0e3a,#a01f7e)",
+    image: null as string | null,
+  },
+  {
+    id: 5,
+    label: "Space, mobility and new infrastructure",
+    title: "Space, mobility and new infrastructure",
+    description:
+      "We support ambitious builders rethinking movement, logistics, aerospace and the infrastructure behind tomorrow’s systems.",
+    link: "/focus/space-mobility",
+    Icon: RocketIcon,
+    bg: "linear-gradient(135deg,#0a2a3f,#1f8ea0)",
+    image: null as string | null,
+  },
+  {
+    id: 6,
+    label: "Robotics and industrial automation",
+    title: "Robotics and industrial automation",
+    description:
+      "We believe automation will reshape how the world builds, moves, produces and maintains complex environments.",
+    link: "/focus/robotics",
+    Icon: AtomIcon,
+    bg: "linear-gradient(135deg,#3f1a0e,#c0562e)",
+    image: null as string | null,
+  },
+  {
+    id: 7,
+    label: "Computational biology and life sciences",
+    title: "Computational biology and life sciences",
+    description:
+      "We look for teams using computation, biology and engineering to create new tools for health, food and life sciences.",
+    link: "/focus/computational-biology",
+    Icon: DnaIcon,
+    bg: "linear-gradient(135deg,#0e2f3f,#19a3c3)",
+    image: null as string | null,
+  },
 ];
 
 function FocusAreasSection() {
@@ -107,7 +177,7 @@ function FocusAreasSection() {
         const p = total > 0 ? scrolled / total : 0;
 
         const exact = p * (FOCUS_ITEMS.length - 1);
-        const idx = Math.round(exact);
+        const idx = Math.max(0, Math.min(FOCUS_ITEMS.length - 1, Math.round(exact)));
 
         setWheelProgress(exact);
         setActive((prev) => (prev === idx ? prev : idx));
@@ -168,13 +238,8 @@ function FocusAreasSection() {
 
               let offset = realIndex - wheelProgress;
 
-              if (offset > FOCUS_ITEMS.length / 2) {
-                offset -= FOCUS_ITEMS.length;
-              }
-
-              if (offset < -FOCUS_ITEMS.length / 2) {
-                offset += FOCUS_ITEMS.length;
-              }
+              if (offset > FOCUS_ITEMS.length / 2) offset -= FOCUS_ITEMS.length;
+              if (offset < -FOCUS_ITEMS.length / 2) offset += FOCUS_ITEMS.length;
 
               const item = FOCUS_ITEMS[realIndex];
               const Icon = item.Icon;
@@ -182,25 +247,14 @@ function FocusAreasSection() {
               const isActive = realIndex === active && distance < 0.55;
 
               const opacity =
-                distance < 0.55
-                  ? 1
-                  : distance < 1.55
-                    ? 0.55
-                    : distance < 2.55
-                      ? 0.32
-                      : 0.14;
+                distance < 0.55 ? 1 : distance < 1.55 ? 0.55 : distance < 2.55 ? 0.32 : 0.14;
 
               return (
                 <button
                   key={`${realIndex}-${virtualIndex}`}
                   type="button"
                   className={`${styles.wheelItem} ${isActive ? styles.active : ""}`}
-                  style={
-                    {
-                      "--offset": offset,
-                      opacity,
-                    } as CSSProperties
-                  }
+                  style={{ "--offset": offset, opacity } as CSSProperties}
                   onClick={() => goTo(realIndex)}
                   role="option"
                   aria-selected={isActive}
@@ -210,7 +264,6 @@ function FocusAreasSection() {
                     <span className={styles.wheelIcon}>
                       <Icon />
                     </span>
-
                     <span className={styles.wheelLabel}>{item.label}</span>
                   </span>
                 </button>
@@ -218,14 +271,30 @@ function FocusAreasSection() {
             })}
           </div>
 
+          <div className={styles.focusContent}>
+            <div key={`content-${active}`} className={styles.focusContentInner}>
+              <span className={styles.focusContentNumber}>
+                {String(active + 1).padStart(2, "0")}
+              </span>
+
+              <h3>{current.title}</h3>
+              <p>{current.description}</p>
+
+              <a href={current.link}>
+                Learn more
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+
           <div className={styles.media}>
             <div className={styles.mediaInner}>
-              <div key={active} className={styles.slide} style={{ background: current.bg }}>
+              <div key={`media-${active}`} className={styles.slide} style={{ background: current.bg }}>
                 {current.image ? (
-                  <img src={current.image} alt={current.label} />
+                  <img src={current.image} alt={current.title} />
                 ) : (
                   <span className={styles.slidePlaceholder}>
-                    {current.label}
+                    {current.title}
                     <small>Immagine {active + 1} — placeholder</small>
                   </span>
                 )}
