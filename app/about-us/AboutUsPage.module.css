@@ -438,6 +438,60 @@
   }
 }
 
+@media (min-width: 1025px) and (max-width: 1600px) {
+  .focusInner {
+    padding-left: clamp(32px, 4vw, 64px);
+    padding-right: clamp(32px, 4vw, 64px);
+  }
+
+  .focusTop {
+    grid-template-columns: 1fr 0.9fr;
+    gap: clamp(32px, 4vw, 56px);
+  }
+
+  .wheel {
+    --R: clamp(360px, 31vw, 460px);
+    --step: clamp(15deg, 1.2vw, 18deg);
+    --ix: clamp(165px, 16vw, 235px);
+
+    left: clamp(-18px, 1vw, 24px);
+  }
+
+  .wheelLabel {
+    max-width: clamp(250px, 25vw, 360px);
+    font-size: clamp(17px, 1.45vw, 22px);
+  }
+
+  .wheelIcon {
+    width: clamp(50px, 4.3vw, 60px);
+    height: clamp(50px, 4.3vw, 60px);
+  }
+
+  .wheelInner {
+    gap: clamp(14px, 1.5vw, 22px);
+  }
+
+  .focusContent {
+    left: 49%;
+    width: clamp(300px, 27vw, 430px);
+  }
+
+  .focusContent h3 {
+    font-size: clamp(30px, 3.1vw, 48px);
+  }
+
+  .focusContent p {
+    font-size: clamp(15px, 1.25vw, 18px);
+    line-height: 1.55;
+  }
+
+  .media {
+    right: clamp(0px, 2vw, 4vw);
+    width: clamp(460px, 42vw, 660px);
+    transform: translate(20%, -50%);
+  }
+}
+
 @media (max-width: 900px) {
   .hero {
     padding: 120px 22px 80px;
