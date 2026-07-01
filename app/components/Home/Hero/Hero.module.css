@@ -154,25 +154,20 @@ scroll-snap-stop: always;
   color: rgba(255, 255, 255, 0.65);
 }
 
+/* Fluid scaling between 1025px and 1281px, where the unprefixed rules above (already fluid via vw up to 2560px+) take over seamlessly. */
 @media (min-width: 1025px) and (max-width: 1280px) {
   .hero {
-    --hero-content-shift: clamp(70px, 7vw, 120px);
-    --hero-logo-size: clamp(460px, 42vw, 580px);
+    --hero-content-shift: clamp(71.75px, calc(17.0078vw - 102.5801px), 115.29px);
+    --hero-logo-size: clamp(460px, calc(23.4375vw + 219.7656px), 520px);
   }
 
   .heroTitle {
-    left: clamp(36px, 4vw, 64px);
-    bottom: clamp(70px, 12vh, 120px);
-    width: clamp(360px, 36vw, 480px);
+    left: clamp(41px, calc(9.0039vw - 51.29px), 64.05px);
+    width: clamp(369px, calc(46.0078vw - 102.5801px), 486.78px);
   }
 
   .heroTitle h1 {
-    font-size: clamp(96px, 9vw, 135px);
-  }
-
-  .heroTitle p {
-    font-size: 16px;
-    max-width: 340px;
+    font-size: clamp(96px, calc(16.543vw - 73.5654px), 138.35px);
   }
 }
 
