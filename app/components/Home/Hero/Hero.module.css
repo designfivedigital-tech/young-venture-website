@@ -241,7 +241,7 @@ scroll-snap-stop: always;
    .heroTitle {
     left: 50%;
     right: auto;
-    top: calc(var(--mobile-logo-y) + 28vh);
+    top: calc(var(--mobile-logo-y) + var(--hero-logo-size) / 2 + 36px);
     bottom: auto;
     width: min(90vw, 620px);
     text-align: center;
@@ -263,7 +263,7 @@ scroll-snap-stop: always;
 
 /* MOBILE SMALL */
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .hero {
     --hero-logo-size: min(78vw, 420px);
     --mobile-logo-y: 40%;
@@ -272,11 +272,14 @@ scroll-snap-stop: always;
    .heroTitle {
     left: 50%;
     right: auto;
-    top: calc(var(--mobile-logo-y) + 24vh);
+    top: calc(var(--mobile-logo-y) + var(--hero-logo-size) / 2 + 32px);
     bottom: auto;
     width: min(90vw, 360px);
     text-align: center;
     transform: translateX(-50%);
+    display: flex;
+        flex-flow: column;
+        align-items: center;
   }
 
 
