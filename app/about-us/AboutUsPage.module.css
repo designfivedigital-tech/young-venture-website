@@ -849,3 +849,9 @@
     font-size: 28px;
   }
 }
+
+@media (max-width: 767px){
+   .collegeHeader h2 {
+    font-size: 45px;
+   }
+}
