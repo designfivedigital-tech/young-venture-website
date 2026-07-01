@@ -1,0 +1,93 @@
+.section {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 100vh;
+  overflow: hidden;
+  background: #ffffff;
+}
+
+.mapArea {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: min(94vw, 1520px);
+  height: min(72vh, 820px);
+  transform: translate(-50%, -50%);
+}
+
+.mapImage {
+  object-fit: contain;
+  opacity: 0.95;
+}
+
+.network {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.pointGroup {
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.point {
+  fill: #ff2a1f;
+  stroke: #ffffff;
+  stroke-width: 1.4px;
+  vector-effect: non-scaling-stroke;
+  filter: drop-shadow(0 0 5px rgba(255, 42, 31, 0.75));
+  transition: all 0.25s ease;
+}
+
+.pointGroup:hover .point {
+  r: 5.5;
+}
+
+.activePoint {
+  animation: pulsePoint 1.7s ease-in-out infinite;
+}
+
+.label {
+  fill: #ffffff;
+  paint-order: stroke;
+  stroke: #111111;
+  stroke-width: 5px;
+  stroke-linejoin: round;
+  font-size: 11px;
+  font-weight: 800;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+@keyframes pulsePoint {
+  0%,
+  100% {
+    filter: drop-shadow(0 0 5px rgba(255, 42, 31, 0.75));
+  }
+
+  50% {
+    filter:
+      drop-shadow(0 0 8px rgba(255, 42, 31, 1))
+      drop-shadow(0 0 18px rgba(255, 42, 31, 0.9));
+  }
+}
+
+@media (max-width: 1024px) {
+  .mapArea {
+    width: 120vw;
+    height: 78vw;
+  }
+}
+
+@media (max-width: 767px) {
+  .mapArea {
+    width: 185vw;
+    height: 125vw;
+    left: 56%;
+  }
+}
