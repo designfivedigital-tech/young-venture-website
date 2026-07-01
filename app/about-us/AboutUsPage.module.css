@@ -437,189 +437,93 @@
   }
 }
 
-@media (min-width: 1281px) and (max-width: 1919px) {
-  .focusSticky {
-    height: 100vh;
-  }
-
+/* Fluid scaling between 1025px (compact desktop) and 1920px (reference "perfect" layout, defined by the unprefixed rules above). Every value below is a linear interpolation between its measurement at each of those two widths, so there is no visual jump at any point in between. */
+@media (min-width: 1025px) and (max-width: 1919px) {
   .focusInner {
-    padding: 48px 56px 0;
+    padding: clamp(30px, calc(2.0112vw + 9.3855px), 48px) clamp(40px, calc(4.4693vw - 5.8101px), 80px) 0;
   }
 
   .focusTop {
-    grid-template-columns: 0.95fr 0.85fr;
-    gap: 48px;
+    grid-template-columns: clamp(47.3684%, calc(1.4114vw + 32.902%), 60%) 1fr;
+    gap: clamp(40px, calc(0.8939vw + 30.838px), 48px);
   }
 
   .focusHeading {
-    max-width: 560px;
-    font-size: clamp(52px, 4.6vw, 78px);
+    max-width: clamp(480px, calc(37.9888vw + 90.6145px), 820px);
+    font-size: clamp(51.25px, calc(2.3184vw + 27.486px), 72px);
   }
 
   .focusDesc {
-    max-width: 560px;
-    font-size: 15px;
-    line-height: 1.45;
-  }
-
-  .focusBody {
-    top: -4%;
+    font-size: clamp(16px, calc(0.3352vw + 12.5642px), 19px);
+    line-height: 1.48;
   }
 
   .wheel {
-    --R: clamp(390px, 31vw, 520px);
-    --step: clamp(16deg, 1.35vw, 19deg);
-    --ix: clamp(130px, 13vw, 220px);
+    --R: clamp(430px, calc(3.352vw + 395.6425px), 460px);
+    --step: 18.5deg;
+    --ix: clamp(125px, calc(12.2905vw - 0.9777px), 235px);
+    --iconHalf: clamp(27px, calc(0.3352vw + 23.5642px), 30px);
 
-    left: clamp(-36px, 0vw, 12px);
-    top: 56%;
-    width: 30%;
+    left: clamp(-15px, calc(5.9665vw - 76.1564px), 38.4px);
+    top: clamp(50%, calc(-0.8939vw + 67.162%), 58%);
+    width: clamp(32%, calc(0.1489vw + 30.4734%), 33.333%);
   }
 
   .wheelIcon {
-    width: clamp(50px, 3.8vw, 64px);
-    height: clamp(50px, 3.8vw, 64px);
+    width: clamp(54px, calc(0.6704vw + 47.1285px), 60px);
+    height: clamp(54px, calc(0.6704vw + 47.1285px), 60px);
   }
 
   .wheelInner {
-    left: calc(var(--R) - 27px);
-    gap: clamp(12px, 1.1vw, 20px);
-    transform-origin: 27px 50%;
+    left: calc(var(--R) - var(--iconHalf));
+    gap: clamp(12px, calc(1.1173vw + 0.5475px), 22px);
+    transform-origin: var(--iconHalf) 50%;
   }
 
   .wheelLabel {
-    max-width: clamp(180px, 15vw, 300px);
-    font-size: clamp(15px, 1.2vw, 21px);
-    line-height: 1.12;
+    max-width: clamp(220px, calc(15.6425vw + 59.6648px), 360px);
+    font-size: clamp(16px, calc(0.8939vw + 6.838px), 24px);
+    line-height: 1.11;
   }
 
   .wheelInner::after {
-    left: 72px;
-    right: -18px;
-    bottom: -22px;
+    left: clamp(72px, calc(1.1173vw + 60.5475px), 82px);
+    right: clamp(-40px, calc(-2.2346vw + 2.905px), -20px);
+    bottom: clamp(-26px, calc(-0.4469vw - 17.419px), -22px);
   }
 
   .focusContent {
-    left: 45%;
-    top: 56%;
-    width: clamp(280px, 23vw, 400px);
+    left: clamp(50%, calc(-0.2235vw + 54.2905%), 52%);
+    top: clamp(50%, calc(-0.8939vw + 67.162%), 58%);
+    width: clamp(300px, calc(14.5251vw + 151.1173px), 430px);
   }
 
   .focusContentNumber {
-    margin-bottom: 12px;
-    font-size: 12px;
+    margin-bottom: clamp(12px, calc(0.6704vw + 5.1285px), 18px);
+    font-size: clamp(12px, calc(0.2235vw + 9.7095px), 14px);
   }
 
   .focusContent h3 {
-    font-size: clamp(30px, 2.7vw, 46px);
-    line-height: 1;
+    font-size: clamp(32px, calc(2.4581vw + 6.8045px), 54px);
+    line-height: 0.99;
   }
 
   .focusContent p {
-    margin-top: 18px;
-    font-size: clamp(14px, 1.05vw, 17px);
-    line-height: 1.45;
+    margin-top: clamp(18px, calc(0.8939vw + 8.838px), 26px);
+    font-size: clamp(15px, calc(0.4469vw + 10.419px), 19px);
+    line-height: 1.55;
   }
 
   .focusContent a {
-    margin-top: 24px;
-    font-size: 15px;
+    margin-top: clamp(24px, calc(1.1173vw + 12.5475px), 34px);
+    font-size: clamp(15px, calc(0.2235vw + 12.7095px), 17px);
   }
 
   .media {
-    top: 56%;
-    right: -24px;
-    width: clamp(410px, 35vw, 680px);
-    transform: translate(16%, -50%);
-  }
-}
-
-@media (min-width: 1025px) and (max-width: 1280px) {
-  .focusInner {
-    padding: 30px 40px 0;
-  }
-
-  .focusTop {
-    grid-template-columns: 0.9fr 1fr;
-    gap: 40px;
-  }
-
-  .focusHeading {
-    max-width: 480px;
-    font-size: clamp(48px, 5vw, 62px);
-  }
-
-  .focusDesc {
-    max-width: 520px;
-    font-size: 16px;
-    line-height: 1.45;
-  }
-
-  .wheel {
-    --R: 430px;
-    --step: 19deg;
-    --ix: 125px;
-
-    left: -15px;
-    top: 58%;
-    width: 32%;
-  }
-
-  .wheelIcon {
-    width: 54px;
-    height: 54px;
-  }
-
-  .wheelInner {
-    left: calc(var(--R) - 27px);
-    gap: 12px;
-    transform-origin: 27px 50%;
-  }
-
-  .wheelLabel {
-    max-width: 220px;
-    font-size: 16px;
-    line-height: 1.1;
-  }
-
-  .wheelInner::after {
-    left: 72px;
-    right: -20px;
-    bottom: -22px;
-  }
-
-  .focusContent {
-    left: 52%;
-    top: 58%;
-    width: 300px;
-  }
-
-  .focusContentNumber {
-    margin-bottom: 12px;
-    font-size: 12px;
-  }
-
-  .focusContent h3 {
-    font-size: 32px;
-    line-height: 1;
-  }
-
-  .focusContent p {
-    margin-top: 18px;
-    font-size: 15px;
-    line-height: 1.45;
-  }
-
-  .focusContent a {
-    margin-top: 24px;
-    font-size: 15px;
-  }
-
-  .media {
-    top: 57%;
-    right: -30px;
-    width: 430px;
-    transform: translate(20%, -50%);
+    top: clamp(50%, calc(-0.7821vw + 65.0168%), 57%);
+    right: clamp(-30px, calc(11.933vw - 152.3128px), 76.8px);
+    width: clamp(430px, calc(27.4637vw + 148.4972px), 675.8px);
+    transform: translate(clamp(18%, calc(-0.2235vw + 22.2905%), 20%), -50%);
   }
 }
 
