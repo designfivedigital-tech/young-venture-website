@@ -514,15 +514,15 @@
     line-height: 1.45;
   }
 
-  .wheel {
-    --R: 390px;
-    --step: 17deg;
-    --ix: 165px;
+ .wheel {
+  --R: 430px;
+  --step: 19deg;
+  --ix: 95px;
 
-    left: -28px;
-    top: 57%;
-    width: 34%;
-  }
+  left: -95px;
+  top: 58%;
+  width: 32%;
+}
 
   .wheelIcon {
     width: 54px;
@@ -530,16 +530,16 @@
   }
 
   .wheelInner {
-    left: calc(var(--R) - 27px);
-    gap: 16px;
-    transform-origin: 27px 50%;
-  }
+  left: calc(var(--R) - 27px);
+  gap: 12px;
+  transform-origin: 27px 50%;
+}
 
-  .wheelLabel {
-    max-width: 250px;
-    font-size: 17px;
-    line-height: 1.12;
-  }
+ .wheelLabel {
+  max-width: 220px;
+  font-size: 16px;
+  line-height: 1.1;
+}
 
   .wheelInner::after {
     left: 72px;
@@ -547,11 +547,11 @@
     bottom: -22px;
   }
 
-  .focusContent {
-    left: 43%;
-    top: 57%;
-    width: 300px;
-  }
+ .focusContent {
+  left: 42%;
+  top: 58%;
+  width: 300px;
+}
 
   .focusContentNumber {
     margin-bottom: 12px;
