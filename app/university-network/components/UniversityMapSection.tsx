@@ -9,7 +9,7 @@ const universities = [
   { name: "Caltech", cx: 107.67, cy: 188.82 },
   { name: "NYU", cx: 197.63, cy: 164.88 },
   { name: "Harvard", cx: 200.63, cy: 156.88 },
-  { name: "Oxford", cx: 287.18, cy: 153.68 },
+  { name: "Oxford", cx: 287.18, cy: 153.68, image: "/images/mappe/mappa-inghilterra.png" },
   { name: "Cambridge", cx: 292.18, cy: 158.68 },
   { name: "Bocconi", cx: 306.41, cy: 166.46 },
   { name: "ETH Zurich", cx: 312.82, cy: 179.24 },
@@ -17,6 +17,14 @@ const universities = [
 
 export default function UniversityMapSection() {
   const [active, setActive] = useState<string | null>(null);
+  const [popupImage, setPopupImage] = useState<string | null>(null);
+
+  const handleSelect = (university: (typeof universities)[number]) => {
+    setActive(university.name);
+    if (university.image) {
+      setPopupImage(university.image);
+    }
+  };
 
   return (
     <section
@@ -44,7 +52,7 @@ export default function UniversityMapSection() {
               <g
                 key={university.name}
                 className={styles.pointGroup}
-                onClick={() => setActive(university.name)}
+                onClick={() => handleSelect(university)}
               >
                 <circle
                   cx={university.cx}
@@ -69,6 +77,32 @@ export default function UniversityMapSection() {
           })}
         </svg>
       </div>
+
+      {popupImage && (
+        <div
+          className={styles.popupOverlay}
+          onClick={() => setPopupImage(null)}
+        >
+          <div
+            className={styles.popupContent}
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className={styles.popupClose}
+              onClick={() => setPopupImage(null)}
+              aria-label="Close"
+            >
+              ×
+            </button>
+            <img
+              src={popupImage}
+              alt="University map detail"
+              className={styles.popupImage}
+            />
+          </div>
+        </div>
+      )}
     </section>
   );
 }
