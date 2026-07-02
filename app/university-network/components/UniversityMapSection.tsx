@@ -42,11 +42,11 @@ export default function UniversityMapSection() {
 
       const rect = event.currentTarget.getBoundingClientRect();
       const x = rect.left + rect.width / 2;
-      const y = rect.top;
+      const y = rect.top + rect.height / 2;
 
       setPopupAnchor({
         left: x,
-        top: y - 16,
+        top: y,
       });
       setPopupImage(university.image);
       setIsPopupClosing(false);
@@ -111,7 +111,7 @@ export default function UniversityMapSection() {
             style={{
               left: popupAnchor.left,
               top: popupAnchor.top,
-              transform: "translate(-50%, -100%)",
+              transform: "translate(-50%, -50%)",
             }}
             onClick={(event) => event.stopPropagation()}
           >
