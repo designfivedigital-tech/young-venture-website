@@ -7,14 +7,11 @@ import styles from "./UniversityMapSection.module.css";
 const POPUP_CLOSE_DURATION = 200;
 
 const universities = [
-  { name: "Stanford", cx: 104.47, cy: 182.43 },
-  { name: "Caltech", cx: 107.67, cy: 188.82 },
-  { name: "NYU", cx: 197.63, cy: 164.88 },
-  { name: "Harvard", cx: 200.63, cy: 156.88 },
+  { name: "Caltech", cx: 107.67, cy: 188.82, image: "/images/mappe/west-coast.png" },
+  { name: "NYU", cx: 197.63, cy: 164.88, image: "/images/mappe/east-coast.png" },
   { name: "Oxford", cx: 287.18, cy: 153.68, image: "/images/mappe/mappa-eng.png" },
-  { name: "Cambridge", cx: 292.18, cy: 158.68 },
-  { name: "Bocconi", cx: 306.41, cy: 166.46 },
-  { name: "ETH Zurich", cx: 312.82, cy: 179.24 },
+  { name: "Bocconi", cx: 306.41, cy: 166.46, image: "/images/mappe/mappa-italia.png" },
+  { name: "ETH Zurich", cx: 312.82, cy: 179.24, image: "/images/mappe/mappa-eng.png" },
 ];
 
 type PopupAnchor = {
