@@ -6,14 +6,14 @@
 }
 
 .inner {
-  max-width: 1280px;
+  max-width: 1440px;
   margin: 0 auto;
 }
 
 .tagline {
   margin: 0 0 clamp(36px, 5vw, 56px);
   text-align: center;
-  font-size: clamp(14px, 1.1vw, 17px);
+  font-size: clamp(18px, 1.5vw, 24px);
   font-style: italic;
   color: #6b6b6b;
 }
@@ -32,14 +32,16 @@
 }
 
 .flag {
-  font-size: 20px;
+  font-size: 28px;
   line-height: 1;
 }
 
 .countryName {
-  font-size: 13px;
+  margin: 0;
+  font-size: clamp(20px, 2vw, 28px);
   font-weight: 700;
-  letter-spacing: 0.08em;
+  font-style: italic;
+  letter-spacing: 0;
   text-transform: uppercase;
   color: #14276b;
 }
@@ -72,8 +74,8 @@
 
 .logoWrap {
   flex-shrink: 0;
-  width: 64px;
-  height: 44px;
+  width: 100px;
+  height: 68px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -87,14 +89,14 @@
 
 .name {
   margin: 0 0 4px;
-  font-size: 15px;
+  font-size: 19px;
   font-weight: 700;
   color: #0a0a0a;
   line-height: 1.25;
 }
 
 .location {
-  font-size: 12px;
+  font-size: 13px;
   color: #7a7a7a;
 }
 
@@ -102,8 +104,8 @@
   margin: 0;
   flex: 2 1 260px;
   min-width: 220px;
-  font-size: 13.5px;
-  line-height: 1.55;
+  font-size: 16px;
+  line-height: 1.6;
   color: #4a4a4a;
 }
 
@@ -149,7 +151,8 @@
   justify-content: center;
   gap: 10px;
   text-align: center;
-  font-size: clamp(14px, 1.1vw, 17px);
+  font-size: clamp(18px, 1.5vw, 24px);
+  font-style: italic;
   color: #4a4a4a;
 }
 

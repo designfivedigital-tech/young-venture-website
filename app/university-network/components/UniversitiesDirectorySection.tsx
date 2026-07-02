@@ -174,7 +174,7 @@ export default function UniversitiesDirectorySection() {
               <span className={styles.flag} aria-hidden>
                 {group.flag}
               </span>
-              <span className={styles.countryName}>{group.country}</span>
+              <h2 className={styles.countryName}>{group.country}</h2>
             </div>
 
             <div className={styles.universitiesRow}>
@@ -185,8 +185,8 @@ export default function UniversitiesDirectorySection() {
                       <Image
                         src={university.logo}
                         alt={`${university.name} logo`}
-                        width={64}
-                        height={44}
+                        width={100}
+                        height={68}
                         className={styles.logo}
                       />
                     </div>
