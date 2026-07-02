@@ -20,8 +20,6 @@ const universities = [
 type PopupAnchor = {
   left: number;
   top: number;
-  originX: "left" | "right";
-  originY: "top" | "bottom";
 };
 
 export default function UniversityMapSection() {
@@ -44,15 +42,11 @@ export default function UniversityMapSection() {
 
       const rect = event.currentTarget.getBoundingClientRect();
       const x = rect.left + rect.width / 2;
-      const y = rect.top + rect.height / 2;
-      const originX = x < window.innerWidth / 2 ? "left" : "right";
-      const originY = y < window.innerHeight / 2 ? "top" : "bottom";
+      const y = rect.top;
 
       setPopupAnchor({
-        left: x + (originX === "left" ? 16 : -16),
-        top: y + (originY === "top" ? 16 : -16),
-        originX,
-        originY,
+        left: x,
+        top: y - 16,
       });
       setPopupImage(university.image);
       setIsPopupClosing(false);
@@ -117,9 +111,7 @@ export default function UniversityMapSection() {
             style={{
               left: popupAnchor.left,
               top: popupAnchor.top,
-              transform: `translate(${
-                popupAnchor.originX === "left" ? "0" : "-100%"
-              }, ${popupAnchor.originY === "top" ? "0" : "-100%"})`,
+              transform: "translate(-50%, -100%)",
             }}
             onClick={(event) => event.stopPropagation()}
           >
