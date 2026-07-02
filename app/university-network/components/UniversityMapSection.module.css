@@ -48,9 +48,6 @@
   r: 5.5;
 }
 
-.activePoint {
-  animation: pulsePoint 1.7s ease-in-out infinite;
-}
 
 .label {
   fill: #ffffff;
