@@ -9,7 +9,7 @@ const universities = [
   { name: "Caltech", cx: 107.67, cy: 188.82 },
   { name: "NYU", cx: 197.63, cy: 164.88 },
   { name: "Harvard", cx: 200.63, cy: 156.88 },
-  { name: "Oxford", cx: 287.18, cy: 153.68, image: "/images/mappe/mappa-eng.png" },
+  { name: "Oxford", cx: 287.18, cy: 153.68, image: "/images/mappe/mappa-england.svg" },
   { name: "Cambridge", cx: 292.18, cy: 158.68 },
   { name: "Bocconi", cx: 306.41, cy: 166.46 },
   { name: "ETH Zurich", cx: 312.82, cy: 179.24 },
