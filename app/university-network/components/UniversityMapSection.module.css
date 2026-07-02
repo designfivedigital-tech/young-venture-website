@@ -99,9 +99,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 0.75);
+  background: transparent;
   padding: 32px;
-  animation: fadeInOverlay 0.25s ease;
 }
 
 .popupContent {
@@ -136,16 +135,6 @@
   align-items: center;
   justify-content: center;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.35);
-}
-
-@keyframes fadeInOverlay {
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
 }
 
 @keyframes zoomInPopup {
