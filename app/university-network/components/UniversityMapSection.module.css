@@ -105,15 +105,17 @@
 
 .popupContent {
   position: relative;
-  max-width: min(92vw, 1100px);
+  width: min(92vw, 1100px);
   max-height: 90vh;
   animation: zoomInPopup 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .popupImage {
   display: block;
-  max-width: 100%;
+  width: 100%;
+  height: auto;
   max-height: 90vh;
+  object-fit: contain;
   border-radius: 8px;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }
