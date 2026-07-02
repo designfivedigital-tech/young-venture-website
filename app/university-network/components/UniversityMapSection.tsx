@@ -10,8 +10,8 @@ const universities = [
   { name: "West-Coast", cx: 107.67, cy: 188.82, image: "/images/mappe/west-coast.png" },
   { name: "East-Coast", cx: 197.63, cy: 164.88, image: "/images/mappe/east-coast.png" },
   { name: "UK", cx: 287.18, cy: 153.68, image: "/images/mappe/mappa-eng.png" },
-  { name: "Italia", cx: 306.41, cy: 166.46, image: "/images/mappe/mappa-italia.png" },
-  { name: "Svizzera", cx: 312.82, cy: 179.24, image: "/images/mappe/mappa-eng.png" },
+  { name: "Svizzera", cx: 306.41, cy: 166.46, image: "/images/mappe/mappa-svizzera.png" },
+  { name: "Italia", cx: 312.82, cy: 178.50, image: "/images/mappe/mappa-italia.png" },
 ];
 
 type PopupAnchor = {
