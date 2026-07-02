@@ -123,8 +123,8 @@
 
 .popupClose {
   position: absolute;
-  top: -18px;
-  right: -18px;
+  top: 12px;
+  right: 12px;
   width: 36px;
   height: 36px;
   border-radius: 50%;
