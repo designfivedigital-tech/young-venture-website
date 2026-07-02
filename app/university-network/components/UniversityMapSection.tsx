@@ -57,7 +57,7 @@ export default function UniversityMapSection() {
                 <circle
                   cx={university.cx}
                   cy={university.cy}
-                  r={isActive ? 6 : 4.2}
+                  r={isActive ? 6 : 3}
                   className={`${styles.point} ${
                     isActive ? styles.activePoint : ""
                   }`}
