@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import styles from "./UniversityMapSection.module.css";
 
 const POPUP_CLOSE_DURATION = 200;
@@ -90,7 +91,7 @@ export default function UniversityMapSection() {
                 <circle
                   cx={university.cx}
                   cy={university.cy}
-                  r={isActive ? 6 : 3}
+                  r={3}
                   className={`${styles.point} ${
                     isActive ? styles.activePoint : ""
                   }`}
@@ -101,39 +102,42 @@ export default function UniversityMapSection() {
         </svg>
       </div>
 
-      {popupImage && popupAnchor && (
-        <div className={styles.popupOverlay} onClick={closePopup}>
-          <div
-            className={styles.popupContent}
-            style={{
-              left: popupAnchor.left,
-              top: popupAnchor.top,
-              transform: "translate(-50%, -50%)",
-            }}
-            onClick={(event) => event.stopPropagation()}
-          >
+      {popupImage &&
+        popupAnchor &&
+        createPortal(
+          <div className={styles.popupOverlay} onClick={closePopup}>
             <div
-              className={`${styles.popupInner} ${
-                isPopupClosing ? styles.popupInnerClosing : ""
-              }`}
+              className={styles.popupContent}
+              style={{
+                left: popupAnchor.left,
+                top: popupAnchor.top,
+                transform: "translate(-50%, -50%)",
+              }}
+              onClick={(event) => event.stopPropagation()}
             >
-              <button
-                type="button"
-                className={styles.popupClose}
-                onClick={closePopup}
-                aria-label="Close"
+              <div
+                className={`${styles.popupInner} ${
+                  isPopupClosing ? styles.popupInnerClosing : ""
+                }`}
               >
-                ×
-              </button>
-              <img
-                src={popupImage}
-                alt="University map detail"
-                className={styles.popupImage}
-              />
+                <button
+                  type="button"
+                  className={styles.popupClose}
+                  onClick={closePopup}
+                  aria-label="Close"
+                >
+                  ×
+                </button>
+                <img
+                  src={popupImage}
+                  alt="University map detail"
+                  className={styles.popupImage}
+                />
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          </div>,
+          document.body
+        )}
     </section>
   );
 }
