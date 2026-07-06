@@ -86,7 +86,11 @@ scroll-snap-stop: always;
 
 .autoGlowPath {
   stroke-dashoffset: 0;
-  animation: autoGlowMove 2.8s linear infinite;
+  animation-name: autoGlowMove;
+  animation-timing-function: linear;
+  animation-iteration-count: 1;
+  animation-fill-mode: forwards;
+  animation-duration: var(--auto-glow-duration, 2.8s);
 }
 
 @keyframes autoGlowMove {
@@ -95,7 +99,7 @@ scroll-snap-stop: always;
   }
 
   to {
-    stroke-dashoffset: -1490;
+    stroke-dashoffset: calc(-1 * var(--auto-glow-travel, 1490));
   }
 }
 

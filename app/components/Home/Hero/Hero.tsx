@@ -27,6 +27,29 @@ const glowColors = {
   clean: "#77db21",
 };
 
+// Only the inner diagonal cut of each shape (not the two outer frame edges),
+// so the traveling neon hands off from one segment straight into the next.
+const autoGlowPaths = {
+  youth: {
+    d: "M0,717.39 C1.664,717.328,2.6,716.442,4.35,715.313 L366.933,481.524 L367.128,0",
+    transform: undefined,
+    travel: 915,
+  },
+  clean: {
+    d: "M1112.784,0 L1112.66,421.012 L1474.817,187.612 a21,21,0,0,1,5.095,-2.79",
+    transform: "translate(-652.153)",
+    travel: 858,
+  },
+  deep: {
+    d: "M833.187,716.67 C831.73,716.711,830.964,717.432,829.326,718.487 L11.255,1245.687 C9.972,1246.514,9.546,1246.854,9.26,1247.814",
+    transform: "translate(-5.427 -420.055)",
+    travel: 978,
+  },
+};
+
+const AUTO_GLOW_SPEED = 532; // path units per second, keeps travel speed consistent across shapes
+const AUTO_GLOW_SEQUENCE: Exclude<ActiveShape, null>[] = ["youth", "clean", "deep"];
+
 const imageEntries = Object.entries(images);
 
 export default function Hero() {
@@ -41,9 +64,17 @@ export default function Hero() {
   const [mobileImageVisible, setMobileImageVisible] = useState(false);
 
   useEffect(() => {
-    const shapes: Exclude<ActiveShape, null>[] = ["youth", "deep", "clean"];
-    setAutoGlowShape(shapes[Math.floor(Math.random() * shapes.length)]);
+    setAutoGlowShape(AUTO_GLOW_SEQUENCE[0]);
   }, []);
+
+  const advanceAutoGlow = () => {
+    setAutoGlowShape((current) => {
+      if (!current) return current;
+      const nextIndex =
+        (AUTO_GLOW_SEQUENCE.indexOf(current) + 1) % AUTO_GLOW_SEQUENCE.length;
+      return AUTO_GLOW_SEQUENCE[nextIndex];
+    });
+  };
 
   useEffect(() => {
     let index = 0;
@@ -225,8 +256,7 @@ export default function Hero() {
         <div className={styles.heroTitle}>
           <h1>Young Ventures</h1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            Investing in young founders before the world is watching.
           </p>
         </div>
 
@@ -355,23 +385,27 @@ export default function Hero() {
 
             {autoGlowShape && (
               <path
-                d={paths[autoGlowShape]}
-                transform={
-                  autoGlowShape === "deep"
-                    ? "translate(-5.427 -420.055)"
-                    : autoGlowShape === "clean"
-                      ? "translate(-652.153)"
-                      : undefined
-                }
+                key={autoGlowShape}
+                d={autoGlowPaths[autoGlowShape].d}
+                transform={autoGlowPaths[autoGlowShape].transform}
                 fill="transparent"
                 stroke={glowColors[autoGlowShape]}
                 strokeWidth="4"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                strokeDasharray="90 1400"
+                strokeDasharray={`90 ${autoGlowPaths[autoGlowShape].travel}`}
                 className={styles.autoGlowPath}
+                style={
+                  {
+                    "--auto-glow-travel": autoGlowPaths[autoGlowShape].travel,
+                    "--auto-glow-duration": `${
+                      autoGlowPaths[autoGlowShape].travel / AUTO_GLOW_SPEED
+                    }s`,
+                  } as React.CSSProperties
+                }
                 filter="url(#softGlow)"
                 pointerEvents="none"
+                onAnimationEnd={advanceAutoGlow}
               />
             )}
 
