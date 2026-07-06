@@ -229,7 +229,6 @@ export default function UniversitiesDirectorySection() {
 
         <p className={styles.closingTagline}>
           <span className={styles.closingIcon}>
-            <GlobeIcon />
           </span>
           Our network connects top talent, pioneering research, and
           entrepreneurial spirit across the world.
