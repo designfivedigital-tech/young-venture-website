@@ -130,7 +130,7 @@ export default function Kpi2Section() {
 
   <div className={styles.worldMap} aria-hidden="true">
   <img
-    src="/images/mondo.png"
+    src="/images/grafico-bolle.png"
     alt=""
     className={styles.worldMapImg}
   />
