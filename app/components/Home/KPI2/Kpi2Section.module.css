@@ -962,6 +962,30 @@
 }
 
 
+/* ================= ULTRA-WIDE DESKTOP: 1921px - 2560px =================
+   The values below are frozen at their 1920px cap (the reference/"perfect"
+   size). This tier continues scaling them linearly up to 2560px instead of
+   staying flat, without changing anything at or below 1920px. */
+
+@media (min-width: 1921px) {
+  .header h2 {
+    font-size: clamp(50px, calc(50px + 16.7px * ((100vw - 1920px) / 640px)), 66.7px);
+  }
+
+  .universityValue {
+    font-size: clamp(112px, calc(112px + 37.3px * ((100vw - 1920px) / 640px)), 149.3px);
+  }
+
+  .dealValue {
+    font-size: clamp(88px, calc(88px + 29.3px * ((100vw - 1920px) / 640px)), 117.3px);
+  }
+
+  .aumValue {
+    font-size: clamp(160px, calc(160px + 53.3px * ((100vw - 1920px) / 640px)), 213.3px);
+  }
+}
+
+
 
 /* ================= TABLET: 769px - 1024px ================= */
 
