@@ -18,7 +18,7 @@ type CountryGroup = {
 const countryGroups: CountryGroup[] = [
   {
     country: "Italy",
-    flag: "🇮🇹",
+    flag: "/images/bandiere/bandiera-italia.png",
     universities: [
       {
         name: "Bocconi University",
@@ -32,7 +32,7 @@ const countryGroups: CountryGroup[] = [
   },
   {
     country: "United Kingdom",
-    flag: "🇬🇧",
+    flag: "/images/bandiere/bandiera-uk.png",
     universities: [
       {
         name: "University of Oxford",
@@ -62,7 +62,7 @@ const countryGroups: CountryGroup[] = [
   },
   {
     country: "Switzerland",
-    flag: "🇨🇭",
+    flag: "/images/bandiere/bandiera-svizzera.png",
     universities: [
       {
         name: "ETH Zürich",
@@ -81,7 +81,7 @@ const countryGroups: CountryGroup[] = [
   },
   {
     country: "United States",
-    flag: "🇺🇸",
+    flag: "/images/bandiere/bandiera-usa.png",
     universities: [
       {
         name: "Harvard University",
@@ -141,8 +141,8 @@ function GlobeIcon() {
   return (
     <svg
       viewBox="0 0 24 24"
-      width="18"
-      height="18"
+      width="30"
+      height="30"
       fill="none"
       stroke="currentColor"
       strokeWidth="1.6"
@@ -171,9 +171,13 @@ export default function UniversitiesDirectorySection() {
         {countryGroups.map((group) => (
           <div key={group.country} className={styles.countryGroup}>
             <div className={styles.countryHeader}>
-              <span className={styles.flag} aria-hidden>
-                {group.flag}
-              </span>
+              <Image
+                src={group.flag}
+                alt={`${group.country} flag`}
+                width={28}
+                height={20}
+                className={styles.flag}
+              />
               <h2 className={styles.countryName}>{group.country}</h2>
             </div>
 
