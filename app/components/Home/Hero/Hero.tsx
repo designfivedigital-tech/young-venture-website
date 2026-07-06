@@ -113,7 +113,16 @@ export default function Hero() {
   };
 
   return (
-    <section className={`${styles.hero} snap-section`} data-header-theme="dark" data-header-hero>
+    <section
+      className={`${styles.hero} snap-section`}
+      data-header-theme="dark"
+      data-header-hero
+      onMouseLeave={() => {
+        setCursor(null);
+        setActiveShape(null);
+        resetGlow();
+      }}
+    >
       <div className={styles.background}>
         <div className={styles.desktopBackground}>
           {imageEntries.map(([key, src]) => (
@@ -244,11 +253,6 @@ export default function Hero() {
                 x: svgPoint.x,
                 y: svgPoint.y,
               });
-            }}
-            onMouseLeave={() => {
-              setCursor(null);
-              setActiveShape(null);
-              resetGlow();
             }}
           >
             <defs>
@@ -450,7 +454,6 @@ export default function Hero() {
               strokeWidth="190"
               pointerEvents="visibleStroke"
               onMouseEnter={() => activateGlow("youth")}
-              onMouseLeave={resetGlow}
             />
 
             <path
@@ -461,7 +464,6 @@ export default function Hero() {
               strokeWidth="190"
               pointerEvents="visibleStroke"
               onMouseEnter={() => activateGlow("deep")}
-              onMouseLeave={resetGlow}
             />
 
             <path
@@ -472,7 +474,6 @@ export default function Hero() {
               strokeWidth="160"
               pointerEvents="visibleStroke"
               onMouseEnter={() => activateGlow("clean")}
-              onMouseLeave={resetGlow}
             />
 
             <path
@@ -483,10 +484,6 @@ export default function Hero() {
               onMouseEnter={() => {
                 setActiveShape("youth");
                 activateGlow("youth");
-              }}
-              onMouseLeave={() => {
-                setActiveShape(null);
-                resetGlow();
               }}
             />
 
@@ -500,10 +497,6 @@ export default function Hero() {
                 setActiveShape("deep");
                 activateGlow("deep");
               }}
-              onMouseLeave={() => {
-                setActiveShape(null);
-                resetGlow();
-              }}
             />
 
             <path
@@ -515,10 +508,6 @@ export default function Hero() {
               onMouseEnter={() => {
                 setActiveShape("clean");
                 activateGlow("clean");
-              }}
-              onMouseLeave={() => {
-                setActiveShape(null);
-                resetGlow();
               }}
             />
           </svg>
