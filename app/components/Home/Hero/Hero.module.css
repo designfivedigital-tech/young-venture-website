@@ -86,20 +86,53 @@ scroll-snap-stop: always;
 
 .autoGlowPath {
   stroke-dashoffset: 0;
-  animation-name: autoGlowMove;
   animation-timing-function: linear;
   animation-iteration-count: 1;
   animation-fill-mode: forwards;
-  animation-duration: var(--auto-glow-duration, 2.8s);
 }
 
-@keyframes autoGlowMove {
+.autoGlowYouth {
+  animation-name: autoGlowMoveYouth;
+  animation-duration: 1.72s;
+}
+
+.autoGlowClean {
+  animation-name: autoGlowMoveClean;
+  animation-duration: 1.61s;
+}
+
+.autoGlowDeep {
+  animation-name: autoGlowMoveDeep;
+  animation-duration: 1.84s;
+}
+
+@keyframes autoGlowMoveYouth {
   from {
     stroke-dashoffset: 0;
   }
 
   to {
-    stroke-dashoffset: calc(-1 * var(--auto-glow-travel, 1490));
+    stroke-dashoffset: -915;
+  }
+}
+
+@keyframes autoGlowMoveClean {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -858;
+  }
+}
+
+@keyframes autoGlowMoveDeep {
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -978;
   }
 }
 
