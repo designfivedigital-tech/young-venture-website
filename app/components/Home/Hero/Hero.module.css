@@ -93,17 +93,17 @@ scroll-snap-stop: always;
 
 .autoGlowYouth {
   animation-name: autoGlowMoveYouth;
-  animation-duration: 1.72s;
+  animation-duration: 2.6s;
 }
 
 .autoGlowClean {
   animation-name: autoGlowMoveClean;
-  animation-duration: 1.61s;
+  animation-duration: 2.42s;
 }
 
 .autoGlowDeep {
   animation-name: autoGlowMoveDeep;
-  animation-duration: 1.84s;
+  animation-duration: 2.76s;
 }
 
 @keyframes autoGlowMoveYouth {
