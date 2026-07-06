@@ -485,6 +485,7 @@ export default function Hero() {
                 setActiveShape("youth");
                 activateGlow("youth");
               }}
+              onMouseLeave={() => setActiveShape(null)}
             />
 
             <path
@@ -497,6 +498,7 @@ export default function Hero() {
                 setActiveShape("deep");
                 activateGlow("deep");
               }}
+              onMouseLeave={() => setActiveShape(null)}
             />
 
             <path
@@ -509,6 +511,7 @@ export default function Hero() {
                 setActiveShape("clean");
                 activateGlow("clean");
               }}
+              onMouseLeave={() => setActiveShape(null)}
             />
           </svg>
         </div>
