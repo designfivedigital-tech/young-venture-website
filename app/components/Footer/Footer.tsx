@@ -44,10 +44,10 @@ export default function Footer() {
           </div>
 
           <div className={styles.office}>
-            <h4>LONDON</h4>
+            <h4>SAN FRANCISCO</h4>
             <p>Young Ventures</p>
-            <p>—</p>
-            <p>London, UK</p>
+            <p>Via</p>
+            <p>San Francisco, USA</p>
           </div>
         </div>
 

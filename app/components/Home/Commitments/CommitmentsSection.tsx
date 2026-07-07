@@ -203,26 +203,41 @@ export default function CommitmentsSection() {
         </div>
 
         <div className={styles.grid}>
-          {commitments.map((item) => (
-            <button
-              key={item.id}
-              type="button"
-              className={styles.card}
-              onClick={() => setSelectedCommitment(item)}
-            >
-              <div className={styles.logoWrap}>
-                <Image
-                  src={item.logo}
-                  alt={`${item.name} logo`}
-                  width={240}
-                  height={90}
-                  className={styles.logo}
-                />
-              </div>
+          {commitments.map((item, index) => {
+            const isComingSoon = index >= 2;
 
-              <p>{item.shortDescription}</p>
-            </button>
-          ))}
+            if (isComingSoon) {
+              return (
+                <div
+                  key={item.id}
+                  className={`${styles.card} ${styles.comingSoonCard}`}
+                >
+                  <p>Coming soon</p>
+                </div>
+              );
+            }
+
+            return (
+              <button
+                key={item.id}
+                type="button"
+                className={styles.card}
+                onClick={() => setSelectedCommitment(item)}
+              >
+                <div className={styles.logoWrap}>
+                  <Image
+                    src={item.logo}
+                    alt={`${item.name} logo`}
+                    width={240}
+                    height={90}
+                    className={styles.logo}
+                  />
+                </div>
+
+                <p>{item.shortDescription}</p>
+              </button>
+            );
+          })}
 
           <div className={`${styles.card} ${styles.ctaCard}`}>
             <h2>
