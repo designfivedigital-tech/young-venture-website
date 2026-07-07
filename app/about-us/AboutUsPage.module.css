@@ -865,11 +865,6 @@
   position: relative;
 }
 
-.beliefItemWrap {
-  position: relative;
-  height: 160vh;
-}
-
 .beliefItem {
   position: sticky;
   top: 0;
@@ -902,11 +897,11 @@
   margin-bottom: 18px;
 }
 
-.beliefItemWrap:nth-child(n + 4) .beliefNumber {
+.beliefItem:nth-child(n + 4) .beliefNumber {
   color: #3f8ee8;
 }
 
-.beliefItemWrap:nth-child(7) .beliefNumber {
+.beliefItem:nth-child(7) .beliefNumber {
   color: #00e4e7;
 }
 
@@ -921,11 +916,11 @@
   margin-bottom: 30px;
 }
 
-.beliefItemWrap:nth-child(n + 4) .beliefIcon {
+.beliefItem:nth-child(n + 4) .beliefIcon {
   color: #3f8ee8;
 }
 
-.beliefItemWrap:nth-child(7) .beliefIcon {
+.beliefItem:nth-child(7) .beliefIcon {
   color: #00e4e7;
 }
 
@@ -970,10 +965,6 @@
 
   .beliefsIntro p {
     font-size: 18px;
-  }
-
-  .beliefItemWrap {
-    height: 130vh;
   }
 
   .beliefNumber {

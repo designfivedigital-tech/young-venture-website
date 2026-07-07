@@ -53,28 +53,27 @@ export default function BeliefsSection() {
 
       <div className={styles.beliefsList}>
         {beliefs.map((item, index) => (
-          <div className={styles.beliefItemWrap} key={item.title}>
-            <div
-              className={styles.beliefItem}
-              style={{ zIndex: index + 1 }}
-            >
-              <div className={styles.beliefItemInner}>
-                <div className={styles.beliefNumber}>
-                  {String(index + 1).padStart(2, "0")}
-                </div>
+          <div
+            className={styles.beliefItem}
+            key={item.title}
+            style={{ zIndex: index + 1 }}
+          >
+            <div className={styles.beliefItemInner}>
+              <div className={styles.beliefNumber}>
+                {String(index + 1).padStart(2, "0")}
+              </div>
 
-                <div className={styles.beliefIcon}>
-                  <span>{item.icon}</span>
-                </div>
+              <div className={styles.beliefIcon}>
+                <span>{item.icon}</span>
+              </div>
 
-                <div className={styles.beliefText}>
-                  <h3>{item.title}</h3>
-                  <p>
-                    {item.text.split("\n").map((line) => (
-                      <span key={line}>{line}</span>
-                    ))}
-                  </p>
-                </div>
+              <div className={styles.beliefText}>
+                <h3>{item.title}</h3>
+                <p>
+                  {item.text.split("\n").map((line) => (
+                    <span key={line}>{line}</span>
+                  ))}
+                </p>
               </div>
             </div>
           </div>
