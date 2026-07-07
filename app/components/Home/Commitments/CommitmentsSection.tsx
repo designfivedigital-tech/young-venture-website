@@ -16,6 +16,7 @@ type Commitment = {
   backed: string;
   founder: string;
   website: string;
+  linkedin: string;
 };
 
 const commitments: Commitment[] = [
@@ -31,6 +32,7 @@ const commitments: Commitment[] = [
     backed: "2023",
     founder: "Alex Morgan",
     website: "https://example.com",
+    linkedin: "https://www.linkedin.com/company/example",
   },
   {
     id: 2,
@@ -44,6 +46,7 @@ const commitments: Commitment[] = [
     backed: "2022",
     founder: "Maya Conti",
     website: "https://example.com",
+    linkedin: "https://www.linkedin.com/company/example",
   },
   {
     id: 3,
@@ -57,6 +60,7 @@ const commitments: Commitment[] = [
     backed: "2024",
     founder: "Daniel Reed",
     website: "https://example.com",
+    linkedin: "https://www.linkedin.com/company/example",
   },
   {
     id: 4,
@@ -70,6 +74,7 @@ const commitments: Commitment[] = [
     backed: "2021",
     founder: "Sofia Lane",
     website: "https://example.com",
+    linkedin: "https://www.linkedin.com/company/example",
   },
   {
     id: 5,
@@ -83,6 +88,7 @@ const commitments: Commitment[] = [
     backed: "2020",
     founder: "Leo Ferri",
     website: "https://example.com",
+    linkedin: "https://www.linkedin.com/company/example",
   },
   {
     id: 6,
@@ -96,6 +102,7 @@ const commitments: Commitment[] = [
     backed: "2024",
     founder: "Nina Brooks",
     website: "https://example.com",
+    linkedin: "https://www.linkedin.com/company/example",
   },
   {
     id: 7,
@@ -109,6 +116,7 @@ const commitments: Commitment[] = [
     backed: "2023",
     founder: "Jonas Weber",
     website: "https://example.com",
+    linkedin: "https://www.linkedin.com/company/example",
   },
 ];
 
@@ -284,15 +292,27 @@ export default function CommitmentsSection() {
 
                 <p>{selectedCommitment.shortDescription}</p>
 
-                <a
-                  href={selectedCommitment.website}
-                  target="_blank"
-                  rel="noreferrer"
-                  data-cursor="commitment"
-                  className={styles.cardWebsite}
-                >
-                  Website <span>↗</span>
-                </a>
+                <div className={styles.detailLinks}>
+                  <a
+                    href={selectedCommitment.website}
+                    target="_blank"
+                    rel="noreferrer"
+                    data-cursor="commitment"
+                    className={styles.cardWebsite}
+                  >
+                    Website <span>↗</span>
+                  </a>
+
+                  <a
+                    href={selectedCommitment.linkedin}
+                    target="_blank"
+                    rel="noreferrer"
+                    data-cursor="commitment"
+                    className={styles.cardLinkedin}
+                  >
+                    LinkedIn <span>↗</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>,

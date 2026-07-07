@@ -183,14 +183,24 @@
 }
 
 .cardWebsite,
-.cardWebsite * {
+.cardWebsite *,
+.cardLinkedin,
+.cardLinkedin * {
   cursor: pointer !important;
 }
-.cardWebsite {
+
+.detailLinks {
   position: absolute;
   bottom: 64px;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: clamp(28px, 3vw, 48px);
+}
+
+.cardWebsite,
+.cardLinkedin {
   display: inline-flex;
   align-items: center;
   gap: 14px;
@@ -203,7 +213,8 @@
 }
 
 
-.cardWebsite span {
+.cardWebsite span,
+.cardLinkedin span {
   width: 34px;
   height: 34px;
   border: 1px solid rgba(255, 255, 255, 0.24);
@@ -503,7 +514,7 @@
     width: min(220px, 60%);
   }
 
-  .cardWebsite {
+  .detailLinks {
     bottom: 32px;
   }
 }
@@ -666,7 +677,8 @@
     width: min(190px, 65%);
   }
 
-  .cardWebsite {
+  .detailLinks {
     bottom: 30px;
+    gap: 24px;
   }
 }
