@@ -140,12 +140,18 @@ export default function TeamPage() {
 
       <div className={styles.content}>
         <aside className={styles.filters}>
-          <p>Cities</p>
+          <p>Universities</p>
 
           <div>
-            <button>Milan</button>
-            <button>London</button>
-            <button>Europe</button>
+            <button>Bocconi</button>
+            <button>ETH</button>
+            <button>Oxford</button>
+            <button>Cambridge</button>
+            <button>LSE</button>
+            <button>NYU</button>
+            <button>Harvard</button>
+            <button>Stanford</button>
+            <button>Caltech</button>
           </div>
         </aside>
 
