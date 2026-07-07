@@ -700,7 +700,7 @@
   position: absolute;
   left: 50%;
   top: 50%;
-  width: 135%;
+  width: 60%;
   max-width: none;
   height: auto;
   opacity: 0.82;
@@ -943,7 +943,7 @@
   }
 
   .worldMapImg {
-    width: 155%;
+    width: 60%;
   }
 }
 
@@ -1183,7 +1183,7 @@
   }
 
   .worldMapImg {
-    width: 190%;
+    width: 600%;
   }
 }
 
