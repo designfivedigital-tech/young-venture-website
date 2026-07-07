@@ -12,7 +12,8 @@ const mainLinks = [
 
 const sideLinks = [
   { label: "LinkedIn", href: "https://www.linkedin.com" },
-  { label: "X", href: "https://x.com" },
+  { label: "TikTok", href: "https://tiktok.com" },
+  { label: "Instagram", href: "https://instagram.com" },
 ];
 
 const legalLinks = [
