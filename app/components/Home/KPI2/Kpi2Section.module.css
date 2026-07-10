@@ -56,24 +56,6 @@
   transform: translate(32px, -50%);
 }
 
-@media (max-width: 768px) {
-  .themeSwitch {
-    top: 24px;
-    right: 16px;
-    width: 62px;
-    height: 34px;
-  }
-
-  .switchThumb {
-    width: 24px;
-    height: 24px;
-  }
-
-  .lightMode .switchThumb {
-    transform: translate(28px, -50%);
-  }
-}
-
 .kpi2Section {
   position: relative;
   height: 100vh;
@@ -90,8 +72,6 @@
   flex-direction: column;
 }
 
-
-
 .header {
   width: 100%;
   display: grid;
@@ -100,8 +80,7 @@
   align-items: end;
 }
 
-.label,
-.cardLabel {
+.label {
   margin: 0;
   color: rgba(255, 255, 255, 0.62);
   font-size: 12px;
@@ -109,7 +88,6 @@
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
-
 
 .header h2 {
   margin: 12px 0 0;
@@ -119,677 +97,339 @@
   text-transform: uppercase;
 }
 
-
-
-
 .header p {
   width: 100%;
   max-width: none;
   margin: 0;
   justify-self: stretch;
-  text-align: left;
   color: rgba(255, 255, 255, 0.68);
   font-size: clamp(14px, 0.9vw, 16px);
   line-height: 1.28;
   text-align: right;
 }
 
-.grid {
-  margin-top: clamp(22px, 3vh, 34px) !important;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  display: grid;
-  grid-template-columns: 1.45fr 0.9fr 1.18fr;
-  grid-template-rows: repeat(4, minmax(0, 1fr));
-  gap: 8px;
+/* ================= KPI board (reference-style dashboard) ================= */
+
+.kpiBoard {
+  margin-top: clamp(22px, 3vh, 34px);
   flex: 1;
   min-height: 0;
+  display: grid;
+  grid-template-columns: 1.25fr 1fr 1.05fr;
+  grid-template-rows: 1fr 1fr 1.75fr;
+  grid-template-areas:
+    "ticket uni giant"
+    "ticket vc giant"
+    "cagr geo giant";
+  gap: 14px;
 }
 
-.card {
+.kpiCard {
   position: relative;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.34);
-  
-  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: #120a10;
+  padding: 22px;
 }
 
-
-.card::before {
-  content: "";
+.kpiCaption {
   position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.12), transparent 36%),
-    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.12), transparent 30%);
-  opacity: 0.75;
-}
-
-.ticketCard {
-    grid-column: 1;
-  grid-row: 1 / 3;
-  padding: 28px;
-}
-
-
-
-
-
-.mapCard {
-  grid-column: 2;
-  grid-row: 3 / 5;
-  padding: 28px;
-  background:
-    radial-gradient(circle at 50% 45%, rgba(0, 213, 255, 0.14), transparent 34%),
-    rgba(255, 255, 255, 0.035);
-}
-
-
-
-.ticketCard {
-  grid-column: 1;
-  grid-row: 1 / 3;
-  padding: 18px;
-   overflow: hidden;
-  
-}
-
-.ticketNumber {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  color: #da2991;
-  font-weight: 900;
-  line-height: 0.76;
-  letter-spacing: -0.14em;
-  white-space: nowrap;
-  pointer-events: none;
-}
-
-.euro,
-.one,
-.zero,
-.k {
-  position: absolute;
-  display: block;
-}
-
-.euro {
-  left: 1%;
-  top: -5%;
-  font-size: clamp(14.06rem, 5.53vw + 10.52rem, 19.38rem);
-}
-
-.one {
-  left: 39%;
-  top: 2%;
-  font-size: clamp(15.63rem, 14.32vw + 6.46rem, 29.38rem);
-}
-
-
-
-.zero {
-  left: 56%;
-  top: 8%;
-  font-size: clamp(15.63rem, 14.32vw + 6.46rem, 29.38rem);
-}
-
-.k {
-  right: 4%;
-  bottom: 0%;
-  font-size: clamp(3.8rem, 5vw, 7.25rem);
-  letter-spacing: -0.1em;
-}
-
-.ticketCaption {
-  position: absolute;
-  left: 18px;
+  left: 20px;
   bottom: 16px;
-  z-index: 3;
+  right: 20px;
   margin: 0;
-  color: #ffffff;
+  color: #fff;
   font-size: 13px;
-  line-height: 1;
   font-weight: 700;
-}
-
-.universityCard {
-  grid-column: 2;
-  grid-row: 1;
-  padding: 26px;
-  background:
-    radial-gradient(circle at 0% 100%, rgba(73, 82, 150, 0.85), transparent 38%),
-    radial-gradient(circle at 78% 45%, rgba(80, 24, 18, 0.55), transparent 48%),
-    linear-gradient(135deg, #211718 0%, #241918 48%, #311712 100%);
-}
-
-.universityCard::before {
-  background: none;
-}
-
-.universityValue {
-  position: absolute;
-  left: 22px;
-  top: 18px;
-  z-index: 2;
-  color: #f4f4ff;
-  font-size: clamp(74px, 7vw, 112px);
-  line-height: 0.72;
-  font-weight: 900;
-  letter-spacing: -0.08em;
-}
-
-.universityIcon {
-  position: absolute;
-  top: 14px;
-  right: 14px;
   z-index: 3;
-  width:clamp(3.13rem, 1.3vw + 2.29rem, 4.38rem);
-  height: clamp(3.13rem, 1.3vw + 2.29rem, 4.38rem);
-  border-radius: 50%;
-  background: #ff2028;
-  display: grid;
-  place-items: center;
 }
 
-
-
-
-.universityIconImg {
-  width: clamp(1.88rem, 0.98vw + 1.25rem, 2.81rem);
-  height: clamp(1.88rem, 0.98vw + 1.25rem, 2.81rem);
-  object-fit: contain;
-  filter: brightness(0) invert(1);
+/* --- big ticket card --- */
+.kpiTicket {
+  grid-area: ticket;
 }
 
-
-
-.universityLabel {
+.kpiTicketNumber {
   position: absolute;
-  left: 26px;
-  bottom: 18px;
-  z-index: 3;
-  margin: 0;
-  color: #ffffff;
-  font-size: 17px;
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-}
-
-.orbit {
-  position: absolute;
-  inset: 36px;
-  opacity: 0.6;
-}
-
-.orbit span {
-  position: absolute;
-  inset: 0;
-  border: 1px solid rgba(0, 213, 255, 0.32);
-  border-radius: 50%;
-  animation: rotateOrbit 9s linear infinite;
-}
-
-.orbit span:nth-child(2) {
-  transform: rotate(58deg) scaleX(0.72);
-  border-color: rgba(124, 255, 139, 0.28);
-  animation-duration: 12s;
-}
-
-.orbit span:nth-child(3) {
-  transform: rotate(-42deg) scaleX(0.62);
-  border-color: rgba(218, 41, 145, 0.28);
-  animation-duration: 15s;
-}
-
-.cardNote {
-  position: absolute;
-  left: 28px;
-  right: 28px;
-  bottom: 26px;
-  z-index: 2;
-  margin: 0;
-  color: rgba(255, 255, 255, 0.64);
-  font-size: 15px;
-  line-height: 1.25;
-}
-
-.vcCard {
-  grid-column: 3;
-  grid-row: 1 / 5;
-  padding: 28px;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 0% 0%, rgba(218, 41, 145, 0.18), transparent 34%),
-    linear-gradient(135deg, #221514 0%, #2b1714 48%, #351812 100%);
-}
-
-.vcCard::before {
-  background: none;
-}
-
-.vcNumber {
-  position: absolute;
-  inset: 0;
-  z-index: 2;
-  pointer-events: none;
-  overflow: visible;
-}
-
-.vcTwo,
-.vcZero {
-  position: absolute;
-  display: block;
-  width: max-content;
-  min-width: 0;
-  overflow: visible;
-  font-weight: 900;
-  letter-spacing: -0.16em;
-  background: linear-gradient(155deg, #6f4c8f 0%, #b22872 42%, #ff1f25 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.vcTwo {
-  left:-20%;
-  top: -40%;
-  width: 70%;
-  font-size: clamp(28.13rem, 35.81vw + 5.21rem, 62.5rem);
-}
-
-
-
-.vcZero {
-  left: 50%;
-  top: 5%;
-  width: 70%;
-  height: auto;
-  min-height: 1em;
-
-  font-size: clamp(28.13rem, 35.81vw + 5.21rem, 62.5rem);
-  line-height: 0.9;
-}
-
-.vcText {
-  position: absolute;
-  left: 28px;
-  right: 28px;
-  bottom: 24px;
-  z-index: 3;
-  max-width: none;
-  margin: 0;
-  color: #ffffff;
-  font-size: 13px;
-  line-height: 1;
-  font-weight: 800;
-}
-
-.cagrValue {
-  position: relative;
-  z-index: 2;
-  margin-top: 28px;
-  font-size: clamp(82px, 8vw, 150px);
-  line-height: 0.85;
-  font-weight: 900;
-  letter-spacing: -0.09em;
-  color: #7cff8b;
-}
-
-.chartSvg {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 52px;
-  z-index: 1;
-  width: 100%;
-  height: 48%;
-  overflow: visible;
-}
-
-.chartFill {
-  fill: url(#yvFill);
-}
-
-.chartLine {
-  fill: none;
-  stroke: url(#yvLine);
-  stroke-width: 5;
-  stroke-linecap: round;
-  stroke-dasharray: 640;
-  stroke-dashoffset: 640;
-  animation: drawLine 2.4s ease forwards;
-}
-
-.mapTop {
-  position: relative;
-  z-index: 3;
+  inset: -2% 4% 10% 4%;
   display: flex;
-  justify-content: space-between;
-  gap: 20px;
-}
-
-.mapTop span {
-  color: rgba(255, 255, 255, 0.58);
-  font-size: 14px;
-}
-
-.mapSvg {
-  position: absolute;
-  inset: 68px 14px 18px;
-  z-index: 2;
-  width: calc(100% - 28px);
-  height: calc(100% - 86px);
-}
-
-.land {
-  fill: rgba(255, 255, 255, 0.09);
-  stroke: rgba(255, 255, 255, 0.12);
-  stroke-width: 1;
-}
-
-.mapDot {
-  fill: #00d5ff;
-  filter: drop-shadow(0 0 8px rgba(0, 213, 255, 0.9));
-}
-
-.mapPulse {
-  fill: rgba(0, 213, 255, 0.22);
-  transform-origin: center;
-  animation: pulseDot 2.2s ease-out infinite;
-}
-
-.mapLine,
-.mapLineAlt {
-  fill: none;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-dasharray: 8 12;
-  animation: dashMove 8s linear infinite;
-}
-
-.mapLine {
-  stroke: rgba(218, 41, 145, 0.62);
-}
-
-.mapLineAlt {
-  stroke: rgba(124, 255, 139, 0.52);
-}
-
-.dealCard {
-  grid-column: 2;
-  grid-row: 2;
-  padding: 26px;
-  background:
-    radial-gradient(circle at 0% 100%, rgba(73, 82, 150, 0.85), transparent 38%),
-    radial-gradient(circle at 78% 45%, rgba(80, 24, 18, 0.55), transparent 48%),
-    linear-gradient(135deg, #211718 0%, #241918 48%, #311712 100%);
-}
-
-.dealCard::before {
-  background: none;
-}
-
-.dealValue {
-  position: absolute;
-  left: 22px;
-  top: 18px;
-  z-index: 2;
-  margin: 0;
-  color: #f4f4ff;
-  font-size: clamp(58px, 5vw, 88px);
-  line-height: 0.78;
+  align-items: center;
+  justify-content: center;
+  gap: 0.03em;
+  color: #da2991;
+  font-size: clamp(100px, 14.5vw, 270px);
   font-weight: 900;
-  letter-spacing: -0.08em;
-  background: none;
-  -webkit-background-clip: initial;
-  background-clip: initial;
+  letter-spacing: -0.05em;
+  line-height: 0.8;
 }
 
-.dealIcon {
+.kpiTicket .kpiEuro {
+  margin-right: 0.06em;
+}
+
+.kpiTicket .kpiM {
+  margin-left: 0.05em;
+}
+
+.kpiEuro {
+  font-size: 0.58em;
+  align-self: flex-start;
+  margin-top: 0.1em;
+}
+
+.kpiM {
+  font-size: 0.42em;
+  align-self: flex-end;
+  margin-bottom: -0.05em;
+}
+
+.kpiDigit {
+  display: inline-block;
+}
+
+.kpiDigitUp {
+  transform: translateY(-7%);
+}
+
+.kpiDigitDown {
+  transform: translateY(9%);
+}
+
+/* descending diagonal for the €100K */
+.kpiDigitHi {
+  transform: translateY(-11%);
+}
+
+.kpiDigitMid {
+  transform: translateY(0);
+}
+
+.kpiDigitLo {
+  transform: translateY(11%);
+}
+
+/* --- mini cards --- */
+.kpiMiniUni {
+  grid-area: uni;
+  background:
+    radial-gradient(circle at 15% 110%, rgba(122, 67, 141, 0.55), transparent 55%),
+    #120a10;
+}
+
+.kpiMiniVc {
+  grid-area: vc;
+  background:
+    radial-gradient(circle at 80% 110%, rgba(218, 41, 145, 0.35), transparent 55%),
+    #120a10;
+}
+
+.kpiMiniValue {
+  color: #fff;
+  font-size: clamp(60px, 6.4vw, 110px);
+  font-weight: 900;
+  letter-spacing: -0.05em;
+  line-height: 0.72;
+  margin-top: -4px;
+}
+
+.kpiMiniIcon {
   position: absolute;
   top: 14px;
   right: 14px;
-  z-index: 3;
-  width:clamp(3.13rem, 1.3vw + 2.29rem, 4.38rem);
-  height: clamp(3.13rem, 1.3vw + 2.29rem, 4.38rem);
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  background: #ff2028;
+  background: #da2991;
   display: grid;
   place-items: center;
 }
 
-.dealIconImg {
-  width: clamp(1.88rem, 0.98vw + 1.25rem, 2.81rem);
-  height: clamp(1.88rem, 0.98vw + 1.25rem, 2.81rem);
-  object-fit: contain;
-  filter: brightness(0) invert(1);
+.kpiMiniIconImg {
+  width: 26px;
+  height: 26px;
 }
 
-.dealLabel {
-  position: absolute;
-  left: 26px;
-  bottom: 18px;
-  z-index: 3;
-  margin: 0;
-  color: #ffffff;
-  font-size: 17px;
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: -0.03em;
-}
-
-
-.cagrCard {
-  grid-column: 1;
-  grid-row: 3 / 5;
+/* --- CGR chart card --- */
+.kpiCagr {
+  grid-area: cagr;
   padding: 0;
-  background: #2a1713;
-  overflow: hidden;
 }
 
-.cagrCard::before {
-  background: none;
-}
-
-.aumValue {
+.kpiCagrValue {
   position: absolute;
+  top: 18px;
   left: 18px;
-  top: 20px;
-  z-index: 4;
-  color: #ffffff;
-  font-size: clamp(5rem, 8.5vw, 10rem);
-  line-height: 0.72;
+  z-index: 3;
+  color: #fff;
+  font-size: clamp(56px, 6vw, 110px);
   font-weight: 900;
-  letter-spacing: 0.02em;
+  line-height: 0.8;
+  letter-spacing: 0.01em;
 }
 
-.aumValue::after {
-  display: none;
-  content: none;
-}
-
-.aumChart {
+.kpiCagrChart {
   position: absolute;
   inset: 0;
-  z-index: 1;
   width: 100%;
   height: 100%;
-  display: block;
-  overflow: visible;
 }
 
-.aumFill {
-  fill: url(#aumFill);
+.kpiCagrFill {
+  fill: url(#kpiFill);
+  opacity: 0.85;
 }
 
-.aumLine {
+.kpiCagrLine {
   fill: none;
-  stroke: #ff252b;
-  stroke-width: 4;
+  stroke: #00e4e7;
+  stroke-width: 4px;
   stroke-linecap: round;
-  stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
-
   stroke-dasharray: 28 14;
-  stroke-dashoffset: 0;
-  animation: moveAumLine 1.2s linear infinite;
+  animation: kpiDash 1.2s linear infinite;
 }
 
-@keyframes moveAumLine {
+@keyframes kpiDash {
   to {
     stroke-dashoffset: -42;
   }
 }
 
-.aumCaption {
-  position: absolute;
-  left: 18px;
-  bottom: 16px;
-  z-index: 4;
+/* --- geography bubbles card --- */
+.kpiGeo {
+  grid-area: geo;
+}
+
+.kpiGeoTitle {
+  position: relative;
+  z-index: 3;
   margin: 0;
-  color: #ffffff;
-  font-size: 13px;
-  line-height: 1;
+  color: #fff;
+  font-size: clamp(15px, 1.2vw, 20px);
   font-weight: 800;
-  letter-spacing: -0.04em;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
-@keyframes drawLine {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@keyframes dashMove {
-  to {
-    stroke-dashoffset: -160;
-  }
-}
-
-@keyframes pulseDot {
-  0% {
-    opacity: 0.7;
-    transform: scale(0.6);
-  }
-
-  100% {
-    opacity: 0;
-    transform: scale(2.6);
-  }
-}
-
-@keyframes rotateOrbit {
-  to {
-    rotate: 360deg;
-  }
-}
-
-
-.worldMap {
+.kpiBubbles {
   position: absolute;
-  inset: 72px 0 0;
-  z-index: 2;
-  overflow: hidden;
+  inset: 0;
 }
 
-.worldMapImg {
+.kpiBubble {
   position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 60%;
-  max-width: none;
-  height: auto;
-  opacity: 0.82;
-  transform: translate(-50%, -50%);
-  animation: floatWorldMap 8s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 800;
+  animation: kpiFloat ease-in-out infinite alternate;
 }
 
-.worldLand {
-  fill: rgba(255, 255, 255, 0.28);
-  stroke: rgba(255, 255, 255, 0.18);
-  stroke-width: 1.4;
+.kpiBubble b,
+.kpiBubble i {
+  display: block;
+  font-style: normal;
+  line-height: 1.02;
+  text-align: center;
 }
 
-.worldLine,
-.worldLineAlt {
-  fill: none;
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  stroke-dasharray: 8 12;
-  animation: dashMove 8s linear infinite;
+.kpiBubble b {
+  font-weight: 800;
 }
 
-.worldLine {
-  stroke: rgba(218, 41, 145, 0.78);
+.kpiBubble i {
+  font-weight: 700;
+  opacity: 0.85;
+  margin-top: 0.1em;
 }
 
-.worldLineAlt {
-  stroke: rgba(124, 255, 139, 0.7);
+.kpiBubbleEu {
+  width: 44%;
+  aspect-ratio: 1;
+  right: 6%;
+  top: 20%;
+  font-size: clamp(15px, 1.4vw, 24px);
+  background:
+    radial-gradient(circle at 34% 30%, rgba(255, 158, 208, 0.95) 0%, rgba(218, 41, 145, 0.85) 52%, rgba(126, 26, 88, 0.75) 100%);
+  box-shadow: 0 22px 55px rgba(218, 41, 145, 0.35);
+  animation-duration: 5.2s;
 }
 
-.mapDot {
-  fill: #00d5ff;
-  filter: drop-shadow(0 0 10px rgba(0, 213, 255, 1));
+.kpiBubbleUs {
+  width: 31%;
+  aspect-ratio: 1;
+  left: 7%;
+  top: 32%;
+  font-size: clamp(12px, 1.1vw, 18px);
+  background:
+    radial-gradient(circle at 34% 30%, rgba(196, 155, 214, 0.95) 0%, rgba(122, 67, 141, 0.85) 55%, rgba(67, 33, 79, 0.75) 100%);
+  box-shadow: 0 16px 42px rgba(122, 67, 141, 0.4);
+  animation-duration: 4.4s;
+  animation-delay: 0.8s;
 }
 
-.mapPulse {
-  fill: rgba(0, 213, 255, 0.28);
-  transform-origin: center;
-  animation: pulseDot 2.2s ease-out infinite;
+.kpiBubbleAs {
+  width: 17%;
+  aspect-ratio: 1;
+  left: 34%;
+  top: 64%;
+  font-size: clamp(9px, 0.75vw, 12px);
+  color: #043a3b;
+  background:
+    radial-gradient(circle at 34% 30%, rgba(196, 250, 251, 0.95) 0%, rgba(0, 228, 231, 0.85) 55%, rgba(0, 136, 138, 0.75) 100%);
+  box-shadow: 0 12px 30px rgba(0, 228, 231, 0.3);
+  animation-duration: 3.8s;
+  animation-delay: 1.5s;
 }
 
-@keyframes floatWorldMap {
-  0%, 100% {
-    transform: translate(-50%, -50%) scale(1);
+@keyframes kpiFloat {
+  from {
+    transform: translateY(-8px);
   }
 
-  50% {
-    transform: translate(-52%, -51%) scale(1.05);
-  }
-}
-
-@media (min-width: 1025px) {
- .grid {
-    display: grid;
-    grid-template-columns: 1.42fr 0.92fr 1.18fr;
-    grid-template-rows: repeat(4, 1fr);
-  }
-
-  .ticketCard {
-    grid-column: 1;
-    grid-row: 1 / 3;
-  }
-
-  .universityCard {
-    grid-column: 2;
-    grid-row: 1;
-  }
-
-  .dealCard {
-    grid-column: 2;
-    grid-row: 2;
-  }
-
-  .cagrCard {
-    grid-column: 1;
-    grid-row: 3 / 5;
-  }
-
-  .mapCard {
-    grid-column: 2;
-    grid-row: 3 / 5;
-  }
-
-  .vcCard {
-    grid-column: 3;
-    grid-row: 1 / 5;
+  to {
+    transform: translateY(8px);
   }
 }
 
+/* --- giant number card --- */
+.kpiGiant {
+  grid-area: giant;
+}
+
+.kpiGiantNumber {
+  position: absolute;
+  inset: 0;
+  font-size: clamp(240px, 35vw, 640px);
+  font-weight: 900;
+  line-height: 0.72;
+}
+
+/* huge digits cropped by the card, overlapping diagonally */
+.kpiGiantNumber .kpiDigitUp {
+  position: absolute;
+  top: -7%;
+  left: -4%;
+  transform: none;
+}
+
+.kpiGiantNumber .kpiDigitDown {
+  position: absolute;
+  bottom: -7%;
+  right: -4%;
+  transform: none;
+}
+
+/* gradient must live on the staggered digits themselves */
+.kpiGiantNumber .kpiDigit {
+  background: linear-gradient(160deg, #da2991 0%, #7a438d 45%, #00e4e7 110%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
 
 /* ================= DESKTOP SMALL: 1025px - 1280px ================= */
 
@@ -831,127 +471,24 @@
     align-self: end;
   }
 
-  .grid {
-    margin-top: 24px !important;
-    grid-template-columns: 1.35fr 0.9fr 1.08fr;
-    gap: 7px;
-    flex: 1;
+  .kpiBoard {
+    margin-top: 24px;
+    grid-template-columns: 1.2fr 0.95fr 1.02fr;
+    gap: 10px;
   }
 
-  .ticketCard,
-  .mapCard,
-  .vcCard,
-  .universityCard,
-  .dealCard {
-    padding: 18px;
+  .kpiCard {
+    padding: 16px;
   }
 
-  .universityCard,
-  .dealCard {
-    padding: 16px 18px;
-  }
-
-  .euro {
-    left: 0%;
-    top: -2%;
-    font-size: clamp(10rem, 15vw, 13rem);
-  }
-
-  .one {
-    left: 38%;
-    top: 4%;
-    font-size: clamp(15rem, 22vw, 20rem);
-  }
-
-  .zero {
-    left: 56%;
-    top: 9%;
-    font-size: clamp(15rem, 22vw, 20rem);
-  }
-
-  .k {
-    right: 4%;
-    bottom: 0%;
-    font-size: clamp(4rem, 6vw, 5.4rem);
-  }
-
-  .universityValue {
-    left: 18px;
-    top: 16px;
-    font-size: clamp(54px, 6vw, 68px);
-    line-height: 0.78;
-  }
-
-  .dealValue {
-    left: 18px;
-    top: 18px;
-    font-size: clamp(44px, 5.4vw, 58px);
-    line-height: 0.78;
-  }
-
-  .universityLabel,
-  .dealLabel {
-    left: 18px;
-    bottom: 8px;
-    font-size: 12px;
-    line-height: 1;
-  }
-
-  .universityIcon,
-  .dealIcon {
-    top: 14px;
-    right: 14px;
-    width: 42px;
-    height: 42px;
-  }
-
-  .universityIconImg,
-  .dealIconImg {
-    width: 24px;
-    height: 24px;
-  }
-
-  .aumValue {
-    font-size: clamp(5rem, 9vw, 7.2rem);
-  }
-
-  .vcTwo,
-  .vcZero {
-    font-size: clamp(24rem, 35vw, 34rem);
-  }
-
-  .vcTwo {
-    left: -24%;
-    top: -30%;
-  }
-
-  .vcZero {
-    left: 48%;
-    top: 8%;
-  }
-
-  .mapTop {
-    gap: 12px;
-  }
-
-  .mapTop span {
-    font-size: 12px;
-  }
-
-  .cardLabel {
-    font-size: 10px;
-  }
-
-  .worldMapImg {
-    width: 60%;
+  .kpiCagr {
+    padding: 0;
   }
 }
 
-
 @media (min-width: 1025px) and (max-width: 1200px) and (orientation: portrait) {
-  .grid {
+  .kpiBoard {
     height: 70vh;
-    flex: none;
     flex: 0.58;
   }
 
@@ -961,39 +498,23 @@
   }
 }
 
-
 /* ================= ULTRA-WIDE DESKTOP: 1921px - 2560px =================
-   The values below are frozen at their 1920px cap (the reference/"perfect"
-   size). This tier continues scaling them linearly up to 2560px instead of
-   staying flat, without changing anything at or below 1920px. */
+   Sizes are tuned so 1920px is the "correct"/reference width; the clamps
+   above already cap out at or just before 1920px, so this tier keeps
+   everything frozen at its 1920px value instead of overflowing further. */
 
 @media (min-width: 1921px) {
-  .header h2 {
-    font-size: clamp(50px, calc(50px + 16.7px * ((100vw - 1920px) / 640px)), 66.7px);
-  }
-
-  .universityValue {
-    font-size: clamp(112px, calc(112px + 37.3px * ((100vw - 1920px) / 640px)), 149.3px);
-  }
-
-  .dealValue {
-    font-size: clamp(88px, calc(88px + 29.3px * ((100vw - 1920px) / 640px)), 117.3px);
-  }
-
-  .aumValue {
-    font-size: clamp(160px, calc(160px + 53.3px * ((100vw - 1920px) / 640px)), 213.3px);
+  .kpiBoard {
+    max-width: 2240px;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 
-
-
-/* ================= TABLET: 769px - 1024px ================= */
+/* ================= TABLET: 768px - 1024px ================= */
 
 @media (min-width: 768px) and (max-width: 1024px) {
   .kpi2Section {
-    height: 100vh;
-    min-height: 100vh;
-    overflow: hidden;
     padding: 46px 22px 22px;
     justify-content: center;
   }
@@ -1036,166 +557,73 @@
     text-align: left;
   }
 
-  .grid {
-    margin-top: 18px !important;
-    flex: 0.58;
+  .kpiBoard {
+    margin-top: 18px;
+    flex: 1;
     min-height: 0;
-    display: grid;
-    grid-template-columns: 1.15fr 0.85fr 0.95fr;
-    grid-template-rows: repeat(4, minmax(0, 1fr));
-    gap: 6px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto auto auto;
+    grid-template-areas:
+      "ticket ticket"
+      "uni vc"
+      "cagr geo"
+      "giant giant";
+    gap: 8px;
   }
 
-  .ticketCard {
-    grid-column: 1;
-    grid-row: 1 / 3;
-    padding: 14px;
+  .kpiCard {
+    padding: 16px;
   }
 
-  .cagrCard {
-    grid-column: 1;
-    grid-row: 3 / 5;
+  .kpiCagr {
+    padding: 0;
   }
 
-  .universityCard {
-    grid-column: 2;
-    grid-row: 1;
-    padding: 12px;
+  .kpiTicketNumber {
+    inset: -2% 4% 8% 4%;
+    font-size: clamp(70px, 12vw, 130px);
   }
 
-  .dealCard {
-    grid-column: 2;
-    grid-row: 2;
-    padding: 12px;
-    min-height: 0;
+  .kpiMiniValue {
+    font-size: clamp(44px, 8vw, 66px);
   }
 
-  .mapCard {
-    grid-column: 2;
-    grid-row: 3 / 5;
-    padding: 12px;
-  }
-
-  .vcCard {
-    grid-column: 3;
-    grid-row: 1 / 5;
-    padding: 14px;
-  }
-
-  .euro {
-    left: 0%;
-    top: -2%;
-    font-size: clamp(8rem, 16vw, 10.5rem);
-  }
-
-  .one {
-    left: 36%;
-    top: 6%;
-    font-size: clamp(12rem, 24vw, 16rem);
-  }
-
-  .zero {
-    left: 58%;
-    top: 10%;
-    font-size: clamp(12rem, 24vw, 16rem);
-  }
-
-  .k {
-    right: 4%;
-    bottom: -2%;
-    font-size: clamp(3rem, 6vw, 4.4rem);
-  }
-
-  .aumValue {
-    left: 14px;
-    top: 16px;
-    font-size: clamp(4.2rem, 9vw, 6.2rem);
-  }
-
-  .universityValue {
-    left: 12px;
-    top: 12px;
-    font-size: clamp(42px, 6vw, 58px);
-  }
-
-  .dealValue {
-    left: 12px;
-    top: 14px;
-    font-size: clamp(36px, 5.6vw, 50px);
-  }
-
-  .universityIcon,
-  .dealIcon {
+  .kpiMiniIcon {
     top: 10px;
     right: 10px;
-    width: 34px;
-    height: 34px;
+    width: 40px;
+    height: 40px;
   }
 
-  .universityIconImg,
-  .dealIconImg {
+  .kpiMiniIconImg {
     width: 20px;
     height: 20px;
   }
 
-  .vcTwo,
-  .vcZero {
-    font-size: clamp(18rem, 36vw, 26rem);
+  .kpiCagrValue {
+    font-size: clamp(40px, 7.5vw, 62px);
   }
 
-  .vcTwo {
-    left: -24%;
-    top: -28%;
+  .kpiGeoTitle {
+    font-size: 14px;
   }
 
-  .vcZero {
-    left: 48%;
-    top: 8%;
+  .kpiGiantNumber {
+    font-size: clamp(160px, 30vw, 300px);
   }
 
-  .ticketCaption,
-  .aumCaption,
-  .vcText,
-  .universityLabel,
-  .dealLabel {
-    left: 12px;
-    right: 12px;
-    bottom: 10px;
-    font-size: 10px;
-  }
-
-  .mapTop {
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .cardLabel {
-    font-size: 8px;
-  }
-
-  .mapTop span {
-    font-size: 9px;
-    line-height: 1.1;
-  }
-
-  .worldMap {
-    inset: 48px 0 0;
-  }
-
-  .worldMapImg {
-    width: 600%;
+  .kpiCaption {
+    left: 14px;
+    right: 14px;
+    bottom: 12px;
+    font-size: 11px;
   }
 }
 
-/* ================= MOBILE ================= */
-
-/* ================= MOBILE: fino a 768px ================= */
+/* ================= MOBILE: fino a 767px ================= */
 
 @media (max-width: 767px) {
   .kpi2Section {
-    height: 100vh;
-    min-height: 100vh;
-    overflow: hidden;
     padding: 64px 14px 18px;
     justify-content: center;
   }
@@ -1238,139 +666,72 @@
     text-align: left;
   }
 
-  .grid {
-    margin-top: 16px !important;
-    flex: 0.80;
+  .kpiBoard {
+    margin-top: 14px;
+    flex: 1;
     min-height: 0;
-    display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1.1fr 1fr 1fr 1fr;
+    grid-template-rows: auto auto auto auto auto;
+    grid-template-areas:
+      "ticket ticket"
+      "uni vc"
+      "cagr cagr"
+      "geo geo"
+      "giant giant";
     gap: 6px;
   }
 
-  .ticketCard {
-    grid-column: 1;
-    grid-row: 1 / 3;
-    padding: 12px;
-  }
-
-  .vcCard {
-    grid-column: 2;
-    grid-row: 1 / 3;
-    padding: 12px;
-  }
-
-  .cagrCard {
-    grid-column: 1;
-    grid-row: 3 / 5;
-  }
-
-  .universityCard {
-    grid-column: 2;
-    grid-row: 3;
-    padding: 12px;
-  }
-
-  .dealCard {
-    grid-column: 2;
-    grid-row: 4;
+  .kpiCard {
     padding: 12px;
     min-height: 0;
   }
 
-  .mapCard {
-    display: none;
+  .kpiCagr {
+    padding: 0;
   }
 
-  .euro {
-    left: -2%;
-    top: -2%;
-    font-size: clamp(6.5rem, 28vw, 9rem);
+  .kpiTicketNumber {
+    inset: -2% 4% 8% 4%;
+    font-size: clamp(56px, 22vw, 96px);
   }
 
-  .one {
-    left: 38%;
-    top: 8%;
-    font-size: clamp(9rem, 42vw, 13rem);
+  .kpiMiniValue {
+    font-size: clamp(36px, 15vw, 54px);
   }
 
-  .zero {
-    left: 58%;
-    top: 12%;
-    font-size: clamp(9rem, 42vw, 13rem);
+  .kpiMiniIcon {
+    top: 8px;
+    right: 8px;
+    width: 32px;
+    height: 32px;
   }
 
-  .k {
-    right: 4%;
-    bottom: -2%;
-    font-size: clamp(2.6rem, 12vw, 4rem);
+  .kpiMiniIconImg {
+    width: 16px;
+    height: 16px;
   }
 
-  .vcTwo,
-  .vcZero {
-    font-size: clamp(12rem, 58vw, 18rem);
+  .kpiCagrValue {
+    font-size: clamp(32px, 13vw, 46px);
   }
 
-  .vcTwo {
-    left: -26%;
-    top: -24%;
+  .kpiGeoTitle {
+    font-size: 12px;
   }
 
-  .vcZero {
-    left: 44%;
-    top: 8%;
+  .kpiGiantNumber {
+    font-size: clamp(110px, 46vw, 190px);
   }
 
-  .aumValue {
-    left: 12px;
-    top: 14px;
-    font-size: clamp(3.8rem, 18vw, 5.8rem);
-  }
-
-  .universityValue {
-    left: 12px;
-    top: 12px;
-    font-size: clamp(44px, 15vw, 64px);
-  }
-
-  .dealValue {
-    left: 12px;
-    top: 14px;
-    font-size: clamp(38px, 13vw, 58px);
-  }
-
-  .universityIcon,
-  .dealIcon {
-    top: 10px;
+  .kpiCaption {
+    left: 10px;
     right: 10px;
-    width: 34px;
-    height: 34px;
-  }
-
-  .universityIconImg,
-  .dealIconImg {
-    width: 20px;
-    height: 20px;
-  }
-
-  .ticketCaption,
-  .aumCaption,
-  .vcText,
-  .universityLabel,
-  .dealLabel {
-    left: 12px;
-    right: 12px;
-    bottom: 10px;
+    bottom: 8px;
     font-size: 10px;
-    line-height: 1;
   }
 }
 
-@media (max-width: 400px) {
-  .grid {
-    flex: 1;
-  }
-}
+/* ================= LIGHT MODE ================= */
 
 .lightMode {
   background:
@@ -1381,19 +742,7 @@
   color: #101010;
 }
 
-.lightMode .themeSwitch {
-  border-color: rgba(0, 0, 0, 0.18);
-  background: rgba(0, 0, 0, 0.08);
-  color: #101010;
- 
-}
-
-
-
-
-
-.lightMode .label,
-.lightMode .cardLabel {
+.lightMode .label {
   color: rgba(0, 0, 0, 0.48);
 }
 
@@ -1409,62 +758,14 @@
   color: rgba(0, 0, 0, 0.58);
 }
 
-.lightMode .card {
-  border-color: rgba(0, 0, 0, 0.18);
-  background: rgba(255, 255, 255, 0.72);
+.lightMode .kpiCard {
+  background: #ffffffcc;
+  border-color: rgba(0, 0, 0, 0.16);
 }
 
-.lightMode .card::before {
-  background:
-    linear-gradient(135deg, rgba(255, 255, 255, 0.85), transparent 42%),
-    radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.9), transparent 34%);
-  opacity: 0.8;
-}
-
-.lightMode .ticketCaption,
-.lightMode .universityLabel,
-.lightMode .dealLabel,
-.lightMode .vcText,
-.lightMode .aumCaption {
+.lightMode .kpiCaption,
+.lightMode .kpiMiniValue,
+.lightMode .kpiGeoTitle,
+.lightMode .kpiCagrValue {
   color: #101010;
 }
-
-.lightMode .universityCard,
-.lightMode .dealCard {
-  background:
-    radial-gradient(circle at 0% 100%, rgba(70, 105, 255, 0.18), transparent 40%),
-    radial-gradient(circle at 80% 40%, rgba(255, 32, 40, 0.1), transparent 50%),
-    #ffffff;
-}
-
-.lightMode .vcCard {
-  background:
-    radial-gradient(circle at 0% 0%, rgba(218, 41, 145, 0.12), transparent 34%),
-    linear-gradient(135deg, #ffffff 0%, #f7f0f4 52%, #f4f2ff 100%);
-}
-
-.lightMode .cagrCard {
-  background: #ffffff;
-}
-
-.lightMode .mapCard {
-  background:
-    radial-gradient(circle at 50% 45%, rgba(0, 213, 255, 0.12), transparent 34%),
-    #ffffff;
-}
-
-.lightMode .universityValue,
-.lightMode .dealValue,
-.lightMode .aumValue {
-  color: #101010;
-}
-
-.lightMode .mapTop span {
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.lightMode .worldMapImg {
-  opacity: 0.5;
-  filter: invert(1) contrast(1.1);
-}
-
