@@ -84,56 +84,12 @@ scroll-snap-stop: always;
   overflow: visible;
 }
 
-.autoGlowPath {
-  stroke-dashoffset: 0;
-  animation-timing-function: linear;
-  animation-iteration-count: 1;
-  animation-fill-mode: forwards;
-}
-
-.autoGlowYouth {
-  animation-name: autoGlowMoveYouth;
-  animation-duration: 2.6s;
-}
-
-.autoGlowClean {
-  animation-name: autoGlowMoveClean;
-  animation-duration: 2.42s;
-}
-
-.autoGlowDeep {
-  animation-name: autoGlowMoveDeep;
-  animation-duration: 2.76s;
-}
-
-@keyframes autoGlowMoveYouth {
-  from {
-    stroke-dashoffset: 0;
-  }
-
-  to {
-    stroke-dashoffset: -915;
-  }
-}
-
-@keyframes autoGlowMoveClean {
-  from {
-    stroke-dashoffset: 0;
-  }
-
-  to {
-    stroke-dashoffset: -858;
-  }
-}
-
-@keyframes autoGlowMoveDeep {
-  from {
-    stroke-dashoffset: 0;
-  }
-
-  to {
-    stroke-dashoffset: -978;
-  }
+/* running lights on the inner edges (see the sweep useEffect in Hero.tsx,
+   which drives stroke-dasharray/width/opacity and the dashoffset animation
+   imperatively via the Web Animations API) */
+.heroLight {
+  fill: none;
+  opacity: 0;
 }
 
 .heroOverlay {
@@ -269,10 +225,6 @@ scroll-snap-stop: always;
   .logoSvg,
   .logoSvg * {
     pointer-events: none !important;
-  }
-
-  .autoGlowPath {
-    animation-duration: 3.2s;
   }
 
    .heroTitle {

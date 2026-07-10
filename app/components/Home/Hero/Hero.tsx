@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import styles from "./Hero.module.css";
 
@@ -34,25 +34,37 @@ const autoGlowPaths = {
     d: "M0,717.39 C1.664,717.328,2.6,716.442,4.35,715.313 L366.933,481.524 L367.128,0",
     transform: undefined,
     travel: 915,
-    animClass: styles.autoGlowYouth,
   },
   clean: {
     d: "M1112.784,0 L1112.66,421.012 L1474.817,187.612 a21,21,0,0,1,5.095,-2.79",
     transform: "translate(-652.153)",
     travel: 858,
-    animClass: styles.autoGlowClean,
   },
   deep: {
     d: "M833.187,716.67 C831.73,716.711,830.964,717.432,829.326,718.487 L11.255,1245.687 C9.972,1246.514,9.546,1246.854,9.26,1247.814",
     transform: "translate(-5.427 -420.055)",
     travel: 978,
-    animClass: styles.autoGlowDeep,
   },
 };
 
-const AUTO_GLOW_SEQUENCE: Exclude<ActiveShape, null>[] = ["youth", "clean", "deep"];
+// five stacked layers per shape build a smooth tapered streak (core first:
+// dash length, stroke width, opacity)
+const SWEEP_LAYERS = [
+  { len: 36, width: 4.4, op: 1 },
+  { len: 50, width: 3.4, op: 0.75 },
+  { len: 64, width: 2.5, op: 0.55 },
+  { len: 80, width: 1.6, op: 0.35 },
+  { len: 96, width: 0.9, op: 0.2 },
+];
+
+const SWEEP_SEQUENCE: { shape: Exclude<ActiveShape, null>; duration: number }[] = [
+  { shape: "youth", duration: 2600 },
+  { shape: "clean", duration: 2420 },
+  { shape: "deep", duration: 2760 },
+];
 
 const imageEntries = Object.entries(images);
+const MOBILE_SLIDE_INTERVAL = 4200;
 
 export default function Hero() {
   const [activeShape, setActiveShape] = useState<ActiveShape>(null);
@@ -60,53 +72,72 @@ export default function Hero() {
   const [cursor, setCursor] = useState<{ x: number; y: number } | null>(null);
   const [glowActive, setGlowActive] = useState(false);
   const [glowShape, setGlowShape] = useState<ActiveShape>(null);
-  const [autoGlowShape, setAutoGlowShape] = useState<ActiveShape>(null);
 
   const [mobileImageIndex, setMobileImageIndex] = useState(0);
-  const [mobileImageVisible, setMobileImageVisible] = useState(false);
 
+  const logoSvgRef = useRef<SVGSVGElement | null>(null);
+
+  // Chained sweep lights on the inner edges: one shape at a time, five
+  // stacked layers per shape, runs forever regardless of hover state.
   useEffect(() => {
-    setAutoGlowShape(AUTO_GLOW_SEQUENCE[0]);
-  }, []);
+    const svg = logoSvgRef.current;
+    if (!svg) return;
 
-  const advanceAutoGlow = () => {
-    setAutoGlowShape((current) => {
-      if (!current) return current;
-      const nextIndex =
-        (AUTO_GLOW_SEQUENCE.indexOf(current) + 1) % AUTO_GLOW_SEQUENCE.length;
-      return AUTO_GLOW_SEQUENCE[nextIndex];
-    });
-  };
+    let stopped = false;
+    let shapeIndex = 0;
+    let activeAnimations: Animation[] = [];
 
-  useEffect(() => {
-    let index = 0;
-    let fadeInTimeout: ReturnType<typeof setTimeout>;
-    let fadeOutTimeout: ReturnType<typeof setTimeout>;
-    let nextImageTimeout: ReturnType<typeof setTimeout>;
+    const sweep = () => {
+      if (stopped) return;
 
-    const runSlide = () => {
-      setMobileImageIndex(index);
-      setMobileImageVisible(true);
+      const { shape, duration } = SWEEP_SEQUENCE[shapeIndex];
+      const travel = autoGlowPaths[shape].travel;
+      const paths = svg.querySelectorAll<SVGPathElement>(
+        `[data-shape="${shape}"]`
+      );
 
-      fadeOutTimeout = setTimeout(() => {
-        setMobileImageVisible(false);
-      }, 5000);
+      activeAnimations = Array.from(paths).map((path) => {
+        const layer = SWEEP_LAYERS[Number(path.dataset.layer)];
+        const shift = (layer.len - SWEEP_LAYERS[0].len) / 2;
+        path.style.strokeDasharray = `${layer.len} ${travel + 200}`;
+        path.style.strokeWidth = String(layer.width);
+        path.style.opacity = String(layer.op);
+        return path.animate(
+          [
+            { strokeDashoffset: `${shift + SWEEP_LAYERS[0].len}px` },
+            { strokeDashoffset: `${-travel + shift}px` },
+          ],
+          { duration, easing: "linear" }
+        );
+      });
 
-      nextImageTimeout = setTimeout(() => {
-        index = (index + 1) % imageEntries.length;
-        runSlide();
-      }, 8000);
+      Promise.all(activeAnimations.map((anim) => anim.finished))
+        .then(() => {
+          if (stopped) return;
+          paths.forEach((path) => {
+            path.style.opacity = "0";
+          });
+          shapeIndex = (shapeIndex + 1) % SWEEP_SEQUENCE.length;
+          sweep();
+        })
+        .catch(() => {});
     };
 
-    fadeInTimeout = setTimeout(() => {
-      runSlide();
-    }, 500);
+    sweep();
 
     return () => {
-      clearTimeout(fadeInTimeout);
-      clearTimeout(fadeOutTimeout);
-      clearTimeout(nextImageTimeout);
+      stopped = true;
+      activeAnimations.forEach((anim) => anim.cancel());
     };
+  }, []);
+
+  // Mobile hero: slow crossfade rotation between the three images.
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setMobileImageIndex((i) => (i + 1) % imageEntries.length);
+    }, MOBILE_SLIDE_INTERVAL);
+
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -128,12 +159,7 @@ export default function Hero() {
     };
   }, []);
 
-  const stopAutoGlow = () => {
-    if (autoGlowShape) setAutoGlowShape(null);
-  };
-
   const activateGlow = (shape: Exclude<ActiveShape, null>) => {
-    stopAutoGlow();
     setGlowActive(true);
     setGlowShape(shape);
     document.body.dataset.cursor = shape;
@@ -195,9 +221,7 @@ export default function Hero() {
               fill
               priority={index === 0}
               className={`${styles.mobileBgImage} ${
-                mobileImageIndex === index && mobileImageVisible
-                  ? styles.mobileBgImageActive
-                  : ""
+                mobileImageIndex === index ? styles.mobileBgImageActive : ""
               }`}
             />
           ))}
@@ -264,6 +288,7 @@ export default function Hero() {
 
         <div className={styles.logoWrap}>
           <svg
+            ref={logoSvgRef}
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 827.76 827.759"
             className={styles.logoSvg}
@@ -383,23 +408,24 @@ export default function Hero() {
               <path d={paths.clean} transform="translate(-652.153)" />
             </g>
 
-            {autoGlowShape && (
-              <path
-                key={autoGlowShape}
-                d={autoGlowPaths[autoGlowShape].d}
-                transform={autoGlowPaths[autoGlowShape].transform}
-                fill="transparent"
-                stroke={glowColors[autoGlowShape]}
-                strokeWidth="4"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeDasharray={`90 ${autoGlowPaths[autoGlowShape].travel}`}
-                className={`${styles.autoGlowPath} ${autoGlowPaths[autoGlowShape].animClass}`}
-                filter="url(#softGlow)"
-                pointerEvents="none"
-                onAnimationEnd={advanceAutoGlow}
-              />
-            )}
+            {/* running lights on the inner edges: 5 stacked layers per shape,
+                animated imperatively in a chained sweep (see useEffect) */}
+            <g fill="none" strokeLinecap="round" strokeLinejoin="round" pointerEvents="none">
+              {(Object.keys(autoGlowPaths) as Exclude<ActiveShape, null>[]).map((shape) =>
+                SWEEP_LAYERS.map((_, layerIndex) => (
+                  <path
+                    key={`${shape}-${layerIndex}`}
+                    d={autoGlowPaths[shape].d}
+                    transform={autoGlowPaths[shape].transform}
+                    data-shape={shape}
+                    data-layer={layerIndex}
+                    className={styles.heroLight}
+                    stroke={glowColors[shape]}
+                    filter="url(#softGlow)"
+                  />
+                ))
+              )}
+            </g>
 
             {cursor && glowActive && glowShape === "youth" && (
               <>
