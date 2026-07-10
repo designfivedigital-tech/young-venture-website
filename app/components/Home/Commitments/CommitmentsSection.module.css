@@ -84,23 +84,6 @@
   background: transparent;
 }
 
-.comingSoonCard {
-  cursor: default;
-}
-
-.comingSoonCard:hover {
-  background: transparent;
-}
-
-.comingSoonCard p {
-  margin: 0;
-  color: rgba(6, 31, 23, 0.35);
-  font-size: clamp(1rem, 1vw, 1.25rem);
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: 0.12em;
-}
-
 .ctaCard h2 {
   margin: 0;
   max-width: 360px;
@@ -697,5 +680,36 @@
   .detailLinks {
     bottom: 30px;
     gap: 24px;
+  }
+}
+
+/* ================= HOVER GRID EXPANSION (desktop only) =================
+   Hovering a card widens it and shrinks the other cards in its row of 4,
+   matching the reference site's behaviour. */
+
+@media (min-width: 992px) {
+  .grid {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .card {
+    min-width: 0;
+    flex: 0 0 25%;
+    max-width: 25%;
+    transition:
+      flex-basis 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      max-width 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+      background 0.3s ease;
+  }
+
+  .isExpanded {
+    flex-basis: 30%;
+    max-width: 30%;
+  }
+
+  .isShrunk {
+    flex-basis: 23.3333%;
+    max-width: 23.3333%;
   }
 }

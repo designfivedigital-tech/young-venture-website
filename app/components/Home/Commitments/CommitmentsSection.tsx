@@ -15,6 +15,7 @@ type Commitment = {
   founded: string;
   backed: string;
   founder: string;
+  location: string;
   website: string;
   linkedin: string;
 };
@@ -31,6 +32,7 @@ const commitments: Commitment[] = [
     founded: "2021",
     backed: "2023",
     founder: "Alex Morgan",
+    location: "Milan, Italy",
     website: "https://example.com",
     linkedin: "https://www.linkedin.com/company/example",
   },
@@ -45,6 +47,7 @@ const commitments: Commitment[] = [
     founded: "2020",
     backed: "2022",
     founder: "Maya Conti",
+    location: "Berlin, Germany",
     website: "https://example.com",
     linkedin: "https://www.linkedin.com/company/example",
   },
@@ -59,6 +62,7 @@ const commitments: Commitment[] = [
     founded: "2022",
     backed: "2024",
     founder: "Daniel Reed",
+    location: "London, UK",
     website: "https://example.com",
     linkedin: "https://www.linkedin.com/company/example",
   },
@@ -73,6 +77,7 @@ const commitments: Commitment[] = [
     founded: "2019",
     backed: "2021",
     founder: "Sofia Lane",
+    location: "Paris, France",
     website: "https://example.com",
     linkedin: "https://www.linkedin.com/company/example",
   },
@@ -87,6 +92,7 @@ const commitments: Commitment[] = [
     founded: "2018",
     backed: "2020",
     founder: "Leo Ferri",
+    location: "Amsterdam, Netherlands",
     website: "https://example.com",
     linkedin: "https://www.linkedin.com/company/example",
   },
@@ -101,6 +107,7 @@ const commitments: Commitment[] = [
     founded: "2023",
     backed: "2024",
     founder: "Nina Brooks",
+    location: "Zurich, Switzerland",
     website: "https://example.com",
     linkedin: "https://www.linkedin.com/company/example",
   },
@@ -115,10 +122,13 @@ const commitments: Commitment[] = [
     founded: "2021",
     backed: "2023",
     founder: "Jonas Weber",
+    location: "Munich, Germany",
     website: "https://example.com",
     linkedin: "https://www.linkedin.com/company/example",
   },
 ];
+
+const EXPANSION_COLS = 4;
 
 export default function CommitmentsSection() {
   const [selectedCommitment, setSelectedCommitment] =
@@ -126,6 +136,7 @@ export default function CommitmentsSection() {
 
   const [mounted, setMounted] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const closePopup = () => {
     setIsClosing(true);
@@ -136,9 +147,35 @@ export default function CommitmentsSection() {
     }, 700);
   };
 
+  const getHoverClass = (index: number) => {
+    if (hoveredIndex === null) return "";
+
+    const rowStart = Math.floor(hoveredIndex / EXPANSION_COLS) * EXPANSION_COLS;
+    if (index < rowStart || index >= rowStart + EXPANSION_COLS) return "";
+
+    return index === hoveredIndex ? styles.isExpanded : styles.isShrunk;
+  };
+
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    const clearHover = () => setHoveredIndex(null);
+    window.addEventListener("resize", clearHover);
+    return () => window.removeEventListener("resize", clearHover);
+  }, []);
+
+  useEffect(() => {
+    if (!selectedCommitment) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closePopup();
+    };
+
+    document.addEventListener("keydown", onKeyDown);
+    return () => document.removeEventListener("keydown", onKeyDown);
+  }, [selectedCommitment]);
 
  useEffect(() => {
   const isMobile = window.matchMedia("(max-width: 768px)").matches;
@@ -202,44 +239,35 @@ export default function CommitmentsSection() {
           <h2>Companies we back. People we believe in.</h2>
         </div>
 
-        <div className={styles.grid}>
-          {commitments.map((item, index) => {
-            const isComingSoon = index >= 2;
+        <div className={styles.grid} onMouseLeave={() => setHoveredIndex(null)}>
+          {commitments.map((item, index) => (
+            <button
+              key={item.id}
+              type="button"
+              className={`${styles.card} ${getHoverClass(index)}`}
+              onMouseEnter={() => setHoveredIndex(index)}
+              onClick={() => setSelectedCommitment(item)}
+            >
+              <div className={styles.logoWrap}>
+                <Image
+                  src={item.logo}
+                  alt={`${item.name} logo`}
+                  width={240}
+                  height={90}
+                  className={styles.logo}
+                />
+              </div>
 
-            if (isComingSoon) {
-              return (
-                <div
-                  key={item.id}
-                  className={`${styles.card} ${styles.comingSoonCard}`}
-                >
-                  <p>Coming soon</p>
-                </div>
-              );
-            }
+              <p>{item.shortDescription}</p>
+            </button>
+          ))}
 
-            return (
-              <button
-                key={item.id}
-                type="button"
-                className={styles.card}
-                onClick={() => setSelectedCommitment(item)}
-              >
-                <div className={styles.logoWrap}>
-                  <Image
-                    src={item.logo}
-                    alt={`${item.name} logo`}
-                    width={240}
-                    height={90}
-                    className={styles.logo}
-                  />
-                </div>
-
-                <p>{item.shortDescription}</p>
-              </button>
-            );
-          })}
-
-          <div className={`${styles.card} ${styles.ctaCard}`}>
+          <div
+            className={`${styles.card} ${styles.ctaCard} ${getHoverClass(
+              commitments.length
+            )}`}
+            onMouseEnter={() => setHoveredIndex(commitments.length)}
+          >
             <h2>
               We back companies.
               <br />
@@ -289,6 +317,11 @@ export default function CommitmentsSection() {
                 <div className={styles.metaRow}>
                   <span>Founder</span>
                   <strong>{selectedCommitment.founder}</strong>
+                </div>
+
+                <div className={styles.metaRow}>
+                  <span>Location</span>
+                  <strong>{selectedCommitment.location}</strong>
                 </div>
               </div>
 
