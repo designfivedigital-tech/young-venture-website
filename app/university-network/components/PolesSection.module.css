@@ -1,0 +1,106 @@
+.section {
+  background:
+    radial-gradient(ellipse 55% 105% at 0% 50%,
+      rgba(0, 228, 231, 0.5) 0%,
+      rgba(0, 228, 231, 0.3) 30%,
+      rgba(0, 228, 231, 0.12) 60%,
+      rgba(0, 228, 231, 0.03) 82%,
+      transparent 100%),
+    radial-gradient(ellipse 55% 105% at 100% 50%,
+      rgba(218, 41, 145, 0.5) 0%,
+      rgba(218, 41, 145, 0.3) 30%,
+      rgba(218, 41, 145, 0.12) 60%,
+      rgba(218, 41, 145, 0.03) 82%,
+      transparent 100%),
+    #fff;
+  padding: clamp(56px, 8vh, 96px) 0 clamp(72px, 10vh, 120px);
+  overflow: hidden;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: clamp(28px, 4vh, 48px);
+  padding: 0 clamp(20px, 5vw, 72px);
+}
+
+.header h2 {
+  font-size: clamp(30px, 3.4vw, 52px);
+  font-weight: 700;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+
+.header p {
+  margin: 0 auto;
+  max-width: 560px;
+  color: #555;
+  font-size: clamp(14px, 1.1vw, 17px);
+  line-height: 1.55;
+}
+
+.diagram {
+  position: relative;
+  height: clamp(340px, 56vh, 560px);
+}
+
+.poleLabel {
+  position: absolute;
+  top: 50%;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  font-size: clamp(13px, 1.2vw, 18px);
+  writing-mode: vertical-rl;
+  z-index: 1;
+}
+
+.poleLabelTechnical {
+  left: clamp(10px, 1.4vw, 26px);
+  transform: translateY(-50%) rotate(180deg);
+  color: #009fa2;
+}
+
+.poleLabelBusiness {
+  right: clamp(10px, 1.4vw, 26px);
+  transform: translateY(-50%);
+  color: #da2991;
+}
+
+.logo {
+  position: absolute;
+  z-index: 2;
+  animation-name: float;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  will-change: transform;
+}
+
+.logo img {
+  width: 100%;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.14));
+}
+
+@keyframes float {
+  from {
+    transform: translateY(-8px);
+  }
+
+  to {
+    transform: translateY(8px);
+  }
+}
+
+@media (max-width: 640px) {
+  @keyframes float {
+    from {
+      transform: translateY(-4px);
+    }
+
+    to {
+      transform: translateY(4px);
+    }
+  }
+}

@@ -1,14 +1,18 @@
 import styles from "./UniversityNetworkPage.module.css";
-import UniversityIntroSection from "./components/UniversityIntroSection";
 import UniversityMapSection from "./components/UniversityMapSection";
-import UniversitiesDirectorySection from "./components/UniversitiesDirectorySection";
+import UniversityIntroSection from "./components/UniversityIntroSection";
+import ProfessorsSection from "./components/ProfessorsSection";
+import VennSection from "./components/VennSection";
+import PolesSection from "./components/PolesSection";
 
 export default function UniversityNetworkPage() {
   return (
     <main className={styles.page}>
-      <UniversityIntroSection />
       <UniversityMapSection />
-      <UniversitiesDirectorySection />
+      <UniversityIntroSection />
+      <ProfessorsSection />
+      <VennSection />
+      <PolesSection />
     </main>
   );
 }
