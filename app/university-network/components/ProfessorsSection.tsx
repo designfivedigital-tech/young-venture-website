@@ -61,8 +61,9 @@ function ProfessorCard({ professor }: { professor: Professor }) {
   return (
     <article className={styles.card}>
       <div className={styles.photo}>
-        <span className={styles.initials}>{professor.initials}</span>
-        {!photoFailed && (
+        {photoFailed ? (
+          <span className={styles.initials}>{professor.initials}</span>
+        ) : (
           <img
             src={professor.photo}
             alt={professor.name}

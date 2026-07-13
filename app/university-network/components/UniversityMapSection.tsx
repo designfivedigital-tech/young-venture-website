@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import styles from "./UniversityMapSection.module.css";
 
@@ -26,6 +26,35 @@ export default function UniversityMapSection() {
   const [popupAnchor, setPopupAnchor] = useState<PopupAnchor | null>(null);
   const [isPopupClosing, setIsPopupClosing] = useState(false);
   const closeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const circleRefs = useRef<(SVGCircleElement | null)[]>([]);
+
+  useEffect(() => {
+    const timeouts: ReturnType<typeof setTimeout>[] = [];
+
+    circleRefs.current.forEach((circle) => {
+      if (!circle) return;
+
+      const blink = () => {
+        circle.style.opacity = "0.15";
+        circle.setAttribute("r", "2.2");
+
+        timeouts.push(
+          setTimeout(() => {
+            circle.style.opacity = "1";
+            circle.setAttribute("r", "4.5");
+
+            timeouts.push(setTimeout(() => circle.setAttribute("r", "3"), 500));
+          }, 450 + Math.random() * 300)
+        );
+
+        timeouts.push(setTimeout(blink, 1800 + Math.random() * 3200));
+      };
+
+      timeouts.push(setTimeout(blink, Math.random() * 2500));
+    });
+
+    return () => timeouts.forEach((t) => clearTimeout(t));
+  }, []);
 
   const handleSelect = (
     university: (typeof universities)[number],
@@ -79,7 +108,7 @@ export default function UniversityMapSection() {
           viewBox="0 0 600 400"
           preserveAspectRatio="xMidYMid meet"
         >
-          {universities.map((university) => {
+          {universities.map((university, index) => {
             const isActive = active === university.name;
 
             return (
@@ -89,6 +118,9 @@ export default function UniversityMapSection() {
                 onClick={(event) => handleSelect(university, event)}
               >
                 <circle
+                  ref={(el) => {
+                    circleRefs.current[index] = el;
+                  }}
                   cx={university.cx}
                   cy={university.cy}
                   r={3}

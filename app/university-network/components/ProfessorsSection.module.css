@@ -45,7 +45,7 @@
   flex: 0 0 38%;
   min-height: 240px;
   overflow: hidden;
-  background: linear-gradient(180deg, #eef1f4 0%, #dfe4ea 100%);
+  background: #fff;
 }
 
 .photo img {
