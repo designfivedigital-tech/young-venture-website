@@ -119,9 +119,7 @@
 
 .focusTop {
   display: grid;
-  grid-template-columns: 1.2fr 0.8fr;
-  gap: 48px;
-  align-items: start;
+  grid-template-columns: 1fr;
 }
 
 .focusLabel {
@@ -144,13 +142,6 @@
   color: #0a1a3f;
 }
 
-.focusDesc {
-  margin: 0;
-  font-size: clamp(16px, 1.2vw, 19px);
-  line-height: 1.5;
-  color: #3a4456;
-}
-
 .focusBody {
   position: relative;
   flex: 1 1 auto;
@@ -159,202 +150,134 @@
   top: -10%;
 }
 
-.wheel {
-  --R: 460px;
-  --step: 18deg;
-  --ix: 235px;
-  --cx: calc(var(--ix) - var(--R));
-
+.drumScene {
   position: absolute;
-  left: 2vw;
+  left: clamp(10px, 3vw, 70px);
   top: 50%;
-  width: 33.333%;
-  height: 0;
-  pointer-events: none;
+  transform: translateY(-50%);
+  width: min(480px, 40vw);
+  height: min(620px, 76vh);
+  perspective: 1100px;
+  z-index: 3;
 }
 
-.wheel > * {
-  pointer-events: auto;
-}
-
-.wheelArc {
+.drumMarker {
   position: absolute;
-  top: 0;
-  left: calc(var(--ix) - 2 * var(--R));
-  width: calc(2 * var(--R));
-  height: calc(2 * var(--R));
-  margin-top: calc(-1 * var(--R));
-  border-radius: 50%;
-  background: conic-gradient(from 230deg, #19c3d6, #7b5cff, #e6007e, #e6007e);
-  -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-  mask: radial-gradient(farthest-side, transparent calc(100% - 3px), #000 calc(100% - 3px));
-  opacity: 0.9;
+  left: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 74px;
+  border-radius: 999px;
+  background: #da2991;
+  box-shadow: 0 0 14px rgba(218, 41, 145, 0.55);
+  transition: opacity 0.5s ease 0.3s;
 }
 
-.wheelItem {
-  position: absolute;
-  left: var(--cx);
-  top: 0;
-  width: 0;
-  height: 0;
-  padding: 0;
-  border: 0;
-  background: none;
-  cursor: pointer;
-  transform-origin: 0 0;
-  transform: rotate(calc(var(--offset) * var(--step)));
-  transition:
-    transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1),
-    opacity 0.28s ease;
+.drumPre .drumMarker {
+  opacity: 0;
 }
 
-.wheelInner {
+.drumRing {
   position: absolute;
-  left: calc(var(--R) - 30px);
-  top: 0;
+  inset: 0;
+  transform-style: preserve-3d;
+  transition: transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+.drumPre .drumRing {
+  transition: none;
+}
+
+.drumItem {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  height: 70px;
+  margin-top: -35px;
   display: flex;
   align-items: center;
-  gap: 22px;
-  width: max-content;
-  transform-origin: 30px 50%;
-  transform: translateY(-50%) rotate(calc(var(--offset) * -1 * var(--step)));
-  transition: transform 0.28s cubic-bezier(0.22, 0.61, 0.36, 1);
+  gap: 16px;
+  background: none;
+  border: 0;
+  padding: 0 6px 0 18px;
+  cursor: pointer;
+  color: #8a919d;
+  text-align: left;
+  backface-visibility: hidden;
+  transition:
+    opacity 0.6s ease,
+    color 0.3s ease;
 }
 
-.wheelInner::after {
-  content: "";
-  position: absolute;
-  left: 82px;
-  right: -40px;
-  bottom: -26px;
-  border-top: 1px dashed #c4ccd4;
-}
-
-.wheelItem.active .wheelInner::after {
-  display: none;
-}
-
-.wheelIcon {
-  flex: 0 0 auto;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
+.drumIcon {
   display: grid;
   place-items: center;
-  color: #3aa9c4;
-  background: #dff0f5;
-  box-shadow: 0 0 0 7px rgba(247, 247, 244, 0.95);
-  transition:
-    color 0.25s ease,
-    background 0.25s ease,
-    box-shadow 0.25s ease,
-    transform 0.25s ease;
+  width: 52px;
+  height: 52px;
+  flex: 0 0 auto;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  transition: all 0.3s ease;
 }
 
-.wheelItem.active .wheelIcon {
+.drumTitle {
+  font-size: clamp(15px, 1.15vw, 18px);
+  font-weight: 700;
+  line-height: 1.15;
+  transition:
+    font-size 0.3s ease,
+    color 0.3s ease;
+}
+
+.drumItem:hover {
+  color: #4a5160;
+}
+
+.drumItem.active {
+  color: #0a1a3f;
+  cursor: default;
+}
+
+.drumItem.active .drumIcon {
   color: #fff;
-  background: linear-gradient(135deg, #4cbf2e, #2f9e1f);
-  box-shadow:
-    0 12px 30px rgba(60, 170, 40, 0.35),
-    0 0 0 7px rgba(247, 247, 244, 0.95);
-  transform: scale(1.08);
+  background: #da2991;
+  border-color: #da2991;
+  box-shadow: 0 12px 30px rgba(218, 41, 145, 0.35);
 }
 
-.wheelLabel {
-  position: relative;
-  max-width: 360px;
-  text-align: left;
-  font-size: clamp(19px, 1.35vw, 24px);
-  line-height: 1.12;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  color: #9aa3ad;
-  transition:
-    color 0.25s ease,
-    font-weight 0.25s ease;
-}
-.mobileTitle {
-  display: inline;
+.drumItem.active .drumTitle {
+  font-size: clamp(20px, 1.7vw, 26px);
+  font-weight: 800;
+  color: #0a1a3f;
 }
 
 .mobileDescription {
   display: none;
 }
 
-.wheelItem.active .wheelLabel {
-  color: #0a1a3f;
-  font-weight: 700;
-}
-
-.wheelItem.active .wheelLabel::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: -12px;
-  width: 56px;
-  height: 4px;
-  border-radius: 999px;
-  background: #2f9e1f;
-}
-
 .focusContent {
   position: absolute;
-  left: 50%;
+  left: 66%;
   top: 50%;
   z-index: 4;
-  width: min(430px, 26vw);
+  width: min(560px, 39vw);
   transform: translate(-50%, -50%);
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .focusContentInner {
   animation: contentSlideIn 0.62s cubic-bezier(0.22, 0.61, 0.36, 1) both;
 }
 
-.focusContentNumber {
-  display: inline-flex;
-  margin-bottom: 18px;
-  font-size: 14px;
-  font-weight: 800;
-  letter-spacing: 0.22em;
-  color: #e6007e;
-}
-
-.focusContent h3 {
-  margin: 0;
-  color: #0a1a3f;
-  font-size: clamp(34px, 3vw, 54px);
-  line-height: 0.98;
-  font-weight: 800;
-  letter-spacing: -0.055em;
-}
-
 .focusContent p {
-  margin: 26px 0 0;
+  margin: 0;
+  text-align: center;
   color: #4d5868;
-  font-size: clamp(16px, 1.05vw, 19px);
+  font-size: clamp(16px, 1.32vw, 20px);
   line-height: 1.65;
   font-weight: 400;
-}
-
-.focusContent a {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  margin-top: 34px;
-  color: #0a1a3f;
-  font-size: 17px;
-  line-height: 1;
-  font-weight: 800;
-  text-decoration: none;
-}
-
-.focusContent a span {
-  transition: transform 0.35s ease;
-}
-
-.focusContent a:hover span {
-  transform: translateX(8px);
 }
 
 @keyframes contentSlideIn {
@@ -369,83 +292,10 @@
   }
 }
 
-.media {
-  position: absolute;
-  top: 50%;
-  right: 4vw;
-  width: clamp(28.75rem, 24.09vw + 13.33rem, 51.88rem);
-  aspect-ratio: 1 / 1;
-  transform: translate(18%, -50%);
-  padding: 11px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #e6007e, #7b5cff, #19c3d6);
-  box-shadow: 0 30px 90px rgba(10, 26, 63, 0.18);
-}
-
-.mediaInner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  overflow: hidden;
-  background: #0a1a3f;
-}
-
-.slide {
-  position: absolute;
-  inset: 0;
-  border-radius: 50%;
-  overflow: hidden;
-  display: grid;
-  place-items: center;
-  animation: mediaSlideIn 0.62s cubic-bezier(0.22, 0.61, 0.36, 1) both;
-}
-
-.slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.slidePlaceholder {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 0 18%;
-  text-align: center;
-  color: #fff;
-  font-size: clamp(18px, 1.6vw, 24px);
-  font-weight: 700;
-  line-height: 1.2;
-}
-
-.slidePlaceholder small {
-  font-size: 13px;
-  font-weight: 400;
-  opacity: 0.7;
-}
-
-@keyframes mediaSlideIn {
-  from {
-    opacity: 0;
-    transform: translateX(90px);
-  }
-
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
 /* Fluid scaling between 1025px (compact desktop) and 1920px (reference "perfect" layout, defined by the unprefixed rules above). Every value below is a linear interpolation between its measurement at each of those two widths, so there is no visual jump at any point in between. */
 @media (min-width: 1025px) and (max-width: 1919px) {
   .focusInner {
     padding: clamp(30px, calc(2.0112vw + 9.3855px), 48px) clamp(40px, calc(4.4693vw - 5.8101px), 80px) 0;
-  }
-
-  .focusTop {
-    grid-template-columns: clamp(47.3684%, calc(1.4114vw + 32.902%), 60%) 1fr;
-    gap: clamp(40px, calc(0.8939vw + 30.838px), 48px);
   }
 
   .focusHeading {
@@ -453,77 +303,9 @@
     font-size: clamp(51.25px, calc(2.3184vw + 27.486px), 72px);
   }
 
-  .focusDesc {
-    font-size: clamp(16px, calc(0.3352vw + 12.5642px), 19px);
-    line-height: 1.48;
-  }
-
-  .wheel {
-    --R: clamp(430px, calc(3.352vw + 395.6425px), 460px);
-    --step: 18.5deg;
-    --ix: clamp(125px, calc(12.2905vw - 0.9777px), 235px);
-    --iconHalf: clamp(27px, calc(0.3352vw + 23.5642px), 30px);
-
-    left: clamp(-15px, calc(5.9665vw - 76.1564px), 38.4px);
-    top: clamp(50%, calc(-0.8939vw + 67.162%), 58%);
-    width: clamp(32%, calc(0.1489vw + 30.4734%), 33.333%);
-  }
-
-  .wheelIcon {
-    width: clamp(54px, calc(0.6704vw + 47.1285px), 60px);
-    height: clamp(54px, calc(0.6704vw + 47.1285px), 60px);
-  }
-
-  .wheelInner {
-    left: calc(var(--R) - var(--iconHalf));
-    gap: clamp(12px, calc(1.1173vw + 0.5475px), 22px);
-    transform-origin: var(--iconHalf) 50%;
-  }
-
-  .wheelLabel {
-    max-width: clamp(220px, calc(15.6425vw + 59.6648px), 360px);
-    font-size: clamp(16px, calc(0.8939vw + 6.838px), 24px);
-    line-height: 1.11;
-  }
-
-  .wheelInner::after {
-    left: clamp(72px, calc(1.1173vw + 60.5475px), 82px);
-    right: clamp(-40px, calc(-2.2346vw + 2.905px), -20px);
-    bottom: clamp(-26px, calc(-0.4469vw - 17.419px), -22px);
-  }
-
-  .focusContent {
-    left: clamp(50%, calc(-0.2235vw + 54.2905%), 52%);
-    top: clamp(50%, calc(-0.8939vw + 67.162%), 58%);
-    width: clamp(300px, calc(14.5251vw + 151.1173px), 430px);
-  }
-
-  .focusContentNumber {
-    margin-bottom: clamp(12px, calc(0.6704vw + 5.1285px), 18px);
-    font-size: clamp(12px, calc(0.2235vw + 9.7095px), 14px);
-  }
-
-  .focusContent h3 {
-    font-size: clamp(32px, calc(2.4581vw + 6.8045px), 54px);
-    line-height: 0.99;
-  }
-
   .focusContent p {
-    margin-top: clamp(18px, calc(0.8939vw + 8.838px), 26px);
     font-size: clamp(15px, calc(0.4469vw + 10.419px), 19px);
     line-height: 1.55;
-  }
-
-  .focusContent a {
-    margin-top: clamp(24px, calc(1.1173vw + 12.5475px), 34px);
-    font-size: clamp(15px, calc(0.2235vw + 12.7095px), 17px);
-  }
-
-  .media {
-    top: clamp(50%, calc(-0.7821vw + 65.0168%), 57%);
-    right: clamp(-30px, calc(11.933vw - 152.3128px), 76.8px);
-    width: clamp(430px, calc(27.4637vw + 148.4972px), 675.8px);
-    transform: translate(clamp(18%, calc(-0.2235vw + 22.2905%), 20%), -50%);
   }
 }
 
@@ -532,77 +314,73 @@
 }
 
 @media (max-width: 900px) {
-  .focusContent,
-  .media {
+  .focusContent {
     display: none;
   }
 
   .focusSection {
-    height: 260vh;
+    height: auto;
   }
 
   .focusSticky {
-    height: 100vh;
+    height: auto;
+    position: relative;
   }
 
   .focusInner {
     padding: 90px 24px 0;
   }
 
-  .focusTop {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
   .focusHeading {
     font-size: clamp(42px, 9vw, 72px);
   }
 
-  .focusDesc {
-    font-size: 16px;
-    line-height: 1.45;
-  }
-
   .focusBody {
+    position: static;
     top: 0;
+    padding: 24px;
   }
 
-  .wheel {
-    --R: 720px;
-    --step: 11deg;
-    --ix: 105px;
-    --cx: calc(var(--ix) - var(--R));
-
-    left: 0;
-    top: 58%;
+  .drumScene {
+    position: static;
+    transform: none;
     width: 100%;
+    height: auto;
+    perspective: none;
   }
 
-  .wheelIcon {
-    width: 56px;
-    height: 56px;
+  .drumMarker {
+    display: none;
   }
 
-  .wheelInner {
-    left: calc(var(--R) - 28px);
-    gap: 28px;
-    transform-origin: 28px 50%;
+  .drumRing {
+    position: static;
+    transform: none !important;
+    transform-style: flat;
+    display: flex;
+    flex-direction: column;
   }
 
-  .wheelLabel {
-    max-width: min(440px, calc(100vw - 175px));
-    font-size: clamp(20px, 4vw, 30px);
-    line-height: 1.12;
+  .drumItem {
+    position: static;
+    margin-top: 0;
+    height: auto;
+    padding: 16px 6px;
+    border-bottom: 1px solid rgba(10, 26, 63, 0.1);
+    flex-wrap: wrap;
+    transform: none !important;
   }
 
-  .mobileTitle {
-    display: block;
+  .drumTitle {
+    flex: 1 1 auto;
   }
 
   .mobileDescription {
     display: block;
+    flex-basis: 100%;
     max-height: 0;
     margin-top: 0;
+    margin-left: 68px;
     overflow: hidden;
     opacity: 0;
     color: #4d5868;
@@ -616,16 +394,10 @@
       margin-top 0.3s ease;
   }
 
-  .wheelItem.active .mobileDescription {
+  .drumItem.active .mobileDescription {
     max-height: 180px;
-    margin-top: 14px;
+    margin-top: 10px;
     opacity: 1;
-  }
-
-  .wheelInner::after {
-    left: 86px;
-    right: -40px;
-    bottom: -24px;
   }
 }
 
@@ -638,42 +410,9 @@
     font-size: clamp(38px, 11vw, 54px);
   }
 
-  .focusDesc {
-    font-size: 15px;
-  }
-
-  .wheel {
-    --R: 610px;
-    --step: 12deg;
-    --ix: 78px;
-
-    top: 60%;
-  }
-
-  .wheelIcon {
-    width: 50px;
-    height: 50px;
-  }
-
-  .wheelInner {
-    left: calc(var(--R) - 25px);
-    gap: 22px;
-    transform-origin: 25px 50%;
-  }
-
-  .wheelLabel {
-    max-width: calc(100vw - 150px);
-    font-size: clamp(18px, 5.2vw, 24px);
-  }
-
   .mobileDescription {
     font-size: 14px;
     line-height: 1.45;
-  }
-
-  .wheelInner::after {
-    left: 76px;
-    right: -24px;
   }
 }
 
@@ -721,17 +460,155 @@
   display: grid;
   grid-template-columns: 0.95fr 1.05fr;
   gap: clamp(70px, 9vw, 170px);
-  align-items: start;
+  align-items: center;
 }
 
-.collegeSplit h3 {
+.triad {
+  position: relative;
+  width: min(440px, 88%);
+  aspect-ratio: 10 / 9;
+  margin: 30px auto 0;
+}
+
+.triadSvg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+}
+
+.triadEdges,
+.triadSpokes {
+  fill: none;
+  stroke: rgba(0, 159, 162, 0.35);
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.triadSpokes {
+  stroke-dasharray: 3 5;
+  stroke-width: 1.1;
+}
+
+.triadLight {
+  fill: none;
+  stroke: #00e4e7;
+  stroke-width: 2.4;
+  stroke-linecap: round;
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 10 90;
+  filter: drop-shadow(0 0 6px rgba(0, 228, 231, 0.8));
+  animation: triadRun 6s linear infinite;
+}
+
+@keyframes triadRun {
+  from {
+    stroke-dashoffset: 100;
+  }
+
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.triadCenter {
+  position: absolute;
+  left: 50%;
+  top: 53.33%;
+  transform: translate(-50%, -50%);
+  width: 58px;
+  height: 58px;
+  display: grid;
+  place-items: center;
+  background: #0e1116;
+  color: #00e4e7;
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  border-radius: 50%;
+  box-shadow:
+    0 0 0 6px rgba(0, 228, 231, 0.12),
+    0 12px 30px rgba(14, 17, 22, 0.18);
+  z-index: 2;
+}
+
+.triadVertex {
+  position: absolute;
+  width: 58px;
+  height: 58px;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: #00e4e7;
+  box-shadow:
+    0 0 0 6px rgba(0, 228, 231, 0.14),
+    0 12px 30px rgba(0, 228, 231, 0.25);
+  animation: triadPulse 3.3s ease-in-out infinite;
+  z-index: 2;
+}
+
+.triadVertex:nth-of-type(2) {
+  animation-delay: 1.1s;
+}
+
+.triadVertex:nth-of-type(3) {
+  animation-delay: 2.2s;
+}
+
+@keyframes triadPulse {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 6px rgba(0, 228, 231, 0.14),
+      0 12px 30px rgba(0, 228, 231, 0.25);
+  }
+
+  50% {
+    box-shadow:
+      0 0 0 14px rgba(0, 228, 231, 0.05),
+      0 12px 30px rgba(0, 228, 231, 0.25);
+  }
+}
+
+.triadNode {
+  position: absolute;
+  z-index: 3;
+  width: max-content;
+}
+
+.triadNodeTop {
+  left: 50%;
+  top: calc(12% - 48px);
+  transform: translate(-50%, -100%);
+}
+
+.triadNodeLeft {
+  left: 15%;
+  top: calc(74% + 48px);
+  transform: translateX(-50%);
+}
+
+.triadNodeRight {
+  left: 85%;
+  top: calc(74% + 48px);
+  transform: translateX(-50%);
+}
+
+.triadText {
+  text-align: center;
+}
+
+.triadNode h4 {
   margin: 0;
-  max-width: 720px;
-  color: #071a33;
-  font-size: clamp(64px, 6vw, 118px);
-  line-height: 0.9;
-  font-weight: 950;
-  letter-spacing: -0.085em;
+  color: #0a1a3f;
+  font-size: clamp(17px, 1.4vw, 22px);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.triadNode:hover h4 {
+  color: #009fa2;
 }
 
 .collegeCopy {
@@ -780,8 +657,12 @@
     gap: 42px;
   }
 
-  .collegeSplit h3 {
-    font-size: clamp(48px, 13vw, 76px);
+  .triad {
+    margin-bottom: 60px;
+  }
+
+  .triadNode {
+    max-width: 160px;
   }
 
   .collegeCopy p {
@@ -797,63 +678,52 @@
    .collegeHeader h2 {
     font-size: 45px;
    }
-
-   .collegeSplit h3 {
-    font-size: 30px;
-  }
 }
 
 /* BELIEF SECTION */
 
 .beliefsSection {
   position: relative;
-  background: #020914;
+  overflow: hidden;
+  background: #000;
   color: #ffffff;
+  padding: clamp(80px, 7vw, 130px) clamp(24px, 5vw, 90px);
+}
+
+.beliefsInner {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 0.9fr 1.6fr;
+  gap: clamp(56px, 8vw, 140px);
+  max-width: 1500px;
+  margin: 0 auto;
 }
 
 .beliefsIntro {
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: clamp(80px, 10vw, 140px) 24px;
-  background:
-    radial-gradient(circle at 18% 20%, rgba(218, 41, 145, 0.16), transparent 24%),
-    radial-gradient(circle at 88% 72%, rgba(0, 228, 231, 0.12), transparent 26%),
-    linear-gradient(135deg, #020914 0%, #061325 45%, #020914 100%);
-}
-
-.beliefsIntro span {
-  display: block;
-  margin-bottom: 22px;
-  color: #da2991;
-  font-size: 18px;
-  font-weight: 800;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
+  padding-top: 10px;
 }
 
 .beliefsIntro h2 {
   margin: 0;
-  font-size: clamp(64px, 9vw, 150px);
-  line-height: 0.9;
+  max-width: 420px;
+  font-size: clamp(56px, 5.4vw, 96px);
+  line-height: 0.95;
   font-weight: 900;
-  letter-spacing: -0.06em;
+  letter-spacing: -0.055em;
   text-transform: uppercase;
 }
 
 .beliefsLine {
   width: 145px;
   height: 4px;
-  margin: 34px 0;
+  margin: 28px 0 34px;
   border-radius: 999px;
-  background: linear-gradient(90deg, #da2991, #00e4e7);
+  background: #da2991;
 }
 
 .beliefsIntro p {
-  max-width: 520px;
+  max-width: 320px;
   margin: 0;
   color: rgba(255, 255, 255, 0.72);
   font-size: 21px;
@@ -862,101 +732,147 @@
 }
 
 .beliefsList {
-  position: relative;
+  width: 100%;
 }
 
 .beliefItem {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
+  position: relative;
+  display: grid;
+  grid-template-columns: 64px 1fr;
   align-items: center;
-  justify-content: center;
-  border-top: 1px solid rgba(255, 255, 255, 0.13);
-  background:
-    radial-gradient(circle at 18% 20%, rgba(218, 41, 145, 0.16), transparent 24%),
-    radial-gradient(circle at 88% 72%, rgba(0, 228, 231, 0.12), transparent 26%),
-    linear-gradient(135deg, #020914 0%, #061325 45%, #020914 100%);
+  gap: 22px;
+  padding: 21px 0;
+  opacity: 0;
+  transform: translateY(26px);
+  filter: blur(3px);
+  transition:
+    opacity 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    transform 0.7s cubic-bezier(0.22, 0.61, 0.36, 1),
+    filter 0.7s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
-.beliefItemInner {
-  width: min(920px, 100%);
-  margin: 0 auto;
-  padding: 0 24px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
+.beliefItem::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -1px;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(90deg, #da2991, rgba(255, 255, 255, 0.13) 40%, rgba(255, 255, 255, 0.13));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) 0.25s;
+}
+
+.beliefVisible {
+  opacity: 1;
+  transform: translateY(0);
+  filter: blur(0);
+}
+
+.beliefVisible::after {
+  transform: scaleX(1);
+}
+
+.beliefVisible:hover {
+  transform: translateX(10px);
+}
+
+.beliefsList:hover .beliefItem {
+  opacity: 0.3;
+}
+
+.beliefsList:hover .beliefItem:hover {
+  opacity: 1;
 }
 
 .beliefNumber {
-  color: #da2991;
-  font-size: clamp(48px, 6vw, 90px);
-  line-height: 1;
-  font-weight: 800;
-  margin-bottom: 18px;
-}
-
-.beliefItem:nth-child(n + 4) .beliefNumber {
-  color: #3f8ee8;
-}
-
-.beliefItem:nth-child(7) .beliefNumber {
   color: #00e4e7;
-}
-
-.beliefIcon {
-  width: 74px;
-  height: 74px;
-  border: 1.5px solid currentColor;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  color: #da2991;
-  margin-bottom: 30px;
-}
-
-.beliefItem:nth-child(n + 4) .beliefIcon {
-  color: #3f8ee8;
-}
-
-.beliefItem:nth-child(7) .beliefIcon {
-  color: #00e4e7;
-}
-
-.beliefIcon span {
-  font-size: 36px;
+  font-size: 38px;
+  font-weight: 400;
   line-height: 1;
-  font-weight: 300;
+  transition: all 0.35s ease;
+}
+
+.beliefItem:hover .beliefNumber {
+  background: linear-gradient(135deg, #da2991, #00e4e7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  transform: scale(1.15);
 }
 
 .beliefText h3 {
   margin: 0;
-  color: rgba(255, 255, 255, 0.95);
-  font-size: clamp(30px, 3.4vw, 54px);
-  line-height: 1.08;
+  color: rgba(255, 255, 255, 0.92);
+  font-size: clamp(19px, 1.35vw, 25px);
+  line-height: 1.2;
   font-weight: 800;
-  letter-spacing: -0.04em;
+  letter-spacing: -0.035em;
 }
 
 .beliefText p {
-  margin: 22px 0 0;
+  margin: 4px 0 0;
   color: rgba(255, 255, 255, 0.68);
-  font-size: clamp(19px, 1.5vw, 26px);
-  line-height: 1.4;
-  letter-spacing: -0.025em;
+  font-size: clamp(18px, 1.25vw, 23px);
+  line-height: 1.35;
+  letter-spacing: -0.035em;
 }
 
 .beliefText p span {
   display: block;
 }
 
+.beliefGhost {
+  position: absolute;
+  top: 50%;
+  right: clamp(8px, 4vw, 80px);
+  transform: translateY(-50%);
+  font-size: clamp(240px, 34vw, 560px);
+  font-weight: 900;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(255, 255, 255, 0.14);
+  pointer-events: none;
+  z-index: 0;
+  opacity: 1;
+  user-select: none;
+  transition:
+    opacity 0.45s ease,
+    transform 0.45s ease;
+}
 
+.ghostSwap {
+  opacity: 0;
+  transform: translateY(calc(-50% + 40px));
+}
 
+.beliefGlow {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(circle, rgba(218, 41, 145, 0.13) 0%, rgba(0, 228, 231, 0.05) 45%, transparent 70%);
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.beliefsSection:hover .beliefGlow {
+  opacity: 1;
+}
 
 @media (max-width: 900px) {
-  .beliefsIntro {
+  .beliefsSection {
     padding: 80px 22px;
+  }
+
+  .beliefsInner {
+    grid-template-columns: 1fr;
+    gap: 48px;
   }
 
   .beliefsIntro h2 {
@@ -965,28 +881,24 @@
 
   .beliefsIntro p {
     font-size: 18px;
+    max-width: none;
+  }
+
+  .beliefItem {
+    grid-template-columns: 38px 1fr;
+    gap: 16px;
+    padding: 20px 0;
   }
 
   .beliefNumber {
-    font-size: 40px;
-    margin-bottom: 14px;
-  }
-
-  .beliefIcon {
-    width: 58px;
-    height: 58px;
-    margin-bottom: 22px;
-  }
-
-  .beliefIcon span {
     font-size: 28px;
   }
 
   .beliefText h3 {
-    font-size: 26px;
+    font-size: 18px;
   }
 
   .beliefText p {
-    font-size: 17px;
+    font-size: 16px;
   }
 }

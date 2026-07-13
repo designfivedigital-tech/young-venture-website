@@ -5,10 +5,14 @@ import type { CSSProperties } from "react";
 import styles from "./AboutUsPage.module.css";
 import { FOCUS_ITEMS } from "./focusAreasData";
 
+const STEP = 32;
+const RADIUS = 300;
+
 export default function FocusAreasSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const [active, setActive] = useState(0);
   const [wheelProgress, setWheelProgress] = useState(0);
+  const [entered, setEntered] = useState(false);
 
   useEffect(() => {
     let ticking = false;
@@ -42,6 +46,26 @@ export default function FocusAreasSection() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setEntered(true);
+            observer.disconnect();
+          }
+        });
+      },
+      { threshold: 0.15 }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
   const goTo = (index: number) => {
     const el = sectionRef.current;
     if (!el) return;
@@ -54,8 +78,7 @@ export default function FocusAreasSection() {
   };
 
   const current = FOCUS_ITEMS[active];
-  const centerIndex = Math.round(wheelProgress);
-  const visibleItems = 7;
+  const entryOffset = entered ? 0 : 140;
 
   return (
     <section ref={sectionRef} className={styles.focusSection} data-header-theme="light">
@@ -66,94 +89,57 @@ export default function FocusAreasSection() {
               <p className={styles.focusLabel}>Focus areas</p>
               <h2 className={styles.focusHeading}>Our definition of deep tech</h2>
             </div>
-
-            <p className={styles.focusDesc}>
-              Our focus spans sectors where scientific breakthroughs can unlock meaningful economic and
-              societal impact, including climate and energy technologies, advanced materials, robotics,
-              industrial automation, medical technologies, computational biology, and frontier
-              physics-based innovations.
-            </p>
           </div>
         </div>
 
         <div className={styles.focusBody}>
-          <div className={styles.wheel} role="listbox" aria-label="Focus areas">
-            <div className={styles.wheelArc} aria-hidden />
+          <div className={`${styles.drumScene} ${entered ? "" : styles.drumPre}`}>
+            <span className={styles.drumMarker} aria-hidden />
 
-            {Array.from({ length: visibleItems }).map((_, virtualIndex) => {
-              const virtualOffset = virtualIndex - Math.floor(visibleItems / 2);
+            <div
+              className={styles.drumRing}
+              style={{
+                transform: `translateZ(${-RADIUS}px) rotateX(${wheelProgress * STEP + entryOffset}deg)`,
+              }}
+              role="listbox"
+              aria-label="Focus areas"
+            >
+              {FOCUS_ITEMS.map((item, index) => {
+                const Icon = item.Icon;
+                const distance = Math.abs(index - wheelProgress);
+                const isActive = index === active;
 
-              const realIndex =
-                ((centerIndex + virtualOffset) % FOCUS_ITEMS.length + FOCUS_ITEMS.length) %
-                FOCUS_ITEMS.length;
+                const opacity =
+                  distance < 0.55 ? 1 : distance < 1.55 ? 0.5 : distance < 2.55 ? 0.15 : 0.05;
 
-              let offset = realIndex - wheelProgress;
-
-              if (offset > FOCUS_ITEMS.length / 2) offset -= FOCUS_ITEMS.length;
-              if (offset < -FOCUS_ITEMS.length / 2) offset += FOCUS_ITEMS.length;
-
-              const item = FOCUS_ITEMS[realIndex];
-              const Icon = item.Icon;
-              const distance = Math.abs(offset);
-              const isActive = realIndex === active && distance < 0.55;
-
-              const opacity =
-                distance < 0.55 ? 1 : distance < 1.55 ? 0.55 : distance < 2.55 ? 0.32 : 0.14;
-
-              return (
-                <button
-                  key={`${realIndex}-${virtualIndex}`}
-                  type="button"
-                  className={`${styles.wheelItem} ${isActive ? styles.active : ""}`}
-                  style={{ "--offset": offset, opacity } as CSSProperties}
-                  onClick={() => goTo(realIndex)}
-                  role="option"
-                  aria-selected={isActive}
-                  tabIndex={isActive ? 0 : -1}
-                >
-                  <span className={styles.wheelInner}>
-                    <span className={styles.wheelIcon}>
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    className={`${styles.drumItem} ${isActive ? styles.active : ""}`}
+                    style={{
+                      transform: `rotateX(${-index * STEP}deg) translateZ(${RADIUS}px)`,
+                      opacity,
+                    } as CSSProperties}
+                    onClick={() => goTo(index)}
+                    role="option"
+                    aria-selected={isActive}
+                    tabIndex={isActive ? 0 : -1}
+                  >
+                    <span className={styles.drumIcon}>
                       <Icon />
                     </span>
-
-                    <span className={styles.wheelLabel}>
-                      <span className={styles.mobileTitle}>{item.label}</span>
-                      <span className={styles.mobileDescription}>{item.description}</span>
-                    </span>
-                  </span>
-                </button>
-              );
-            })}
+                    <span className={styles.drumTitle}>{item.label}</span>
+                    <span className={styles.mobileDescription}>{item.description}</span>
+                  </button>
+                );
+              })}
+            </div>
           </div>
 
           <div className={styles.focusContent}>
             <div key={`content-${active}`} className={styles.focusContentInner}>
-              <span className={styles.focusContentNumber}>
-                {String(active + 1).padStart(2, "0")}
-              </span>
-
-              <h3>{current.title}</h3>
               <p>{current.description}</p>
-
-              <a href={current.link}>
-                Learn more
-                <span>→</span>
-              </a>
-            </div>
-          </div>
-
-          <div className={styles.media}>
-            <div className={styles.mediaInner}>
-              <div key={`media-${active}`} className={styles.slide} style={{ background: current.bg }}>
-                {current.image ? (
-                  <img src={current.image} alt={current.title} />
-                ) : (
-                  <span className={styles.slidePlaceholder}>
-                    {current.title}
-                    <small>Immagine {active + 1} — placeholder</small>
-                  </span>
-                )}
-              </div>
             </div>
           </div>
         </div>
