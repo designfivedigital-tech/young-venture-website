@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./TeamPage.module.css";
 
 type TeamMember = {
@@ -9,60 +9,64 @@ type TeamMember = {
   role: string;
   image: string;
   hoverImage: string;
-  category: string;
-  location: string;
 };
 
-const teamMembers: TeamMember[] = [
+const TEAM_TEMPLATE: TeamMember[] = [
   {
     name: "Name Surname",
     role: "Investment Team, Milan",
     image: "/images/team-members/ragazzo-prova.jpg",
     hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
-    category: "Investment",
-    location: "Milan",
   },
   {
     name: "Name Surname",
     role: "Founder Relations, London",
     image: "/images/team-members/team-2.jpg",
     hoverImage: "/images/team-members/team-2.mp4",
-    category: "Operations",
-    location: "London",
   },
   {
     name: "Name Surname",
     role: "University Network, Milan",
     image: "/images/team-members/team-3.jpg",
     hoverImage: "/images/team-members/team-3.mp4",
-    category: "Specialists",
-    location: "Milan",
   },
   {
     name: "Name Surname",
     role: "Investment Team, London",
     image: "/images/team-members/team-4.jpg",
     hoverImage: "/images/team-members/team-4.mp4",
-    category: "Investment",
-    location: "London",
   },
   {
     name: "Name Surname",
     role: "Platform Team, Milan",
     image: "/images/team-members/team-5.jpg",
     hoverImage: "/images/team-members/team-5.mp4",
-    category: "Operations",
-    location: "Milan",
   },
   {
     name: "Name Surname",
     role: "Venture Partner, Europe",
     image: "/images/team-members/team-6.jpg",
     hoverImage: "/images/team-members/team-6.mp4",
-    category: "Specialists",
-    location: "Europe",
   },
 ];
+
+const UNIVERSITIES = [
+  "Bocconi",
+  "ETH",
+  "Oxford",
+  "Cambridge",
+  "LSE",
+  "NYU",
+  "Harvard",
+  "Stanford",
+  "Caltech",
+];
+
+const universityGroups = UNIVERSITIES.map((name) => ({
+  slug: name.toLowerCase(),
+  name,
+  members: TEAM_TEMPLATE,
+}));
 
 function TeamCard({ member }: { member: TeamMember }) {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -109,13 +113,35 @@ function TeamCard({ member }: { member: TeamMember }) {
           <span className={styles.hold}>hold to play</span>
         </div>
 
-      <h2>{member.name}</h2>
+      <h3>{member.name}</h3>
       <p>{member.role}</p>
     </article>
   );
 }
 
 export default function TeamPage() {
+  const [activeSlug, setActiveSlug] = useState(universityGroups[0].slug);
+
+  useEffect(() => {
+    const sections = universityGroups
+      .map((group) => document.getElementById(group.slug))
+      .filter((el): el is HTMLElement => el !== null);
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveSlug(entry.target.id);
+          }
+        });
+      },
+      { rootMargin: "-130px 0px -70% 0px", threshold: 0 }
+    );
+
+    sections.forEach((el) => observer.observe(el));
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <section data-header-theme="light" className={styles.teamPage}>
       <div className={styles.hero}>
@@ -143,21 +169,29 @@ export default function TeamPage() {
           <p>Universities</p>
 
           <div>
-            <button>Bocconi</button>
-            <button>ETH</button>
-            <button>Oxford</button>
-            <button>Cambridge</button>
-            <button>LSE</button>
-            <button>NYU</button>
-            <button>Harvard</button>
-            <button>Stanford</button>
-            <button>Caltech</button>
+            {universityGroups.map((group) => (
+              <a
+                key={group.slug}
+                href={`#${group.slug}`}
+                className={activeSlug === group.slug ? styles.activeLink : undefined}
+              >
+                {group.name}
+              </a>
+            ))}
           </div>
         </aside>
 
-        <div className={styles.grid}>
-          {teamMembers.map((member) => (
-            <TeamCard key={member.name} member={member} />
+        <div className={styles.groups}>
+          {universityGroups.map((group) => (
+            <section key={group.slug} id={group.slug} className={styles.group}>
+              <h2 className={styles.groupTitle}>{group.name}</h2>
+
+              <div className={styles.grid}>
+                {group.members.map((member, index) => (
+                  <TeamCard key={`${group.slug}-${index}`} member={member} />
+                ))}
+              </div>
+            </section>
           ))}
         </div>
       </div>
