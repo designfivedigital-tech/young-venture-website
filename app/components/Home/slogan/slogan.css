@@ -28,6 +28,7 @@
   line-height: 0.98;
   font-family: "YV Font";
   text-align: center;
+  text-transform: uppercase;
   max-width: 98vw;
   padding: 0 2vw 0.12em;
   margin: 0;
@@ -45,9 +46,8 @@
   color: rgba(255, 255, 255, 0.13);
   background-image: linear-gradient(
     90deg,
-    #da2991 0%,
-    #77db21 52%,
-    #00e4e7 100%
+    #fff 0%,
+    #fff 100%
   );
   background-size: var(--progress, 0%) 100%;
   background-repeat: no-repeat;
