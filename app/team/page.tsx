@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
+import type { MouseEvent } from "react";
 import styles from "./TeamPage.module.css";
 
 type TeamMember = {
@@ -21,32 +22,32 @@ const TEAM_TEMPLATE: TeamMember[] = [
   {
     name: "Name Surname",
     role: "Founder Relations, London",
-    image: "/images/team-members/team-2.jpg",
-    hoverImage: "/images/team-members/team-2.mp4",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
   },
   {
     name: "Name Surname",
     role: "University Network, Milan",
-    image: "/images/team-members/team-3.jpg",
-    hoverImage: "/images/team-members/team-3.mp4",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
   },
   {
     name: "Name Surname",
     role: "Investment Team, London",
-    image: "/images/team-members/team-4.jpg",
-    hoverImage: "/images/team-members/team-4.mp4",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
   },
   {
     name: "Name Surname",
     role: "Platform Team, Milan",
-    image: "/images/team-members/team-5.jpg",
-    hoverImage: "/images/team-members/team-5.mp4",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
   },
   {
     name: "Name Surname",
     role: "Venture Partner, Europe",
-    image: "/images/team-members/team-6.jpg",
-    hoverImage: "/images/team-members/team-6.mp4",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
   },
 ];
 
@@ -142,6 +143,19 @@ export default function TeamPage() {
     return () => observer.disconnect();
   }, []);
 
+  const handleUniversityClick = (
+    e: MouseEvent<HTMLAnchorElement>,
+    slug: string
+  ) => {
+    e.preventDefault();
+    const el = document.getElementById(slug);
+    if (!el) return;
+
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+    window.history.pushState(null, "", `#${slug}`);
+  };
+
   return (
     <section data-header-theme="light" className={styles.teamPage}>
       <div className={styles.hero}>
@@ -173,6 +187,7 @@ export default function TeamPage() {
               <a
                 key={group.slug}
                 href={`#${group.slug}`}
+                onClick={(e) => handleUniversityClick(e, group.slug)}
                 className={activeSlug === group.slug ? styles.activeLink : undefined}
               >
                 {group.name}
