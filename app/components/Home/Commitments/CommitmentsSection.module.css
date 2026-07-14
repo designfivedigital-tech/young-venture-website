@@ -22,8 +22,7 @@
   color: #061f17;
   font-size: clamp(2.8rem, 3.6vw, 5rem);
   line-height: 0.95;
-  font-weight: 900;
-  letter-spacing: -0.05em;
+  font-weight: 700;
   white-space: nowrap;
 }
 
@@ -74,6 +73,7 @@
   margin: 0;
   font-size: clamp(1rem, 1vw, 1.25rem);
   line-height: 1.45;
+  font-weight: 500;
 }
 
 .ctaCard {

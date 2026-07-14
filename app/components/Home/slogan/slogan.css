@@ -21,6 +21,7 @@
   font-family: var(--font-barlow);
   text-align: center;
   text-transform: uppercase;
+  font-weight: 700;
   max-width: 98vw;
   padding: 0 2vw 0.12em;
   margin: 0;

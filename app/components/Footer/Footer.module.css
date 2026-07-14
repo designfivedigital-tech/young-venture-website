@@ -49,6 +49,7 @@
   font-size: clamp(15px, 1vw, 19px);
   color: rgba(6, 29, 24, 0.42);
   line-height: 1.35;
+  font-weight: 500;
 }
 
 .disclaimer {
@@ -73,6 +74,7 @@
   color: #061d18;
   text-decoration: none;
   transition: opacity 0.25s ease;
+  font-weight: 700;
 }
 
 .mainNav a:hover {
@@ -119,6 +121,7 @@
   font-size: 18px;
   color: #061d18;
   text-decoration: none;
+  font-weight: 500;
 }
 
 .legalLinks {
@@ -129,6 +132,7 @@
   font-size: 18px;
   color: rgba(6, 29, 24, 0.35);
   text-decoration: none;
+  font-weight: 500;
 }
 
 .copy {
