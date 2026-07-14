@@ -145,7 +145,7 @@ scroll-snap-stop: always;
   font-weight: 200;
   line-height: 1.3;
   color: rgba(255, 255, 255, 0.65);
-  font-weight: 400;
+  font-weight: 500;
 }
 
 /* Fluid scaling between 1025px and 1281px, where the unprefixed rules above (already fluid via vw up to 2560px+) take over seamlessly. */

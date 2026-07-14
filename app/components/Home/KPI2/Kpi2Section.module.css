@@ -107,6 +107,7 @@
   font-size: clamp(14px, 0.9vw, 16px);
   line-height: 1.28;
   text-align: right;
+  font-weight: 500;
 }
 
 /* ================= KPI board (reference-style dashboard) ================= */
