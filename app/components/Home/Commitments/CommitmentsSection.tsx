@@ -51,82 +51,9 @@ const commitments: Commitment[] = [
     website: "https://example.com",
     linkedin: "https://www.linkedin.com/company/example",
   },
-  {
-    id: 3,
-    name: "Luma Labs",
-    logo: "/images/commitments-logo/Logo_NIKE.svg",
-    shortDescription: "Creative tools powered by AI",
-    longDescription:
-      "Luma Labs creates next-generation tools for designers, developers and creative teams, making advanced AI workflows simple and accessible.",
-    status: "ACTIVE",
-    founded: "2022",
-    backed: "2024",
-    founder: "Daniel Reed",
-    location: "London, UK",
-    website: "https://example.com",
-    linkedin: "https://www.linkedin.com/company/example",
-  },
-  {
-    id: 4,
-    name: "Orbit",
-    logo: "/images/commitments-logo/Huawei_wordmark.svg",
-    shortDescription: "Finance OS for founders",
-    longDescription:
-      "Orbit gives founders a modern financial operating system to manage cash, forecast growth and understand company performance in real time.",
-    status: "ACTIVE",
-    founded: "2019",
-    backed: "2021",
-    founder: "Sofia Lane",
-    location: "Paris, France",
-    website: "https://example.com",
-    linkedin: "https://www.linkedin.com/company/example",
-  },
-  {
-    id: 5,
-    name: "Kinetiq",
-    logo: "/images/commitments-logo/TikTok_logo.svg.colorable.svg",
-    shortDescription: "Mobility data for cities",
-    longDescription:
-      "Kinetiq works with cities and mobility operators to design cleaner, safer and more efficient urban transportation systems.",
-    status: "EXITED",
-    founded: "2018",
-    backed: "2020",
-    founder: "Leo Ferri",
-    location: "Amsterdam, Netherlands",
-    website: "https://example.com",
-    linkedin: "https://www.linkedin.com/company/example",
-  },
-  {
-    id: 6,
-    name: "Auralis",
-    logo: "/images/commitments-logo/microsoft.svg",
-    shortDescription: "Audio intelligence for products",
-    longDescription:
-      "Auralis develops audio intelligence systems that allow products to understand speech, sound and context in demanding environments.",
-    status: "ACTIVE",
-    founded: "2023",
-    backed: "2024",
-    founder: "Nina Brooks",
-    location: "Zurich, Switzerland",
-    website: "https://example.com",
-    linkedin: "https://www.linkedin.com/company/example",
-  },
-  {
-    id: 7,
-    name: "Black Forest",
-    logo: "/images/commitments-logo/Samsung_Black_icon.svg",
-    shortDescription: "AI image generation research",
-    longDescription:
-      "Black Forest is advancing generative media through research-driven image models, creative infrastructure and tools for visual production.",
-    status: "ACTIVE",
-    founded: "2021",
-    backed: "2023",
-    founder: "Jonas Weber",
-    location: "Munich, Germany",
-    website: "https://example.com",
-    linkedin: "https://www.linkedin.com/company/example",
-  },
 ];
+
+const COMING_SOON_SLOTS = 5;
 
 const EXPANSION_COLS = 4;
 
@@ -268,12 +195,33 @@ export default function CommitmentsSection({
             </button>
           ))}
 
+          {Array.from({ length: COMING_SOON_SLOTS }).map((_, i) => {
+            const index = commitments.length + i;
+            return (
+              <div
+                key={`coming-soon-${i}`}
+                className={`${styles.card} ${styles.comingSoonCard} ${getHoverClass(
+                  index
+                )}`}
+                onMouseEnter={() => setHoveredIndex(index)}
+              >
+                <div className={styles.logoWrap}>
+                  <span className={styles.comingSoonMark}>+</span>
+                </div>
+
+                <p>Coming soon</p>
+              </div>
+            );
+          })}
+
           {lastCard === "cta" ? (
             <div
               className={`${styles.card} ${styles.ctaCard} ${getHoverClass(
-                commitments.length
+                commitments.length + COMING_SOON_SLOTS
               )}`}
-              onMouseEnter={() => setHoveredIndex(commitments.length)}
+              onMouseEnter={() =>
+                setHoveredIndex(commitments.length + COMING_SOON_SLOTS)
+              }
             >
               <h2>
                 We back companies.
@@ -288,9 +236,11 @@ export default function CommitmentsSection({
           ) : (
             <div
               className={`${styles.card} ${styles.comingSoonCard} ${getHoverClass(
-                commitments.length
+                commitments.length + COMING_SOON_SLOTS
               )}`}
-              onMouseEnter={() => setHoveredIndex(commitments.length)}
+              onMouseEnter={() =>
+                setHoveredIndex(commitments.length + COMING_SOON_SLOTS)
+              }
             >
               <div className={styles.logoWrap}>
                 <span className={styles.comingSoonMark}>+</span>

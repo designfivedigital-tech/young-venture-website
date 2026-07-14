@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useLayoutEffect, useRef } from "react";
 import "./slogan.css";
 
 type WordTiming = {
@@ -10,7 +10,39 @@ type WordTiming = {
 
 export default function Slogan() {
   const sectionRef = useRef<HTMLElement | null>(null);
+  const titleRef = useRef<HTMLHeadingElement | null>(null);
+  const lineRef = useRef<HTMLSpanElement | null>(null);
   const wordRefs = useRef<(HTMLSpanElement | null)[]>([]);
+
+  useLayoutEffect(() => {
+    const title = titleRef.current;
+    const line = lineRef.current;
+    if (!title || !line) return;
+
+    const fitTitle = () => {
+      title.style.fontSize = "";
+
+      const style = window.getComputedStyle(title);
+      const horizontalPadding =
+        parseFloat(style.paddingLeft) + parseFloat(style.paddingRight);
+      const available = title.clientWidth - horizontalPadding;
+      const needed = line.scrollWidth;
+
+      if (available > 0 && needed > available) {
+        const current = parseFloat(style.fontSize);
+        title.style.fontSize = `${(current * available) / needed}px`;
+      }
+    };
+
+    fitTitle();
+    window.addEventListener("resize", fitTitle);
+
+    if (typeof document !== "undefined" && "fonts" in document) {
+      document.fonts.ready.then(fitTitle);
+    }
+
+    return () => window.removeEventListener("resize", fitTitle);
+  }, []);
 
   useEffect(() => {
     let frameId: number | null = null;
@@ -74,8 +106,8 @@ export default function Slogan() {
   return (
     <section ref={sectionRef} className="payoff-section snap-section">
       <div className="payoff-sticky">
-        <h1 className="payoff-title">
-  <span className="payoff-line">
+        <h1 className="payoff-title" ref={titleRef}>
+  <span className="payoff-line" ref={lineRef}>
     {["Born", "to", "Scout", "the", "invisible"].map((word, index) => (
       <span
         key={`${word}-${index}`}
