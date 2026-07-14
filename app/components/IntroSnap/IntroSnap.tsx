@@ -51,7 +51,10 @@ export default function IntroSnap({
 
     const getBottom = (el: HTMLElement) => getTop(el) + el.offsetHeight;
 
+    let animationToken = 0;
+
     const animateTo = (targetTop: number) => {
+      const token = ++animationToken;
       isAnimatingRef.current = true;
 
       const startTop = window.scrollY;
@@ -63,6 +66,8 @@ export default function IntroSnap({
         t === 1 ? 1 : 1 - Math.pow(2, -10 * t);
 
       const animate = (time: number) => {
+        if (token !== animationToken) return;
+
         const progress = Math.min((time - startTime) / duration, 1);
         const eased = easeOutExpo(progress);
 
@@ -74,7 +79,7 @@ export default function IntroSnap({
           window.scrollTo(0, targetTop);
 
           window.setTimeout(() => {
-            isAnimatingRef.current = false;
+            if (token === animationToken) isAnimatingRef.current = false;
           }, 120);
         }
       };
@@ -83,11 +88,17 @@ export default function IntroSnap({
     };
 
     const lockStep = () => {
+      const token = ++animationToken;
       isAnimatingRef.current = true;
 
       window.setTimeout(() => {
-        isAnimatingRef.current = false;
+        if (token === animationToken) isAnimatingRef.current = false;
       }, 720);
+    };
+
+    const unstickScroll = () => {
+      animationToken++;
+      isAnimatingRef.current = false;
     };
 
     const getClosestIntroIndex = () => {
@@ -307,9 +318,13 @@ export default function IntroSnap({
     };
 
     window.addEventListener("wheel", onWheel, { passive: false });
+    document.addEventListener("visibilitychange", unstickScroll);
+    window.addEventListener("blur", unstickScroll);
 
     return () => {
       window.removeEventListener("wheel", onWheel);
+      document.removeEventListener("visibilitychange", unstickScroll);
+      window.removeEventListener("blur", unstickScroll);
     };
   }, [setLogoStep]);
 

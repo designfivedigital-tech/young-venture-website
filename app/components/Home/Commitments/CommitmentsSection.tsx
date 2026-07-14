@@ -1,8 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
+import Link from "next/link";
 import styles from "./CommitmentsSection.module.css";
 
 type Commitment = {
@@ -70,6 +71,20 @@ export default function CommitmentsSection({
   const [mounted, setMounted] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const handleHoverEnter = (index: number) => {
+    if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    hoverTimeoutRef.current = setTimeout(() => setHoveredIndex(index), 80);
+  };
+
+  const handleHoverLeave = () => {
+    if (hoverTimeoutRef.current) {
+      clearTimeout(hoverTimeoutRef.current);
+      hoverTimeoutRef.current = null;
+    }
+    setHoveredIndex(null);
+  };
 
   const closePopup = () => {
     setIsClosing(true);
@@ -94,9 +109,11 @@ export default function CommitmentsSection({
   }, []);
 
   useEffect(() => {
-    const clearHover = () => setHoveredIndex(null);
-    window.addEventListener("resize", clearHover);
-    return () => window.removeEventListener("resize", clearHover);
+    window.addEventListener("resize", handleHoverLeave);
+    return () => {
+      window.removeEventListener("resize", handleHoverLeave);
+      if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
+    };
   }, []);
 
   useEffect(() => {
@@ -172,13 +189,13 @@ export default function CommitmentsSection({
           <h2>Companies we back. People we believe in.</h2>
         </div>
 
-        <div className={styles.grid} onMouseLeave={() => setHoveredIndex(null)}>
+        <div className={styles.grid} onMouseLeave={handleHoverLeave}>
           {commitments.map((item, index) => (
             <button
               key={item.id}
               type="button"
               className={`${styles.card} ${getHoverClass(index)}`}
-              onMouseEnter={() => setHoveredIndex(index)}
+              onMouseEnter={() => handleHoverEnter(index)}
               onClick={() => setSelectedCommitment(item)}
             >
               <div className={styles.logoWrap}>
@@ -203,7 +220,7 @@ export default function CommitmentsSection({
                 className={`${styles.card} ${styles.comingSoonCard} ${getHoverClass(
                   index
                 )}`}
-                onMouseEnter={() => setHoveredIndex(index)}
+                onMouseEnter={() => handleHoverEnter(index)}
               >
                 <div className={styles.logoWrap}>
                   <span className={styles.comingSoonMark}>+</span>
@@ -220,7 +237,7 @@ export default function CommitmentsSection({
                 commitments.length + COMING_SOON_SLOTS
               )}`}
               onMouseEnter={() =>
-                setHoveredIndex(commitments.length + COMING_SOON_SLOTS)
+                handleHoverEnter(commitments.length + COMING_SOON_SLOTS)
               }
             >
               <h2>
@@ -229,9 +246,9 @@ export default function CommitmentsSection({
                 But we believe in humans.
               </h2>
 
-              <button type="button" className={styles.viewAll}>
+              <Link href="/commitments" className={styles.viewAll}>
                 View all
-              </button>
+              </Link>
             </div>
           ) : (
             <div
@@ -239,7 +256,7 @@ export default function CommitmentsSection({
                 commitments.length + COMING_SOON_SLOTS
               )}`}
               onMouseEnter={() =>
-                setHoveredIndex(commitments.length + COMING_SOON_SLOTS)
+                handleHoverEnter(commitments.length + COMING_SOON_SLOTS)
               }
             >
               <div className={styles.logoWrap}>
