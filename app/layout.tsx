@@ -7,24 +7,28 @@ import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import PageTransition from "./components/PageTransition";
 
-const youngVenturesFont = localFont({
+const barlow = localFont({
   src: [
-    {
-      path: "../public/fonts/YV-font-y-normal.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/YoungVenturesFont-Grassetto.ttf",
-      weight: "700",
-      style: "normal",
-    },
-    {
-      path: "../public/fonts/YoungVenturesFont-Corsivo.ttf",
-      weight: "400",
-      style: "italic",
-    },
+    { path: "../public/fonts/BarlowCondensedSquared-Thin.ttf", weight: "100", style: "normal" },
+    { path: "../public/fonts/BarlowCondensedSquared-ThinItalic.ttf", weight: "100", style: "italic" },
+    { path: "../public/fonts/BarlowCondensedSquared-ExtraLight.ttf", weight: "200", style: "normal" },
+    { path: "../public/fonts/BarlowCondensedSquared-ExtraLightItalic.ttf", weight: "200", style: "italic" },
+    { path: "../public/fonts/BarlowCondensedSquared-Light.ttf", weight: "300", style: "normal" },
+    { path: "../public/fonts/BarlowCondensedSquared-LightItalic.ttf", weight: "300", style: "italic" },
+    { path: "../public/fonts/BarlowCondensedSquared-Regular.ttf", weight: "400", style: "normal" },
+    { path: "../public/fonts/BarlowCondensedSquared-Italic.ttf", weight: "400", style: "italic" },
+    { path: "../public/fonts/BarlowCondensedSquared-Medium.ttf", weight: "500", style: "normal" },
+    { path: "../public/fonts/BarlowCondensedSquared-MediumItalic.ttf", weight: "500", style: "italic" },
+    { path: "../public/fonts/BarlowCondensedSquared-SemiBold.ttf", weight: "600", style: "normal" },
+    { path: "../public/fonts/BarlowCondensedSquared-SemiBoldItalic.ttf", weight: "600", style: "italic" },
+    { path: "../public/fonts/BarlowCondensedSquared-Bold.ttf", weight: "700", style: "normal" },
+    { path: "../public/fonts/BarlowCondensedSquared-BoldItalic.ttf", weight: "700", style: "italic" },
+    { path: "../public/fonts/BarlowCondensedSquared-ExtraBold.ttf", weight: "800", style: "normal" },
+    { path: "../public/fonts/BarlowCondensedSquared-ExtraBoldItalic.ttf", weight: "800", style: "italic" },
+    { path: "../public/fonts/BarlowCondensedSquared-Black.ttf", weight: "900", style: "normal" },
+    { path: "../public/fonts/BarlowCondensedSquared-BlackItalic.ttf", weight: "900", style: "italic" },
   ],
+  variable: "--font-barlow",
 });
 
 export const metadata: Metadata = {
@@ -39,7 +43,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={youngVenturesFont.className}>
+      <body className={`${barlow.variable} ${barlow.className}`}>
       <div className="site-shell">
         <CustomCursor />
         <Header />
