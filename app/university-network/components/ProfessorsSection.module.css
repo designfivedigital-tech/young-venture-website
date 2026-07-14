@@ -21,6 +21,7 @@
   color: #555;
   font-size: clamp(14px, 1.1vw, 17px);
   line-height: 1.55;
+  font-weight: 500;
 }
 
 .grid {
@@ -106,6 +107,7 @@
   color: #444;
   font-size: clamp(13px, 1vw, 15px);
   line-height: 1.6;
+  font-weight: 500;
 }
 
 .companies {

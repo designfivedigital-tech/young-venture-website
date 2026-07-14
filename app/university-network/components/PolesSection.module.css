@@ -36,6 +36,7 @@
   color: #555;
   font-size: clamp(14px, 1.1vw, 17px);
   line-height: 1.55;
+  font-weight: 500;
 }
 
 .diagram {
