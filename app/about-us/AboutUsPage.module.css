@@ -447,8 +447,7 @@
 
   font-size: clamp(72px, 8vw, 150px);
   line-height: 0.88;
-  font-weight: 950;
-  letter-spacing: -0.085em;
+  font-weight: 700;
   text-transform: uppercase;
   text-align: center;
   color: #071a33;
