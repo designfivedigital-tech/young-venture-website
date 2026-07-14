@@ -31,6 +31,13 @@ const barlow = localFont({
   variable: "--font-barlow",
 });
 
+const playfair = localFont({
+  src: [
+    { path: "../public/fonts/PlayfairDisplay-VariableFont_wght.ttf", weight: "400 900", style: "normal" },
+  ],
+  variable: "--font-playfair",
+});
+
 export const metadata: Metadata = {
   title: "Young Ventures",
   description: "Young Ventures website",
@@ -43,7 +50,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${barlow.variable} ${barlow.className}`}>
+      <body className={`${barlow.variable} ${playfair.variable} ${barlow.className}`}>
       <div className="site-shell">
         <CustomCursor />
         <Header />

@@ -64,8 +64,8 @@
   padding: clamp(58px, 5vh, 76px) clamp(18px, 4vw, 64px) clamp(28px, 4vh, 44px);
   background:
     radial-gradient(circle at 20% 10%, rgba(218, 41, 145, 0.24), transparent 34%),
-    radial-gradient(circle at 82% 30%, rgba(0, 213, 255, 0.18), transparent 34%),
-    radial-gradient(circle at 50% 100%, rgba(124, 255, 139, 0.13), transparent 36%),
+    radial-gradient(circle at 82% 30%, rgba(0, 228, 231, 0.18), transparent 34%),
+    radial-gradient(circle at 50% 100%, rgba(119, 219, 33, 0.14), transparent 36%),
     #050505;
   color: #ffffff;
   display: flex;
@@ -214,8 +214,12 @@
 .kpiMiniUni {
   grid-area: uni;
   background:
-    radial-gradient(circle at 15% 110%, rgba(122, 67, 141, 0.55), transparent 55%),
+    radial-gradient(circle at 15% 110%, rgba(119, 219, 33, 0.4), transparent 55%),
     #120a10;
+}
+
+.kpiMiniUni .kpiMiniIcon {
+  background: #77db21;
 }
 
 .kpiMiniVc {
@@ -366,8 +370,8 @@
   top: 32%;
   font-size: clamp(12px, 1.1vw, 18px);
   background:
-    radial-gradient(circle at 34% 30%, rgba(196, 155, 214, 0.95) 0%, rgba(122, 67, 141, 0.85) 55%, rgba(67, 33, 79, 0.75) 100%);
-  box-shadow: 0 16px 42px rgba(122, 67, 141, 0.4);
+    radial-gradient(circle at 34% 30%, rgba(210, 245, 160, 0.95) 0%, rgba(119, 219, 33, 0.85) 55%, rgba(56, 105, 16, 0.75) 100%);
+  box-shadow: 0 16px 42px rgba(119, 219, 33, 0.4);
   animation-duration: 4.4s;
   animation-delay: 0.8s;
 }
@@ -426,7 +430,7 @@
 
 /* gradient must live on the staggered digits themselves */
 .kpiGiantNumber .kpiDigit {
-  background: linear-gradient(160deg, #da2991 0%, #7a438d 45%, #00e4e7 110%);
+  background: linear-gradient(160deg, #da2991 0%, #77db21 45%, #00e4e7 110%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -737,8 +741,8 @@
 .lightMode {
   background:
     radial-gradient(circle at 20% 10%, rgba(218, 41, 145, 0.12), transparent 34%),
-    radial-gradient(circle at 82% 30%, rgba(0, 213, 255, 0.12), transparent 34%),
-    radial-gradient(circle at 50% 100%, rgba(124, 255, 139, 0.1), transparent 36%),
+    radial-gradient(circle at 82% 30%, rgba(0, 228, 231, 0.12), transparent 34%),
+    radial-gradient(circle at 50% 100%, rgba(119, 219, 33, 0.12), transparent 36%),
     #f7f7f3;
   color: #101010;
 }

@@ -18,7 +18,8 @@
   font-size: clamp(42px, 6vw, 130px);
   font-weight: 500;
   line-height: 0.98;
-  font-family: var(--font-barlow);
+  
+  font-family: var(--font-playfair);
   text-align: center;
   text-transform: uppercase;
   font-weight: 700;
