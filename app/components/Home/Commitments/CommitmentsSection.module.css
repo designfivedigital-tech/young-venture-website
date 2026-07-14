@@ -106,6 +106,31 @@
   cursor: pointer;
 }
 
+.comingSoonCard {
+  cursor: default;
+}
+
+.comingSoonCard:hover {
+  background: transparent;
+}
+
+.comingSoonCard .logoWrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.comingSoonMark {
+  font-size: clamp(2rem, 2.6vw, 3rem);
+  font-weight: 300;
+  line-height: 1;
+  color: rgba(6, 31, 23, 0.3);
+}
+
+.comingSoonCard p {
+  color: rgba(6, 31, 23, 0.55);
+}
+
 /* ================= POPUP ================= */
 
 

@@ -130,7 +130,13 @@ const commitments: Commitment[] = [
 
 const EXPANSION_COLS = 4;
 
-export default function CommitmentsSection() {
+type CommitmentsSectionProps = {
+  lastCard?: "cta" | "comingSoon";
+};
+
+export default function CommitmentsSection({
+  lastCard = "cta",
+}: CommitmentsSectionProps) {
   const [selectedCommitment, setSelectedCommitment] =
     useState<Commitment | null>(null);
 
@@ -262,22 +268,37 @@ export default function CommitmentsSection() {
             </button>
           ))}
 
-          <div
-            className={`${styles.card} ${styles.ctaCard} ${getHoverClass(
-              commitments.length
-            )}`}
-            onMouseEnter={() => setHoveredIndex(commitments.length)}
-          >
-            <h2>
-              We back companies.
-              <br />
-              But we believe in humans.
-            </h2>
+          {lastCard === "cta" ? (
+            <div
+              className={`${styles.card} ${styles.ctaCard} ${getHoverClass(
+                commitments.length
+              )}`}
+              onMouseEnter={() => setHoveredIndex(commitments.length)}
+            >
+              <h2>
+                We back companies.
+                <br />
+                But we believe in humans.
+              </h2>
 
-            <button type="button" className={styles.viewAll}>
-              View all
-            </button>
-          </div>
+              <button type="button" className={styles.viewAll}>
+                View all
+              </button>
+            </div>
+          ) : (
+            <div
+              className={`${styles.card} ${styles.comingSoonCard} ${getHoverClass(
+                commitments.length
+              )}`}
+              onMouseEnter={() => setHoveredIndex(commitments.length)}
+            >
+              <div className={styles.logoWrap}>
+                <span className={styles.comingSoonMark}>+</span>
+              </div>
+
+              <p>More partnerships coming soon</p>
+            </div>
+          )}
         </div>
       </section>
 

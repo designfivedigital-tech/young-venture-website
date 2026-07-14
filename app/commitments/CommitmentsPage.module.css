@@ -33,7 +33,7 @@
   font-size: clamp(4rem, 9vw, 10.5rem);
   line-height: 0.88;
   font-weight: 700;
-  letter-spacing: -0.075em;
+  letter-spacing: -5px;
 }
 
 .hero p {
@@ -42,87 +42,6 @@
   font-size: clamp(1rem, 1.1vw, 1.25rem);
   line-height: 1.45;
   color: rgba(6, 31, 23, 0.72);
-  font-weight: 500;
-}
-
-.clientsSection {
-  padding: 0 clamp(24px, 5vw, 80px) clamp(80px, 8vw, 130px);
-}
-
-.sectionTop {
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid rgba(6, 31, 23, 0.22);
-  padding: 22px 0;
-  margin-bottom: 24px;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: rgba(6, 31, 23, 0.55);
-}
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  border-top: 1px solid rgba(6, 31, 23, 0.18);
-  border-left: 1px solid rgba(6, 31, 23, 0.18);
-}
-
-.card {
-  min-height: 360px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  padding: clamp(24px, 3vw, 44px);
-  border-right: 1px solid rgba(6, 31, 23, 0.18);
-  border-bottom: 1px solid rgba(6, 31, 23, 0.18);
-  background: rgba(255, 255, 255, 0.28);
-  transition: background 0.35s ease, transform 0.35s ease;
-}
-
-.card:hover {
-  background: #ffffff;
-  transform: translateY(-6px);
-}
-
-.logoWrap {
-  height: 150px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo {
-  width: auto;
-  max-width: 180px;
-  max-height: 80px;
-  object-fit: contain;
-  filter: grayscale(1);
-  opacity: 0.9;
-  transition: filter 0.35s ease, opacity 0.35s ease, transform 0.35s ease;
-}
-
-.card:hover .logo {
-  filter: grayscale(0);
-  opacity: 1;
-  transform: scale(1.04);
-}
-
-.cardBottom h2 {
-  margin: 0 0 14px;
-  font-size: clamp(1.5rem, 2vw, 2.3rem);
-  line-height: 0.95;
-  font-weight: 600;
-  letter-spacing: -0.055em;
-}
-
-.cardBottom p {
-  margin: 0;
-  max-width: 360px;
-  font-size: 0.98rem;
-  line-height: 1.45;
-  color: rgba(6, 31, 23, 0.68);
   font-weight: 500;
 }
 
@@ -137,14 +56,6 @@
   .hero p {
     max-width: 620px;
   }
-
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .card {
-    min-height: 320px;
-  }
 }
 
 /* Mobile */
@@ -155,26 +66,5 @@
 
   .hero h1 {
     font-size: clamp(3.1rem, 16vw, 5rem);
-  }
-
-  .clientsSection {
-    padding: 0 20px 70px;
-  }
-
-  .sectionTop {
-    margin-bottom: 16px;
-  }
-
-  .grid {
-    grid-template-columns: 1fr;
-  }
-
-  .card {
-    min-height: 280px;
-    padding: 26px 22px;
-  }
-
-  .logoWrap {
-    height: 120px;
   }
 }
