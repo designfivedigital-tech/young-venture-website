@@ -17,7 +17,6 @@
   margin: 0;
   font-size: clamp(64px, 9vw, 155px);
   line-height: 0.82;
-  letter-spacing: -0.075em;
   font-weight: 900;
   max-width: 1100px;
 }
