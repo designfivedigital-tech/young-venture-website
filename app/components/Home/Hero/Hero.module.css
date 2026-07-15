@@ -172,11 +172,6 @@ scroll-snap-stop: always;
   --hero-content-shift: 0px;
   --hero-logo-size: min(70vw, 520px);
   --mobile-logo-y: 42%;
-  /* background-position percentages align the image's Nth% point with the
-     container's Nth% point, not the image's center — so a non-50% value
-     needs this correction to keep the mask centered at --mobile-logo-y
-     (see .mobileOverlayCutout). */
-  --mobile-mask-y: calc(42% - 0.08 * var(--hero-logo-size));
 }
   .desktopBackground {
     display: none;
@@ -203,24 +198,27 @@ scroll-snap-stop: always;
 
   .mobileOverlayCutout {
     position: absolute;
-    inset: 0;
+    top: var(--mobile-logo-y);
+    left: 50%;
     z-index: 10;
+    width: var(--hero-logo-size);
+    aspect-ratio: 1 / 1;
+    transform: translate(-50%, -50%);
     pointer-events: none;
-    background: rgba(0, 0, 0, 0.68);
 
-    mask-image: linear-gradient(#000, #000),
-      url("/images/hero-segments-mask.svg");
-    mask-repeat: no-repeat, no-repeat;
-    mask-position: center center, 50% var(--mobile-mask-y);
-    mask-size: 100% 100%, var(--hero-logo-size) auto;
-    mask-composite: exclude;
+    /* Dims everything outside this box (clipped by .hero's own overflow:
+       hidden), using the exact same top/left/width/transform box as
+       .logoWrap so the darkened surroundings can never drift out of sync
+       with the shape cutout drawn inside — no cross-element position math
+       to keep aligned. */
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.68);
+  }
 
-    -webkit-mask-image: linear-gradient(#000, #000),
-      url("/images/hero-segments-mask.svg");
-    -webkit-mask-repeat: no-repeat, no-repeat;
-    -webkit-mask-position: center center, 50% var(--mobile-mask-y);
-    -webkit-mask-size: 100% 100%, var(--hero-logo-size) auto;
-    -webkit-mask-composite: xor;
+  .mobileOverlaySvg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
   }
 
   .heroContent {
