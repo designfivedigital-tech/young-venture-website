@@ -64,8 +64,8 @@ const SWEEP_SEQUENCE: { shape: Exclude<ActiveShape, null>; duration: number }[] 
 ];
 
 const imageEntries = Object.entries(images);
-const MOBILE_SLIDE_INTERVAL = 4200;
-const MOBILE_BLACKOUT_MS = 650;
+const MOBILE_SLIDE_INTERVAL = 4600;
+const MOBILE_BLACKOUT_MS = 950;
 
 export default function Hero() {
   const [activeShape, setActiveShape] = useState<ActiveShape>(null);
