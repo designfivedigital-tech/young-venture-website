@@ -172,6 +172,11 @@ scroll-snap-stop: always;
   --hero-content-shift: 0px;
   --hero-logo-size: min(70vw, 520px);
   --mobile-logo-y: 42%;
+  /* background-position percentages align the image's Nth% point with the
+     container's Nth% point, not the image's center — so a non-50% value
+     needs this correction to keep the mask centered at --mobile-logo-y
+     (see .mobileOverlayCutout). */
+  --mobile-mask-y: calc(42% - 0.08 * var(--hero-logo-size));
 }
   .desktopBackground {
     display: none;
@@ -206,14 +211,14 @@ scroll-snap-stop: always;
     mask-image: linear-gradient(#000, #000),
       url("/images/hero-segments-mask.svg");
     mask-repeat: no-repeat, no-repeat;
-    mask-position: center center, 50% var(--mobile-logo-y);
+    mask-position: center center, 50% var(--mobile-mask-y);
     mask-size: 100% 100%, var(--hero-logo-size) auto;
     mask-composite: exclude;
 
     -webkit-mask-image: linear-gradient(#000, #000),
       url("/images/hero-segments-mask.svg");
     -webkit-mask-repeat: no-repeat, no-repeat;
-    -webkit-mask-position: center center, 50% var(--mobile-logo-y);
+    -webkit-mask-position: center center, 50% var(--mobile-mask-y);
     -webkit-mask-size: 100% 100%, var(--hero-logo-size) auto;
     -webkit-mask-composite: xor;
   }
@@ -261,6 +266,7 @@ scroll-snap-stop: always;
   .hero {
     --hero-logo-size: min(78vw, 420px);
     --mobile-logo-y: 40%;
+    --mobile-mask-y: calc(40% - 0.1 * var(--hero-logo-size));
   }
 
    .heroTitle {
