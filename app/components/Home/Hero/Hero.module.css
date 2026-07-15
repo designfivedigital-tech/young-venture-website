@@ -198,20 +198,24 @@ scroll-snap-stop: always;
 
   .mobileOverlayCutout {
     position: absolute;
-    top: var(--mobile-logo-y);
-    left: 50%;
+    inset: 0;
     z-index: 10;
-    width: var(--hero-logo-size);
-    aspect-ratio: 1 / 1;
-    transform: translate(-50%, -50%);
     pointer-events: none;
-  }
+    background: rgba(0, 0, 0, 0.68);
 
-  .mobileOverlaySvg {
-    display: block;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
+    mask-image: linear-gradient(#000, #000),
+      url("/images/hero-segments-mask.svg");
+    mask-repeat: no-repeat, no-repeat;
+    mask-position: center center, 50% var(--mobile-logo-y);
+    mask-size: 100% 100%, var(--hero-logo-size) auto;
+    mask-composite: exclude;
+
+    -webkit-mask-image: linear-gradient(#000, #000),
+      url("/images/hero-segments-mask.svg");
+    -webkit-mask-repeat: no-repeat, no-repeat;
+    -webkit-mask-position: center center, 50% var(--mobile-logo-y);
+    -webkit-mask-size: 100% 100%, var(--hero-logo-size) auto;
+    -webkit-mask-composite: xor;
   }
 
   .heroContent {

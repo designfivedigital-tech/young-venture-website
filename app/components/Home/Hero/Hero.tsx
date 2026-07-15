@@ -226,55 +226,7 @@ export default function Hero() {
             />
           ))}
 
-          <div className={styles.mobileOverlayCutout}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 827.76 827.759"
-              className={styles.mobileOverlaySvg}
-            >
-              <defs>
-                <mask
-                  id="mobileOverlayMask"
-                  maskUnits="userSpaceOnUse"
-                  x="-10000"
-                  y="-10000"
-                  width="20000"
-                  height="20000"
-                >
-                  <rect
-                    x="-10000"
-                    y="-10000"
-                    width="20000"
-                    height="20000"
-                    fill="white"
-                  />
-
-                  <path d={paths.youth} fill="black" />
-
-                  <path
-                    d={paths.deep}
-                    transform="translate(-5.427 -420.055)"
-                    fill="black"
-                  />
-
-                  <path
-                    d={paths.clean}
-                    transform="translate(-652.153)"
-                    fill="black"
-                  />
-                </mask>
-              </defs>
-
-              <rect
-                x="-10000"
-                y="-10000"
-                width="20000"
-                height="20000"
-                fill="rgba(0,0,0,0.68)"
-                mask="url(#mobileOverlayMask)"
-              />
-            </svg>
-          </div>
+          <div className={styles.mobileOverlayCutout} />
         </div>
       </div>
 
