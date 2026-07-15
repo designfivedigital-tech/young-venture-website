@@ -263,7 +263,7 @@ scroll-snap-stop: always;
 @media (max-width: 767px) {
   .hero {
     --hero-logo-size: min(78vw, 420px);
-    --mobile-logo-y: 40%;
+    --mobile-logo-y: 40vh;
     --mobile-mask-y: calc(40% - 0.1 * var(--hero-logo-size));
   }
 
