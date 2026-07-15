@@ -188,14 +188,29 @@ scroll-snap-stop: always;
     object-fit: cover;
     opacity: 0;
     transform: scale(1.04);
-    transition:
-      opacity 2000ms ease-in-out,
-      transform 7000ms ease-out;
+    transition: transform 7000ms ease-out;
   }
 
   .mobileBgImageActive {
     opacity: 1;
     transform: scale(1);
+  }
+
+  /* Sits above the photos so an image swap happens while fully hidden,
+     then fades away to reveal it — a dissolve-through-black instead of a
+     direct crossfade (see the mobile rotation effect in Hero.tsx). */
+  .mobileBlackout {
+    position: absolute;
+    inset: 0;
+    z-index: 5;
+    background: #000;
+    opacity: 0;
+    transition: opacity 650ms ease-in-out;
+    pointer-events: none;
+  }
+
+  .mobileBlackoutActive {
+    opacity: 1;
   }
 
   .mobileOverlayCutout {

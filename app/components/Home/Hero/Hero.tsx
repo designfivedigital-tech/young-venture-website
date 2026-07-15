@@ -65,6 +65,7 @@ const SWEEP_SEQUENCE: { shape: Exclude<ActiveShape, null>; duration: number }[] 
 
 const imageEntries = Object.entries(images);
 const MOBILE_SLIDE_INTERVAL = 4200;
+const MOBILE_BLACKOUT_MS = 650;
 
 export default function Hero() {
   const [activeShape, setActiveShape] = useState<ActiveShape>(null);
@@ -74,6 +75,7 @@ export default function Hero() {
   const [glowShape, setGlowShape] = useState<ActiveShape>(null);
 
   const [mobileImageIndex, setMobileImageIndex] = useState(0);
+  const [mobileBlackout, setMobileBlackout] = useState(false);
 
   const logoSvgRef = useRef<SVGSVGElement | null>(null);
 
@@ -131,13 +133,24 @@ export default function Hero() {
     };
   }, []);
 
-  // Mobile hero: slow crossfade rotation between the three images.
+  // Mobile hero: rotate through the three images by fading to black, swapping
+  // the image while hidden, then fading back in (not a direct crossfade).
   useEffect(() => {
+    let swapTimeout: ReturnType<typeof setTimeout>;
+
     const interval = setInterval(() => {
-      setMobileImageIndex((i) => (i + 1) % imageEntries.length);
+      setMobileBlackout(true);
+
+      swapTimeout = setTimeout(() => {
+        setMobileImageIndex((i) => (i + 1) % imageEntries.length);
+        setMobileBlackout(false);
+      }, MOBILE_BLACKOUT_MS);
     }, MOBILE_SLIDE_INTERVAL);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      clearTimeout(swapTimeout);
+    };
   }, []);
 
   useEffect(() => {
@@ -225,6 +238,12 @@ export default function Hero() {
               }`}
             />
           ))}
+
+          <div
+            className={`${styles.mobileBlackout} ${
+              mobileBlackout ? styles.mobileBlackoutActive : ""
+            }`}
+          />
 
           <div className={styles.mobileOverlayCutout}>
             <svg
