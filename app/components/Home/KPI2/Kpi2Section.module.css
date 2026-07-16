@@ -616,7 +616,9 @@
   }
 
   .kpiBubbleAs {
-    width: min(21%, 38cqh);
+    width: min(27%, 46cqh);
+    left: 30%;
+    top: 68%;
   }
 
   .kpiTicketNumber {
@@ -778,7 +780,7 @@
   }
 
   .kpiBubbleAs {
-    width: min(18%, 40cqh);
+    width: min(24%, 48cqh);
   }
 
   .kpiTicketNumber {
