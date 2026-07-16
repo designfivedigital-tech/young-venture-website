@@ -583,13 +583,12 @@
     margin-top: 18px;
     flex: 1;
     min-height: 0;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr 1.35fr;
+    grid-template-columns: 1.25fr 1fr 1.05fr;
+    grid-template-rows: 1fr 1fr 1.75fr;
     grid-template-areas:
-      "ticket ticket"
-      "uni vc"
-      "cagr geo"
-      "giant giant";
+      "ticket uni giant"
+      "ticket vc giant"
+      "cagr geo giant";
     gap: 8px;
   }
 
@@ -609,15 +608,15 @@
   }
 
   .kpiBubbleEu {
-    width: min(56%, 76cqh);
+    width: min(46%, 76cqh);
   }
 
   .kpiBubbleUs {
-    width: min(40%, 58cqh);
+    width: min(33%, 58cqh);
   }
 
   .kpiBubbleAs {
-    width: min(22%, 34cqh);
+    width: min(19%, 34cqh);
   }
 
   .kpiTicketNumber {
