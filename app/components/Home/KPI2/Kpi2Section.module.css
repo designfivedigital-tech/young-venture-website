@@ -781,12 +781,14 @@
 
   .kpiBubbleAs {
     width: 16vw;
-    top:45%
+    top:45%;
+    left:39%
   }
 
   .kpiTicketNumber {
-    inset: -2% 4% 8% 4%;
-    font-size: clamp(56px, min(22vw, 26vh), 96px);
+    font-size: 28vw;
+        inset: 20% 6% 28%;
+        justify-content: right;
   }
 
   .kpiMiniValue {
