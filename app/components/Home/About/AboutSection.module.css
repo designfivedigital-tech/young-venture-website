@@ -453,7 +453,8 @@
     left: auto;
     width: 112vw;
     height: 72vw;
-    transform: none;
+    transform: scale(1.7);
+    transform-origin: 35% 45%;
     margin-left: -8vw;
   }
 
@@ -488,6 +489,14 @@
   .routeLineGlow,
   .routeLineExitGlow {
     stroke-width: 4px;
+  }
+
+  .universityPoint {
+    r: 4.2px;
+  }
+
+  .activePoint {
+    r: 5.6px;
   }
 
   .universityMarquee {
@@ -534,7 +543,8 @@
     left: auto;
     width: 185vw;
     height: 130vw;
-    transform: none;
+    transform: scale(1.7);
+    transform-origin: 35% 45%;
     margin-left: 100px;
     margin-bottom: 16px;
   }
@@ -592,6 +602,11 @@
 
   .universityPoint {
     stroke-width: 1px;
+    r: 4px;
+  }
+
+  .activePoint {
+    r: 5.3px;
   }
 
   .universityMarquee {
