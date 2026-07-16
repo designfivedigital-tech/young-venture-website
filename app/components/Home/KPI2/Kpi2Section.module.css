@@ -609,24 +609,39 @@
   }
 
   .kpiBubbleEu {
-    width: min(44%, 62cqh);
+    width: min(56%, 76cqh);
   }
 
   .kpiBubbleUs {
-    width: min(31%, 46cqh);
+    width: min(40%, 58cqh);
   }
 
   .kpiBubbleAs {
-    width: min(17%, 26cqh);
+    width: min(22%, 34cqh);
   }
 
   .kpiTicketNumber {
     inset: -2% 4% 8% 4%;
-    font-size: clamp(80px, min(13vw, 15vh), 140px);
+    font-size: clamp(90px, min(15vw, 17vh), 170px);
+    justify-content: flex-end;
+    align-items: baseline;
+  }
+
+  .kpiTicketNumber .kpiEuro,
+  .kpiTicketNumber .kpiM {
+    align-self: auto;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+
+  .kpiTicketNumber .kpiDigitHi,
+  .kpiTicketNumber .kpiDigitMid,
+  .kpiTicketNumber .kpiDigitLo {
+    transform: none;
   }
 
   .kpiMiniValue {
-    font-size: clamp(44px, min(8vw, 15vh), 66px);
+    font-size: clamp(58px, min(10.5vw, 18vh), 90px);
   }
 
   .kpiMiniIcon {
@@ -649,8 +664,24 @@
     font-size: 14px;
   }
 
+  /* "25" as one attached number, right-aligned, instead of the desktop
+     diagonal split-corner treatment (too cropped/awkward at tablet size). */
   .kpiGiantNumber {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
     font-size: clamp(160px, min(34vw, 40vh), 340px);
+  }
+
+  .kpiGiantNumber .kpiDigitUp,
+  .kpiGiantNumber .kpiDigitDown {
+    position: static;
+    transform: none;
+  }
+
+  .kpiMiniUni .kpiCaption,
+  .kpiMiniVc .kpiCaption {
+    font-size: 13px;
   }
 
   .kpiCaption {
