@@ -780,7 +780,7 @@
   }
 
   .kpiBubbleAs {
-    width: min(24%, 48cqh);
+    width: 16vw;
   }
 
   .kpiTicketNumber {
