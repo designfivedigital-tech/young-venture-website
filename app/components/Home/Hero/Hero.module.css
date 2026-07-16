@@ -228,7 +228,7 @@ scroll-snap-stop: always;
        .logoWrap so the darkened surroundings can never drift out of sync
        with the shape cutout drawn inside — no cross-element position math
        to keep aligned. */
-    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.68);
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.203);
   }
 
   .mobileOverlaySvg {
