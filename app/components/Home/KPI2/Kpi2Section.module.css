@@ -238,6 +238,20 @@
   margin-top: -4px;
 }
 
+/* these two cards flow the caption normally below the value instead of
+   pinning it to the card's bottom edge, so it keeps a real gap from the
+   number above regardless of viewport size (desktop 1025-2560 only). */
+@media (min-width: 1025px) {
+  .kpiMiniUni .kpiCaption,
+  .kpiMiniVc .kpiCaption {
+    position: static;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-top: clamp(10px, 1.6vh, 20px);
+  }
+}
+
 .kpiMiniIcon {
   position: absolute;
   top: 14px;
@@ -564,11 +578,12 @@
   }
 
   .kpiBoard {
+    width: 100%;
     margin-top: 18px;
     flex: 1;
     min-height: 0;
     grid-template-columns: 1fr 1fr;
-    grid-template-rows: auto auto auto auto;
+    grid-template-rows: 1fr 1fr 1fr 1.35fr;
     grid-template-areas:
       "ticket ticket"
       "uni vc"
@@ -585,13 +600,32 @@
     padding: 0;
   }
 
+  /* bubble width is normally a % of the card's width, but on short tablet
+     rows that makes them (via aspect-ratio:1) taller than the card itself;
+     cap by the card's own height too so they never overflow it. */
+  .kpiGeo {
+    container-type: size;
+  }
+
+  .kpiBubbleEu {
+    width: min(44%, 62cqh);
+  }
+
+  .kpiBubbleUs {
+    width: min(31%, 46cqh);
+  }
+
+  .kpiBubbleAs {
+    width: min(17%, 26cqh);
+  }
+
   .kpiTicketNumber {
     inset: -2% 4% 8% 4%;
-    font-size: clamp(70px, 12vw, 130px);
+    font-size: clamp(80px, min(13vw, 15vh), 140px);
   }
 
   .kpiMiniValue {
-    font-size: clamp(44px, 8vw, 66px);
+    font-size: clamp(44px, min(8vw, 15vh), 66px);
   }
 
   .kpiMiniIcon {
@@ -607,7 +641,7 @@
   }
 
   .kpiCagrValue {
-    font-size: clamp(40px, 7.5vw, 62px);
+    font-size: clamp(40px, min(7.5vw, 13vh), 62px);
   }
 
   .kpiGeoTitle {
@@ -615,7 +649,7 @@
   }
 
   .kpiGiantNumber {
-    font-size: clamp(160px, 30vw, 300px);
+    font-size: clamp(160px, min(34vw, 40vh), 340px);
   }
 
   .kpiCaption {
