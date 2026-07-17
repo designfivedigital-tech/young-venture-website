@@ -282,18 +282,18 @@ useEffect(() => {
             >
               <defs>
                 <linearGradient id="slGPink" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#da2991" />
-                  <stop offset="100%" stopColor="#8a1a5c" />
+                  <stop offset="0%" stopColor="#ff3d8e" />
+                  <stop offset="100%" stopColor="#d6116a" />
                 </linearGradient>
 
                 <linearGradient id="slGGreen" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#77db21" />
-                  <stop offset="100%" stopColor="#478314" />
+                  <stop offset="0%" stopColor="#7ad84a" />
+                  <stop offset="100%" stopColor="#43b026" />
                 </linearGradient>
 
                 <linearGradient id="slGCyan" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stopColor="#00e4e7" />
-                  <stop offset="100%" stopColor="#00898b" />
+                  <stop offset="0%" stopColor="#2dd0e6" />
+                  <stop offset="100%" stopColor="#0aa3bd" />
                 </linearGradient>
 
                 <linearGradient id="slSheen" x1="0" y1="0" x2="0" y2="1">
