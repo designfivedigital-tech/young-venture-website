@@ -6,6 +6,7 @@ import CustomCursor from "./components/CustomCursor";
 import Footer from "./components/Footer/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import PageTransition from "./components/PageTransition";
+import ViewportHeightVar from "./components/ViewportHeightVar";
 
 const barlow = localFont({
   src: [
@@ -52,6 +53,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${barlow.variable} ${playfair.variable} ${barlow.className}`}>
       <div className="site-shell">
+        <ViewportHeightVar />
         <CustomCursor />
         <Header />
 
