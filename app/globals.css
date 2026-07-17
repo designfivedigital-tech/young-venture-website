@@ -196,12 +196,12 @@ body.nav-hovered .site-header {
     scroll-snap-stop: normal !important;
   }
 
-  @supports (height: 100dvh) {
+  @supports (height: 100svh) {
     .intro-snap > section,
     .snap-section:not(.payoff-section),
     .hero {
-      height: 100dvh;
-      min-height: 100dvh;
+      height: 100svh;
+      min-height: 100svh;
     }
   }
 

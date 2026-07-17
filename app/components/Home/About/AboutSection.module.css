@@ -1,7 +1,9 @@
 .aboutUs {
   position: relative;
   height: 100vh;
+  height: 100svh;
   min-height: 100vh;
+  min-height: 100svh;
   background: #ffffff;
   color: #000000;
   overflow: hidden;
@@ -439,7 +441,9 @@
 @media (min-width: 768px) and (max-width: 1024px) {
   .aboutUs {
     height: 100vh;
+    height: 100svh;
     min-height: 100vh;
+    min-height: 100svh;
     padding: 64px 32px 150px;
     display: flex;
     flex-direction: column;
@@ -529,7 +533,9 @@
 @media (max-width: 767px) {
   .aboutUs {
     height: 100vh;
+    height: 100svh;
     min-height: 100vh;
+    min-height: 100svh;
     padding: 44px 20px 142px;
     display: flex;
     flex-direction: column;
