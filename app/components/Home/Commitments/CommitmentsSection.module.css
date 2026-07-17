@@ -664,6 +664,11 @@
     height: 58px;
   }
 
+  .detailOverlay {
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
   .detailContent {
     width: 100%;
     min-height: 100vh;
