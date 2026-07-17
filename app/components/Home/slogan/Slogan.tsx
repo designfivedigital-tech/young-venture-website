@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useLayoutEffect, useRef } from "react";
+import { Fragment, useEffect, useLayoutEffect, useRef } from "react";
 import "./slogan.css";
 
 type WordTiming = {
@@ -21,6 +21,10 @@ export default function Slogan() {
 
     const fitTitle = () => {
       title.style.fontSize = "";
+
+      // below 768px the title is allowed to wrap onto multiple lines
+      // (see slogan.css), so it doesn't need to be shrunk to fit one line
+      if (window.matchMedia("(max-width: 767px)").matches) return;
 
       const style = window.getComputedStyle(title);
       const horizontalPadding =
@@ -109,15 +113,17 @@ export default function Slogan() {
         <h1 className="payoff-title" ref={titleRef}>
   <span className="payoff-line" ref={lineRef}>
     {["Born", "to", "Scout", "the", "invisible"].map((word, index) => (
-      <span
-        key={`${word}-${index}`}
-        ref={(el) => {
-          wordRefs.current[index] = el;
-        }}
-        className="payoff-word"
-      >
-        {word}
-      </span>
+      <Fragment key={`${word}-${index}`}>
+        {index > 0 ? " " : ""}
+        <span
+          ref={(el) => {
+            wordRefs.current[index] = el;
+          }}
+          className="payoff-word"
+        >
+          {word}
+        </span>
+      </Fragment>
     ))}
   </span>
 </h1>
