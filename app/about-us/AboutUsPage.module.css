@@ -56,6 +56,78 @@
   margin-top: 28px;
 }
 
+/* ================= TABLET 768px - 1024px ================= */
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .heroInner {
+    min-height: 100svh;
+    padding-top: 96px;
+  }
+
+  .title {
+    margin: 0 0 56px;
+    font-size: clamp(64px, 9vw, 96px);
+  }
+
+  .copy p {
+    font-size: clamp(18px, 2.2vw, 22px);
+    line-height: 1.35;
+  }
+}
+
+/* ================= MOBILE fino a 767px ================= */
+
+@media (max-width: 767px) {
+  .hero {
+    padding: 0 20px;
+  }
+
+  .heroInner {
+    min-height: 100svh;
+    justify-content: flex-start;
+    padding-top: 88px;
+    padding-bottom: 40px;
+  }
+
+  .title {
+    margin: 0 0 28px;
+    font-size: clamp(40px, 12vw, 60px);
+    line-height: 0.95;
+  }
+
+  .copy p {
+    font-size: clamp(15px, 4vw, 18px);
+    line-height: 1.4;
+  }
+
+  .copy p + p {
+    margin-top: 18px;
+  }
+}
+
+/* short viewports (mobile landscape) need tighter vertical rhythm so the
+   copy doesn't run past the bottom edge under the fixed header */
+@media (max-width: 767px) and (max-height: 480px) {
+  .heroInner {
+    padding-top: 64px;
+    padding-bottom: 24px;
+  }
+
+  .title {
+    margin: 0 0 16px;
+    font-size: clamp(32px, 9vw, 46px);
+  }
+
+  .copy p {
+    font-size: clamp(13px, 2.6vw, 16px);
+    line-height: 1.32;
+  }
+
+  .copy p + p {
+    margin-top: 12px;
+  }
+}
+
 .copy p:nth-child(1) {
   animation-delay: 0.12s;
 }
