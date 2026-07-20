@@ -1,11 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import "./globals.css";
-import Header from "./components/Header/Header";
-import CustomCursor from "./components/CustomCursor";
-import Footer from "./components/Footer/Footer";
-import ScrollToTop from "./components/ScrollToTop";
-import PageTransition from "./components/PageTransition";
+import SiteChrome from "./components/SiteChrome";
 
 const barlow = localFont({
   src: [
@@ -51,17 +47,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${barlow.variable} ${playfair.variable} ${barlow.className}`}>
-      <div className="site-shell">
-        <CustomCursor />
-        <Header />
-
-        <PageTransition>
-          <main className="site-main">{children}</main>
-        </PageTransition>
-        <ScrollToTop/>
-        <Footer/>
-      </div>
-    </body>
+        <SiteChrome>{children}</SiteChrome>
+      </body>
     </html>
   );
 }

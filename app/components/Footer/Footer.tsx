@@ -17,7 +17,7 @@ const sideLinks = [
 ];
 
 const toolLinks = [
-  { label: "Valuation Tool", href: "/startup-valuation-tool.html" },
+  { label: "Valuation Tool", href: "/startup-valuation-tool" },
 ];
 
 const legalLinks = [
