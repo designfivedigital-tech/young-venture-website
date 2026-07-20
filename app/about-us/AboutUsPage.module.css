@@ -449,7 +449,7 @@
     flex-basis: 100%;
     max-height: 0;
     margin-top: 0;
-    margin-left: 68px;
+    margin-left: 0;
     overflow: hidden;
     opacity: 0;
     color: #4d5868;
@@ -489,8 +489,8 @@
   }
 
   .mobileDescription {
-    margin-left: 76px;
-    font-size: 16px;
+    margin-left: 0;
+    font-size: 18px;
     line-height: 1.55;
   }
 }
@@ -507,8 +507,8 @@
   }
 
   .mobileDescription {
-    font-size: clamp(14px, 2.5vw, 17px);
-    line-height: 1.5;
+    font-size: clamp(15px, 2.8vw, 18px);
+    line-height: 1.55;
   }
 }
 
@@ -522,8 +522,8 @@
   }
 
   .mobileDescription {
-    font-size: 14px;
-    line-height: 1.45;
+    font-size: 15px;
+    line-height: 1.5;
   }
 }
 
