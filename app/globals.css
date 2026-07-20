@@ -200,9 +200,9 @@ body.nav-hovered .site-header {
   .snap-section:not(.payoff-section),
   .hero {
     height: 100vh;
-    height: 100svh;
+    height: 100lvh;
     min-height: 100vh;
-    min-height: 100svh;
+    min-height: 100lvh;
   }
 }
 

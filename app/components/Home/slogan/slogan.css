@@ -80,16 +80,16 @@
   .payoff-section,
   .payoff-section.snap-section {
     height: 160dvh;
-    height: 160svh;
+    height: 160lvh;
     min-height: 160dvh;
-    min-height: 160svh;
+    min-height: 160lvh;
     scroll-snap-align: none !important;
     scroll-snap-stop: normal !important;
   }
 
   .payoff-sticky {
     height: 100dvh;
-    height: 100svh;
+    height: 100lvh;
   }
 
   .payoff-title {

@@ -675,14 +675,14 @@
 @media (max-width: 767px) {
   .sl-scroll-section {
     height: 100vh;
-    height: 100svh;
+    height: 100lvh;
     min-height: 100vh;
-    min-height: 100svh;
+    min-height: 100lvh;
   }
 
    .sl-sticky {
     height: 100vh;
-    height: 100svh;
+    height: 100lvh;
   }
 
   .sl-grid {

@@ -599,9 +599,9 @@
 @media (max-width: 767px) {
   .section {
     height: 100vh;
-    height: 100svh;
+    height: 100lvh;
     min-height: 100vh;
-    min-height: 100svh;
+    min-height: 100lvh;
     padding: 14px 12px 14px;
     overflow: hidden;
     display: flex;
