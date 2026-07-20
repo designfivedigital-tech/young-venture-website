@@ -14,10 +14,24 @@ export default function FocusAreasSection() {
   const [wheelProgress, setWheelProgress] = useState(0);
   const [entered, setEntered] = useState(false);
 
+  const isMobileRef = useRef(false);
+  const touchStartYRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      isMobileRef.current = window.matchMedia("(max-width: 767px)").matches;
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, []);
+
   useEffect(() => {
     let ticking = false;
 
     const onScroll = () => {
+      if (isMobileRef.current) return;
       if (ticking) return;
       ticking = true;
 
@@ -45,6 +59,56 @@ export default function FocusAreasSection() {
 
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const goNextItem = () => {
+    if (active >= FOCUS_ITEMS.length - 1) return false;
+    setActive(active + 1);
+    return true;
+  };
+
+  const goPrevItem = () => {
+    if (active <= 0) return false;
+    setActive(active - 1);
+    return true;
+  };
+
+  // Mobile: intercept touch-scroll so each swipe steps through one focus
+  // area at a time instead of free-scrolling past the whole list.
+  useEffect(() => {
+    if (!isMobileRef.current) return;
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    let startY = 0;
+
+    const onTouchStart = (event: TouchEvent) => {
+      startY = event.touches[0].clientY;
+    };
+
+    const preventScroll = (event: TouchEvent) => {
+      const currentY = event.touches[0].clientY;
+      const deltaY = startY - currentY;
+
+      const isScrollingDown = deltaY > 0;
+      const isScrollingUp = deltaY < 0;
+
+      const canGoNextInsideSection = isScrollingDown && active < FOCUS_ITEMS.length - 1;
+      const canGoPrevInsideSection = isScrollingUp && active > 0;
+
+      if (canGoNextInsideSection || canGoPrevInsideSection) {
+        event.preventDefault();
+      }
+    };
+
+    section.addEventListener("touchstart", onTouchStart, { passive: true });
+    section.addEventListener("touchmove", preventScroll, { passive: false });
+
+    return () => {
+      section.removeEventListener("touchstart", onTouchStart);
+      section.removeEventListener("touchmove", preventScroll);
+    };
+  }, [active]);
 
   useEffect(() => {
     const el = sectionRef.current;
@@ -81,7 +145,32 @@ export default function FocusAreasSection() {
   const entryOffset = entered ? 0 : 140;
 
   return (
-    <section ref={sectionRef} className={styles.focusSection} data-header-theme="light">
+    <section
+      ref={sectionRef}
+      className={styles.focusSection}
+      data-header-theme="light"
+      onTouchStart={(event) => {
+        if (!isMobileRef.current) return;
+        touchStartYRef.current = event.touches[0].clientY;
+      }}
+      onTouchEnd={(event) => {
+        if (!isMobileRef.current) return;
+        if (touchStartYRef.current === null) return;
+
+        const endY = event.changedTouches[0].clientY;
+        const deltaY = touchStartYRef.current - endY;
+
+        touchStartYRef.current = null;
+
+        if (Math.abs(deltaY) < 35) return;
+
+        if (deltaY > 0) {
+          goNextItem();
+        } else {
+          goPrevItem();
+        }
+      }}
+    >
       <div className={styles.focusSticky}>
         <div className={styles.focusInner}>
           <div className={styles.focusTop}>
@@ -93,6 +182,10 @@ export default function FocusAreasSection() {
         </div>
 
         <div className={styles.focusBody}>
+          <p className={styles.mobileProgress}>
+            {active + 1} / {FOCUS_ITEMS.length}
+          </p>
+
           <div className={`${styles.drumScene} ${entered ? "" : styles.drumPre}`}>
             <span className={styles.drumMarker} aria-hidden />
 

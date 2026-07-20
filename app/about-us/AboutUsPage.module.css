@@ -383,6 +383,10 @@
   display: none;
 }
 
+.mobileProgress {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .focusContent {
     display: none;
@@ -491,12 +495,58 @@
 /* ================= MOBILE fino a 767px ================= */
 
 @media (max-width: 767px) {
+  /* one focus area fills the screen at a time; swiping steps to the next
+     (see the touch handling in FocusAreasSection.tsx) instead of free-
+     scrolling past a flat list like on tablet. */
+  .focusSection {
+    height: 100svh;
+    overflow: hidden;
+  }
+
+  .focusSticky {
+    height: 100%;
+  }
+
   .focusInner {
     padding: 90px 24px 0;
+    flex: 0 0 auto;
   }
 
   .focusHeading {
     font-size: clamp(42px, 9vw, 72px);
+  }
+
+  .focusBody {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 8px 24px 32px;
+  }
+
+  .drumScene {
+    width: 100%;
+  }
+
+  .mobileProgress {
+    display: block;
+    margin: 0 0 16px;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: rgba(10, 26, 63, 0.4);
+  }
+
+  .drumItem:not(.active) {
+    display: none;
+  }
+
+  .drumItem.active {
+    border-bottom: none;
+    /* the inline opacity is driven by wheelProgress, which only tracks
+       desktop scroll; on mobile the active item must always be fully
+       visible regardless of that stale value */
+    opacity: 1 !important;
   }
 
   .mobileDescription {
