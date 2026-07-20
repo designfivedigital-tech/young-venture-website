@@ -16,6 +16,10 @@ const sideLinks = [
   { label: "Instagram", href: "https://instagram.com" },
 ];
 
+const toolLinks = [
+  { label: "Valuation Tool", href: "/startup-valuation-tool.html" },
+];
+
 const legalLinks = [
   { label: "Legal", href: "/legal" },
   { label: "Privacy policy", href: "/privacy-policy" },
@@ -60,6 +64,11 @@ export default function Footer() {
             <Link key={link.href} href={link.href}>
               {link.label}
             </Link>
+          ))}
+          {toolLinks.map((link) => (
+            <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">
+              {link.label} ↗
+            </a>
           ))}
         </nav>
 

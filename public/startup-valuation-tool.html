@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Startup Valuation Tool · Young Ventures</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+:root{
+  --bg:#000000;
+  --bg-1:#070809;
+  --bg-2:#0c0e11;
+  --bg-3:#13161b;
+  --line:rgba(255,255,255,.10);
+  --line-2:rgba(255,255,255,.06);
+  --ink:#ffffff;
+  --muted:#8b9197;
+  --muted-2:#5d636a;
+  --magenta:#ff1a78;
+  --magenta-deep:#7a0e4f;
+  --cyan:#22e6e6;
+  --cyan-deep:#0b6d6d;
+  --green:#6bc34a;
+  --radius:0px;
+  --radius-sm:0px;
+  --maxw:1140px;
+  --display:"Archivo",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --body:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--ink);
+  font-family:var(--body);
+  font-size:16px;
+  line-height:1.5;
+  -webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;
+  overflow-x:hidden;
+}
+a{color:inherit;text-decoration:none}
+button{font-family:var(--body);cursor:pointer;border:none;background:none;color:inherit}
+input{font-family:var(--body)}
+::selection{background:var(--cyan);color:#04181a}
+
+/* ===== layout ===== */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.section{padding:clamp(48px,7vw,96px) 0}
+
+/* ===== top nav ===== */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:rgba(0,0,0,.72);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--line-2);
+}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand-mark{flex:none;width:34px;height:34px;border-radius:0;overflow:hidden;display:block}
+.brand-name{font-family:var(--display);font-weight:800;letter-spacing:.16em;font-size:14px;text-transform:uppercase}
+.nav-tag{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--muted)}
+
+/* ===== hero ===== */
+.hero{position:relative;overflow:hidden;padding-top:clamp(56px,9vw,120px);padding-bottom:clamp(40px,6vw,72px)}
+.hero::before{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;
+  background:
+    radial-gradient(620px 420px at 12% 0%,rgba(34,230,230,.18),transparent 60%),
+    radial-gradient(520px 420px at 92% 18%,rgba(255,26,120,.14),transparent 60%);
+}
+.hero::after{
+  content:"";position:absolute;inset:0;z-index:0;pointer-events:none;opacity:.4;
+  background-image:radial-gradient(rgba(255,255,255,.10) 1px,transparent 1px);
+  background-size:26px 26px;
+  -webkit-mask-image:linear-gradient(180deg,#000,transparent 75%);
+  mask-image:linear-gradient(180deg,#000,transparent 75%);
+}
+.hero-inner{position:relative;z-index:1}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.22em;text-transform:uppercase;
+  color:#fff;background:rgba(255,255,255,.05);border:1px solid var(--line);
+  padding:8px 14px;border-radius:0;margin-bottom:26px;
+}
+.eyebrow .dot{width:8px;height:8px;border-radius:0;background:var(--cyan);box-shadow:0 0 12px var(--cyan)}
+h1.display{
+  font-family:var(--display);font-weight:900;text-transform:uppercase;
+  font-size:clamp(2.6rem,8.2vw,6rem);line-height:.92;letter-spacing:-.02em;
+  max-width:14ch;
+}
+h1.display .accent{color:var(--cyan)}
+.lead{margin-top:24px;max-width:56ch;color:var(--muted);font-size:clamp(1rem,1.6vw,1.18rem);line-height:1.6}
+.hero-actions{margin-top:34px;display:flex;flex-wrap:wrap;gap:14px;align-items:center}
+
+/* ===== buttons ===== */
+.btn{
+  display:inline-flex;align-items:center;gap:10px;
+  font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.1em;text-transform:uppercase;
+  padding:14px 22px;border-radius:0;transition:transform .15s ease,background .15s ease,color .15s ease,box-shadow .15s ease;
+}
+.btn-primary{background:var(--cyan);color:#04181a;box-shadow:0 10px 30px -10px rgba(34,230,230,.5)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 16px 40px -12px rgba(34,230,230,.7)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid var(--line)}
+.btn-ghost:hover{background:rgba(255,255,255,.06);transform:translateY(-2px)}
+.btn-sm{padding:10px 16px;font-size:12px}
+
+/* ===== step cards ===== */
+.steps{display:flex;flex-direction:column;gap:22px}
+.card{
+  background:linear-gradient(180deg,var(--bg-2),var(--bg-1));
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:clamp(22px,3vw,34px);
+}
+.step-head{display:flex;align-items:flex-start;gap:18px;margin-bottom:26px}
+.step-no{
+  flex:none;font-family:var(--display);font-weight:900;font-size:15px;letter-spacing:.04em;
+  width:54px;height:54px;border-radius:0;display:flex;align-items:center;justify-content:center;
+  border:1px solid var(--line);background:rgba(255,255,255,.02);
+}
+.step-no.c1{color:var(--cyan);border-color:rgba(34,230,230,.35);box-shadow:inset 0 0 24px rgba(34,230,230,.10)}
+.step-no.c2{color:var(--magenta);border-color:rgba(255,26,120,.35);box-shadow:inset 0 0 24px rgba(255,26,120,.10)}
+.step-no.c3{color:var(--green);border-color:rgba(107,195,74,.35);box-shadow:inset 0 0 24px rgba(107,195,74,.10)}
+.step-title{font-family:var(--display);font-weight:800;text-transform:uppercase;letter-spacing:-.01em;font-size:clamp(1.3rem,2.6vw,1.7rem);line-height:1.05}
+.step-desc{margin-top:8px;color:var(--muted);font-size:.95rem;max-width:64ch}
+
+/* ===== fields ===== */
+.years-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px}
+.field{display:flex;flex-direction:column;gap:8px}
+.field label{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.field .sub{font-size:11px;color:var(--muted-2);font-weight:500;letter-spacing:.04em}
+.inp{
+  display:flex;align-items:center;gap:6px;
+  background:var(--bg-3);border:1px solid var(--line);border-radius:var(--radius-sm);
+  padding:0 12px;height:50px;transition:border-color .15s ease,box-shadow .15s ease;
+}
+.inp:focus-within{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,230,230,.18)}
+.inp .pre{color:var(--muted);font-weight:600;font-size:14px;flex:none}
+.inp input{flex:1;min-width:0;width:100%;background:transparent;border:none;outline:none;color:#fff;font-size:15px;font-weight:600}
+.inp input::placeholder{color:var(--muted-2);font-weight:500}
+.inp input[type=number]::-webkit-outer-spin-button,.inp input[type=number]::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+
+/* ===== comparables table ===== */
+.table-scroll{overflow-x:auto;border:1px solid var(--line);border-radius:var(--radius-sm);background:var(--bg-1)}
+table.comps{width:100%;border-collapse:collapse;min-width:720px}
+.comps thead th{
+  font-family:var(--display);font-weight:700;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);
+  text-align:left;padding:14px 14px;border-bottom:1px solid var(--line);white-space:nowrap;
+}
+.comps thead th.num{text-align:right}
+.comps tbody td{padding:9px 10px;border-bottom:1px solid var(--line-2);vertical-align:middle}
+.comps tbody tr:last-child td{border-bottom:none}
+.comps .cell-inp{background:var(--bg-3);border:1px solid var(--line);border-radius:0;height:42px;display:flex;align-items:center;gap:5px;padding:0 10px}
+.comps .cell-inp:focus-within{border-color:var(--cyan);box-shadow:0 0 0 3px rgba(34,230,230,.16)}
+.comps .cell-inp .pre{color:var(--muted-2);font-size:13px}
+.comps .cell-inp input{width:100%;min-width:60px;background:transparent;border:none;outline:none;color:#fff;font-weight:600;font-size:14px;text-align:right}
+.comps .cell-inp input.name{text-align:left;min-width:120px}
+.comps .mult{font-family:var(--display);font-weight:800;font-size:16px;text-align:right;color:var(--cyan);white-space:nowrap}
+.comps .mult.n1{color:var(--green)}
+.comps .mult.empty{color:var(--muted-2)}
+.comps td.rm{text-align:center;width:42px}
+.row-rm{width:30px;height:30px;border-radius:0;color:var(--muted);border:1px solid transparent;font-size:18px;line-height:1;transition:all .15s ease}
+.row-rm:hover{color:#fff;background:rgba(255,26,120,.16);border-color:rgba(255,26,120,.4)}
+.comps tfoot td{padding:14px;border-top:1px solid var(--line)}
+.avg-pill{display:inline-flex;align-items:center;gap:10px;font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--muted)}
+.avg-pill b{font-size:20px;color:#fff}
+.comps-actions{margin-top:16px;display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between}
+
+/* ===== step 3 controls ===== */
+.ror-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:start}
+.ror-note{margin-top:10px;font-size:12.5px;color:var(--muted-2)}
+.range-row{display:flex;align-items:center;gap:14px;margin-top:6px}
+input[type=range]{-webkit-appearance:none;appearance:none;height:6px;border-radius:0;background:linear-gradient(90deg,var(--cyan),var(--magenta));width:100%;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:0;background:#fff;border:3px solid var(--cyan);cursor:pointer;box-shadow:0 4px 12px rgba(0,0,0,.5)}
+input[type=range]::-moz-range-thumb{width:22px;height:22px;border-radius:0;background:#fff;border:3px solid var(--cyan);cursor:pointer}
+.exit-chip{display:inline-flex;align-items:center;gap:8px;background:rgba(107,195,74,.10);border:1px solid rgba(107,195,74,.3);color:var(--green);font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;padding:8px 14px;border-radius:0}
+
+/* ===== result bento ===== */
+.result-head{display:flex;align-items:center;gap:14px;margin-bottom:24px}
+.result-head h2{font-family:var(--display);font-weight:900;text-transform:uppercase;font-size:clamp(1.6rem,4vw,2.6rem);letter-spacing:-.02em;line-height:1}
+.bento{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.tile{border-radius:var(--radius);padding:24px;border:1px solid var(--line);background:var(--bg-2);position:relative;overflow:hidden;min-height:140px;display:flex;flex-direction:column;justify-content:space-between}
+.tile .t-label{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.tile .t-val{font-family:var(--display);font-weight:900;letter-spacing:-.02em;line-height:.95}
+.tile .t-sub{font-size:12.5px;color:var(--muted);margin-top:6px}
+
+.tile.hero-tile{
+  grid-column:span 2;grid-row:span 2;
+  background:
+    radial-gradient(120% 120% at 100% 0%,rgba(255,26,120,.28),transparent 55%),
+    linear-gradient(150deg,var(--cyan),var(--cyan-deep) 92%);
+  border-color:rgba(255,255,255,.18);
+  min-height:300px;
+}
+.tile.hero-tile .t-label{color:rgba(2,32,34,.74)}
+.tile.hero-tile .t-val{font-size:clamp(2.8rem,7vw,5rem);color:#04181a}
+.tile.hero-tile .t-sub{color:rgba(2,30,32,.82);font-weight:600;font-size:15px}
+.tile.hero-tile .t-foot{font-size:12.5px;color:rgba(2,28,30,.66);margin-top:auto}
+
+.tile .t-val.cyan{color:var(--cyan)}
+.tile .t-val.green{color:var(--green)}
+.tile .t-val.white{color:#fff}
+.tile .t-val.magenta{color:var(--magenta)}
+.tile .t-val{font-size:clamp(1.6rem,3.4vw,2.3rem)}
+.tile .accent-bar{position:absolute;left:0;top:0;bottom:0;width:4px}
+.tile .accent-bar.cyan{background:var(--cyan)}
+.tile .accent-bar.green{background:var(--green)}
+.tile .accent-bar.magenta{background:var(--magenta)}
+.tile .accent-bar.white{background:#fff}
+
+.result-empty{color:var(--muted);font-size:15px}
+
+/* optional investor block */
+.opt{margin-top:18px;border:1px dashed var(--line);border-radius:var(--radius-sm);padding:18px 20px}
+.opt summary{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;list-style:none}
+.opt summary::-webkit-details-marker{display:none}
+.opt summary::before{content:"+";display:inline-block;width:18px;color:var(--cyan);font-weight:900}
+.opt[open] summary::before{content:"-"}
+.opt-grid{margin-top:16px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:16px;align-items:end}
+.opt-out{display:flex;flex-direction:column;gap:4px}
+.opt-out .k{font-family:var(--display);font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.opt-out .v{font-family:var(--display);font-weight:900;font-size:1.5rem;color:#fff}
+.opt-out .v.magenta{color:var(--magenta)}
+
+/* methodology */
+.method{margin-top:22px}
+.method summary{font-family:var(--display);font-weight:700;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);cursor:pointer;list-style:none;display:flex;align-items:center;gap:8px}
+.method summary::-webkit-details-marker{display:none}
+.method summary::before{content:"";width:8px;height:8px;border-radius:0;background:var(--cyan);box-shadow:0 0 10px var(--cyan)}
+.method .body{margin-top:16px;color:var(--muted);font-size:14px;line-height:1.7;max-width:74ch}
+.method .body code{background:var(--bg-3);border:1px solid var(--line);border-radius:0;padding:2px 7px;color:#fff;font-size:13px}
+.method .body strong{color:#fff}
+
+/* footer */
+.foot{border-top:1px solid var(--line-2);padding:40px 0;margin-top:30px}
+.foot-inner{display:flex;flex-wrap:wrap;gap:18px;align-items:center;justify-content:space-between}
+.foot .disc{color:var(--muted-2);font-size:12.5px;max-width:62ch;line-height:1.6}
+
+.divider{height:1px;background:var(--line-2);margin:0}
+
+/* ===== responsive ===== */
+@media(max-width:1024px){
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .tile.hero-tile{grid-column:span 2}
+}
+@media(max-width:760px){
+  .years-grid{grid-template-columns:repeat(2,1fr)}
+  .ror-grid{grid-template-columns:1fr}
+  .opt-grid{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr}
+  .tile.hero-tile{grid-column:span 1}
+  .nav-tag{display:none}
+}
+</style>
+</head>
+<body>
+
+<!-- ===== nav ===== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true">
+        <rect width="36" height="36" fill="#0a0a0a"/>
+        <polygon points="0,0 36,0 0,36" fill="#ff1a78"/>
+        <polygon points="36,0 36,36 18,18" fill="#22e6e6"/>
+        <polygon points="0,36 36,36 18,18" fill="#6bc34a"/>
+      </svg>
+      <span class="brand-name">Young Ventures</span>
+    </div>
+    <span class="nav-tag">Startup Valuation Tool</span>
+  </div>
+</nav>
+
+<!-- ===== hero ===== -->
+<header class="hero">
+  <div class="wrap hero-inner">
+    <span class="eyebrow"><span class="dot"></span> VC Method · Pre-money estimate</span>
+    <h1 class="display">Startup<br>Valuation<br><span class="accent">Tool</span></h1>
+    <p class="lead">Estimate a startup's pre-money valuation with the Venture Capital method: project EBITDA, benchmark against listed comparables, and discount the exit value back to today at your target rate of return.</p>
+    <div class="hero-actions">
+      <a href="#step1" class="btn btn-primary">Start valuing &rarr;</a>
+      <button class="btn btn-ghost" id="loadExample">Load example</button>
+      <button class="btn btn-ghost" id="resetAll">Reset</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap section" style="padding-top:0">
+  <div class="steps">
+
+    <!-- ===== STEP 1 ===== -->
+    <section class="card" id="step1">
+      <div class="step-head">
+        <div class="step-no c1">1</div>
+        <div>
+          <h2 class="step-title">Company financial data</h2>
+          <p class="step-desc">Enter your projected <b>EBITDA</b> for each year, in euros. The exit value will be built on the EBITDA of the year you exit (Year N is the current year).</p>
+        </div>
+      </div>
+      <div class="years-grid" id="yearsGrid"></div>
+    </section>
+
+    <!-- ===== STEP 2 ===== -->
+    <section class="card" id="step2">
+      <div class="step-head">
+        <div class="step-no c2">2</div>
+        <div>
+          <h2 class="step-title">Comparable companies</h2>
+          <p class="step-desc">Add listed peers. For each one, enter EBITDA for Year N and N+1 plus the market capitalization. The EBITDA multiples are computed automatically, and their average drives the exit multiple.</p>
+        </div>
+      </div>
+      <div class="table-scroll">
+        <table class="comps">
+          <thead>
+            <tr>
+              <th style="min-width:150px">Company</th>
+              <th class="num">EBITDA N (&euro;)</th>
+              <th class="num">EBITDA N+1 (&euro;)</th>
+              <th class="num">Market cap (&euro;)</th>
+              <th class="num">Multiple N</th>
+              <th class="num">Multiple N+1</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="compsBody"></tbody>
+          <tfoot>
+            <tr>
+              <td colspan="4"><span class="avg-pill">Average comparable multiple &nbsp; <b id="avgMult">-</b></span></td>
+              <td class="num"><span class="mult" id="avgN">-</span></td>
+              <td class="num"><span class="mult n1" id="avgN1">-</span></td>
+              <td></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div class="comps-actions">
+        <button class="btn btn-ghost btn-sm" id="addComp">+ Add comparable</button>
+        <span class="ror-note">Tip: pick 3 to 6 peers with a similar business model and growth profile.</span>
+      </div>
+    </section>
+
+    <!-- ===== STEP 3 ===== -->
+    <section class="card" id="step3">
+      <div class="step-head">
+        <div class="step-no c3">3</div>
+        <div>
+          <h2 class="step-title">Investor rate of return</h2>
+          <p class="step-desc">Set the annual rate of return the investor targets and the holding period. The exit year is derived from Year N plus the holding period.</p>
+        </div>
+      </div>
+      <div class="ror-grid">
+        <div class="field">
+          <label for="rorInput">Annual rate of return</label>
+          <div class="inp">
+            <input type="number" id="rorInput" value="40" min="0" max="300" step="1" />
+            <span class="pre">%</span>
+          </div>
+          <div class="range-row"><input type="range" id="rorRange" value="40" min="0" max="100" step="1" /></div>
+          <p class="ror-note">Typically 30% to 100% depending on maturity and risk.</p>
+        </div>
+        <div class="field">
+          <label for="holdInput">Holding period</label>
+          <div class="inp">
+            <input type="number" id="holdInput" value="3" min="1" max="4" step="1" />
+            <span class="pre">years</span>
+          </div>
+          <p class="ror-note">From Year N. Limited to the years you projected (max N+4).</p>
+        </div>
+        <div class="field">
+          <label>Implied exit</label>
+          <div style="height:50px;display:flex;align-items:center">
+            <span class="exit-chip" id="exitChip">Exit in 2029 &middot; uses EBITDA N+3</span>
+          </div>
+          <p class="ror-note">Exit value = avg multiple &times; exit-year EBITDA.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== RESULT ===== -->
+    <section class="card" id="result">
+      <div class="result-head">
+        <div class="step-no c3" style="color:#fff;border-color:var(--line)">&Sigma;</div>
+        <h2>Your valuation</h2>
+      </div>
+
+      <div class="bento" id="bento">
+        <div class="tile hero-tile">
+          <div class="t-label">Estimated pre-money valuation</div>
+          <div class="t-val" id="preMoneyBig">&euro; -</div>
+          <div>
+            <div class="t-sub" id="preMoneyFull">Fill in the three steps to compute</div>
+            <div class="t-foot" id="preMoneyFoot">Discounted exit value at your target return</div>
+          </div>
+        </div>
+
+        <div class="tile">
+          <span class="accent-bar magenta"></span>
+          <div class="t-label">Exit value</div>
+          <div class="t-val magenta" id="exitVal">&euro; -</div>
+          <div class="t-sub" id="exitValSub">at exit year</div>
+        </div>
+
+        <div class="tile">
+          <span class="accent-bar green"></span>
+          <div class="t-label">Exit multiple</div>
+          <div class="t-val green" id="exitMult">-&times;</div>
+          <div class="t-sub">avg of comparables</div>
+        </div>
+
+        <div class="tile">
+          <span class="accent-bar cyan"></span>
+          <div class="t-label">Exit-year EBITDA</div>
+          <div class="t-val white" id="exitEbitda">&euro; -</div>
+          <div class="t-sub" id="exitEbitdaSub">drives the exit value</div>
+        </div>
+
+        <div class="tile">
+          <span class="accent-bar white"></span>
+          <div class="t-label">Discount factor</div>
+          <div class="t-val white" id="discFactor">-</div>
+          <div class="t-sub" id="discSub">over the holding period</div>
+        </div>
+      </div>
+
+      <!-- optional investor view -->
+      <details class="opt">
+        <summary>Optional: add an investment ticket to see post-money and ownership</summary>
+        <div class="opt-grid">
+          <div class="field">
+            <label for="ticket">Investment amount</label>
+            <div class="inp"><span class="pre">&euro;</span><input type="text" id="ticket" inputmode="decimal" placeholder="e.g. 1,000,000" /></div>
+          </div>
+          <div class="opt-out">
+            <span class="k">Post-money valuation</span>
+            <span class="v" id="postMoney">&euro; -</span>
+          </div>
+          <div class="opt-out">
+            <span class="k">Investor ownership</span>
+            <span class="v magenta" id="ownership">- %</span>
+          </div>
+        </div>
+        <p class="ror-note" style="margin-top:12px">Post-money = pre-money + investment. Ownership = investment / post-money.</p>
+      </details>
+
+      <!-- methodology -->
+      <details class="method">
+        <summary>How this is calculated &middot; VC method</summary>
+        <div class="body">
+          <p>The <strong>Venture Capital (VC) method</strong> values a company by projecting what it could be worth at exit and discounting that value back to today at the return an investor requires.</p>
+          <p style="margin-top:12px"><strong>1. Exit multiple.</strong> For every listed comparable we compute <code>Market cap / EBITDA</code> for Year N and Year N+1. The exit multiple used is the average across all the multiples you enter.</p>
+          <p style="margin-top:12px"><strong>2. Exit value.</strong> <code>Exit value = exit multiple &times; exit-year EBITDA</code>, where the exit year is Year N plus your holding period.</p>
+          <p style="margin-top:12px"><strong>3. Discount to today.</strong> <code>Pre-money = exit value / (1 + r)^holding</code>, with <code>r</code> the annual rate of return.</p>
+          <p style="margin-top:12px">This is an <strong>indicative estimate</strong>. It is sensitive to your assumptions on multiples, EBITDA and required return, and it does not replace a full valuation or due diligence.</p>
+        </div>
+      </details>
+    </section>
+
+  </div>
+</main>
+
+<!-- footer -->
+<footer class="foot">
+  <div class="wrap foot-inner">
+    <div class="brand">
+      <svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true">
+        <rect width="36" height="36" fill="#0a0a0a"/>
+        <polygon points="0,0 36,0 0,36" fill="#ff1a78"/>
+        <polygon points="36,0 36,36 18,18" fill="#22e6e6"/>
+        <polygon points="0,36 36,36 18,18" fill="#6bc34a"/>
+      </svg>
+      <span class="brand-name">Young Ventures</span>
+    </div>
+    <p class="disc">Indicative pre-money estimate produced with the VC method. For information only, not investment advice or a valuation opinion. All figures in euros.</p>
+  </div>
+</footer>
+
+<script>
+"use strict";
+
+/* ---------- year model ---------- */
+var BASE_YEAR = 2026; // Year N
+var YEARS = [
+  {off:-1, label:"N-1"},
+  {off:0,  label:"N"},
+  {off:1,  label:"N+1"},
+  {off:2,  label:"N+2"},
+  {off:3,  label:"N+3"},
+  {off:4,  label:"N+4"}
+];
+
+/* ---------- helpers ---------- */
+function parseNum(v){
+  if(v===null||v===undefined) return NaN;
+  var s=(""+v).replace(/[^0-9.\-]/g,"");
+  if(s===""||s==="-"||s===".") return NaN;
+  return parseFloat(s);
+}
+function group(n){
+  if(!isFinite(n)) return "";
+  var neg=n<0; n=Math.abs(Math.round(n));
+  return (neg?"-":"")+n.toLocaleString("en-US");
+}
+function euro(n){ return "€ " + group(n); }
+function abbr(n){
+  if(!isFinite(n)) return "-";
+  var neg=n<0?"-":""; var a=Math.abs(n);
+  if(a>=1e9) return neg+(a/1e9).toFixed(1).replace(/\.0$/,"")+"B";
+  if(a>=1e6) return neg+(a/1e6).toFixed(1).replace(/\.0$/,"")+"M";
+  if(a>=1e3) return neg+(a/1e3).toFixed(0)+"K";
+  return neg+Math.round(a);
+}
+function euroAbbr(n){ return "€ " + abbr(n); }
+function mult(n){ return isFinite(n)&&n>0 ? n.toFixed(1)+"×" : "-"; }
+
+/* ---------- STEP 1: ebitda fields ---------- */
+var ebitda = {}; // off -> number
+(function buildYears(){
+  var g=document.getElementById("yearsGrid");
+  YEARS.forEach(function(y){
+    var wrap=document.createElement("div");
+    wrap.className="field";
+    wrap.innerHTML =
+      '<label>'+y.label+' <span class="sub">'+(BASE_YEAR+y.off)+'</span></label>'+
+      '<div class="inp"><span class="pre">€</span>'+
+      '<input type="text" inputmode="decimal" data-off="'+y.off+'" placeholder="0" /></div>';
+    g.appendChild(wrap);
+  });
+  g.querySelectorAll("input").forEach(function(inp){
+    inp.addEventListener("input", function(){
+      ebitda[this.getAttribute("data-off")] = parseNum(this.value);
+      recalc();
+    });
+    inp.addEventListener("blur", function(){
+      var v=parseNum(this.value);
+      this.value = isFinite(v) ? group(v) : "";
+    });
+    inp.addEventListener("focus", function(){
+      var v=parseNum(this.value);
+      this.value = isFinite(v) ? v : "";
+    });
+  });
+})();
+
+/* ---------- STEP 2: comparables ---------- */
+var comps = []; // {name, ebN, ebN1, mcap}
+var compsBody = document.getElementById("compsBody");
+
+function blankComp(){ return {name:"", ebN:NaN, ebN1:NaN, mcap:NaN}; }
+
+function renderComps(){
+  compsBody.innerHTML="";
+  comps.forEach(function(c, i){
+    var tr=document.createElement("tr");
+    tr.innerHTML =
+      '<td><div class="cell-inp"><input class="name" type="text" data-i="'+i+'" data-k="name" placeholder="Company name" /></div></td>'+
+      '<td><div class="cell-inp"><span class="pre">€</span><input type="text" inputmode="decimal" data-i="'+i+'" data-k="ebN" placeholder="0" /></div></td>'+
+      '<td><div class="cell-inp"><span class="pre">€</span><input type="text" inputmode="decimal" data-i="'+i+'" data-k="ebN1" placeholder="0" /></div></td>'+
+      '<td><div class="cell-inp"><span class="pre">€</span><input type="text" inputmode="decimal" data-i="'+i+'" data-k="mcap" placeholder="0" /></div></td>'+
+      '<td class="num"><span class="mult empty" data-mn="'+i+'">-</span></td>'+
+      '<td class="num"><span class="mult n1 empty" data-mn1="'+i+'">-</span></td>'+
+      '<td class="rm"><button class="row-rm" data-rm="'+i+'" title="Remove">×</button></td>';
+    compsBody.appendChild(tr);
+    // restore values
+    var c2=comps[i];
+    tr.querySelector('[data-k=name]').value = c2.name||"";
+    tr.querySelector('[data-k=ebN]').value  = isFinite(c2.ebN)?group(c2.ebN):"";
+    tr.querySelector('[data-k=ebN1]').value = isFinite(c2.ebN1)?group(c2.ebN1):"";
+    tr.querySelector('[data-k=mcap]').value = isFinite(c2.mcap)?group(c2.mcap):"";
+  });
+  bindCompInputs();
+  recalc();
+}
+
+function bindCompInputs(){
+  compsBody.querySelectorAll("input").forEach(function(inp){
+    inp.addEventListener("input", function(){
+      var i=+this.getAttribute("data-i"), k=this.getAttribute("data-k");
+      comps[i][k] = (k==="name") ? this.value : parseNum(this.value);
+      updateRowMultiples(i);
+      recalc();
+    });
+    if(inp.getAttribute("data-k")!=="name"){
+      inp.addEventListener("blur", function(){
+        var v=parseNum(this.value); this.value=isFinite(v)?group(v):"";
+      });
+      inp.addEventListener("focus", function(){
+        var v=parseNum(this.value); this.value=isFinite(v)?v:"";
+      });
+    }
+  });
+  compsBody.querySelectorAll("[data-rm]").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      var i=+this.getAttribute("data-rm");
+      comps.splice(i,1);
+      if(comps.length===0) comps.push(blankComp());
+      renderComps();
+    });
+  });
+}
+
+function rowMultiples(c){
+  var mN  = (isFinite(c.mcap)&&isFinite(c.ebN)&&c.ebN>0)  ? c.mcap/c.ebN  : NaN;
+  var mN1 = (isFinite(c.mcap)&&isFinite(c.ebN1)&&c.ebN1>0)? c.mcap/c.ebN1 : NaN;
+  return {mN:mN, mN1:mN1};
+}
+function updateRowMultiples(i){
+  var m=rowMultiples(comps[i]);
+  var eN=compsBody.querySelector('[data-mn="'+i+'"]');
+  var eN1=compsBody.querySelector('[data-mn1="'+i+'"]');
+  if(eN){ eN.textContent=mult(m.mN); eN.classList.toggle("empty",!(isFinite(m.mN)&&m.mN>0)); }
+  if(eN1){ eN1.textContent=mult(m.mN1); eN1.classList.toggle("empty",!(isFinite(m.mN1)&&m.mN1>0)); }
+}
+
+/* ---------- STEP 3: rate / holding ---------- */
+var rorInput=document.getElementById("rorInput");
+var rorRange=document.getElementById("rorRange");
+var holdInput=document.getElementById("holdInput");
+var exitChip=document.getElementById("exitChip");
+
+rorInput.addEventListener("input", function(){
+  var v=parseNum(this.value); if(isFinite(v)) rorRange.value=Math.min(100,Math.max(0,v));
+  recalc();
+});
+rorRange.addEventListener("input", function(){ rorInput.value=this.value; recalc(); });
+holdInput.addEventListener("input", recalc);
+holdInput.addEventListener("change", function(){
+  var v=Math.round(parseNum(this.value));
+  if(!isFinite(v)) v=3; v=Math.min(4,Math.max(1,v));
+  this.value=v; recalc();
+});
+
+/* ---------- optional ticket ---------- */
+var ticket=document.getElementById("ticket");
+ticket.addEventListener("input", recalc);
+ticket.addEventListener("blur", function(){ var v=parseNum(this.value); this.value=isFinite(v)?group(v):""; });
+ticket.addEventListener("focus", function(){ var v=parseNum(this.value); this.value=isFinite(v)?v:""; });
+
+/* ---------- core calculation ---------- */
+function avgComparable(){
+  var allN=[], allN1=[], all=[];
+  comps.forEach(function(c){
+    var m=rowMultiples(c);
+    if(isFinite(m.mN)&&m.mN>0){ allN.push(m.mN); all.push(m.mN); }
+    if(isFinite(m.mN1)&&m.mN1>0){ allN1.push(m.mN1); all.push(m.mN1); }
+  });
+  var mean=function(a){ return a.length? a.reduce(function(s,x){return s+x;},0)/a.length : NaN; };
+  return {avgN:mean(allN), avgN1:mean(allN1), avg:mean(all)};
+}
+
+function recalc(){
+  /* holding + exit year */
+  var hold=Math.round(parseNum(holdInput.value));
+  if(!isFinite(hold)) hold=3; hold=Math.min(4,Math.max(1,hold));
+  var exitYear=BASE_YEAR+hold;
+  exitChip.textContent="Exit in "+exitYear+" · uses EBITDA N+"+hold;
+
+  /* multiples */
+  var a=avgComparable();
+  document.getElementById("avgN").textContent  = mult(a.avgN);
+  document.getElementById("avgN1").textContent = mult(a.avgN1);
+  document.getElementById("avgMult").textContent = isFinite(a.avg)? a.avg.toFixed(1)+"×" : "-";
+
+  /* exit-year ebitda */
+  var exitEb = ebitda[hold];
+  var r = parseNum(rorInput.value); if(!isFinite(r)) r=0; r=r/100;
+  var disc = 1/Math.pow(1+r, hold);
+
+  var ready = isFinite(a.avg)&&a.avg>0 && isFinite(exitEb)&&exitEb>0;
+
+  /* result tiles */
+  var preBig=document.getElementById("preMoneyBig");
+  var preFull=document.getElementById("preMoneyFull");
+  var preFoot=document.getElementById("preMoneyFoot");
+  var exitValEl=document.getElementById("exitVal");
+  var exitValSub=document.getElementById("exitValSub");
+  var exitMultEl=document.getElementById("exitMult");
+  var exitEbEl=document.getElementById("exitEbitda");
+  var exitEbSub=document.getElementById("exitEbitdaSub");
+  var discEl=document.getElementById("discFactor");
+  var discSub=document.getElementById("discSub");
+
+  exitMultEl.textContent = isFinite(a.avg)? a.avg.toFixed(1)+"×" : "-×";
+  discEl.textContent = isFinite(disc)? disc.toFixed(3) : "-";
+  discSub.textContent = isFinite(r)? Math.round(r*100)+"% over "+hold+(hold===1?" year":" years") : "over the holding period";
+  exitEbSub.textContent = "Year N+"+hold+" ("+exitYear+")";
+
+  if(ready){
+    var exitValue = a.avg * exitEb;
+    var preMoney  = exitValue * disc;
+    exitValEl.textContent = euroAbbr(exitValue);
+    exitValSub.textContent = "in "+exitYear;
+    exitEbEl.textContent = euroAbbr(exitEb);
+    preBig.textContent = euroAbbr(preMoney);
+    preFull.textContent = euro(preMoney);
+    preFoot.textContent = "= "+a.avg.toFixed(1)+"× × "+euroAbbr(exitEb)+" exit, discounted at "+Math.round(r*100)+"% for "+hold+(hold===1?" year":" years");
+
+    /* optional post-money */
+    var tk=parseNum(ticket.value);
+    var post=document.getElementById("postMoney");
+    var own=document.getElementById("ownership");
+    if(isFinite(tk)&&tk>0){
+      var postMoney=preMoney+tk;
+      post.textContent=euroAbbr(postMoney);
+      own.textContent=(tk/postMoney*100).toFixed(1)+" %";
+    } else {
+      post.textContent="€ -"; own.textContent="- %";
+    }
+  } else {
+    preBig.textContent="€ -";
+    preFull.textContent = (!isFinite(a.avg)||a.avg<=0) ? "Add at least one comparable with a valid multiple"
+                        : "Enter EBITDA for the exit year (N+"+hold+")";
+    preFoot.textContent="Discounted exit value at your target return";
+    exitValEl.textContent="€ -"; exitValSub.textContent="at exit year";
+    exitEbEl.textContent = isFinite(exitEb)? euroAbbr(exitEb) : "€ -";
+    document.getElementById("postMoney").textContent="€ -";
+    document.getElementById("ownership").textContent="- %";
+  }
+}
+
+/* ---------- add comparable ---------- */
+document.getElementById("addComp").addEventListener("click", function(){
+  comps.push(blankComp()); renderComps();
+  // focus the new row name
+  var inputs=compsBody.querySelectorAll('[data-k=name]');
+  if(inputs.length) inputs[inputs.length-1].focus();
+});
+
+/* ---------- example + reset ---------- */
+document.getElementById("loadExample").addEventListener("click", function(){
+  // example EBITDA path (a SaaS-style ramp), in euros
+  var ex={ "-1":-150000, "0":100000, "1":700000, "2":1800000, "3":3500000, "4":6000000 };
+  Object.keys(ex).forEach(function(k){ ebitda[k]=ex[k]; });
+  document.querySelectorAll('#yearsGrid input').forEach(function(inp){
+    var off=inp.getAttribute("data-off"); inp.value=group(ex[off]);
+  });
+  comps=[
+    {name:"Listed peer A", ebN:50000000,  ebN1:62000000,  mcap:760000000},
+    {name:"Listed peer B", ebN:30000000,  ebN1:38000000,  mcap:540000000},
+    {name:"Listed peer C", ebN:82000000,  ebN1:96000000,  mcap:1040000000}
+  ];
+  rorInput.value=40; rorRange.value=40; holdInput.value=3; ticket.value="";
+  renderComps();
+  document.getElementById("result").scrollIntoView({behavior:"smooth",block:"start"});
+});
+
+document.getElementById("resetAll").addEventListener("click", function(){
+  ebitda={};
+  document.querySelectorAll('#yearsGrid input').forEach(function(inp){ inp.value=""; });
+  comps=[blankComp(),blankComp(),blankComp()];
+  rorInput.value=40; rorRange.value=40; holdInput.value=3; ticket.value="";
+  renderComps();
+  window.scrollTo({top:0,behavior:"smooth"});
+});
+
+/* ---------- init ---------- */
+comps=[blankComp(),blankComp(),blankComp()];
+renderComps();
+recalc();
+</script>
+</body>
+</html>
