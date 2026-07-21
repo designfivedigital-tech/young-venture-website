@@ -36,14 +36,14 @@ export default function UniversityMapSection() {
 
       const blink = () => {
         circle.style.opacity = "0.15";
-        circle.setAttribute("r", "2.2");
+        circle.setAttribute("r", "3");
 
         timeouts.push(
           setTimeout(() => {
             circle.style.opacity = "1";
-            circle.setAttribute("r", "4.5");
+            circle.setAttribute("r", "6");
 
-            timeouts.push(setTimeout(() => circle.setAttribute("r", "3"), 500));
+            timeouts.push(setTimeout(() => circle.setAttribute("r", "4"), 500));
           }, 450 + Math.random() * 300)
         );
 
@@ -120,7 +120,7 @@ export default function UniversityMapSection() {
                   }}
                   cx={university.cx}
                   cy={university.cy}
-                  r={3}
+                  r={4}
                   className={`${styles.point} ${
                     isActive ? styles.activePoint : ""
                   }`}
