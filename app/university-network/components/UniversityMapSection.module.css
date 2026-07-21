@@ -95,6 +95,10 @@
     /* shifted further right so the visible crop lands on the US/Europe
        side of the world map, keeping Asia off the edge of the screen */
     left: 80%;
+    /* anchored from the top (instead of vertically centered) so there's a
+       predictable margin above the map regardless of device height */
+    top: 28px;
+    transform: translateX(-50%);
   }
 
   .label {
