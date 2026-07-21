@@ -20,11 +20,11 @@ export default function VennSection() {
         </div>
 
         <div className={styles.diagram}>
-          <svg className={styles.svg} viewBox="0 0 1060 596" aria-hidden>
-            <circle cx="330" cy="298" r="310" fill="rgba(0,228,231,0.06)" />
-            <circle cx="730" cy="298" r="310" fill="rgba(218,41,145,0.06)" />
-            <circle cx="330" cy="298" r="310" fill="none" stroke="#00b7ba" strokeWidth="2" />
-            <circle cx="730" cy="298" r="310" fill="none" stroke="#da2991" strokeWidth="2" />
+          <svg className={styles.svg} viewBox="0 0 1060 660" aria-hidden>
+            <circle cx="330" cy="330" r="310" fill="rgba(0,228,231,0.06)" />
+            <circle cx="730" cy="330" r="310" fill="rgba(218,41,145,0.06)" />
+            <circle cx="330" cy="330" r="310" fill="none" stroke="#00b7ba" strokeWidth="2" />
+            <circle cx="730" cy="330" r="310" fill="none" stroke="#da2991" strokeWidth="2" />
           </svg>
 
           {VENN_LOGOS.map((logo) => (
