@@ -17,19 +17,18 @@
 
 .title {
   margin: 0 0 32px;
-  font-size: clamp(68px, 9.5vw, 150px);
-  line-height: 0.95;
+  font-size: clamp(64px, 9vw, 155px);
+  line-height: 0.82;
   font-weight: 700;
-  letter-spacing: -0.06em;
+  letter-spacing: -.02em;
   color: #000000;
 }
 
 .paragraph {
   margin: 0 auto;
   max-width: 820px;
-  font-size: clamp(20px, 1.6vw, 28px);
-  line-height: 1.35;
-  letter-spacing: -0.02em;
+  font-size: clamp(18px, 1.35vw, 24px);
+  line-height: 1.25;
   color: #050505;
   font-weight: 500;
 }
@@ -43,12 +42,7 @@
   }
 
   .title {
-    font-size: clamp(56px, 9vw, 96px);
     margin-bottom: 24px;
-  }
-
-  .paragraph {
-    font-size: clamp(18px, 2vw, 22px);
   }
 }
 
@@ -57,7 +51,7 @@
   .section {
     height: auto;
     min-height: auto;
-    padding: 80px 20px;
+    padding: 56px 20px;
   }
 
   .inner {
@@ -65,16 +59,13 @@
   }
 
   .title {
-    font-size: clamp(44px, 12vw, 64px);
-    line-height: 0.98;
-    letter-spacing: -0.04em;
+    font-size: clamp(54px, 18vw, 86px);
     margin-bottom: 20px;
   }
 
   .paragraph {
     max-width: 100%;
-    font-size: 16px;
-    line-height: 1.45;
+    font-size: 17px;
   }
 }
 
@@ -85,11 +76,11 @@
   }
 
   .title {
-    font-size: clamp(68px, 9.5vw, 220px);
+    font-size: clamp(64px, 9vw, 220px);
   }
 
   .paragraph {
     max-width: clamp(820px, 34vw, 1000px);
-    font-size: clamp(20px, 1.6vw, 34px);
+    font-size: clamp(18px, 1.35vw, 34px);
   }
 }

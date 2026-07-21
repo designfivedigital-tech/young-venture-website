@@ -156,11 +156,11 @@
 /* Mobile up to 767px */
 @media (max-width: 767px) {
   .section {
-    padding: 48px 20px;
+    padding: 40px 20px;
   }
 
   .header {
-    margin-bottom: 32px;
+    margin-bottom: 24px;
   }
 
   .header h2 {

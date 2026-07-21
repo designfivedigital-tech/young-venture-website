@@ -84,6 +84,11 @@
 
 /* Mobile up to 767px */
 @media (max-width: 767px) {
+  .section {
+    height: 60vh;
+    min-height: 60vh;
+  }
+
   .mapArea {
     width: 230vw;
     height: 150vw;
