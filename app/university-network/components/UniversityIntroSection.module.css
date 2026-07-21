@@ -33,3 +33,19 @@
   color: #050505;
   font-weight: 500;
 }
+
+/* Desktop 1025px - 2560px */
+@media (min-width: 1025px) and (max-width: 2560px) {
+  .inner {
+    max-width: clamp(900px, 44vw, 1180px);
+  }
+
+  .title {
+    font-size: clamp(68px, 9.5vw, 220px);
+  }
+
+  .paragraph {
+    max-width: clamp(820px, 34vw, 1000px);
+    font-size: clamp(20px, 1.6vw, 34px);
+  }
+}

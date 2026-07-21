@@ -144,3 +144,19 @@
     aspect-ratio: 3 / 2;
   }
 }
+
+/* Desktop 1025px - 2560px */
+@media (min-width: 1025px) and (max-width: 2560px) {
+  .header h2 {
+    font-size: clamp(30px, 3.4vw, 64px);
+  }
+
+  .header p {
+    max-width: clamp(640px, 30vw, 760px);
+    font-size: clamp(14px, 1.1vw, 19px);
+  }
+
+  .grid {
+    max-width: clamp(1480px, 78vw, 2000px);
+  }
+}
