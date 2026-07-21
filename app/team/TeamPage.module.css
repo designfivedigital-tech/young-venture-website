@@ -20,6 +20,7 @@
   font-weight: 700;
   max-width: 1100px;
   letter-spacing: -5px;
+  text-transform: uppercase;
 }
 
 .heroText {
@@ -152,6 +153,7 @@
   line-height: 0.95;
   letter-spacing: -0.045em;
   font-weight: 800;
+  text-transform: uppercase;
 }
 
 .grid {
@@ -211,7 +213,8 @@
   font-size: clamp(24px, 2.2vw, 42px);
   line-height: 0.9;
   letter-spacing: -0.055em;
-  font-weight: 600;
+  font-weight: 700;
+  text-transform: uppercase;
 }
 
 .card p {
@@ -242,6 +245,7 @@
   line-height: 0.86;
   letter-spacing: -0.075em;
   font-weight: 900;
+  text-transform: uppercase;
 }
 
 .hoverImage {
