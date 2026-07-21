@@ -1,8 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef, useState } from "react";
-import type { MouseEvent } from "react";
+import { useRef, useState } from "react";
 import styles from "./TeamPage.module.css";
 
 type TeamMember = {
@@ -121,40 +120,12 @@ function TeamCard({ member }: { member: TeamMember }) {
 }
 
 export default function TeamPage() {
-  const [activeSlug, setActiveSlug] = useState(universityGroups[0].slug);
+  const [selectedSlug, setSelectedSlug] = useState<string>("all");
 
-  useEffect(() => {
-    const sections = universityGroups
-      .map((group) => document.getElementById(group.slug))
-      .filter((el): el is HTMLElement => el !== null);
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setActiveSlug(entry.target.id);
-          }
-        });
-      },
-      { rootMargin: "-130px 0px -70% 0px", threshold: 0 }
-    );
-
-    sections.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
-  }, []);
-
-  const handleUniversityClick = (
-    e: MouseEvent<HTMLAnchorElement>,
-    slug: string
-  ) => {
-    e.preventDefault();
-    const el = document.getElementById(slug);
-    if (!el) return;
-
-    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    el.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
-    window.history.pushState(null, "", `#${slug}`);
-  };
+  const visibleGroups =
+    selectedSlug === "all"
+      ? universityGroups
+      : universityGroups.filter((group) => group.slug === selectedSlug);
 
   return (
     <section data-header-theme="light" className={styles.teamPage}>
@@ -183,21 +154,29 @@ export default function TeamPage() {
           <p>Universities</p>
 
           <div>
+            <button
+              type="button"
+              onClick={() => setSelectedSlug("all")}
+              className={selectedSlug === "all" ? styles.activeLink : undefined}
+            >
+              All
+            </button>
+
             {universityGroups.map((group) => (
-              <a
+              <button
                 key={group.slug}
-                href={`#${group.slug}`}
-                onClick={(e) => handleUniversityClick(e, group.slug)}
-                className={activeSlug === group.slug ? styles.activeLink : undefined}
+                type="button"
+                onClick={() => setSelectedSlug(group.slug)}
+                className={selectedSlug === group.slug ? styles.activeLink : undefined}
               >
                 {group.name}
-              </a>
+              </button>
             ))}
           </div>
         </aside>
 
         <div className={styles.groups}>
-          {universityGroups.map((group) => (
+          {visibleGroups.map((group) => (
             <section key={group.slug} id={group.slug} className={styles.group}>
               <h2 className={styles.groupTitle}>{group.name}</h2>
 
