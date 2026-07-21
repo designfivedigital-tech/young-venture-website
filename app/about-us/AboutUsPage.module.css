@@ -84,7 +84,7 @@
 
   .heroInner {
     min-height: 100svh;
-    justify-content: flex-start;
+    justify-content: center;
     padding-top: 88px;
     padding-bottom: 40px;
   }
@@ -788,6 +788,10 @@
    .collegeHeader h2 {
     font-size: 45px;
    }
+
+   .collegeCopy p {
+    font-size: clamp(15px, 4vw, 18px);
+   }
 }
 
 /* BELIEF SECTION */
@@ -1009,5 +1013,12 @@
 
   .beliefText p {
     font-size: 16px;
+  }
+}
+
+@media (max-width: 767px) {
+  .beliefsIntro p,
+  .beliefText p {
+    font-size: clamp(15px, 4vw, 18px);
   }
 }
