@@ -293,6 +293,7 @@
 }
 
 .drumTitle {
+  min-width: 0;
   font-size: clamp(15px, 1.15vw, 18px);
   font-weight: 700;
   line-height: 1.15;
