@@ -442,6 +442,11 @@
 
   .drumTitle {
     flex: 1 1 auto;
+    font-size: 18px;
+  }
+
+  .drumItem.active .drumTitle {
+    font-size: 22px;
   }
 
   .mobileDescription {
