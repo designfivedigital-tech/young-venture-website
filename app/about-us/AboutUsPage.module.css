@@ -96,7 +96,7 @@
   }
 
   .copy p {
-    font-size: clamp(15px, 4vw, 18px);
+    font-size: 18px;
     line-height: 1.4;
   }
 
@@ -790,7 +790,7 @@
    }
 
    .collegeCopy p {
-    font-size: clamp(15px, 4vw, 18px);
+    font-size: 18px;
    }
 }
 
@@ -1019,6 +1019,6 @@
 @media (max-width: 767px) {
   .beliefsIntro p,
   .beliefText p {
-    font-size: clamp(15px, 4vw, 18px);
+    font-size: 18px;
   }
 }
