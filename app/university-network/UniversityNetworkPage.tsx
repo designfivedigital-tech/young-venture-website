@@ -12,7 +12,6 @@ export default function UniversityNetworkPage() {
       <UniversityIntroSection />
       <ProfessorsSection />
       <VennSection />
-      <PolesSection />
     </main>
   );
 }
