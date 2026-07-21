@@ -291,6 +291,37 @@
   }
 }
 
+/* Tablet 768px - 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .filters p {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgba(6, 31, 23, 0.45);
+  }
+
+  .filters button {
+    border: 1.5px solid rgba(6, 31, 23, 0.2);
+    border-radius: 999px;
+    padding: 8px 16px;
+    opacity: 1;
+    font-weight: 600;
+    transition: all 0.25s ease;
+  }
+
+  .filters button:hover {
+    border-color: #da2991;
+    color: #da2991;
+  }
+
+  .filters button.activeLink {
+    background: #da2991;
+    border-color: #da2991;
+    color: #fff;
+  }
+}
+
 /* Mobile */
 @media (max-width: 767px) {
   .teamPage {
