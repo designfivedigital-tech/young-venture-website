@@ -191,7 +191,6 @@ export default function TeamPage() {
       </div>
 
       <div className={styles.bottomCta}>
-        <span>Click to discover</span>
         <h3>
           We back companies.
           <br />
