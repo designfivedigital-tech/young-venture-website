@@ -507,7 +507,7 @@
   }
 
   .mobileDescription {
-    font-size: clamp(15px, 2.8vw, 18px);
+    font-size: 18px;
     line-height: 1.55;
   }
 }
@@ -522,7 +522,6 @@
   }
 
   .mobileDescription {
-    font-size: 15px;
     line-height: 1.5;
   }
 }
