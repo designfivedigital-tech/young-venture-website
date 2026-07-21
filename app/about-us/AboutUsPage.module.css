@@ -442,7 +442,6 @@
 
   .drumTitle {
     flex: 1 1 auto;
-    font-size: 25px;
   }
 
   .mobileDescription {
@@ -510,6 +509,11 @@
   .mobileDescription {
     font-size: 18px;
     line-height: 1.55;
+  }
+
+  .drumTitle {
+    
+    font-size: 25px;
   }
 }
 
