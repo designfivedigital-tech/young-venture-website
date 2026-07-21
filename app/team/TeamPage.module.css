@@ -239,7 +239,7 @@
 }
 
 /* Mobile */
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .teamPage {
     padding: 110px 18px 60px;
   }
@@ -256,13 +256,9 @@
     font-size: 17px;
   }
 
-  .filters {
-    display: none;
-  }
-
   .grid {
-    grid-template-columns: 1fr;
-    gap: 42px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 28px 16px;
   }
 
   .imageWrap {
