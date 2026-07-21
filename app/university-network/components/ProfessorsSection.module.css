@@ -186,6 +186,14 @@
     aspect-ratio: 3 / 2;
   }
 
+  .name {
+    font-size: 19px;
+  }
+
+  .bio {
+    font-size: 15px;
+  }
+
   .info {
     padding: 18px;
   }

@@ -150,18 +150,19 @@
   }
 
   .header h2 {
-    font-size: clamp(26px, 7.5vw, 34px);
+    font-size: clamp(30px, 8.5vw, 40px);
   }
 
   .header p {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .learnMore {
-    position: static;
-    transform: none;
-    display: inline-flex;
-    margin-top: 10px;
+    display: none;
+  }
+
+  .wrap {
+    margin: 0 -10px;
   }
 
   .labels {
@@ -169,8 +170,8 @@
   }
 
   .label {
-    font-size: 11px;
-    letter-spacing: 0.14em;
+    font-size: 12px;
+    letter-spacing: 0.16em;
   }
 }
 
