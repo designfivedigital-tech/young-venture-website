@@ -30,17 +30,17 @@
 
 .hero h1 {
   margin: 0;
-  font-size: clamp(4rem, 9vw, 10.5rem);
-  line-height: 0.88;
+  font-size: clamp(64px, 9vw, 155px);
+  line-height: 0.82;
   font-weight: 700;
-  letter-spacing: -5px;
+  letter-spacing: -.02em;
 }
 
 .hero p {
   margin: 0 0 10px;
   max-width: 420px;
-  font-size: clamp(1rem, 1.1vw, 1.25rem);
-  line-height: 1.45;
+  font-size: clamp(18px, 1.35vw, 24px);
+  line-height: 1.25;
   color: rgba(6, 31, 23, 0.72);
   font-weight: 500;
 }
@@ -59,12 +59,16 @@
 }
 
 /* Mobile */
-@media (max-width: 640px) {
+@media (max-width: 767px) {
   .hero {
     padding: 120px 20px 56px;
   }
 
   .hero h1 {
-    font-size: clamp(3.1rem, 16vw, 5rem);
+    font-size: clamp(54px, 18vw, 86px);
+  }
+
+  .hero p {
+    font-size: 17px;
   }
 }
