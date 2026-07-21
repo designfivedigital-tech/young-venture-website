@@ -127,46 +127,6 @@ export default function CommitmentsSection({
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [selectedCommitment]);
 
- useEffect(() => {
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
-  if (!isMobile) return;
-
-  const section = document.querySelector<HTMLElement>(".commitments-section");
-  if (!section) return;
-
-  let ticking = false;
-
-  const updateSnapState = () => {
-    const sectionTop = section.offsetTop;
-    const currentScroll = window.scrollY;
-
-    if (currentScroll >= sectionTop - 4) {
-      document.documentElement.classList.add("after-commitments");
-    } else {
-      document.documentElement.classList.remove("after-commitments");
-    }
-
-    ticking = false;
-  };
-
-  const onScroll = () => {
-    if (ticking) return;
-    ticking = true;
-    window.requestAnimationFrame(updateSnapState);
-  };
-
-  updateSnapState();
-
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", updateSnapState);
-
-  return () => {
-    window.removeEventListener("scroll", onScroll);
-    window.removeEventListener("resize", updateSnapState);
-    document.documentElement.classList.remove("after-commitments");
-  };
-}, []);
-
   useEffect(() => {
     if (selectedCommitment) {
       document.body.style.overflow = "hidden";
@@ -183,7 +143,7 @@ export default function CommitmentsSection({
     <>
       <section
         data-header-theme="light"
-        className={`${styles.section} snap-section commitments-section`}
+        className={styles.section}
       >
         <div className={styles.sectionHeader}>
           <h2>Companies we back. People we believe in.</h2>

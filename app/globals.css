@@ -173,10 +173,6 @@ body.nav-hovered .site-header {
     scroll-behavior: auto;
   }
 
-  html.after-commitments {
-    scroll-snap-type: none !important;
-  }
-
   body {
     overflow-x: hidden;
     overflow-y: auto;
