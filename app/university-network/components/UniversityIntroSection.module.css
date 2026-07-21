@@ -34,6 +34,50 @@
   font-weight: 500;
 }
 
+/* Tablet 768px - 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .section {
+    height: auto;
+    min-height: 60vh;
+    padding: 100px 32px;
+  }
+
+  .title {
+    font-size: clamp(56px, 9vw, 96px);
+    margin-bottom: 24px;
+  }
+
+  .paragraph {
+    font-size: clamp(18px, 2vw, 22px);
+  }
+}
+
+/* Mobile up to 767px */
+@media (max-width: 767px) {
+  .section {
+    height: auto;
+    min-height: auto;
+    padding: 80px 20px;
+  }
+
+  .inner {
+    max-width: 100%;
+  }
+
+  .title {
+    font-size: clamp(44px, 12vw, 64px);
+    line-height: 0.98;
+    letter-spacing: -0.04em;
+    margin-bottom: 20px;
+  }
+
+  .paragraph {
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.45;
+  }
+}
+
 /* Desktop 1025px - 2560px */
 @media (min-width: 1025px) and (max-width: 2560px) {
   .inner {

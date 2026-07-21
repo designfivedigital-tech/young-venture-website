@@ -3,7 +3,7 @@ import { POLES_LOGOS } from "../universityLogos";
 
 export default function PolesSection() {
   return (
-    <section data-header-theme="light" className={`${styles.section} snap-section`} id="poles">
+    <section data-header-theme="light" className={styles.section} id="poles">
       <div className={styles.header}>
         <h2>The spectrum of excellence</h2>
         <p>

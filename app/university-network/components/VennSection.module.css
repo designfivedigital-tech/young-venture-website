@@ -120,12 +120,57 @@
   }
 }
 
-@media (max-width: 760px) {
+/* Tablet 768px - 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .section {
+    padding: 64px clamp(24px, 4vw, 48px) 80px;
+  }
+
+  .header h2 {
+    font-size: clamp(30px, 4.4vw, 40px);
+  }
+
+  .header p {
+    font-size: 15px;
+  }
+
+  .labels {
+    padding: 0 10%;
+  }
+}
+
+/* Mobile up to 767px */
+@media (max-width: 767px) {
+  .section {
+    padding: 48px 20px 64px;
+  }
+
+  .header {
+    margin-bottom: 24px;
+  }
+
+  .header h2 {
+    font-size: clamp(26px, 7.5vw, 34px);
+  }
+
+  .header p {
+    font-size: 14px;
+  }
+
   .learnMore {
     position: static;
     transform: none;
     display: inline-flex;
     margin-top: 10px;
+  }
+
+  .labels {
+    padding: 0 6%;
+  }
+
+  .label {
+    font-size: 11px;
+    letter-spacing: 0.14em;
   }
 }
 

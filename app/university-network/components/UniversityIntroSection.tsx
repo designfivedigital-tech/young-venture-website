@@ -2,10 +2,7 @@ import styles from "./UniversityIntroSection.module.css";
 
 export default function UniversityIntroSection() {
   return (
-    <section
-      data-header-theme="light"
-      className={`${styles.section} snap-section`}
-    >
+    <section data-header-theme="light" className={styles.section}>
       <div className={styles.inner}>
         <h1 className={styles.title}>Our Universities</h1>
 

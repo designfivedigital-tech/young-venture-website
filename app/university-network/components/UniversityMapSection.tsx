@@ -90,10 +90,7 @@ export default function UniversityMapSection() {
   };
 
   return (
-    <section
-      data-header-theme="light"
-      className={`${styles.section} snap-section`}
-    >
+    <section data-header-theme="light" className={styles.section}>
       <div className={styles.mapArea}>
         <Image
           src="/images/mappamondo.svg"

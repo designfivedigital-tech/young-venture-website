@@ -4,7 +4,7 @@ import { VENN_LOGOS } from "../universityLogos";
 
 export default function VennSection() {
   return (
-    <section data-header-theme="light" className={`${styles.section} snap-section`} id="venn">
+    <section data-header-theme="light" className={styles.section} id="venn">
       <div className={styles.header}>
         <Link className={styles.learnMore} href="/university-stories">
           Learn more <span>→</span>

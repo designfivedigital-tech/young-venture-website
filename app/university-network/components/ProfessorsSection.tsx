@@ -91,7 +91,7 @@ function ProfessorCard({ professor }: { professor: Professor }) {
 
 export default function ProfessorsSection() {
   return (
-    <section data-header-theme="light" className={`${styles.section} snap-section`} id="professors">
+    <section data-header-theme="light" className={styles.section} id="professors">
       <div className={styles.header}>
         <h2>Our Professors</h2>
         <p>

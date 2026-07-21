@@ -74,18 +74,24 @@
   }
 }
 
-@media (max-width: 1024px) {
+/* Tablet 768px - 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
   .mapArea {
-    width: 120vw;
-    height: 78vw;
+    width: 130vw;
+    height: 84vw;
   }
 }
 
+/* Mobile up to 767px */
 @media (max-width: 767px) {
   .mapArea {
-    width: 185vw;
-    height: 125vw;
+    width: 230vw;
+    height: 150vw;
     left: 56%;
+  }
+
+  .label {
+    font-size: 13px;
   }
 }
 
