@@ -46,7 +46,7 @@
   margin: 0;
   font-size: clamp(110px, 12vw, 250px);
   line-height: 0.72;
-  font-weight: 500;
+  font-weight: 700;
   letter-spacing: -0.08em;
 }
 
@@ -183,8 +183,30 @@
     gap: 42px;
   }
 
+  /* clock and city name side by side; company/address wrap to their own
+     row below via flex-basis: 100% */
+  .card {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: 16px;
+  }
+
   .clock {
-    margin-bottom: 18px;
+    margin-bottom: 0;
+  }
+
+  .card h2 {
+    margin: 0;
+  }
+
+  .card p {
+    flex-basis: 100%;
+    margin-top: 18px;
+  }
+
+  .card span {
+    flex-basis: 100%;
   }
 
   .card p,
