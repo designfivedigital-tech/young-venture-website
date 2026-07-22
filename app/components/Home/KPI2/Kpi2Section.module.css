@@ -1,13 +1,15 @@
 .kpi2Section {
   position: relative;
-  /* plain vh on mobile is based on the browser chrome's collapsed state,
-     which isn't settled yet on first paint - lvh matches what the rest of
-     the snap-scroll sections use (see globals.css) so the layout doesn't
-     shift/redistribute the first time this section is scrolled into view */
+  /* plain vh (and lvh, which is identical to vh on iOS Safari) assumes the
+     browser chrome is already hidden, but on the first scroll into this
+     section that hasn't happened yet, so content gets laid out taller than
+     what's actually visible and the last box reads as clipped. dvh tracks
+     the real, current viewport continuously (including mid-transition),
+     so it stays correct instead of only matching up after a second scroll. */
   height: 100vh;
-  height: 100lvh;
+  height: 100dvh;
   min-height: 100vh;
-  min-height: 100lvh;
+  min-height: 100dvh;
   overflow: hidden;
   padding: clamp(58px, 5vh, 76px) clamp(18px, 4vw, 64px) clamp(28px, 4vh, 44px);
   background:
