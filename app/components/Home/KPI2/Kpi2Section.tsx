@@ -1,29 +1,13 @@
 "use client";
 
 import styles from "./Kpi2Section.module.css";
-import { useState } from "react";
 
 export default function Kpi2Section() {
-  const [theme, setTheme] = useState<"dark" | "light">("dark");
-  const isLight = theme === "light";
-
   return (
     <section
-      data-header-theme={isLight ? "light" : "dark"}
-      className={`${styles.kpi2Section} ${isLight ? styles.lightMode : ""} snap-section`}
+      data-header-theme="dark"
+      className={`${styles.kpi2Section} snap-section`}
     >
-      <button
-        type="button"
-        className={styles.themeSwitch}
-        onClick={() => setTheme(isLight ? "dark" : "light")}
-        aria-label="Toggle section theme"
-      >
-        <span className={styles.switchText}>{isLight ? "Light" : "Dark"}</span>
-        <span className={styles.switchTrack}>
-          <span className={styles.switchThumb} />
-        </span>
-      </button>
-
       <div className={styles.header}>
         <div>
           <span className={styles.label}>KPI</span>
