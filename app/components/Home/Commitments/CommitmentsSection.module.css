@@ -31,6 +31,15 @@
   border-left: 1px solid rgba(6, 31, 23, 0.18);
 }
 
+/* Desktop only: trim 2 of the 5 "coming soon" slots down to 3, so the last
+   row isn't mostly empty placeholders. Tablet and mobile keep all 8 boxes. */
+@media (min-width: 1251px) {
+  .grid > :nth-child(6),
+  .grid > :nth-child(7) {
+    display: none;
+  }
+}
+
 
 
 .card {

@@ -54,7 +54,7 @@ const commitments: Commitment[] = [
   },
 ];
 
-const COMING_SOON_SLOTS = 3;
+const COMING_SOON_SLOTS = 5;
 
 const EXPANSION_COLS = 4;
 
@@ -151,9 +151,8 @@ export default function CommitmentsSection({
 
         <div className={styles.grid} onMouseLeave={handleHoverLeave}>
           {commitments.map((item, index) => (
-            <button
+            <div
               key={item.id}
-              type="button"
               className={`${styles.card} ${getHoverClass(index)}`}
               onMouseEnter={() => handleHoverEnter(index)}
               onClick={() => setSelectedCommitment(item)}
@@ -169,7 +168,11 @@ export default function CommitmentsSection({
               </div>
 
               <p>{item.shortDescription}</p>
-            </button>
+
+              <button type="button" className={styles.viewAll}>
+                More info
+              </button>
+            </div>
           ))}
 
           {Array.from({ length: COMING_SOON_SLOTS }).map((_, i) => {
