@@ -577,6 +577,11 @@
 
 @media (max-width: 767px) {
   .section {
+    /* overrides the global .snap-section forced full-screen height (see
+       globals.css) - this section is a scroll-snap stop, but keeps its own
+       content-driven height instead of being forced to 100vh */
+    height: auto !important;
+    min-height: 0 !important;
     padding: 56px 16px;
     display: flex;
     flex-direction: column;
