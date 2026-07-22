@@ -636,7 +636,7 @@
 
   .header h2 {
     margin-top: 8px;
-    font-size: clamp(30px, min(9.5vw, 4.8vh), 46px);
+    font-size: clamp(30px, min(9.5vw, 4.8dvh), 46px);
     line-height: 0.9;
   }
 
@@ -700,7 +700,7 @@
   }
 
   .kpiMiniValue {
-    font-size: clamp(38px, min(15vw, 22vh), 58px);
+    font-size: clamp(38px, min(15vw, 22dvh), 58px);
   }
 
   .kpiMiniIcon {
@@ -716,7 +716,7 @@
   }
 
   .kpiCagrValue {
-    font-size: clamp(34px, min(13vw, 20vh), 50px);
+    font-size: clamp(34px, min(13vw, 20dvh), 50px);
   }
 
   .kpiGeoTitle {
@@ -730,7 +730,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    font-size: clamp(115px, min(46vw, 34vh), 200px);
+    font-size: clamp(115px, min(46vw, 34dvh), 200px);
   }
 
   .kpiGiantNumber .kpiDigitUp,
