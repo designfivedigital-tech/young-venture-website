@@ -169,7 +169,7 @@ body.nav-hovered .site-header {
 
 @media (max-width: 768px) {
   html {
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
     scroll-behavior: auto;
   }
 
