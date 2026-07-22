@@ -615,9 +615,12 @@
   .kpi2Section {
     /* no more theme-switch button reserving space in the top-right corner,
        so the top inset can shrink and give the kpiBoard below more room
-       (the section's own 100vh height is unchanged) */
+       (the section's own 100vh height is unchanged). justify-content is
+       flex-start (not center): the content isn't always shorter than the
+       viewport, and centering was pushing it down, leaving a gap up top
+       while the last card got clipped at the bottom. */
     padding: 48px 14px 18px;
-    justify-content: center;
+    justify-content: flex-start;
   }
 
   .header {
