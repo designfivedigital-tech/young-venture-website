@@ -15,6 +15,10 @@ const navItems = [
   { label: "Contacts", href: "/contacts" },
 ];
 
+// Desktop already has the logo linking home, but the mobile menu panel
+// doesn't have an equivalent entry in its link list, so it gets its own.
+const mobileNavItems = [{ label: "Home", href: "/" }, ...navItems];
+
 export default function Header() {
   const pathname = usePathname();
 
@@ -297,7 +301,7 @@ export default function Header() {
           </div>
 
           <nav className="mobile-nav">
-            {navItems.map((item) => {
+            {mobileNavItems.map((item) => {
               const isActive = pathname === item.href;
 
               return (

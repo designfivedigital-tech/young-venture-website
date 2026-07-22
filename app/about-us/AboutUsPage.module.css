@@ -5,7 +5,7 @@
 }
 
 .hero {
-  min-height: 100vh;
+  min-height: 50vh;
   position: relative;
   display: block;
   padding: 0 24px;
@@ -85,7 +85,7 @@
   .heroInner {
     min-height: auto;
     justify-content: center;
-    padding-top: 120px;
+    padding-top: 60px;
     padding-bottom: 64px;
   }
 
