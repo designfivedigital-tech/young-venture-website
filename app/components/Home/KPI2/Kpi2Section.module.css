@@ -1,15 +1,14 @@
 .kpi2Section {
   position: relative;
-  /* plain vh (and lvh, which is identical to vh on iOS Safari) assumes the
-     browser chrome is already hidden, but on the first scroll into this
-     section that hasn't happened yet, so content gets laid out taller than
-     what's actually visible and the last box reads as clipped. dvh tracks
-     the real, current viewport continuously (including mid-transition),
-     so it stays correct instead of only matching up after a second scroll. */
+  /* svh (small viewport height) is the safest option on mobile: it always
+     assumes the browser chrome is fully visible, so the section can never
+     be laid out taller than what's actually on screen - unlike vh/lvh/dvh,
+     which can momentarily mismatch the real visible area the first time
+     this section is scrolled into view, clipping the last box. */
   height: 100vh;
-  height: 100dvh;
+  height: 100svh;
   min-height: 100vh;
-  min-height: 100dvh;
+  min-height: 100svh;
   overflow: hidden;
   padding: clamp(58px, 5vh, 76px) clamp(18px, 4vw, 64px) clamp(28px, 4vh, 44px);
   background:
@@ -636,7 +635,7 @@
 
   .header h2 {
     margin-top: 8px;
-    font-size: clamp(30px, min(9.5vw, 4.8dvh), 46px);
+    font-size: clamp(30px, min(9.5vw, 4.8svh), 46px);
     line-height: 0.9;
   }
 
@@ -700,7 +699,7 @@
   }
 
   .kpiMiniValue {
-    font-size: clamp(38px, min(15vw, 22dvh), 58px);
+    font-size: clamp(38px, min(15vw, 22svh), 58px);
   }
 
   .kpiMiniIcon {
@@ -716,7 +715,7 @@
   }
 
   .kpiCagrValue {
-    font-size: clamp(34px, min(13vw, 20dvh), 50px);
+    font-size: clamp(34px, min(13vw, 20svh), 50px);
   }
 
   .kpiGeoTitle {
@@ -730,7 +729,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    font-size: clamp(115px, min(46vw, 34dvh), 200px);
+    font-size: clamp(115px, min(46vw, 34svh), 200px);
   }
 
   .kpiGiantNumber .kpiDigitUp,
