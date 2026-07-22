@@ -10,7 +10,6 @@ export default function Kpi2Section() {
     >
       <div className={styles.header}>
         <div>
-          <span className={styles.label}>KPI</span>
           <h2>
             Powering young founders.
             <br />
