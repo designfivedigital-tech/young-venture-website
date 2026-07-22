@@ -72,7 +72,6 @@ export default function CommitmentsSection({
   const [isClosing, setIsClosing] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const hoverTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const sectionRef = useRef<HTMLElement | null>(null);
 
   const handleHoverEnter = (index: number) => {
     if (hoverTimeoutRef.current) clearTimeout(hoverTimeoutRef.current);
@@ -109,34 +108,6 @@ export default function CommitmentsSection({
     setMounted(true);
   }, []);
 
-  // Mobile-only: the homepage snap-scrolls one section per swipe (see
-  // globals.css), but that must release once the user scrolls past this
-  // section so Slogan/footer scroll normally. IntersectionObserver (rather
-  // than comparing window.scrollY to section.offsetTop) keeps this accurate
-  // even while images above are still loading and shifting layout.
-  useEffect(() => {
-    const isMobile = window.matchMedia("(max-width: 768px)").matches;
-    if (!isMobile) return;
-
-    const section = sectionRef.current;
-    if (!section) return;
-
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        const isPast = !entry.isIntersecting && entry.boundingClientRect.top < 0;
-        document.documentElement.classList.toggle("after-commitments", isPast);
-      },
-      { threshold: 0 }
-    );
-
-    observer.observe(section);
-
-    return () => {
-      observer.disconnect();
-      document.documentElement.classList.remove("after-commitments");
-    };
-  }, []);
-
   useEffect(() => {
     window.addEventListener("resize", handleHoverLeave);
     return () => {
@@ -171,7 +142,6 @@ export default function CommitmentsSection({
   return (
     <>
       <section
-        ref={sectionRef}
         data-header-theme="light"
         className={`${styles.section} snap-section`}
       >

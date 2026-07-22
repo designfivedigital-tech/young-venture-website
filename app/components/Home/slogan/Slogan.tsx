@@ -49,6 +49,35 @@ export default function Slogan() {
   }, []);
 
   useEffect(() => {
+    const isMobile = window.matchMedia("(max-width: 768px)").matches;
+    if (!isMobile) return;
+
+    const section = sectionRef.current;
+    if (!section) return;
+
+    // Releasing the snap as soon as Slogan enters the viewport (rather than
+    // when Commitments finishes leaving it) avoids a dead zone where
+    // mandatory snap-type has nothing left to snap to but Slogan still
+    // isn't recognized as "arrived" - that gap was trapping the scroll.
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        document.documentElement.classList.toggle(
+          "snap-scroll-released",
+          entry.isIntersecting
+        );
+      },
+      { threshold: 0 }
+    );
+
+    observer.observe(section);
+
+    return () => {
+      observer.disconnect();
+      document.documentElement.classList.remove("snap-scroll-released");
+    };
+  }, []);
+
+  useEffect(() => {
     let frameId: number | null = null;
 
     const words: WordTiming[] = [

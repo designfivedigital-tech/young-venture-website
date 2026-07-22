@@ -173,7 +173,10 @@ body.nav-hovered .site-header {
     scroll-behavior: auto;
   }
 
-  html.after-commitments {
+  /* Slogan needs continuous, un-snapped scroll to drive its progressive
+     text reveal - this releases the mandatory snap as soon as Slogan comes
+     into view (see Slogan.tsx) */
+  html.snap-scroll-released {
     scroll-snap-type: none !important;
   }
 
