@@ -54,7 +54,7 @@ const commitments: Commitment[] = [
   },
 ];
 
-const COMING_SOON_SLOTS = 5;
+const COMING_SOON_SLOTS = 3;
 
 const EXPANSION_COLS = 4;
 
