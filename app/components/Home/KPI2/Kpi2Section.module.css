@@ -1,7 +1,13 @@
 .kpi2Section {
   position: relative;
+  /* plain vh on mobile is based on the browser chrome's collapsed state,
+     which isn't settled yet on first paint - lvh matches what the rest of
+     the snap-scroll sections use (see globals.css) so the layout doesn't
+     shift/redistribute the first time this section is scrolled into view */
   height: 100vh;
+  height: 100lvh;
   min-height: 100vh;
+  min-height: 100lvh;
   overflow: hidden;
   padding: clamp(58px, 5vh, 76px) clamp(18px, 4vw, 64px) clamp(28px, 4vh, 44px);
   background:
