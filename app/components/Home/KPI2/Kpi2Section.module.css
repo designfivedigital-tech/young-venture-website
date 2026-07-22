@@ -620,7 +620,7 @@
        flex-start (not center): the content isn't always shorter than the
        viewport, and centering was pushing it down, leaving a gap up top
        while the last card got clipped at the bottom. */
-    padding: 48px 14px 18px;
+    padding: 15px 14px 18px;
     justify-content: flex-start;
   }
 
