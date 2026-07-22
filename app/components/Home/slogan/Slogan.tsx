@@ -59,11 +59,21 @@ export default function Slogan() {
     // when Commitments finishes leaving it) avoids a dead zone where
     // mandatory snap-type has nothing left to snap to but Slogan still
     // isn't recognized as "arrived" - that gap was trapping the scroll.
+    // The release must also stay on once Slogan has scrolled fully past
+    // (entry.boundingClientRect.bottom < 0) - otherwise, by the time the
+    // user reaches the footer, Slogan is no longer intersecting, snapping
+    // re-activates with nothing left to snap to, and the scroll gets
+    // pulled back instead of reaching the footer. It only re-locks when
+    // Slogan hasn't been reached yet (still below the viewport, scrolling
+    // back up from it).
     const observer = new IntersectionObserver(
       ([entry]) => {
+        const reachedOrPast =
+          entry.isIntersecting || entry.boundingClientRect.bottom < 0;
+
         document.documentElement.classList.toggle(
           "snap-scroll-released",
-          entry.isIntersecting
+          reachedOrPast
         );
       },
       { threshold: 0 }
