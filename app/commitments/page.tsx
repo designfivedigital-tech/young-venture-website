@@ -21,7 +21,7 @@ export default function CommitmentsPage() {
         </p>
       </section>
 
-      <CommitmentsSection lastCard="comingSoon" />
+      <CommitmentsSection lastCard="comingSoon" snapSection={false} />
     </main>
   );
 }

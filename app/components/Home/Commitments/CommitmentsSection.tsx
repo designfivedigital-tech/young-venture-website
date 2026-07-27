@@ -60,10 +60,12 @@ const EXPANSION_COLS = 4;
 
 type CommitmentsSectionProps = {
   lastCard?: "cta" | "comingSoon";
+  snapSection?: boolean;
 };
 
 export default function CommitmentsSection({
   lastCard = "cta",
+  snapSection = true,
 }: CommitmentsSectionProps) {
   const [selectedCommitment, setSelectedCommitment] =
     useState<Commitment | null>(null);
@@ -143,7 +145,7 @@ export default function CommitmentsSection({
     <>
       <section
         data-header-theme="light"
-        className={`${styles.section} snap-section`}
+        className={`${styles.section}${snapSection ? " snap-section" : ""}`}
       >
         <div className={styles.sectionHeader}>
           <h2>Companies we back. People we believe in.</h2>
