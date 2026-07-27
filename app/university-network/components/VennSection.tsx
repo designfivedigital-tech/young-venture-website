@@ -7,7 +7,7 @@ export default function VennSection() {
     <section data-header-theme="light" className={styles.section} id="venn">
       <div className={styles.header}>
         <Link className={styles.learnMore} href="/university-stories">
-          Learn more <span>→</span>
+          Learn more <span className={styles.arrow} aria-hidden="true" />
         </Link>
         <h2>Where our universities excel</h2>
         <p>Two souls, one network: engineering depth and business acumen.</p>

@@ -299,7 +299,10 @@ export default function CommitmentsSection({
                     data-cursor="commitment"
                     className={styles.cardWebsite}
                   >
-                    Website <span>↗</span>
+                    Website
+                    <span>
+                      <span className={styles.arrowIcon} aria-hidden="true" />
+                    </span>
                   </a>
 
                   <a
@@ -309,7 +312,10 @@ export default function CommitmentsSection({
                     data-cursor="commitment"
                     className={styles.cardLinkedin}
                   >
-                    LinkedIn <span>↗</span>
+                    LinkedIn
+                    <span>
+                      <span className={styles.arrowIcon} aria-hidden="true" />
+                    </span>
                   </a>
                 </div>
               </div>

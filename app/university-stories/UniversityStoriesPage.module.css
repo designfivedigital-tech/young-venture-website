@@ -289,11 +289,15 @@
 }
 
 .arrow {
-  font-size: 22px;
-  font-weight: 700;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-color: currentColor;
+  -webkit-mask: url("/images/freccia-yv.svg") center / contain no-repeat;
+  mask: url("/images/freccia-yv.svg") center / contain no-repeat;
   color: #0e1116;
   opacity: 0;
-  transform: translateX(-8px);
+  transform: translateX(-8px) rotate(90deg);
   transition:
     opacity 0.3s ease,
     transform 0.3s ease;
@@ -301,7 +305,7 @@
 
 .card:hover .arrow {
   opacity: 1;
-  transform: translateX(0);
+  transform: translateX(0) rotate(90deg);
 }
 
 .cardPortfolio .arrow {

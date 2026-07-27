@@ -41,7 +41,16 @@
   white-space: nowrap;
 }
 
-.learnMore span {
+.learnMore span,
+.arrow {
+  display: inline-block;
+  width: 0.85em;
+  height: 0.85em;
+  vertical-align: middle;
+  background-color: currentColor;
+  -webkit-mask: url("/images/freccia-yv.svg") center / contain no-repeat;
+  mask: url("/images/freccia-yv.svg") center / contain no-repeat;
+  transform: rotate(90deg);
   transition: transform 0.3s ease;
 }
 
@@ -50,7 +59,7 @@
 }
 
 .learnMore:hover span {
-  transform: translateX(8px);
+  transform: translateX(8px) rotate(90deg);
 }
 
 .wrap {

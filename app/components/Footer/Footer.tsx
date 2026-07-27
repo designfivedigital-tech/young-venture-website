@@ -67,7 +67,7 @@ export default function Footer() {
           ))}
           {toolLinks.map((link) => (
             <a key={link.href} href={link.href} target="_blank" rel="noopener noreferrer">
-              {link.label} ↗
+              {link.label} <span className={styles.externalIcon} aria-hidden="true" />
             </a>
           ))}
         </nav>
@@ -79,7 +79,7 @@ export default function Footer() {
         <div className={styles.sideLinks}>
           {sideLinks.map((link) => (
             <a key={link.label} href={link.href} target="_blank">
-              {link.label} ↗
+              {link.label} <span className={styles.externalIcon} aria-hidden="true" />
             </a>
           ))}
         </div>

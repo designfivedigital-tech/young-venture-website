@@ -230,7 +230,9 @@ export default function KpiSection() {
 
           <div className={styles.cardTop}>
             <h3>IPOs</h3>
-            <div className={styles.icon}>↗</div>
+            <div className={styles.icon}>
+              <span className={styles.iconArrow} aria-hidden="true" />
+            </div>
           </div>
 
           <strong className={styles.ipoNumber}>9</strong>
