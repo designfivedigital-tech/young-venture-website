@@ -186,6 +186,18 @@
   color: #ffffff;
   font-size: 24px;
   cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.backIcon {
+  display: block;
+  width: 22px;
+  height: 22px;
+  background-color: currentColor;
+  -webkit-mask: url("/images/freccia-yv.svg") center / contain no-repeat;
+  mask: url("/images/freccia-yv.svg") center / contain no-repeat;
+  transform: rotate(-90deg);
 }
 .detailContent {
   width: min(1600px, 100%);

@@ -30,7 +30,7 @@ export default function ScrollToTop() {
       className={`${styles.button} ${visible ? styles.visible : ""}`}
       aria-label="Back to top"
     >
-      ↑
+      <span className={styles.arrowIcon} aria-hidden="true" />
     </button>
   );
 }

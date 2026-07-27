@@ -247,7 +247,7 @@ export default function CommitmentsSection({
               className={styles.backButton}
               onClick={closePopup}
             >
-              ←
+              <span className={styles.backIcon} aria-hidden="true" />
             </button>
 
             <div className={styles.detailContent}>
