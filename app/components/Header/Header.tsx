@@ -11,7 +11,7 @@ const navItems = [
   { label: "Team", href: "/team" },
   { label: "Commitments", href: "/commitments" },
   { label: "University Network", href: "/university-network" },
-  { label: "Noise", href: "/noise" },
+  { label: "Noise", href: "https://blog.youngventures.vc/", external: true },
   { label: "Contacts", href: "/contacts" },
 ];
 
@@ -254,6 +254,8 @@ export default function Header() {
                 key={item.href}
                 href={item.href}
                 prefetch={false}
+                target={item.external ? "_blank" : undefined}
+                rel={item.external ? "noopener noreferrer" : undefined}
                 className={`menu-link ${isActive ? "menu-link-active" : ""}`}
               >
                 {item.label}
@@ -310,6 +312,8 @@ export default function Header() {
   href={item.href}
   prefetch={false}
   onClick={closeMenu}
+  target={item.external ? "_blank" : undefined}
+  rel={item.external ? "noopener noreferrer" : undefined}
   className={`mobile-menu-link ${
     isActive ? "mobile-menu-link-active" : ""
   }`}
