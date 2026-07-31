@@ -17,9 +17,6 @@ export default function Kpi2Section() {
           </h2>
         </div>
 
-        <p>
-          A snapshot of Young Ventures.
-        </p>
       </div>
 
       <div className={styles.kpiBoard}>
@@ -82,7 +79,7 @@ export default function Kpi2Section() {
               d="M-2 78 C13 54 26 42 42 42 C58 42 66 52 80 38 C90 28 94 17 102 15"
             />
           </svg>
-          <p className={styles.kpiCaption}>Projected CAGR</p>
+          <p className={styles.kpiCaption}>Projected CAGR across our focus sectors</p>
         </article>
 
         <article className={`${styles.kpiCard} ${styles.kpiGeo}`}>
