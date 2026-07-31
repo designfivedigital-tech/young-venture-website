@@ -66,9 +66,23 @@
 
 .grid {
   align-self: center;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(58px, 6vw, 110px);
+}
+
+.europeRow,
+.usaRow {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(58px, 6vw, 110px) clamp(58px, 7vw, 130px);
+}
+
+.europeRow {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.usaRow {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
 .card {
@@ -161,6 +175,11 @@
     align-self: auto;
     gap: 46px;
   }
+
+  .europeRow,
+  .usaRow {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 @media (max-width: 640px) {
@@ -183,6 +202,11 @@
   }
 
   .grid {
+    gap: 42px;
+  }
+
+  .europeRow,
+  .usaRow {
     grid-template-columns: 1fr;
     gap: 42px;
   }

@@ -6,6 +6,7 @@ import styles from "./ContactPage.module.css";
 const locations = [
   {
     country: "ENGLAND",
+    region: "europe",
     timezone: "Europe/London",
     universities: [
       { name: "Oxford", city: "Oxford" },
@@ -15,16 +16,19 @@ const locations = [
   },
   {
     country: "ITALY",
+    region: "europe",
     timezone: "Europe/Rome",
     universities: [{ name: "Bocconi", city: "Milano" }],
   },
   {
     country: "SWITZERLAND",
+    region: "europe",
     timezone: "Europe/Zurich",
     universities: [{ name: "ETH", city: "Zurich" }],
   },
   {
     country: "UNITED STATES — WEST COAST",
+    region: "usa",
     timezone: "America/Los_Angeles",
     universities: [
       { name: "Caltech", city: "California" },
@@ -33,6 +37,7 @@ const locations = [
   },
   {
     country: "UNITED STATES — EAST COAST",
+    region: "usa",
     timezone: "America/New_York",
     universities: [
       { name: "Harvard", city: "Massachusetts" },
@@ -40,6 +45,9 @@ const locations = [
     ],
   },
 ];
+
+const europeLocations = locations.filter((location) => location.region === "europe");
+const usaLocations = locations.filter((location) => location.region === "usa");
 
 function getClockAngles(timezone: string) {
   const parts = new Intl.DateTimeFormat("en-GB", {
@@ -110,6 +118,25 @@ function AnalogClock({ timezone }: { timezone: string }) {
   );
 }
 
+type Location = (typeof locations)[number];
+
+function LocationCard({ location }: { location: Location }) {
+  return (
+    <article className={styles.card}>
+      <AnalogClock timezone={location.timezone} />
+
+      <h2>{location.country}</h2>
+
+      {location.universities.map((university) => (
+        <div className={styles.university} key={university.name}>
+          <p>{university.name}</p>
+          <span>{university.city}</span>
+        </div>
+      ))}
+    </article>
+  );
+}
+
 export default function ContactPage() {
   return (
     <main className={styles.page} data-header-theme="dark">
@@ -135,20 +162,17 @@ export default function ContactPage() {
           </div>
 
           <div className={styles.grid}>
-            {locations.map((location) => (
-              <article className={styles.card} key={location.country}>
-                <AnalogClock timezone={location.timezone} />
+            <div className={styles.europeRow}>
+              {europeLocations.map((location) => (
+                <LocationCard key={location.country} location={location} />
+              ))}
+            </div>
 
-                <h2>{location.country}</h2>
-
-                {location.universities.map((university) => (
-                  <div className={styles.university} key={university.name}>
-                    <p>{university.name}</p>
-                    <span>{university.city}</span>
-                  </div>
-                ))}
-              </article>
-            ))}
+            <div className={styles.usaRow}>
+              {usaLocations.map((location) => (
+                <LocationCard key={location.country} location={location} />
+              ))}
+            </div>
           </div>
         </div>
       </section>
