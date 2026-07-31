@@ -5,28 +5,39 @@ import styles from "./ContactPage.module.css";
 
 const locations = [
   {
-    city: "SAN FRANCISCO",
-    company: "Young Ventures Advisor Ltd.",
-    address: ["58 S Park St", "San Francisco, CA 94107"],
-    timezone: "America/Los_Angeles",
-  },
-  {
-    city: "LONDON",
-    company: "Young Ventures Advisor LLP.",
-    address: ["36 Carnaby Street", "London W1F 7DS"],
+    country: "ENGLAND",
     timezone: "Europe/London",
+    universities: [
+      { name: "Oxford", city: "Oxford" },
+      { name: "Cambridge", city: "Cambridge" },
+      { name: "LSE", city: "London" },
+    ],
   },
   {
-    city: "STOCKHOLM",
-    company: "Young Ventures VII Advisor AB",
-    address: ["Jakobsbergsgatan 18", "111 44 Stockholm"],
-    timezone: "Europe/Stockholm",
+    country: "ITALY",
+    timezone: "Europe/Rome",
+    universities: [{ name: "Bocconi", city: "Milano" }],
   },
   {
-    city: "BERLIN",
-    company: "Young Ventures Advisor GmbH",
-    address: ["Torstraße 42", "10119 Berlin"],
-    timezone: "Europe/Berlin",
+    country: "SWITZERLAND",
+    timezone: "Europe/Zurich",
+    universities: [{ name: "ETH", city: "Zurich" }],
+  },
+  {
+    country: "UNITED STATES — WEST COAST",
+    timezone: "America/Los_Angeles",
+    universities: [
+      { name: "Caltech", city: "California" },
+      { name: "Stanford", city: "California" },
+    ],
+  },
+  {
+    country: "UNITED STATES — EAST COAST",
+    timezone: "America/New_York",
+    universities: [
+      { name: "Harvard", city: "Massachusetts" },
+      { name: "NYU", city: "New York" },
+    ],
   },
 ];
 
@@ -125,15 +136,16 @@ export default function ContactPage() {
 
           <div className={styles.grid}>
             {locations.map((location) => (
-              <article className={styles.card} key={location.city}>
+              <article className={styles.card} key={location.country}>
                 <AnalogClock timezone={location.timezone} />
 
-                <h2>{location.city}</h2>
+                <h2>{location.country}</h2>
 
-                <p>{location.company}</p>
-
-                {location.address.map((line) => (
-                  <span key={line}>{line}</span>
+                {location.universities.map((university) => (
+                  <div className={styles.university} key={university.name}>
+                    <p>{university.name}</p>
+                    <span>{university.city}</span>
+                  </div>
                 ))}
               </article>
             ))}

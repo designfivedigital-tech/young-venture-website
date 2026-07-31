@@ -138,6 +138,10 @@
   font-weight: 600;
 }
 
+.university + .university {
+  margin-top: 10px;
+}
+
 @media (max-width: 1024px) {
   .inner {
     grid-template-columns: 1fr;
@@ -200,13 +204,9 @@
     margin: 0;
   }
 
-  .card p {
+  .university {
     flex-basis: 100%;
     margin-top: 18px;
-  }
-
-  .card span {
-    flex-basis: 100%;
   }
 
   .card p,
