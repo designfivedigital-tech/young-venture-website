@@ -26,9 +26,9 @@ const commitments: Commitment[] = [
     id: 1,
     name: "Cortirio",
     logo: "/images/commitments-logo/cortirio.svg",
-    shortDescription: "AI infrastructure for modern teams",
+    shortDescription: "Portable brain imaging that saves time and lives",
     longDescription:
-      "Cortirio is building intelligent infrastructure for ambitious companies, helping teams automate complex workflows and make better decisions with data.",
+      "Cortirio is developing a portable, wearable brain-imaging device that uses infrared light to rapidly detect strokes and traumatic brain injuries, wherever care is needed.",
     status: "ACTIVE",
     founded: "2017",
     backed: "2026",
