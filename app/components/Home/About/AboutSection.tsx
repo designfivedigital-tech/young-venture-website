@@ -171,11 +171,10 @@ export default function AboutSection() {
       <div className={styles.contentCard}>
         <p className={styles.label}>About us</p>
 
-        <h2>We back founders building what comes next.</h2>
+        <h2>We back the founders getting breakthrough research out of the lab.</h2>
 
         <p className={styles.text}>
-          Young Ventures connects ambitious founders with a global university
-          network across youth culture, clean technology and deep tech.
+          A network based in the world's leading universities and institutions.
         </p>
       </div>
 

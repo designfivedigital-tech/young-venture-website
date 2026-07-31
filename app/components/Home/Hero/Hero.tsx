@@ -301,7 +301,7 @@ export default function Hero() {
         <div className={styles.heroTitle}>
           <h1>Young Ventures</h1>
           <p>
-            Investing in young founders before the world is watching.
+            Investing in elite young funders before the world is watching.
           </p>
         </div>
 
