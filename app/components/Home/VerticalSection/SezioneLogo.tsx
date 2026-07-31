@@ -16,21 +16,21 @@ const blocks = [
     title: "Youth",
     color: "pink",
     cursor: "youth",
-    copy: "Investiamo nelle idee e nei talenti che stanno costruendo il futuro. Supportiamo team visionari con energia e voglia di cambiare le regole del gioco.",
+    copy: "We believe the best ideas of a generation rarely come from a single place. We invest in young founders wherever their path began, drawn to the ones with the energy and ambition to rewrite the rules of their industry.",
   },
   {
     step: 2 as Step,
     title: "Clean Tech",
     color: "green",
     cursor: "clean",
-    copy: "Sosteniamo tecnologie che migliorano il nostro pianeta. Dall'energia pulita alla mobilità sostenibile, investiamo in soluzioni che coniugano innovazione e responsabilità ambientale.",
+    copy: "We believe science and technology are the only real answer to the climate challenge. We invest in early-stage clean tech startups tackling the technically hardest problems of the transition, complex technologies that are hard to build and hard to replicate, from energy storage to carbon capture and advanced materials.",
   },
   {
     step: 3 as Step,
     title: "Deep Tech",
     color: "cyan",
     cursor: "deep",
-    copy: "Crediamo nel potere della scienza e della tecnologia per risolvere le sfide più complesse. Investiamo in ricerca avanzata e startup deep tech che possono ridefinire il futuro.",
+    copy: "We believe science and technology can solve the hardest problems of our time. We invest in early-stage deep tech startups built on years of research and protected IP, in fields like advanced materials, quantum technologies and synthetic biology, with the potential to redefine entire industries. Our university network gives us access to these projects at the source, often before they reach the market.",
   },
 ];
 

@@ -9,15 +9,12 @@ export default function CommitmentsPage() {
           <span className={styles.label}>Commitments</span>
 
           <h1>
-            Backing ambitious founders.
-            <br />
-            Building enduring companies.
+            We back academic talent building enduring companies.
           </h1>
         </div>
 
         <p>
-          We partner with exceptional entrepreneurs from the earliest stages,
-          supporting them with capital, network and strategic guidance.
+          We back the kind of minds universities are full of and industry is short of, and we help them build companies worth talking about.
         </p>
       </section>
 

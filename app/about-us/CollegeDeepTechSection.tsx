@@ -25,20 +25,20 @@ export default function CollegeDeepTechSection() {
               <path className={styles.triadLight} d="M50 12 L15 74 L85 74 Z" pathLength={100} />
             </svg>
 
-            <span className={styles.triadCenter}>YV</span>
+            <span className={styles.triadCenter}></span>
             <span className={styles.triadVertex} style={{ left: "50%", top: "12%" }} />
             <span className={styles.triadVertex} style={{ left: "15%", top: "74%" }} />
             <span className={styles.triadVertex} style={{ left: "85%", top: "74%" }} />
 
             <div className={`${styles.triadNode} ${styles.triadNodeTop}`}>
               <div className={styles.triadText}>
-                <h4>Know-how</h4>
+                <h4>Laboratories</h4>
               </div>
             </div>
 
             <div className={`${styles.triadNode} ${styles.triadNodeLeft}`}>
               <div className={styles.triadText}>
-                <h4>Environment</h4>
+                <h4>Know-how</h4>
               </div>
             </div>
 

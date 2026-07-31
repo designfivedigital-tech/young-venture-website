@@ -11,15 +11,14 @@ export default function Kpi2Section() {
       <div className={styles.header}>
         <div>
           <h2>
-            Powering young founders.
+            Powering young founders. Across capital, universities and
             <br />
-            <span>Across capital, universities and venture networks.</span>
+            <span>venture networks.</span>
           </h2>
         </div>
 
         <p>
-          A snapshot of Young Ventures’ investment reach, university access and
-          venture ecosystem.
+          A snapshot of Young Ventures.
         </p>
       </div>
 
@@ -56,7 +55,7 @@ export default function Kpi2Section() {
               className={styles.kpiMiniIconImg}
             />
           </span>
-          <p className={styles.kpiCaption}>Initiatives in our deal flow</p>
+          <p className={styles.kpiCaption}>Initiatives scouted every year</p>
         </article>
 
         <article className={`${styles.kpiCard} ${styles.kpiCagr}`}>
@@ -83,11 +82,11 @@ export default function Kpi2Section() {
               d="M-2 78 C13 54 26 42 42 42 C58 42 66 52 80 38 C90 28 94 17 102 15"
             />
           </svg>
-          <p className={styles.kpiCaption}>Projected CGR</p>
+          <p className={styles.kpiCaption}>Projected CAGR</p>
         </article>
 
         <article className={`${styles.kpiCard} ${styles.kpiGeo}`}>
-          <h3 className={styles.kpiGeoTitle}>Global university reach</h3>
+          <h3 className={styles.kpiGeoTitle}>Where We Deploy</h3>
           <div className={styles.kpiBubbles}>
             <span className={`${styles.kpiBubble} ${styles.kpiBubbleEu}`}>
               <b>Europe</b>

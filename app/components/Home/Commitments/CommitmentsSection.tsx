@@ -148,7 +148,7 @@ export default function CommitmentsSection({
         className={`${styles.section}${snapSection ? " snap-section" : ""}`}
       >
         <div className={styles.sectionHeader}>
-          <h2>Companies we back. People we believe in.</h2>
+          <h2>Companies we back. founders we believe in.</h2>
         </div>
 
         <div className={styles.grid} onMouseLeave={handleHoverLeave}>

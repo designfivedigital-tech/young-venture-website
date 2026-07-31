@@ -9,7 +9,7 @@ export default function VennSection() {
         <Link className={styles.learnMore} href="/university-stories">
           Learn more <span className={styles.arrow} aria-hidden="true" />
         </Link>
-        <h2>Where our universities excel</h2>
+        <h2>Where technical depth meets entrepreneurial drive</h2>
         <p>Two souls, one network: engineering depth and business acumen.</p>
       </div>
 

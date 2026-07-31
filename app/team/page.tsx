@@ -131,20 +131,16 @@ export default function TeamPage() {
     <section data-header-theme="light" className={styles.teamPage}>
       <div className={styles.hero}>
         <h1>
-          We’ve turned venture
-          <br />
-          into a team sport
+          The minds at work.
         </h1>
 
         <div className={styles.heroText}>
           <p>
-            We’re founders, operators, students, investors and builders working
-            together to support the next generation of ambitious entrepreneurs.
+           We come from different universities, but the pattern is the same: each of us stood out before we ever stood together.
           </p>
 
           <p>
-            And you’ll never get only one of us. The united experience of our
-            team stands behind you.
+            Now, that individual drive becomes collective experience - and it all stands behind every founder we support.
           </p>
         </div>
       </div>
