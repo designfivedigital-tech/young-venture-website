@@ -9,8 +9,8 @@ const locations = [
     region: "europe",
     timezone: "Europe/London",
     universities: [
-      { name: "Oxford", city: "Oxford" },
-      { name: "Cambridge", city: "Cambridge" },
+      { name: "Oxford Univerity", city: "Oxford" },
+      { name: "Cambridge University", city: "Cambridge" },
       { name: "LSE", city: "London" },
     ],
   },
@@ -32,7 +32,7 @@ const locations = [
     timezone: "America/Los_Angeles",
     universities: [
       { name: "Caltech", city: "California" },
-      { name: "Stanford", city: "California" },
+      { name: "Stanford University", city: "California" },
     ],
   },
   {

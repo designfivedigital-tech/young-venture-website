@@ -24,18 +24,18 @@ type Commitment = {
 const commitments: Commitment[] = [
   {
     id: 1,
-    name: "Northline",
-    logo: "/images/commitments-logo/spotify-logo.svg",
+    name: "Cortirio",
+    logo: "/images/commitments-logo/cortirio.svg",
     shortDescription: "AI infrastructure for modern teams",
     longDescription:
-      "Northline is building intelligent infrastructure for ambitious companies, helping teams automate complex workflows and make better decisions with data.",
+      "Cortirio is building intelligent infrastructure for ambitious companies, helping teams automate complex workflows and make better decisions with data.",
     status: "ACTIVE",
-    founded: "2021",
-    backed: "2023",
-    founder: "Alex Morgan",
-    location: "Milan, Italy",
-    website: "https://example.com",
-    linkedin: "https://www.linkedin.com/company/example",
+    founded: "2017",
+    backed: "2026",
+    founder: "Patrick Beldon e Paul Macey",
+    location: "London, Uk",
+    website: "https://cortirio.com",
+    linkedin: "https://uk.linkedin.com/company/cortirio",
   },
   {
     id: 2,
