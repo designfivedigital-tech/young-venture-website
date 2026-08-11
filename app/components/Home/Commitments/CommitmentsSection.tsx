@@ -37,24 +37,9 @@ const commitments: Commitment[] = [
     website: "https://cortirio.com",
     linkedin: "https://uk.linkedin.com/company/cortirio",
   },
-  {
-    id: 2,
-    name: "Velora",
-    logo: "/images/commitments-logo/apple-logo.svg",
-    shortDescription: "Clean energy software platform",
-    longDescription:
-      "Velora helps energy operators optimize distributed renewable assets through predictive analytics, real-time monitoring and intelligent automation.",
-    status: "ACTIVE",
-    founded: "2020",
-    backed: "2022",
-    founder: "Maya Conti",
-    location: "Berlin, Germany",
-    website: "https://example.com",
-    linkedin: "https://www.linkedin.com/company/example",
-  },
 ];
 
-const COMING_SOON_SLOTS = 5;
+const COMING_SOON_SLOTS = 6;
 
 const EXPANSION_COLS = 4;
 
