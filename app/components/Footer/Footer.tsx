@@ -86,7 +86,7 @@ export default function Footer() {
 
         <div className={styles.legalLinks}>
           {legalLinks.map((link) => (
-            <Link key={link.href} href={link.href}>
+            <Link key={link.href} href={link.href} target="_blank">
               {link.label}
             </Link>
           ))}
