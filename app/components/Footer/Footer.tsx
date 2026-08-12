@@ -21,7 +21,7 @@ const toolLinks = [
 ];
 
 const legalLinks = [
-  { label: "Legal", href: "/legal" },
+  { label: "Legal", href: "https://blog.youngventures.vc/terms-of-use/" },
   { label: "Privacy policy", href: "https://blog.youngventures.vc/privacy-policy/" },
   { label: "Sustainability disclosure", href: "/sustainability" },
 ];
