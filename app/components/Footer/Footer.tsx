@@ -11,9 +11,9 @@ const mainLinks = [
 ];
 
 const sideLinks = [
-  { label: "LinkedIn", href: "https://www.linkedin.com" },
-  { label: "TikTok", href: "https://tiktok.com" },
-  { label: "Instagram", href: "https://instagram.com" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/young-ventures-vc" },
+  { label: "TikTok", href: "https://www.tiktok.com/@youngventures.vc" },
+  { label: "Instagram", href: "https://www.instagram.com/youngventures.vc" },
 ];
 
 const toolLinks = [
@@ -23,7 +23,6 @@ const toolLinks = [
 const legalLinks = [
   { label: "Legal", href: "https://blog.youngventures.vc/terms-of-use/" },
   { label: "Privacy policy", href: "https://blog.youngventures.vc/privacy-policy/" },
-  { label: "Sustainability disclosure", href: "/sustainability" },
 ];
 
 export default function Footer() {
