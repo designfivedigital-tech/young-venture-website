@@ -22,7 +22,7 @@ const toolLinks = [
 
 const legalLinks = [
   { label: "Legal", href: "/legal" },
-  { label: "Privacy policy", href: "/privacy-policy" },
+  { label: "Privacy policy", href: "https://blog.youngventures.vc/privacy-policy/" },
   { label: "Sustainability disclosure", href: "/sustainability" },
 ];
 
