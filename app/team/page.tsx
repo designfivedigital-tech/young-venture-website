@@ -24,8 +24,7 @@ const UNIVERSITIES = [
   "Caltech",
 ];
 
-// Each member belongs to exactly one university (must match a name in
-// UNIVERSITIES above) - that's what drives the sidebar filter.
+
 const TEAM_MEMBERS: TeamMember[] = [
   {
     name: "Davide",
@@ -45,7 +44,7 @@ const TEAM_MEMBERS: TeamMember[] = [
 
    {
     name: "Ilaria",
-    role: "University Network, Zurich",
+    role: "University Network, Milan",
     university: "Bocconi",
     image: "/images/team-members/ragazzo-prova.jpg",
     hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
@@ -53,7 +52,7 @@ const TEAM_MEMBERS: TeamMember[] = [
 
   {
     name: "Marc",
-    role: "University Network, Zurich",
+    role: "University Network, Milan",
     university: "Bocconi",
     image: "/images/team-members/ragazzo-prova.jpg",
     hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
@@ -76,42 +75,42 @@ const TEAM_MEMBERS: TeamMember[] = [
   {
     name: "Carlos",
     role: "Platform Team, New York",
-    university: "Cambridge",
+    university: "NYU",
     image: "/images/team-members/Carlos-NYU_1.jpg",
     hoverImage: "/images/team-members/Carlos-NYU_2.jpg",
   },
   {
-    name: "Name Surname",
-    role: "Investment Team, London",
-    university: "LSE",
-    image: "/images/team-members/ragazzo-prova.jpg",
-    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
-  },
-  {
-    name: "Name Surname",
-    role: "Founder Relations, New York",
-    university: "NYU",
-    image: "/images/team-members/ragazzo-prova.jpg",
-    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
-  },
-  {
-    name: "Name Surname",
-    role: "Venture Partner, Boston",
+    name: "Luca",
+    role: "Investment Team, Boston",
     university: "Harvard",
     image: "/images/team-members/ragazzo-prova.jpg",
     hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
   },
   {
-    name: "Name Surname",
-    role: "Investment Team, San Francisco",
+    name: "Yuga",
+    role: "Founder Relations, London",
+    university: "LSE",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
+  },
+  {
+    name: "Sofya",
+    role: "Venture Partner, Oxford",
+    university: "Oxford",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
+  },
+  {
+    name: "Alex",
+    role: "Investment Team, Stanford",
     university: "Stanford",
     image: "/images/team-members/ragazzo-prova.jpg",
     hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
   },
   {
-    name: "Name Surname",
-    role: "Platform Team, Pasadena",
-    university: "Caltech",
+    name: "Inés",
+    role: "Platform Team, Zurich",
+    university: "ETH",
     image: "/images/team-members/ragazzo-prova.jpg",
     hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
   },
