@@ -128,6 +128,10 @@
   gap: 18px;
 }
 
+.sideLinks + .sideLinks {
+  margin-top: 18px;
+}
+
 .sideLinks a {
   font-size: 18px;
   color: #061d18;

@@ -40,7 +40,7 @@
     #fff 0%,
     #fff 100%
   );
-  background-size: calc(var(--progress, 0%) + 0.1em) 180%;
+  background-size: var(--progress, 0%) 180%;
   background-repeat: no-repeat;
   background-position: left center;
   -webkit-background-clip: text;
