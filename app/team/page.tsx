@@ -174,6 +174,12 @@ function TeamCard({ member }: { member: TeamMember }) {
 
 export default function TeamPage() {
   const [selectedSlug, setSelectedSlug] = useState<string>("all");
+  const contentRef = useRef<HTMLDivElement | null>(null);
+
+  const selectFilter = (slug: string) => {
+    setSelectedSlug(slug);
+    contentRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  };
 
   const visibleGroups =
     selectedSlug === "all"
@@ -198,14 +204,14 @@ export default function TeamPage() {
         </div>
       </div>
 
-      <div className={styles.content}>
+      <div className={styles.content} ref={contentRef}>
         <aside className={styles.filters}>
           <p>Universities</p>
 
           <div>
             <button
               type="button"
-              onClick={() => setSelectedSlug("all")}
+              onClick={() => selectFilter("all")}
               className={selectedSlug === "all" ? styles.activeLink : undefined}
             >
               All
@@ -215,7 +221,7 @@ export default function TeamPage() {
               <button
                 key={group.slug}
                 type="button"
-                onClick={() => setSelectedSlug(group.slug)}
+                onClick={() => selectFilter(group.slug)}
                 className={selectedSlug === group.slug ? styles.activeLink : undefined}
               >
                 {group.name}
