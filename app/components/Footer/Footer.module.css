@@ -33,14 +33,14 @@
 .offices {
   margin-top: 0;
   display: grid;
-  grid-template-columns: repeat(3, minmax(140px, 1fr));
-  gap: 40px 32px;
+  grid-template-columns: repeat(3, minmax(clamp(90px, 6vw, 140px), 1fr));
+  gap: 40px clamp(14px, 2vw, 32px);
 }
 
 .office h4 {
   margin: 0 0 18px;
   font-size: 17px;
-  letter-spacing: 0.16em;
+  letter-spacing: clamp(1px, 0.15vw, 2.7px);
   font-weight: 800;
 }
 
