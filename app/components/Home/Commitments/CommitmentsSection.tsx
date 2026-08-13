@@ -26,7 +26,7 @@ const commitments: Commitment[] = [
     id: 1,
     name: "Cortirio",
     logo: "/images/commitments-logo/cortirio.svg",
-    shortDescription: "Portable brain imaging that saves time and lives",
+    shortDescription: "Portable brain imaging\nthat saves time and lives",
     longDescription:
       "Cortirio is developing a portable, wearable brain-imaging device that uses infrared light to rapidly detect strokes and traumatic brain injuries, wherever care is needed.",
     status: "ACTIVE",
