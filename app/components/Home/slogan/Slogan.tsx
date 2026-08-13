@@ -149,7 +149,7 @@ export default function Slogan() {
   return (
     <section ref={sectionRef} className="payoff-section snap-section">
       <div className="payoff-sticky">
-        <h1 className="payoff-title" ref={titleRef}>
+        <h2 className="payoff-title" ref={titleRef}>
   <span className="payoff-line" ref={lineRef}>
     {["Born", "to", "Scout", "the", "invisible"].map((word, index) => (
       <Fragment key={`${word}-${index}`}>
@@ -165,7 +165,7 @@ export default function Slogan() {
       </Fragment>
     ))}
   </span>
-</h1>
+</h2>
       </div>
     </section>
   );
