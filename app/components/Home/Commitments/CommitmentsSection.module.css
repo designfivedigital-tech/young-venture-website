@@ -192,8 +192,8 @@
 
 .backIcon {
   display: block;
-  width: 22px;
-  height: 22px;
+  width: clamp(14px, 1.6vw, 18px);
+  height: clamp(14px, 1.6vw, 18px);
   background-color: currentColor;
   -webkit-mask: url("/images/freccia-yv.svg") center / contain no-repeat;
   mask: url("/images/freccia-yv.svg") center / contain no-repeat;
@@ -260,8 +260,8 @@
 
 .cardWebsite span,
 .cardLinkedin span {
-  width: 34px;
-  height: 34px;
+  width: clamp(26px, 2.4vw, 34px);
+  height: clamp(26px, 2.4vw, 34px);
   border: 1px solid rgba(255, 255, 255, 0.24);
   border-radius: 50%;
   display: grid;
@@ -270,8 +270,8 @@
 
 .arrowIcon {
   display: block;
-  width: 14px;
-  height: 14px;
+  width: clamp(9px, 0.9vw, 12px);
+  height: clamp(9px, 0.9vw, 12px);
   background-color: currentColor;
   -webkit-mask: url("/images/freccia-yv.svg") center / contain no-repeat;
   mask: url("/images/freccia-yv.svg") center / contain no-repeat;
@@ -403,6 +403,11 @@
     height: 72px;
   }
 
+  .backIcon {
+    width: 15px;
+    height: 15px;
+  }
+
   .metaRow {
     padding: 18px 0;
   }
@@ -512,6 +517,11 @@
     left: 28px;
     width: 68px;
     height: 68px;
+  }
+
+  .backIcon {
+    width: 14px;
+    height: 14px;
   }
 
   .detailContent {
@@ -672,6 +682,11 @@
     left: 18px;
     width: 58px;
     height: 58px;
+  }
+
+  .backIcon {
+    width: 12px;
+    height: 12px;
   }
 
   .detailOverlay {
