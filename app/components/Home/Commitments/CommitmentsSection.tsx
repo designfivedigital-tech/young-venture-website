@@ -32,7 +32,7 @@ const commitments: Commitment[] = [
     status: "ACTIVE",
     founded: "2017",
     backed: "2026",
-    founder: "Patrick Beldon e Paul Macey",
+    founder: "Patrick Beldon and Paul Macey",
     location: "London, Uk",
     website: "https://cortirio.com",
     linkedin: "https://uk.linkedin.com/company/cortirio",

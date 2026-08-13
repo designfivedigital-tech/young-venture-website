@@ -110,7 +110,6 @@ function TeamCard({ member }: { member: TeamMember }) {
             className={styles.hoverImage}
           />
 
-          <span className={styles.hold}>hold to play</span>
         </div>
 
       <h3>{member.name}</h3>

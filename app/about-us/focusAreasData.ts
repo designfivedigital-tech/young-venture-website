@@ -25,7 +25,7 @@ export const FOCUS_ITEMS = [
     label: "Robotics and industrial automation",
     title: "Robotics and industrial automation",
     description:
-      "We believe automation will reshape how the world builds, moves, produces and maintains complex environments. Robotics is leaving the cage and entering warehouses, fields, hospitals, construction sites and homes. We look for founders combining advances in perception, manipulation and learning with a deep understanding of real industrial workflows. The winners in this space will not just demo well — they will deliver reliability, safety and unit economics that make automation the obvious choice. We want to meet the teams building those machines and the software that orchestrates them.",
+      "We believe automation will reshape how the world builds, moves, produces and maintains complex environments. Robotics is leaving the cage and entering warehouses, fields, hospitals, construction sites and homes. We look for founders combining advances in perception, manipulation and learning with a deep understanding of real industrial workflows. The winners in this space will not just demo well; they will deliver reliability, safety and unit economics that make automation the obvious choice. We want to meet the teams building those machines and the software that orchestrates them.",
     link: "/focus/robotics",
     Icon: AtomIcon,
     bg: "linear-gradient(135deg,#3f1a0e,#c0562e)",
@@ -46,7 +46,7 @@ export const FOCUS_ITEMS = [
     label: "Digital and frontier technologies",
     title: "Digital and frontier technologies",
     description:
-      "We look for founders building at the edge of software, data, infrastructure and frontier computation. Artificial intelligence, new compute paradigms, developer platforms and data infrastructure are rewriting what software can do and who can build it. We search for technical founders with strong opinions about where the stack is heading — people building the models, tools and platforms the next decade of companies will be built on. Speed of learning matters more than a polished plan: we want teams shipping, measuring and compounding faster than anyone else.",
+      "We look for founders building at the edge of software, data, infrastructure and frontier computation. Artificial intelligence, new compute paradigms, developer platforms and data infrastructure are rewriting what software can do and who can build it. We search for technical founders with strong opinions about where the stack is heading, especially those building the models, tools and platforms the next decade of companies will be built on. Speed of learning matters more than a polished plan: we want teams shipping, measuring and compounding faster than anyone else.",
     link: "/focus/advanced-materials",
     Icon: CpuIcon,
     bg: "linear-gradient(135deg,#3a0e3a,#a01f7e)",
@@ -57,7 +57,7 @@ export const FOCUS_ITEMS = [
     label: "Scientific intelligence",
     title: "Scientific intelligence",
     description:
-      "We back ideas where research, creativity and technical insight become new products, systems and markets. Some of the best companies begin as a thesis, a paper or a prototype that experts dismiss as too early. We embrace that ambiguity. Our network of professors, labs and student researchers helps us recognise scientific work with commercial gravity before it is obvious. When we find a founder who can translate genuine research insight into a product roadmap — and communicate it with clarity — we move quickly and support them from the very first cheque.",
+      "We back ideas where research, creativity and technical insight become new products, systems and markets. Some of the best companies begin as a thesis, a paper or a prototype that experts dismiss as too early. We embrace that ambiguity. Our network of professors, labs and student researchers helps us recognise scientific work with commercial gravity before it is obvious. When we find a founder who can translate genuine research insight into a product roadmap and communicate it with clarity, we move quickly and support them from the very first cheque.",
     link: "/focus/space-mobility",
     Icon: BulbIcon,
     bg: "linear-gradient(135deg,#0a2a3f,#1f8ea0)",
@@ -68,7 +68,7 @@ export const FOCUS_ITEMS = [
     label: "Sustainability and advanced industries",
     title: "Sustainability and advanced industries",
     description:
-      "We invest in technologies transforming energy, climate, manufacturing and industrial resilience through breakthrough engineering. Decarbonising the global economy is the largest industrial transition in history, and it will be won by hard technology: better batteries and fuels, cleaner processes for steel, cement and chemicals, smarter grids and circular supply chains. We look for founders who combine scientific depth with industrial pragmatism — people who understand that climate impact only scales when the underlying economics beat the incumbent. That is where we want to invest.",
+      "We invest in technologies transforming energy, climate, manufacturing and industrial resilience through breakthrough engineering. Decarbonising the global economy is the largest industrial transition in history, and it will be won by hard technology: better batteries and fuels, cleaner processes for steel, cement and chemicals, smarter grids and circular supply chains. We look for founders who combine scientific depth with industrial pragmatism, particularly people who understand that climate impact only scales when the underlying economics beat the incumbent. That is where we want to invest.",
     link: "/focus/robotics",
     Icon: LeafIcon,
     bg: "linear-gradient(135deg,#3f1a0e,#c0562e)",
@@ -79,7 +79,7 @@ export const FOCUS_ITEMS = [
     label: "Human augmentation and advanced materials",
     title: "Human augmentation and advanced materials",
     description:
-      "We explore the intersection of materials, biology, computation and human capability to unlock new physical possibilities. Advanced materials, neural interfaces, wearable robotics, sensory augmentation and human-centred bioengineering are turning science fiction into engineering roadmaps. We look for teams asking what humans could do with better tools, stronger materials and richer interfaces — and answering with working prototypes. It is a frontier where progress is nonlinear and patents matter, so we back founders early and stay close as the science matures into products.",
+      "We explore the intersection of materials, biology, computation and human capability to unlock new physical possibilities. Advanced materials, neural interfaces, wearable robotics, sensory augmentation and human-centred bioengineering are turning science fiction into engineering roadmaps. We look for teams asking what humans could do with better tools, stronger materials and richer interfaces, and answering with working prototypes. It is a frontier where progress is nonlinear and patents matter, so we back founders early and stay close as the science matures into products.",
     link: "/focus/advanced-materials",
     Icon: NetworkIcon,
     bg: "linear-gradient(135deg,#3a0e3a,#a01f7e)",
