@@ -39,14 +39,14 @@
 
 .office h4 {
   margin: 0 0 18px;
-  font-size: 13px;
+  font-size: 17px;
   letter-spacing: 0.16em;
   font-weight: 800;
 }
 
 .office p {
   margin: 0 0 8px;
-  font-size: clamp(15px, 1vw, 19px);
+  font-size: clamp(13px, 0.85vw, 15px);
   color: rgba(6, 29, 24, 0.42);
   line-height: 1.35;
   font-weight: 500;
