@@ -99,7 +99,7 @@ export default function Footer() {
           ))}
         </div>
 
-        <p className={styles.copy}>© 2026, All rights reserved</p>
+        <p className={styles.copy}>© 2026 Young Ventures YV LLC. All rights reserved. A Delaware limited liability company.</p>
       </div>
     </footer>
   );
