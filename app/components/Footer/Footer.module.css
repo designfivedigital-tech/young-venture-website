@@ -6,7 +6,7 @@
   display: grid;
   grid-template-columns: 1.05fr 0.95fr 0.65fr;
   gap: clamp(48px, 7vw, 120px);
-  align-items: center;
+  align-items: flex-end;
 }
 
 .left,
