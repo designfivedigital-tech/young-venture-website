@@ -43,10 +43,26 @@ const TEAM_MEMBERS: TeamMember[] = [
     hoverImage: "/images/team-members/Elisa-Bocconi_2.jpg",
   },
 
+   {
+    name: "Ilaria",
+    role: "University Network, Zurich",
+    university: "ETH",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
+  },
+
+  {
+    name: "Marc",
+    role: "University Network, Zurich",
+    university: "Bocconi",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
+  },
+
   {
     name: "Name Surname",
     role: "University Network, Zurich",
-    university: "ETH",
+    university: "Bocconi",
     image: "/images/team-members/ragazzo-prova.jpg",
     hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
   },
