@@ -5,6 +5,12 @@ import styles from "./ContactPage.module.css";
 
 const locations = [
   {
+    country: "ITALY",
+    region: "europe",
+    timezone: "Europe/Rome",
+    universities: [{ name: "Bocconi", city: "Milano" }],
+  },
+  {
     country: "ENGLAND",
     region: "europe",
     timezone: "Europe/London",
@@ -13,12 +19,6 @@ const locations = [
       { name: "Cambridge University", city: "Cambridge" },
       { name: "LSE", city: "London" },
     ],
-  },
-  {
-    country: "ITALY",
-    region: "europe",
-    timezone: "Europe/Rome",
-    universities: [{ name: "Bocconi", city: "Milano" }],
   },
   {
     country: "SWITZERLAND",
@@ -155,8 +155,8 @@ export default function ContactPage() {
             <div className={styles.media}>
               <span>Media enquiries</span>
               <span className={styles.dot}>·</span>
-              <a href="mailto:hello@youngventures.com">
-                hello@youngventures.com
+              <a href="mailto:hello@youngventures.vc">
+                hello@youngventures.vc
               </a>
             </div>
           </div>
