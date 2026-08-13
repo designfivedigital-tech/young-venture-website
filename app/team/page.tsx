@@ -34,6 +34,15 @@ const TEAM_MEMBERS: TeamMember[] = [
     image: "/images/team-members/Davide-Bocconi_1.jpg",
     hoverImage: "/images/team-members/Davide-Bocconi_2.jpg",
   },
+
+  {
+    name: "Elisa",
+    role: "Investment Team, Milan",
+    university: "Bocconi",
+    image: "/images/team-members/Elisa-Bocconi_1.jpg",
+    hoverImage: "/images/team-members/Elisa-Bocconi_2.jpg",
+  },
+
   {
     name: "Name Surname",
     role: "University Network, Zurich",
