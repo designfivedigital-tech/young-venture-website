@@ -13,10 +13,10 @@ type SezioneLogoProps = {
 const blocks = [
   {
     step: 1 as Step,
-    title: "Youth",
+    title: "Diversity",
     color: "pink",
     cursor: "youth",
-    copy: "We believe the best ideas of a generation rarely come from a single place. We invest in young founders wherever their path began, drawn to the ones with the energy and ambition to rewrite the rules of their industry.",
+    copy: "We believe diversity fuels creativity, innovation, and progress. We champion different perspectives, backgrounds, and experiences, creating a space where everyone feels seen, heard, and empowered to contribute. Together, we build stronger ideas, stronger teams, and a stronger future.",
   },
   {
     step: 2 as Step,

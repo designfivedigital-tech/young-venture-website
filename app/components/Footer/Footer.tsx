@@ -54,8 +54,8 @@ export default function Footer() {
         <div className={styles.offices}>
           {offices.map((office) => (
             <div key={office.city} className={styles.office}>
-              <h4>{office.city}</h4>
-              <p>{office.university}</p>
+              <h4>{office.university}</h4>
+              <p>{office.city}</p>
             </div>
           ))}
         </div>
