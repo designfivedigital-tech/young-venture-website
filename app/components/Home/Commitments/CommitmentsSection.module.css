@@ -178,8 +178,8 @@
     top: 40px;
   left: 60px;
   z-index: 2147483647;
-  width: 86px;
-  height: 86px;
+  width: clamp(44px, 4.2vw, 64px);
+  height: clamp(44px, 4.2vw, 64px);
   border-radius: 50%;
   border: 1px solid rgba(255, 255, 255, 0.25);
   background: transparent;
@@ -192,8 +192,8 @@
 
 .backIcon {
   display: block;
-  width: clamp(14px, 1.6vw, 18px);
-  height: clamp(14px, 1.6vw, 18px);
+  width: clamp(12px, 1.3vw, 17px);
+  height: clamp(12px, 1.3vw, 17px);
   background-color: currentColor;
   -webkit-mask: url("/images/freccia-yv.svg") center / contain no-repeat;
   mask: url("/images/freccia-yv.svg") center / contain no-repeat;
@@ -215,7 +215,6 @@
   color: #ffffff;
   font-size: clamp(56px, 7vw, 120px);
   line-height: 0.9;
-  letter-spacing: -0.04em;
   font-weight: 900;
 }
 
@@ -270,8 +269,8 @@
 
 .arrowIcon {
   display: block;
-  width: clamp(9px, 0.9vw, 12px);
-  height: clamp(9px, 0.9vw, 12px);
+  width: clamp(6px, 0.6vw, 8px);
+  height: clamp(6px, 0.6vw, 8px);
   background-color: currentColor;
   -webkit-mask: url("/images/freccia-yv.svg") center / contain no-repeat;
   mask: url("/images/freccia-yv.svg") center / contain no-repeat;
@@ -398,16 +397,6 @@
     gap: 60px;
   }
 
-  .backButton {
-    width: 72px;
-    height: 72px;
-  }
-
-  .backIcon {
-    width: 15px;
-    height: 15px;
-  }
-
   .metaRow {
     padding: 18px 0;
   }
@@ -515,13 +504,6 @@
   .backButton {
     top: 28px;
     left: 28px;
-    width: 68px;
-    height: 68px;
-  }
-
-  .backIcon {
-    width: 14px;
-    height: 14px;
   }
 
   .detailContent {
@@ -680,13 +662,6 @@
   .backButton {
     top: 20px;
     left: 18px;
-    width: 58px;
-    height: 58px;
-  }
-
-  .backIcon {
-    width: 12px;
-    height: 12px;
   }
 
   .detailOverlay {
