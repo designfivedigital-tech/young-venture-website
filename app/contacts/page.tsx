@@ -8,41 +8,35 @@ const locations = [
     country: "ITALY",
     region: "europe",
     timezone: "Europe/Rome",
-    universities: [{ name: "Bocconi", city: "Milano" }],
+    universities: [{ name: "Bocconi" }],
   },
   {
     country: "ENGLAND",
     region: "europe",
     timezone: "Europe/London",
     universities: [
-      { name: "Oxford Univerity", city: "Oxford" },
-      { name: "Cambridge University", city: "Cambridge" },
-      { name: "LSE", city: "London" },
+      { name: "Oxford Univerity" },
+      { name: "Cambridge University" },
+      { name: "LSE" },
     ],
   },
   {
     country: "SWITZERLAND",
     region: "europe",
     timezone: "Europe/Zurich",
-    universities: [{ name: "ETH", city: "Zurich" }],
+    universities: [{ name: "ETH" }],
   },
   {
-    country: "UNITED STATES — WEST COAST",
+    country: "UNITED STATES - WEST COAST",
     region: "usa",
     timezone: "America/Los_Angeles",
-    universities: [
-      { name: "Caltech", city: "California" },
-      { name: "Stanford University", city: "California" },
-    ],
+    universities: [{ name: "Caltech" }, { name: "Stanford University" }],
   },
   {
-    country: "UNITED STATES — EAST COAST",
+    country: "UNITED STATES - EAST COAST",
     region: "usa",
     timezone: "America/New_York",
-    universities: [
-      { name: "Harvard", city: "Massachusetts" },
-      { name: "NYU", city: "New York" },
-    ],
+    universities: [{ name: "Harvard" }, { name: "NYU" }],
   },
 ];
 
@@ -130,7 +124,6 @@ function LocationCard({ location }: { location: Location }) {
       {location.universities.map((university) => (
         <div className={styles.university} key={university.name}>
           <p>{university.name}</p>
-          <span>{university.city}</span>
         </div>
       ))}
     </article>
