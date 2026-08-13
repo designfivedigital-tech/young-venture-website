@@ -269,8 +269,8 @@
 
 .arrowIcon {
   display: block;
-  width: clamp(6px, 0.6vw, 8px);
-  height: clamp(6px, 0.6vw, 8px);
+  width: clamp(10px, 1vw, 14px);
+  height: clamp(10px, 1vw, 14px);
   background-color: currentColor;
   -webkit-mask: url("/images/freccia-yv.svg") center / contain no-repeat;
   mask: url("/images/freccia-yv.svg") center / contain no-repeat;
