@@ -40,7 +40,6 @@
 .office h4 {
   margin: 0 0 18px;
   font-size: 17px;
-  letter-spacing: clamp(1px, 0.15vw, 2.7px);
   font-weight: 800;
 }
 

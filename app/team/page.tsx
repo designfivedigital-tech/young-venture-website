@@ -7,48 +7,10 @@ import styles from "./TeamPage.module.css";
 type TeamMember = {
   name: string;
   role: string;
+  university: string;
   image: string;
   hoverImage: string;
 };
-
-const TEAM_TEMPLATE: TeamMember[] = [
-  {
-    name: "Name Surname",
-    role: "Investment Team, Milan",
-    image: "/images/team-members/ragazzo-prova.jpg",
-    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
-  },
-  {
-    name: "Name Surname",
-    role: "Founder Relations, London",
-    image: "/images/team-members/ragazzo-prova.jpg",
-    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
-  },
-  {
-    name: "Name Surname",
-    role: "University Network, Milan",
-    image: "/images/team-members/ragazzo-prova.jpg",
-    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
-  },
-  {
-    name: "Name Surname",
-    role: "Investment Team, London",
-    image: "/images/team-members/ragazzo-prova.jpg",
-    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
-  },
-  {
-    name: "Name Surname",
-    role: "Platform Team, Milan",
-    image: "/images/team-members/ragazzo-prova.jpg",
-    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
-  },
-  {
-    name: "Name Surname",
-    role: "Venture Partner, Europe",
-    image: "/images/team-members/ragazzo-prova.jpg",
-    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
-  },
-];
 
 const UNIVERSITIES = [
   "Bocconi",
@@ -62,10 +24,78 @@ const UNIVERSITIES = [
   "Caltech",
 ];
 
+// Each member belongs to exactly one university (must match a name in
+// UNIVERSITIES above) - that's what drives the sidebar filter.
+const TEAM_MEMBERS: TeamMember[] = [
+  {
+    name: "Davide",
+    role: "Investment Team, Milan",
+    university: "Bocconi",
+    image: "/images/team-members/Davide-Bocconi_1.jpg",
+    hoverImage: "/images/team-members/Davide-Bocconi_2.jpg",
+  },
+  {
+    name: "Name Surname",
+    role: "University Network, Zurich",
+    university: "ETH",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
+  },
+  {
+    name: "Name Surname",
+    role: "Founder Relations, Oxford",
+    university: "Oxford",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
+  },
+  {
+    name: "Name Surname",
+    role: "Platform Team, Cambridge",
+    university: "Cambridge",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
+  },
+  {
+    name: "Name Surname",
+    role: "Investment Team, London",
+    university: "LSE",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
+  },
+  {
+    name: "Name Surname",
+    role: "Founder Relations, New York",
+    university: "NYU",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
+  },
+  {
+    name: "Name Surname",
+    role: "Venture Partner, Boston",
+    university: "Harvard",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
+  },
+  {
+    name: "Name Surname",
+    role: "Investment Team, San Francisco",
+    university: "Stanford",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
+  },
+  {
+    name: "Name Surname",
+    role: "Platform Team, Pasadena",
+    university: "Caltech",
+    image: "/images/team-members/ragazzo-prova.jpg",
+    hoverImage: "/images/team-members/ragazzo-prova-hover.jpg",
+  },
+];
+
 const universityGroups = UNIVERSITIES.map((name) => ({
   slug: name.toLowerCase(),
   name,
-  members: TEAM_TEMPLATE,
+  members: TEAM_MEMBERS.filter((member) => member.university === name),
 }));
 
 function TeamCard({ member }: { member: TeamMember }) {
@@ -171,17 +201,19 @@ export default function TeamPage() {
         </aside>
 
         <div className={styles.groups}>
-          {visibleGroups.map((group) => (
-            <section key={group.slug} id={group.slug} className={styles.group}>
-              <h2 className={styles.groupTitle}>{group.name}</h2>
+          {visibleGroups
+            .filter((group) => group.members.length > 0)
+            .map((group) => (
+              <section key={group.slug} id={group.slug} className={styles.group}>
+                <h2 className={styles.groupTitle}>{group.name}</h2>
 
-              <div className={styles.grid}>
-                {group.members.map((member, index) => (
-                  <TeamCard key={`${group.slug}-${index}`} member={member} />
-                ))}
-              </div>
-            </section>
-          ))}
+                <div className={styles.grid}>
+                  {group.members.map((member, index) => (
+                    <TeamCard key={`${group.slug}-${index}`} member={member} />
+                  ))}
+                </div>
+              </section>
+            ))}
         </div>
       </div>
 
