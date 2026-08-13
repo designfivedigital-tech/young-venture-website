@@ -9,8 +9,13 @@ type Professor = {
   university: string;
   bio: string;
   photo: string;
+  hoverPhoto: string;
   company: { name: string; logo: string };
 };
+
+// TODO: hoverPhoto is a placeholder (reusing the Team page placeholder image)
+// until real second photos are provided for each professor.
+const HOVER_PHOTO_PLACEHOLDER = "/images/team-members/ragazzo-prova-hover.jpg";
 
 const PROFESSORS: Professor[] = [
   {
@@ -19,6 +24,7 @@ const PROFESSORS: Professor[] = [
     university: "Stanford",
     bio: "American economist, former President of the World Bank (2005–2007), with prior experience in international and external policy.",
     photo: "/images/professors/paul-wolfowitz.png",
+    hoverPhoto: HOVER_PHOTO_PLACEHOLDER,
     company: { name: "World Bank", logo: "/images/companies/world-bank-icon.png" },
   },
   {
@@ -27,6 +33,7 @@ const PROFESSORS: Professor[] = [
     university: "Bocconi",
     bio: "Chartered accountant, member of the Board of Directors of Bending Spoons, with experience in M&A advisory and corporate restructuring.",
     photo: "/images/professors/luca-sintoni.jpg",
+    hoverPhoto: HOVER_PHOTO_PLACEHOLDER,
     company: { name: "Bending Spoons", logo: "/images/companies/bending-spoons-icon.png" },
   },
   {
@@ -35,6 +42,7 @@ const PROFESSORS: Professor[] = [
     university: "LSE",
     bio: "Hannah Leach is a Partner at Antler, a global early-stage venture capital firm, and serves on the advisory board of LSE Generate.",
     photo: "/images/professors/hannah-leach.png",
+    hoverPhoto: HOVER_PHOTO_PLACEHOLDER,
     company: { name: "Antler", logo: "/images/companies/antler-icon.png" },
   },
   {
@@ -43,6 +51,7 @@ const PROFESSORS: Professor[] = [
     university: "Cambridge",
     bio: "Gerard Grech is Founding Partner of “Founders at Cambridge”, the university related program for new student ventures.",
     photo: "/images/professors/gerard-grech.png",
+    hoverPhoto: HOVER_PHOTO_PLACEHOLDER,
     company: { name: "Founders at Cambridge", logo: "/images/companies/cambridge-icon.png" },
   },
   {
@@ -51,6 +60,7 @@ const PROFESSORS: Professor[] = [
     university: "NYU",
     bio: "Mathias Cohen is a lecturer at NYU Tandon School of Engineering. In his career he raised over $50M in venture capital for his startups.",
     photo: "/images/professors/mathias-cohen.png",
+    hoverPhoto: HOVER_PHOTO_PLACEHOLDER,
     company: { name: "NYU Tandon", logo: "/images/companies/nyu-icon.png" },
   },
 ];
@@ -64,11 +74,20 @@ function ProfessorCard({ professor }: { professor: Professor }) {
         {photoFailed ? (
           <span className={styles.initials}>{professor.initials}</span>
         ) : (
-          <img
-            src={professor.photo}
-            alt={professor.name}
-            onError={() => setPhotoFailed(true)}
-          />
+          <>
+            <img
+              src={professor.photo}
+              alt={professor.name}
+              className={styles.photoImage}
+              onError={() => setPhotoFailed(true)}
+            />
+            <img
+              src={professor.hoverPhoto}
+              alt=""
+              aria-hidden="true"
+              className={styles.hoverPhoto}
+            />
+          </>
         )}
       </div>
 
