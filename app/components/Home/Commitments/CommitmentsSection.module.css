@@ -257,8 +257,8 @@
 }
 
 
-.cardWebsite span,
-.cardLinkedin span {
+.cardWebsite > span,
+.cardLinkedin > span {
   width: clamp(26px, 2.4vw, 34px);
   height: clamp(26px, 2.4vw, 34px);
   border: 1px solid rgba(255, 255, 255, 0.24);
