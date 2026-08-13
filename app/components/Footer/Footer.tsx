@@ -20,6 +20,18 @@ const toolLinks = [
   { label: "Valuation Tool", href: "/startup-valuation-tool" },
 ];
 
+const offices = [
+  { city: "Milan", university: "Bocconi University" },
+  { city: "San Francisco", university: "Stanford University" },
+  { city: "Boston", university: "Harvard University" },
+  { city: "Zurich", university: "ETH Zürich" },
+  { city: "Cambridge", university: "University of Cambridge" },
+  { city: "London", university: "LSE" },
+  { city: "New York", university: "NYU" },
+  { city: "Oxford", university: "University of Oxford" },
+  { city: "Pasadena", university: "Caltech" },
+];
+
 const legalLinks = [
   { label: "Legal", href: "https://blog.youngventures.vc/terms-of-use/" },
   { label: "Privacy policy", href: "https://blog.youngventures.vc/privacy-policy/" },
@@ -40,19 +52,12 @@ export default function Footer() {
         </Link>
 
         <div className={styles.offices}>
-          <div className={styles.office}>
-            <h4>MILAN</h4>
-            <p>Young Ventures</p>
-            <p>Via —</p>
-            <p>Milano, Italy</p>
-          </div>
-
-          <div className={styles.office}>
-            <h4>SAN FRANCISCO</h4>
-            <p>Young Ventures</p>
-            <p>Via</p>
-            <p>San Francisco, USA</p>
-          </div>
+          {offices.map((office) => (
+            <div key={office.city} className={styles.office}>
+              <h4>{office.city}</h4>
+              <p>{office.university}</p>
+            </div>
+          ))}
         </div>
 
       </div>
