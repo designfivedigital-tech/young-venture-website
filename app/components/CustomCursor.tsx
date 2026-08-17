@@ -27,11 +27,15 @@ export default function CustomCursor() {
       } else {
         resetCursor();
       }
+
+      const isLink = !!element?.closest("a");
+      document.body.classList.toggle("cursor-on-link", isLink);
     };
 
     const hideCursor = () => {
       setVisible(false);
       resetCursor();
+      document.body.classList.remove("cursor-on-link");
     };
 
     const handleScroll = () => {
@@ -47,6 +51,7 @@ export default function CustomCursor() {
       window.removeEventListener("mouseleave", hideCursor);
       window.removeEventListener("scroll", handleScroll);
       resetCursor();
+      document.body.classList.remove("cursor-on-link");
     };
   }, []);
 

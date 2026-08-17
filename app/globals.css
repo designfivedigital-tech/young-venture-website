@@ -105,6 +105,16 @@ body[data-cursor="clean"] .custom-cursor {
     0 0 28px rgba(119, 219, 33, 0.16);
 }
 
+/* Link hover: white border everywhere, overrides section theme colors */
+body.cursor-on-link .custom-cursor {
+  border-color: rgba(255, 255, 255, 0.9);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.7),
+    0 0 12px rgba(255, 255, 255, 0.45),
+    0 0 28px rgba(255, 255, 255, 0.18);
+}
+
 /* Page shell */
 .site-shell {
   min-height: 100vh;
