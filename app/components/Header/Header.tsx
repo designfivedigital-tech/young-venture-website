@@ -257,6 +257,7 @@ export default function Header() {
                 target={item.external ? "_blank" : undefined}
                 rel={item.external ? "noopener noreferrer" : undefined}
                 className={`menu-link ${isActive ? "menu-link-active" : ""}`}
+                data-cursor-arrow
               >
                 {item.label}
               </Link>
@@ -271,6 +272,7 @@ export default function Header() {
           onClick={() => setMenuOpen((prev) => !prev)}
           aria-expanded={menuOpen}
           aria-label={menuOpen ? "Close menu" : "Open menu"}
+          data-cursor-arrow
         >
           Menu
         </button>
@@ -297,6 +299,7 @@ export default function Header() {
               className="mobile-menu-close"
               onClick={closeMenu}
               aria-label="Close menu"
+              data-cursor-arrow
             >
               Close
             </button>
@@ -317,6 +320,7 @@ export default function Header() {
   className={`mobile-menu-link ${
     isActive ? "mobile-menu-link-active" : ""
   }`}
+  data-cursor-arrow
 >
                   {item.label}
                 </Link>

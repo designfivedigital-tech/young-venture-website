@@ -115,6 +115,15 @@ body.cursor-on-link .custom-cursor {
     0 0 28px rgba(255, 255, 255, 0.18);
 }
 
+/* Menu items (header links, mobile toggle/close): swap the circle for the YV arrow */
+body.cursor-on-menu .custom-cursor {
+  border: none;
+  border-radius: 0;
+  background: url("/images/freccia-yv.svg") no-repeat center / contain;
+  backdrop-filter: none;
+  box-shadow: none;
+}
+
 /* Page shell */
 .site-shell {
   min-height: 100vh;

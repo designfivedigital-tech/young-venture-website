@@ -95,7 +95,6 @@
   letter-spacing: 0.12em;
   font-weight: 500;
   white-space: nowrap;
-  cursor: pointer;
   transition:
     opacity 0.3s ease,
     transform 0.3s ease;
@@ -182,7 +181,6 @@
     line-height: 1;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    cursor: pointer;
   }
 
   .site-header-menu-open {
@@ -254,7 +252,6 @@
     line-height: 1;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    cursor: pointer;
     pointer-events: auto;
   }
 

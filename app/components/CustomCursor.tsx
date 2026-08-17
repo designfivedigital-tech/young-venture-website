@@ -28,7 +28,10 @@ export default function CustomCursor() {
         resetCursor();
       }
 
-      const isLink = !!element?.closest("a");
+      const isMenu = !!element?.closest("[data-cursor-arrow]");
+      document.body.classList.toggle("cursor-on-menu", isMenu);
+
+      const isLink = !isMenu && !!element?.closest("a");
       document.body.classList.toggle("cursor-on-link", isLink);
     };
 
@@ -36,6 +39,7 @@ export default function CustomCursor() {
       setVisible(false);
       resetCursor();
       document.body.classList.remove("cursor-on-link");
+      document.body.classList.remove("cursor-on-menu");
     };
 
     const handleScroll = () => {
@@ -52,6 +56,7 @@ export default function CustomCursor() {
       window.removeEventListener("scroll", handleScroll);
       resetCursor();
       document.body.classList.remove("cursor-on-link");
+      document.body.classList.remove("cursor-on-menu");
     };
   }, []);
 
