@@ -143,6 +143,7 @@ export default function CommitmentsSection({
               className={`${styles.card} ${getHoverClass(index)}`}
               onMouseEnter={() => handleHoverEnter(index)}
               onClick={() => setSelectedCommitment(item)}
+              data-cursor-link
             >
               <div className={styles.logoWrap}>
                 <Image

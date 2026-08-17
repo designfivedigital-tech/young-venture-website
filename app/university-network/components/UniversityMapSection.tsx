@@ -113,6 +113,7 @@ export default function UniversityMapSection() {
                 key={university.name}
                 className={styles.pointGroup}
                 onClick={(event) => handleSelect(university, event)}
+                data-cursor-link
               >
                 <circle
                   ref={(el) => {

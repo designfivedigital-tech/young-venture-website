@@ -31,7 +31,6 @@
 }
 
 .pointGroup {
-  cursor: pointer;
   pointer-events: auto;
 }
 
@@ -167,7 +166,6 @@
   color: #111111;
   font-size: clamp(20px, 2.6vw, 30px);
   line-height: 1;
-  cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;

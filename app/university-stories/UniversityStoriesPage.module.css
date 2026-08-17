@@ -46,7 +46,6 @@
   padding: 10px 20px;
   font-size: 14px;
   font-weight: 700;
-  cursor: pointer;
   transition: all 0.25s ease;
 }
 
@@ -98,7 +97,6 @@
 
 .card {
   position: relative;
-  cursor: pointer;
   background: #fff;
   border: 1px solid #e2e5e9;
   padding: 28px 26px 22px;
@@ -362,7 +360,6 @@
   border: 1.5px solid #d5d9de;
   background: #fff;
   font-size: 15px;
-  cursor: pointer;
   transition: all 0.25s ease;
 }
 
