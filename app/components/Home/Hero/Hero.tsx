@@ -7,7 +7,7 @@ import styles from "./Hero.module.css";
 type ActiveShape = "youth" | "deep" | "clean" | null;
 
 const images = {
-  youth: "/images/hero/bocconi-team.jpg",
+  youth: "/images/hero/camilla-hero.jpg",
   deep: "/images/hero/davide.jpg",
   clean: "/images/hero/yuga.jpg",
 };
