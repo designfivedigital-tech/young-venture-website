@@ -17,39 +17,39 @@ const universities = [
 const logos = [
   {
     name: "Bocconi University",
-    src: "/images/university-logos/bocconi-university.png",
+    src: "/images/university-logos/Logo-base-Bocconi.png",
   },
   {
     name: "NYU",
-    src: "/images/university-logos/nyu.png",
+    src: "/images/university-logos/Logo-base-NYU.png",
   },
   {
     name: "Oxford",
-    src: "/images/university-logos/oxford-university.png",
+    src: "/images/university-logos/Logo-base-Oxford.png",
   },
   {
     name: "Stanford",
-    src: "/images/university-logos/standford-university.png",
+    src: "/images/university-logos/Logo-base-Stanford.png",
   },
   {
     name: "Harvard",
-    src: "/images/university-logos/harvard-university.png",
+    src: "/images/university-logos/Logo-base-Harvard.png",
   },
   {
     name: "ETH Zürich",
-    src: "/images/university-logos/eth.zurich-university.png",
+    src: "/images/university-logos/Logo-base-ETH.png",
   },
   {
     name: "LSE",
-    src: "/images/university-logos/lse-university.png",
+    src: "/images/university-logos/Logo-base-LSE.png",
   },
   {
     name: "Caltech",
-    src: "/images/university-logos/caltech-university.png",
+    src: "/images/university-logos/Logo-base-Calthech.png",
   },
   {
     name: "Cambridge",
-    src: "/images/university-logos/cambridge-university.png",
+    src: "/images/university-logos/Logo-base-Cambridge.png",
   },
 ];
 
