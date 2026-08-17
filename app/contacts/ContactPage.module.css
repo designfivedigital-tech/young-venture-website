@@ -13,7 +13,7 @@
 .background {
   position: absolute;
   inset: 0;
-  background-image: url("/images/hero/clean-lab.jpg");
+  background-image: url("/images/hero/lab.jpg");
   background-size: cover;
   background-position: center;
   transform: scale(1.02);
