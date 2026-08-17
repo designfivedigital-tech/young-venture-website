@@ -25,7 +25,7 @@ const logos = [
   },
   {
     name: "Oxford",
-    src: "/images/university-logos/Logo-base-Oxford.png",
+    src: "/images/university-logos/oxford-university.png",
   },
   {
     name: "Stanford",
@@ -45,7 +45,7 @@ const logos = [
   },
   {
     name: "Caltech",
-    src: "/images/university-logos/Logo-base-Calthech.png",
+    src: "/images/university-logos/caltech-university.png",
   },
   {
     name: "Cambridge",
