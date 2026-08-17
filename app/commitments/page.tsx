@@ -1,5 +1,12 @@
+import type { Metadata } from "next";
 import styles from "./CommitmentsPage.module.css";
 import CommitmentsSection from "../components/Home/Commitments/CommitmentsSection";
+
+export const metadata: Metadata = {
+  title: "Portfolio | Young Ventures — Companies We Back",
+  description:
+    "Discover the founders Young Ventures backs — from Cortirio's portable brain imaging technology to the next wave of deep tech startups from top universities.",
+};
 
 export default function CommitmentsPage() {
   return (

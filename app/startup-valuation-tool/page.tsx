@@ -3,9 +3,9 @@ import "./tool.css";
 import ValuationTool from "./ValuationTool";
 
 export const metadata: Metadata = {
-  title: "Startup Valuation Tool · Young Ventures",
+  title: "Free Startup Valuation Tool (VC Method) | Young Ventures",
   description:
-    "Estimate a startup's pre-money valuation with the Venture Capital method.",
+    "Free startup valuation calculator using the VC method: project EBITDA,",
 };
 
 export default function StartupValuationToolPage() {
