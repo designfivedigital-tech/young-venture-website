@@ -7,7 +7,7 @@ const mainLinks = [
   { label: "Team", href: "/team" },
   { label: "Commitments", href: "/commitments" },
   { label: "University Network", href: "/university-network" },
-  { label: "Contact", href: "/contact" },
+  { label: "Contacts", href: "/contacts" },
 ];
 
 const sideLinks = [
