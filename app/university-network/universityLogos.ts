@@ -9,15 +9,15 @@ export type FloatingLogo = {
 };
 
 const LOGO_SRC: Record<string, string> = {
-  caltech: "/images/university-logos/caltech-university.png",
-  harvard: "/images/university-logos/harvard-university.png",
-  eth: "/images/university-logos/eth.zurich-university.png",
-  cambridge: "/images/university-logos/cambridge-university.png",
-  stanford: "/images/university-logos/standford-university.png",
-  bocconi: "/images/university-logos/bocconi-university.png",
-  lse: "/images/university-logos/lse-university.png",
-  nyu: "/images/university-logos/nyu.png",
-  oxford: "/images/university-logos/oxford-university.png",
+  caltech: "/images/university-logos/Logo-base-Caltech.png",
+  harvard: "/images/university-logos/Logo-base-Harvard.png",
+  eth: "/images/university-logos/Logo-base-ETH.png",
+  cambridge: "/images/university-logos/Logo-base-Cambridge.png",
+  stanford: "/images/university-logos/Logo-base-Stanford.png",
+  bocconi: "/images/university-logos/Logo-base-Bocconi.png",
+  lse: "/images/university-logos/Logo-base-LSE.png",
+  nyu: "/images/university-logos/Logo-base-NYU.png",
+  oxford: "/images/university-logos/Logo-base-Oxford.png",
 };
 
 export const VENN_LOGOS: FloatingLogo[] = [
